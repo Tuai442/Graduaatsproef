@@ -33,15 +33,12 @@ namespace BezoekerRegistratie.Paginas
             _beheerController = beheerController;
             InitializeComponent();
             _table = new CustomTable();
-            terugKnop.MouseDown += GaPaginaTerug;
+            terugKnop.ButtonClick += GaPaginaTerug;
         }
 
-        private void GaPaginaTerug(object sender, MouseButtonEventArgs e)
+        private void GaPaginaTerug(object sender, EventArgs e)
         {
-            
-            //HoofdMenu registreerPagina = new HoofdMenu(_bezoekerController);
-            //NavigeerHandler.Invoke(this, registreerPagina);
-            
+            NavigationService.GoBack();
         }
 
         private void zoekVeld_SelectionChanged(object sender, RoutedEventArgs e)
@@ -58,7 +55,7 @@ namespace BezoekerRegistratie.Paginas
             }
             else if(zoekenOpBedrijf.IsChecked ?? false)
             {
-                //zoekLijst = _beheerController.GeefAlleBedrijven();
+                // zoekLijst = _beheerController.GeefAlleBedrijven();
             }
             else if(zoekenOpBezoeker.IsChecked ?? false)
             {
@@ -83,8 +80,9 @@ namespace BezoekerRegistratie.Paginas
                 zoekRezultaat = DynamishZoeken(zoekWoord, zoekLijst, "Voornaam");
             }
 
-            ObservableCollection<ITabelObject> tabelObjects = _beheerController.GeefAlleBezoekersInObjecten();
-            _table.GenereerTable(zoekRezultaat);
+            List<object> tabelObjects = _beheerController.GeefAlleBezoekersInObjecten();
+
+            _table.GenereerTable(tabelObjects);
             tablePanel.Children.Clear();
             tablePanel.Children.Add(_table);
 

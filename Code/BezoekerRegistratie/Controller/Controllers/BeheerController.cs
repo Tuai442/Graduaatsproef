@@ -55,13 +55,13 @@ namespace Controller
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
         }
 
-        public ObservableCollection<ITabelObject> GeefAlleBezoekersInObjecten()
+        public List<object> GeefAlleBezoekersInObjecten()
         {
-            ObservableCollection<ITabelObject> list = new ObservableCollection<ITabelObject>(); 
+            List<object> list = new List<object>(); 
             List<Bezoeker> bezoekers = _bezoekerRepository.GeefAlleBezoekers();
             foreach(Bezoeker bezoeker in bezoekers)
             {
-                list.Add(bezoeker);
+                list.Add(bezoeker.GeefTabelData());
             }
             return list;
         }

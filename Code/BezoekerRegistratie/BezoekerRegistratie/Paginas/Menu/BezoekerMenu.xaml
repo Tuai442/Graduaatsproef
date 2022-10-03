@@ -12,6 +12,10 @@
 
     <Grid Background="White">
 
+        <StackPanel>
+            <UIC:TerugKnop x:Name="terugKnop"/>
+
+        </StackPanel>
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             

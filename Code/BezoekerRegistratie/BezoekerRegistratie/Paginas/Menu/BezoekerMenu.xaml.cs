@@ -33,8 +33,12 @@ namespace BezoekerRegistratie.Paginas
             meldBezoekerAanBtn.ButtonClick += MeldBezoekerAan;
             registreerBezoeker.ButtonClick += RegistreerBezoeker;
             maakAfspraak.ButtonClick += MaakAfspraak;
+            terugKnop.ButtonClick += GaPaginaTerug;
         }
-
+        private void GaPaginaTerug(object sender, EventArgs e)
+        {
+            NavigationService.GoBack();
+        }
         private void RegistreerBezoeker(object? sender, EventArgs e)
         {
             RegistreerBezoekerPagina registreerPagina = new RegistreerBezoekerPagina(_bezoekerController);

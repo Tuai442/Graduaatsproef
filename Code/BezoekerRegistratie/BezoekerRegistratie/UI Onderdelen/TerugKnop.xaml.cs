@@ -20,6 +20,7 @@ namespace BezoekerRegistratie.UI_Onderdelen
     /// </summary>
     public partial class TerugKnop : UserControl
     {
+        public EventHandler<EventArgs> ButtonClick;
         public TerugKnop()
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace BezoekerRegistratie.UI_Onderdelen
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+            ButtonClick.Invoke(this, EventArgs.Empty);
         }
     }
 }

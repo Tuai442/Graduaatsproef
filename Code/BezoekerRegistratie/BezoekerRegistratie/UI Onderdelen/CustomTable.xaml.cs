@@ -1,4 +1,5 @@
-﻿using Controller.Models;
+﻿using Controller.Interfaces;
+using Controller.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,38 +36,13 @@ namespace BezoekerRegistratie.UI_Onderdelen
 
         }
 
-        public void GenereerTable(List<Dictionary<string, string>> zoekRezultaat)
+        public void GenereerTable(List<object> data)
         {
-            if(zoekRezultaat.Count != 0)
+            if(data.Count != 0)
             {
-                List<string> headerNamen = zoekRezultaat[0].Keys.ToList();
-                _dataGrid.Items.Clear();
-                _dataGrid.Columns.Clear();
-                // Eerst headers maken
-                foreach (string naam in headerNamen)
-                {
-                    DataGridTextColumn textColumn = new DataGridTextColumn();
-                    textColumn.Header = naam;
-                    textColumn.Binding = new Binding(naam);
-                    _dataGrid.Columns.Add(textColumn);
-                }
+                _dataGrid.ItemsSource = new List<object>();
 
-
-                //List<Bezoeker> list = new List<Bezoeker>();
-                //list.Add(new Bezoeker("Jan", "Jansen", "janjansen@email", new Bedrijf("INEO Fenol", "btw", "getn", "99999", "ineoemail")));
-                //_dataGrid.ItemsSource = list;
-
-                // Dan kunnen we de waarde invullen
-                ObservableCollection<dynamic> map = new ObservableCollection<dynamic>();
-                foreach (Dictionary<string, string> data in zoekRezultaat)
-                {
-                    foreach (string naam in headerNamen)
-                    {
-
-                    }
-                }
-
-
+                _dataGrid.ItemsSource = data;
             }
 
 

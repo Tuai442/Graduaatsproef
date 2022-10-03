@@ -42,8 +42,20 @@ namespace Controller.Models
             return new object()
             {
             };
-        } 
+        }
 
+        internal object GeefTabelData()
+        {
+            object result = new {
+                BezoekerId = BezoekerId,
+                Voornaam = Voornaam,
+                Achternaam = Achternaam,
+                Nummerplaat = Nummerplaat,
+                Aanwezig = Aanwezig
+                };
+            return result;
+            
 
+        }
     }
 }
