@@ -1,0 +1,93 @@
+﻿<Page x:Class="BezoekerRegistratie.Paginas.Forms.MaakAfspraakPagina"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BezoekerRegistratie.Paginas.Forms"
+      xmlns:UIC="clr-namespace:BezoekerRegistratie.UI_Onderdelen"
+
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MaakAfspraakPagina">
+
+    <Grid Background="Wheat">
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="white">
+
+            <Label Content="Maak nieuwe afspraak"
+                   HorizontalAlignment="Center"
+                   Margin="30"
+                   FontSize="30"
+                   FontWeight="Bold"/>
+            <Grid x:Name="formGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+                <Label Content="Voornaam" 
+                       Grid.Column="0"
+                       Grid.Row="0"/>
+                <TextBox Width="100" Height="15" 
+                           Background="CadetBlue" 
+                           Grid.Column="1"
+                           Grid.Row="0"
+                           Margin="5"
+                           x:Name="voornaam"/>
+
+                <Label Content="Achternaam" 
+                       Grid.Column="0"
+                       Grid.Row="1"/>
+                <TextBox Width="100" Height="15" 
+                           Background="CadetBlue" 
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           Margin="5"
+                           x:Name="achternaam"/>
+
+                <Label Content="Datum" 
+                       Grid.Column="0"
+                       Grid.Row="2"/>
+                <DatePicker x:Name="datePicker"
+                            Grid.Column="1"
+                            Grid.Row="2"/>
+
+                <Label Content="Bedrijf van de afspraak" 
+                       Grid.Column="0"
+                       Grid.Row="3"/>
+
+                <UIC:ZoekbareComboBox x:Name="bedrijfComboBox"
+                                      Grid.Column="1"
+                                      Grid.Row="3"
+                                      Width="1" Height="5"
+                                      Padding="10"/>
+
+                <Label Content="Contact persoon" 
+                       Grid.Column="0"
+                       Grid.Row="4"
+                       />
+
+                <UIC:ZoekbareComboBox x:Name="contactPersoonComboBox"
+                                      Grid.Column="1"
+                                      Grid.Row="4"
+                                      Width="200"
+                                      Padding="10"/>
+
+            </Grid>
+            <UIC:CustomButton Text="Maak afspraak"
+                              Margin="10"
+                              x:Name="maakAfspraak"/>
+
+
+        </StackPanel>
+    </Grid>
+</Page>

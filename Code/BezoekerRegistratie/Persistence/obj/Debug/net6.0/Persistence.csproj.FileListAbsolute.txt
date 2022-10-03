@@ -1,0 +1,15 @@
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\bin\Debug\net6.0\Persistence.deps.json
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\bin\Debug\net6.0\Persistence.dll
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\bin\Debug\net6.0\Persistence.pdb
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.csproj.AssemblyReference.cache
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.AssemblyInfoInputs.cache
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.AssemblyInfo.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.csproj.CoreCompileInputs.cache
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.dll
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\refint\Persistence.dll
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.pdb
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\ref\Persistence.dll
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\bin\Debug\net6.0\Controller.dll
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\bin\Debug\net6.0\Controller.pdb
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.csproj.CopyComplete

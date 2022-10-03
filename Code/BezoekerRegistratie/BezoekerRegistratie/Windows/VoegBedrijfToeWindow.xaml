@@ -1,0 +1,95 @@
+﻿<Window x:Class="BezoekerRegistratie.Windows.VoegBedrijfToeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BezoekerRegistratie.Windows"
+        xmlns:UIC="clr-namespace:BezoekerRegistratie.UI_Onderdelen"
+
+        mc:Ignorable="d"
+        Title="VoegBedrijfToeWindow" Height="450" Width="800">
+    <Grid Background="Wheat">
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="white">
+
+            <Label Content="Voeg een bedrijf Toe"
+                   HorizontalAlignment="Center"
+                   Margin="30"
+                   FontSize="30"
+                   FontWeight="Bold"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+                <Label Content="Naam" 
+                       Grid.Column="0"
+                       Grid.Row="0"/>
+                <TextBox Width="100" Height="15" 
+                           Background="CadetBlue" 
+                           Grid.Column="1"
+                           Grid.Row="0"
+                           Margin="5"
+                           x:Name="naam"/>
+
+                <Label Content="BTW-nummer" 
+                       Grid.Column="0"
+                       Grid.Row="1"/>
+                <TextBox Width="100" Height="15" 
+                           Background="CadetBlue" 
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           Margin="5"
+                           x:Name="btw"/>
+
+                <Label Content="Email" 
+                       Grid.Column="0"
+                       Grid.Row="2"/>
+                <TextBox Width="100" Height="15" 
+                           Background="CadetBlue" 
+                           Grid.Column="1"
+                           Grid.Row="2"
+                           Margin="5"
+                           x:Name="email"/>
+
+                <Label Content="Adres" 
+                       Grid.Column="0"
+                       Grid.Row="3"/>
+                <TextBox Width="100" Height="15" 
+                           Background="CadetBlue" 
+                           Grid.Column="1"
+                           Grid.Row="3"
+                           Margin="5"
+                           x:Name="adres"/>
+
+                <Label Content="Telefoon Nr." 
+                       Grid.Column="0"
+                       Grid.Row="4"/>
+                <TextBox Width="100" Height="15" 
+                           Background="CadetBlue" 
+                           Grid.Column="1"
+                           Grid.Row="4"
+                           Margin="5"
+                           x:Name="telefoon"/>
+
+                
+
+            </Grid>
+            <UIC:CustomButton Text="Voeg toe"
+                              Margin="10"
+                              x:Name="voegBedrijfToe"/>
+
+
+        </StackPanel>
+    </Grid>
+</Window>

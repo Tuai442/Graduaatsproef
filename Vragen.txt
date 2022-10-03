@@ -1,1 +1,3 @@
-Kan een bezoeker op één dag meerder bedrijven bezoeken?
+- Kan een bezoeker op één dag meerder bedrijven bezoeken?
+- Kan een ander bedrijf kijken of er een persoon aanwezig is op een ander bedrijf?
+- Kan de bezoeker een afspaak verwijderen of aanpassen of is dit alleen toegestaan door de mensen van het bedrijf?
