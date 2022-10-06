@@ -33,8 +33,15 @@ namespace BezoekerRegistratie.Paginas
 
             registreerBezoeker.ButtonClick += RegistreerBezoeker;
             InitBedrijfComboBox();
-            
+            terugKnop.ButtonClick += GaPaginaTerug;
 
+
+
+        }
+
+        private void GaPaginaTerug(object? sender, EventArgs e)
+        {
+            NavigationService.GoBack();
         }
 
         private void InitBedrijfComboBox()

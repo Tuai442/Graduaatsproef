@@ -34,6 +34,12 @@ namespace BezoekerRegistratie.Paginas.Forms
             InitComboboxes();
 
             maakAfspraak.ButtonClick += MaakAfspraak;
+            terugKnop.ButtonClick += GaPaginaTerug;
+        }
+
+        private void GaPaginaTerug(object? sender, EventArgs e)
+        {
+            NavigationService.GoBack();
         }
 
         private void MaakAfspraak(object? sender, EventArgs e)

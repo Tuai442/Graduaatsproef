@@ -27,6 +27,12 @@ namespace BezoekerRegistratie.Paginas
             _bezoekerController = bezoekerController;   
             InitializeComponent();
             logInBtn.ButtonClick += LogIn;
+            terugKnop.ButtonClick += GaPaginaTerug;
+        }
+
+        private void GaPaginaTerug(object? sender, EventArgs e)
+        {
+            NavigationService.GoBack();
         }
 
         private void LogIn(object? sender, EventArgs e)

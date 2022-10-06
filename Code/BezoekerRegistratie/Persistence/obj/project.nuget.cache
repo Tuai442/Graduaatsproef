@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "LNEHl/CPKdsnSgO7pdhFiD8F4vIgV05ufzo6Tl/1Z8lSXZ8dmwur5zEe0MKbBI4bG3k110vxQeBzTlTUBSA1Mw==",
+  "dgSpecHash": "zUQV0LZhsfRQvnVAao066LyTqgyJZJHe7Svr/gBVRKNuNaz63TXekAoYvMeIfbjCsNqkFp2AXmjhP7OZ3gbIHw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tuur\\Desktop\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.4\\microsoft.aspnetcore.app.ref.6.0.4.nupkg.sha512",
+    "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.4\\microsoft.windowsdesktop.app.ref.6.0.4.nupkg.sha512",
+    "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.4\\microsoft.netcore.app.ref.6.0.4.nupkg.sha512"
+  ],
   "logs": []
 }
