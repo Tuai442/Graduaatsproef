@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hrfhC55iYmYtexS/k8odh1+tFRL/eg/HIfQcj8TL3zUuy1qTklfKtMpUCywxIHt48HdySOObqbbBAtAvd6WS/A==",
+  "dgSpecHash": "4CFRHFRkUZduAiYc9jpu1rArFjzeN8aymNqnnfjqb1e7lkHD04PzpqH9nnPwbDtuY6GBaZcIm8gzh2qoAt4j0Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tuur\\Desktop\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.4\\microsoft.aspnetcore.app.ref.6.0.4.nupkg.sha512",
-    "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.4\\microsoft.windowsdesktop.app.ref.6.0.4.nupkg.sha512",
-    "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.4\\microsoft.netcore.app.ref.6.0.4.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

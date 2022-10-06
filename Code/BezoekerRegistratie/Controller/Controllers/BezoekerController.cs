@@ -20,15 +20,12 @@ namespace Controller
             _agenda = new Agenda(_afspraakRepository);
         }
 
-        
         public void SchrijfBezoekerUit(int bezoekerId)
         {
             Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpId(bezoekerId);
             _systeem.SchrijfBezoekerUit(bezoeker);
 
         }
-
-        
 
         public void MeldBezoekerAan(int bezoekerId)
         {
