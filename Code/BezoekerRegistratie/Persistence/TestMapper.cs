@@ -140,5 +140,10 @@ namespace Persistence
         {
             throw new NotImplementedException();
         }
+
+        public void RegistreerAfspraak(Bezoeker bezoeker, Bedrijf bedrijf, Werknemer cpersson, DateTime now)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

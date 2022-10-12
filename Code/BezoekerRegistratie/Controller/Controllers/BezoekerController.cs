@@ -1,6 +1,5 @@
 ﻿using Controller.Interfaces;
 using Controller.Models;
-using Controller.Models.Systeem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,28 +8,30 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-    public class BezoekerController: Controller
+    public class BezoekerController
     {
-        private Agenda _agenda;
-
+        private IWerknemerRepository _werknemerRepository;
+        private IBezoekerRepository _bezoekerRepository;
+        private IBedrijfRepository _bedrijfRepository;
+        private IAfspraakRepository _afspraakRepository;
         public BezoekerController(IWerknemerRepository werknemerRepository, IBezoekerRepository bezoekerRepository,
-            IBedrijfRepository bedrijfRepository, IAfspraakRepository _afspraakRepository) :
-           base(werknemerRepository, bezoekerRepository, bedrijfRepository, _afspraakRepository)
+            IBedrijfRepository bedrijfRepository, IAfspraakRepository afspraakRepository)
         {
-            _agenda = new Agenda(_afspraakRepository);
+            _werknemerRepository = werknemerRepository;
+            _bezoekerRepository = bezoekerRepository;
+            _bedrijfRepository = bedrijfRepository;
+            _afspraakRepository = afspraakRepository;
         }
 
         public void SchrijfBezoekerUit(int bezoekerId)
         {
             Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpId(bezoekerId);
-            _systeem.SchrijfBezoekerUit(bezoeker);
 
         }
 
         public void MeldBezoekerAan(int bezoekerId)
         {
             Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpId(bezoekerId);
-            _systeem.MeldBezoekerAan(bezoeker);
         }
 
         public bool VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
@@ -43,13 +44,12 @@ namespace Controller
 
         public bool RegistreerBezoeker(string voornaam, string achternaam, string email, string bedrijf, string nummerplaat)
         {
-            
             return true;
         }
 
         public bool LogBezoekerIn(string voornaam, string achternaam, string ww="")
         {
-            List<Bezoeker> bezoekers = GeefAlleBezoekers();
+            List<Bezoeker> bezoekers = _bezoekerRepository.GeefAlleBezoekers();
             foreach (Bezoeker bezoeker in bezoekers)
             {
                 if(bezoeker.Voornaam == voornaam && bezoeker.Achternaam == achternaam)
@@ -58,17 +58,6 @@ namespace Controller
                 }
             }
             return false;
-        }
-
-        public void VerwijderAfspraak(int afspraakId)
-        {
-            _agenda.VerwijderAfspraak(afspraakId);
-        }
-
-        public void UpdateAfspraak()
-        {
-            // TODO: update afpraak.
-            _agenda.UpdateAfspraak();
         }
 
         public string GeefAfspraakInfoOpBezoekerId(int bezoekerId)
@@ -95,8 +84,14 @@ namespace Controller
             Bezoeker bezoeker = (Bezoeker)_bezoekerRepository.GeefPersoonOpVolledigeNaam(voornaam, achternaam);
             Bedrijf bedrijf = _bedrijfRepository.GeefBedrijfOpNaam(bedrijfNaam);
             Werknemer Cpersson = (Werknemer)_werknemerRepository.GeefPersoonOpVolledigeNaam(contactPersoonVoornaam, contactPersoonAchternaam);
-            _agenda.MaakAfspraak(bezoeker, Cpersson, bedrijf, datum);
+
+            _afspraakRepository.RegistreerAfspraak(bezoeker, bedrijf, Cpersson, DateTime.Now);
             return true;
+        }
+
+        public List<string> GeefAlleBedrijfsNamen()
+        {
+            throw new NotImplementedException();
         }
     }
 }

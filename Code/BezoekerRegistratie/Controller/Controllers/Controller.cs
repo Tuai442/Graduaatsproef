@@ -1,6 +1,5 @@
 ﻿using Controller.Interfaces;
 using Controller.Models;
-using Controller.Models.Systeem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,6 @@ namespace Controller
         protected IBezoekerRepository _bezoekerRepository;
         protected IBedrijfRepository _bedrijfRepository;
         protected IAfspraakRepository _afspraakRepository;
-        protected Systeem _systeem;
 
 
         protected Controller(IWerknemerRepository werknemerRepository, IBezoekerRepository bezoekerRepository,
@@ -25,7 +23,6 @@ namespace Controller
             _bezoekerRepository = bezoekerRepository;
             _bedrijfRepository = bedrijfRepository;
             _afspraakRepository = afspraakRepository;
-            _systeem = new Systeem(werknemerRepository, bezoekerRepository);
         }
 
         public int GeefBezoekersId(string naam = null, string achternaam = null, string email = null, string nummerplaat = null)

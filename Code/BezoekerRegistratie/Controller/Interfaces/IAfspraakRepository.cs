@@ -13,5 +13,6 @@ namespace Controller.Interfaces
         int GeefAfspraakOpDatum(DateTime datum);
         List<Afspraak> GeefAlleAfspraken();
         void VoegAfspraakToe(Bezoeker bezoeker, Werknemer contactPersoon, Bedrijf bedrijf, DateTime datum);
+        void RegistreerAfspraak(Bezoeker bezoeker, Bedrijf bedrijf, Werknemer cpersson, DateTime now);
     }
 }

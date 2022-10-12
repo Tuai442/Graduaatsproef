@@ -1,6 +1,5 @@
 ﻿using Controller.Interfaces;
 using Controller.Models;
-using Controller.Models.Systeem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,13 +9,19 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-    public class BeheerController: Controller
+    public class BeheerController
     {
-
+        private IWerknemerRepository _werknemerRepository;
+        private IBezoekerRepository _bezoekerRepository;
+        private IBedrijfRepository _bedrijfRepository;
+        private IAfspraakRepository _afspraakRepository;
         public BeheerController(IWerknemerRepository werknemerRepository, IBezoekerRepository bezoekerRepository, 
-            IBedrijfRepository bedrijfRepository, IAfspraakRepository afspraakRepository):
-            base(werknemerRepository, bezoekerRepository, bedrijfRepository, afspraakRepository)
+            IBedrijfRepository bedrijfRepository, IAfspraakRepository afspraakRepository)
         {
+            _werknemerRepository = werknemerRepository;
+            _bezoekerRepository = bezoekerRepository;
+            _bedrijfRepository = bedrijfRepository;
+            _afspraakRepository = afspraakRepository;
         }
 
         public void RegistreerNieuweBezoeker(string naam, string achternaam, string email, string bedrijfVanGebruiker, string nummerplaat="")
@@ -24,7 +29,6 @@ namespace Controller
 
             Bedrijf bedrijf = _bedrijfRepository.GeefBedrijfOpNaam(bedrijfVanGebruiker);
             Bezoeker bezoeker = new Bezoeker(naam, achternaam, email, bedrijf, nummerplaat);
-            _systeem.RegistreerBezoeker(bezoeker);
         }
 
         public List<string> GeefAlleWerknemers()
@@ -77,6 +81,7 @@ namespace Controller
             return result;
         }
 
+        
       
     }
 }

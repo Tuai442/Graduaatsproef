@@ -12,7 +12,7 @@
 
     <Grid Background="Wheat">
         <StackPanel>
-            <UIC:TerugKnop x:Name="terugKnop"/>
+            <!--<UIC:TerugKnop x:Name="terugKnop"/>-->
 
         </StackPanel>
         <StackPanel HorizontalAlignment="Center"
@@ -54,9 +54,9 @@
                            Margin="5"
                            x:Name="achternaam"/>
             </Grid>
-            <UIC:CustomButton Text="Log In"
+            <!--<UIC:CustomButton Text="Log In"
                               Margin="10"
-                              x:Name="logInBtn"/>
+                              x:Name="logInBtn"/>-->
 
 
         </StackPanel>

@@ -70,11 +70,11 @@ namespace BezoekerRegistratie.Paginas.Forms
 
         private void InitComboboxes()
         {
-            List<string> bedrijfItems = _bezoekerController.GeefAlleBedrijfsNamen();
-            bedrijfComboBox.InitItems(bedrijfItems);
+            //List<string> bedrijfItems = _bezoekerController.GeefAlleBedrijfsNamen();
+            //bedrijfComboBox.InitItems(bedrijfItems);
 
-            List<string> contactPersoonItems = _bezoekerController.GeefAlleContactPersonen();
-            contactPersoonComboBox.InitItems(contactPersoonItems);
+            //List<string> contactPersoonItems = _bezoekerController.GeefAlleContactPersonen();
+            //contactPersoonComboBox.InitItems(contactPersoonItems);
         }
 
         private void bedrijfComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
