@@ -1,0 +1,19 @@
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Niet belangrijk.csproj.AssemblyReference.cache
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Paginas\Forms\MaakAfspraakPagina.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Paginas\Forms\MeldBezoekerAanPagina.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Paginas\Forms\RegistreerBezoekerPagina.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Paginas\Menu\BeheerderMenu.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Paginas\Menu\BezoekerMenu.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Paginas\Menu\HoofdMenu.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Paginas\test.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\UI Onderdelen\CustomButton.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\UI Onderdelen\CustomTable.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\UI Onderdelen\Form.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\UI Onderdelen\TerugKnop.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\UI Onderdelen\ZoekbareComboBox.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Windows\VoegBedrijfToeWindow.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Niet belangrijk_MarkupCompile.cache
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerRegistratie\obj\Debug\net6.0-windows\Niet belangrijk_MarkupCompile.lref

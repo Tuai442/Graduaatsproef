@@ -110,7 +110,7 @@ namespace BezoekerRegistratie.Paginas {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BezoekerRegistratie;component/paginas/forms/registreerbezoekerpagina.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Niet belangrijk;component/paginas/forms/registreerbezoekerpagina.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Paginas\Forms\RegistreerBezoekerPagina.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -7,18 +7,20 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class Bezoeker: Persoon, ITabelObject
+    public class Bezoeker: Persoon
     {
-        private static int totalBezoekers = 0;
+        
+        private static int totalBezoekers = 0; // TODO: tijdelijk
         public int BezoekerId { get; set; }
         public string Nummerplaat { get; set; }
-        public bool Aanwezig { get; set; }
+        public bool Aanwezig { get; private set; }
         public Bezoeker(string voornaam, string achternaam, string email, Bedrijf bedrijfVanBezoeker, string nummerplaat= "") : 
             base(voornaam, achternaam, email, bedrijfVanBezoeker)
         {
-            totalBezoekers += 1;
             BezoekerId = totalBezoekers;
             Nummerplaat = nummerplaat;
+            totalBezoekers += 1;
+
         }
 
         public bool ControleNummerplaat(string nummerplaat)
@@ -36,14 +38,6 @@ namespace Controller.Models
             return result;
         }
 
-        public object GeefDataInfo()
-        {
-
-            return new object()
-            {
-            };
-        }
-
         internal object GeefTabelData()
         {
             object result = new {
@@ -56,6 +50,16 @@ namespace Controller.Models
             return result;
             
 
+        }
+
+        public void MeldAan()
+        {
+            Aanwezig = true;
+        }
+
+        public void MeldAf()
+        {
+            Aanwezig = false;
         }
     }
 }

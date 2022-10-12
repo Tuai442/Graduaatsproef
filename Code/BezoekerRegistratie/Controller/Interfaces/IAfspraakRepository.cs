@@ -12,7 +12,7 @@ namespace Controller.Interfaces
         int GeefAfspraakOpBezoekerId(int bezoekerId);
         int GeefAfspraakOpDatum(DateTime datum);
         List<Afspraak> GeefAlleAfspraken();
-        void VoegAfspraakToe(Bezoeker bezoeker, Werknemer contactPersoon, Bedrijf bedrijf, DateTime datum);
-        void RegistreerAfspraak(Bezoeker bezoeker, Bedrijf bedrijf, Werknemer cpersson, DateTime now);
+        void RegistreerAfspraak(Afspraak afspraak);
+        Afspraak GeefAfspraakOp(int? id, string? naam, DateTime? datum); // Op deze manier kunnen we één methode maken en filter op meerdere parameters.
     }
 }

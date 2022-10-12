@@ -118,7 +118,7 @@ namespace BezoekerRegistratie.Paginas.Forms {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BezoekerRegistratie;component/paginas/forms/maakafspraakpagina.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Niet belangrijk;component/paginas/forms/maakafspraakpagina.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Paginas\Forms\MaakAfspraakPagina.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -70,7 +70,7 @@ namespace BezoekerRegistratie.Paginas {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BezoekerRegistratie;component/paginas/menu/hoofdmenu.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Niet belangrijk;component/paginas/menu/hoofdmenu.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Paginas\Menu\HoofdMenu.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -102,7 +102,7 @@ namespace BezoekerRegistratie.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Niet belangrijk;V1.0.0.0;component/windows/voegbedrijftoewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Niet belangrijk;component/windows/voegbedrijftoewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\VoegBedrijfToeWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

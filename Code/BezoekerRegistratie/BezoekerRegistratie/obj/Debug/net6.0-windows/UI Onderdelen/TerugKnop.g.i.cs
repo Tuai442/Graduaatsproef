@@ -61,7 +61,7 @@ namespace BezoekerRegistratie.UI_Onderdelen {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Niet belangrijk;V1.0.0.0;component/ui%20onderdelen/terugknop.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Niet belangrijk;component/ui%20onderdelen/terugknop.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UI Onderdelen\TerugKnop.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

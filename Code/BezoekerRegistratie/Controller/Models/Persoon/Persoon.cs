@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class Persoon: IUIConverter
+    public class Persoon
     {
         
         public string Voornaam { get; set; }

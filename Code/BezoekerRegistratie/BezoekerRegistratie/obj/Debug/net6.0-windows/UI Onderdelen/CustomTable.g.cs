@@ -61,7 +61,7 @@ namespace BezoekerRegistratie.UI_Onderdelen {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BezoekerRegistratie;component/ui%20onderdelen/customtable.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Niet belangrijk;component/ui%20onderdelen/customtable.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UI Onderdelen\CustomTable.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

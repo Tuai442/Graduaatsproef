@@ -44,5 +44,10 @@ namespace Persistence
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateBezoeker(Bezoeker bezoeker)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

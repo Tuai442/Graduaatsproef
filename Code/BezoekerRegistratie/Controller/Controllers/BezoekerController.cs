@@ -14,6 +14,7 @@ namespace Controller
         private IBezoekerRepository _bezoekerRepository;
         private IBedrijfRepository _bedrijfRepository;
         private IAfspraakRepository _afspraakRepository;
+        
         public BezoekerController(IWerknemerRepository werknemerRepository, IBezoekerRepository bezoekerRepository,
             IBedrijfRepository bedrijfRepository, IAfspraakRepository afspraakRepository)
         {
@@ -23,75 +24,47 @@ namespace Controller
             _afspraakRepository = afspraakRepository;
         }
 
-        public void SchrijfBezoekerUit(int bezoekerId)
+        public bool MeldBezoekerAan(string vnBezoeker, string anBezoeker, string vnContactP, string anContactP, string bedrijfsNaam)
         {
-            Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpId(bezoekerId);
+            Bezoeker bezoeker = (Bezoeker)_bezoekerRepository.GeefPersoonOpVolledigeNaam(vnBezoeker, anBezoeker);
+            Werknemer contactPersoon = (Werknemer)_werknemerRepository.GeefPersoonOpVolledigeNaam(vnContactP, anContactP);
+            Bedrijf bedrijf = _bedrijfRepository.GeefBedrijfOpNaam(bedrijfsNaam);
 
+            if (Controleer.ControleIsBezoekerAlAanwezig(bezoeker))
+            {
+                return false;
+            }
+
+            bezoeker.MeldAan();
+            Afspraak afspraak = new Afspraak(bezoeker, contactPersoon, bedrijf, DateTime.Now);
+            _bezoekerRepository.UpdateBezoeker(bezoeker);
+            _afspraakRepository.RegistreerAfspraak(afspraak);
+            return true;
         }
 
-        public void MeldBezoekerAan(int bezoekerId)
+        public void MeldBezoekerUit(int bezoekerId)
         {
             Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpId(bezoekerId);
+            Controleer.ControleIsBezoekerNietAanwezig(bezoeker);
+            bezoeker.MeldAf();
+            _bezoekerRepository.UpdateBezoeker(bezoeker);
         }
 
-        public bool VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
+        public void VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
         {
-            
+            Controleer.BtwNummerControle(btw);
+            Controleer.EmailControle(email);
             Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
-            return true;
-        }
-
-        public bool RegistreerBezoeker(string voornaam, string achternaam, string email, string bedrijf, string nummerplaat)
-        {
-            return true;
-        }
-
-        public bool LogBezoekerIn(string voornaam, string achternaam, string ww="")
-        {
-            List<Bezoeker> bezoekers = _bezoekerRepository.GeefAlleBezoekers();
-            foreach (Bezoeker bezoeker in bezoekers)
-            {
-                if(bezoeker.Voornaam == voornaam && bezoeker.Achternaam == achternaam)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         public string GeefAfspraakInfoOpBezoekerId(int bezoekerId)
         {
-            List<Afspraak> afspraken = _afspraakRepository.GeefAlleAfspraken();
-            foreach(Afspraak afspraak in afspraken)
-            {
-                if (afspraak.Bezoeker.BezoekerId == bezoekerId)
-                {
-                    return afspraak.ToString();
-                }
-            }
-            return "Geen afspraken gevonden";
+
+            Afspraak afspraak = _afspraakRepository.GeefAfspraakOp(id: bezoekerId, naam: null, datum: null);
+            return afspraak.ToString();
         }
 
-        public List<string> GeefAttributenVanBedrijf()
-        {
-            return Bedrijf.GeefAttributen();
-        }
-
-        public bool MaakNieuweAfspraak(string voornaam, string achternaam, DateTime datum,
-            string bedrijfNaam, string contactPersoonVoornaam, string contactPersoonAchternaam)
-        {
-            Bezoeker bezoeker = (Bezoeker)_bezoekerRepository.GeefPersoonOpVolledigeNaam(voornaam, achternaam);
-            Bedrijf bedrijf = _bedrijfRepository.GeefBedrijfOpNaam(bedrijfNaam);
-            Werknemer Cpersson = (Werknemer)_werknemerRepository.GeefPersoonOpVolledigeNaam(contactPersoonVoornaam, contactPersoonAchternaam);
-
-            _afspraakRepository.RegistreerAfspraak(bezoeker, bedrijf, Cpersson, DateTime.Now);
-            return true;
-        }
-
-        public List<string> GeefAlleBedrijfsNamen()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

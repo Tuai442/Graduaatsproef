@@ -145,5 +145,20 @@ namespace Persistence
         {
             throw new NotImplementedException();
         }
+
+        public void RegistreerAfspraak(Afspraak afspraak)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Afspraak GeefAfspraakOp(int? id, string? naam, DateTime? datum)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateBezoeker(Bezoeker bezoeker)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

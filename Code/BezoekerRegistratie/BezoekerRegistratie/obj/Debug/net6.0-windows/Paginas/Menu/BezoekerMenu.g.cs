@@ -86,7 +86,7 @@ namespace BezoekerRegistratie.Paginas {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BezoekerRegistratie;component/paginas/menu/bezoekermenu.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Niet belangrijk;component/paginas/menu/bezoekermenu.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Paginas\Menu\BezoekerMenu.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
