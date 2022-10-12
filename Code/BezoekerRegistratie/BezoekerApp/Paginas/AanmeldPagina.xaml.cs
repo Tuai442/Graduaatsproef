@@ -30,6 +30,13 @@ namespace BezoekerApp.Paginas
             InitializeComponent();
 
             logInBtn.ButtonClick += LogIn;
+            logUitBtn.ButtonClick += LogUit;
+        }
+
+        private void LogUit(object? sender, EventArgs e)
+        {
+            TestNav test = new TestNav();
+            NavigeerHandler.Invoke(this, test);
         }
 
         private void LogIn(object? sender, EventArgs e)

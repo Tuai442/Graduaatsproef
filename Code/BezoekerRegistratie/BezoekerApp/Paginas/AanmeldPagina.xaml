@@ -56,6 +56,9 @@
                               Margin="10"
                               x:Name="logInBtn"/>
 
+            <UIC:Knop Text="Log Uit"
+                      x:Name="logUitBtn"/>
+
 
         </StackPanel>
     </Grid>

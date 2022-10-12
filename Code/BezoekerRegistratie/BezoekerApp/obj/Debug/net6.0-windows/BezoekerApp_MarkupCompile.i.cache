@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\App.xaml
-2374844112
+37814566
 
-6-733891626
+71188119800
 197-1296210648
-MainWindow.xaml;Paginas\AanmeldPagina.xaml;
+MainWindow.xaml;Paginas\AanmeldPagina.xaml;Paginas\TestNav.xaml;
 
 True
 

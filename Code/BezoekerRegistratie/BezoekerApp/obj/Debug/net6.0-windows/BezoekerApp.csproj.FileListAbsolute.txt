@@ -28,3 +28,5 @@ C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\De
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\AanmeldPagina.baml
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Components.dll
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Components.pdb
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.baml
