@@ -7,29 +7,33 @@
              mc:Ignorable="d" 
             d:DesignHeight="{Binding Height}" d:DesignWidth="{Binding Width}">
 
-    <!--<Border Width="100" Height="50"
+    <!--<Grid>
+        <Border Width="100" Height="50"
             BorderThickness="4"
-            BorderBrush="Black"
+            BorderBrush="black"
             CornerRadius="10"
             Padding="5"
             Background="Beige">
-        <Button 
+            <Button 
             Content="Button"
             BorderThickness="0"
             Background="Transparent">
 
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#28AEED"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#278BEF"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button
-    </Border>-->
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#28AEED"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#278BEF"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Border>
+
+    </Grid>-->
+    
 
     <Border BorderThickness="4"
             BorderBrush="Black"
