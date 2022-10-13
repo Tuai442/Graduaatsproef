@@ -34,11 +34,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\3deversie\\Solution1\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\aaa\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
       "projectName": "Persistence",
-      "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\3deversie\\Solution1\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
+      "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\aaa\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
       "packagesPath": "C:\\Users\\soren\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\3deversie\\Solution1\\Code\\BezoekerRegistratie\\Persistence\\obj\\",
+      "outputPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\aaa\\Code\\BezoekerRegistratie\\Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -60,8 +60,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\3deversie\\Solution1\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
-              "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\3deversie\\Solution1\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+            "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\aaa\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+              "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\aaa\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
             }
           }
         }
