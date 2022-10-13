@@ -16,21 +16,13 @@ using System.Windows.Shapes;
 namespace BezoekerApp.Paginas
 {
     /// <summary>
-    /// Interaction logic for TestNav.xaml
+    /// Interaction logic for TestNav2.xaml
     /// </summary>
-    public partial class TestNav : Page
+    public partial class TestNav2 : Page
     {
-        public EventHandler<Page> NavigeerHandler;
-
-        public TestNav()
+        public TestNav2()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TestNav2 testNav = new TestNav2();
-            NavigeerHandler.Invoke(this, testNav);
         }
     }
 }

@@ -36,6 +36,7 @@ namespace BezoekerApp.Paginas
         private void LogUit(object? sender, EventArgs e)
         {
             TestNav test = new TestNav();
+            test.NavigeerHandler = NavigeerHandler;
             NavigeerHandler.Invoke(this, test);
         }
 

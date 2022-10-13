@@ -30,3 +30,5 @@ C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\De
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Components.pdb
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.g.cs
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.baml
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav2.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav2.baml
