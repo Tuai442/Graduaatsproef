@@ -49,7 +49,12 @@
                            Grid.Row="1"
                            Margin="5"
                            x:Name="achternaam"/>
+
                 
+
+
+
+
                 <TextBlock Grid.Row="2">Hier moeten nog velden bij komen ...</TextBlock>
             </Grid>
             <UIC:Knop Text="Log In"
