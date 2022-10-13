@@ -41,13 +41,10 @@ namespace Persistence
                 new Werknemer("Rudy", "...", "rudy@email.com", "Suprivisor", bedrijven[1])
             };
         
-            afspraken = new List<Afspraak>
-            {
-                new Afspraak(bezoekers[0], werknemers[1], bedrijven[0], new DateTime(2022, 11, 5) )
-            };
+            
         }
 
-        public int GeefAfspraakOpBezoekerId(int bezoekerId)
+        public Afspraak GeefAfspraakOpBezoekerId(int bezoekerId)
         {
             throw new NotImplementedException();
         }
@@ -104,7 +101,7 @@ namespace Persistence
 
         public void VoegAfspraakToe(Bezoeker bezoeker, Werknemer contactPersoon, Bedrijf bedrijf, DateTime datum)
         {
-            afspraken.Add(new Afspraak(bezoeker, contactPersoon, bedrijf, datum));
+            
 
         }
 

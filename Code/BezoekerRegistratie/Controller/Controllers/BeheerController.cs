@@ -24,13 +24,6 @@ namespace Controller
             _afspraakRepository = afspraakRepository;
         }
 
-        public void RegistreerNieuweBezoeker(string naam, string achternaam, string email, string bedrijfVanGebruiker, string nummerplaat="")
-        {
-
-            Bedrijf bedrijf = _bedrijfRepository.GeefBedrijfOpNaam(bedrijfVanGebruiker);
-            Bezoeker bezoeker = new Bezoeker(naam, achternaam, email, bedrijf, nummerplaat);
-        }
-
         public List<string> GeefAlleWerknemers()
         {
             return new List<string>();
@@ -40,17 +33,6 @@ namespace Controller
         {
             // TODO: update bezoeker.
             Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpId(bezoekerId);
-        }
-
-        public List<string> GeefAlleDatumsVanAfspraken()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<string> GeefAlleData()
-        {
-            return new List<string>();
-            //throw new NotImplementedException();
         }
 
         public void VoegNieuwBedrijfToe(string naam, string btw, string adress, string telefoon, string email)
@@ -80,6 +62,21 @@ namespace Controller
             }
             return result;
         }
+
+        public List<string> GeefAlleAanwezigen()
+        {
+            List<Bezoeker> bezoekers = _bezoekerRepository.GeefAlleBezoekers();
+            List<string> aanwezigen = new List<string>();
+            foreach(Bezoeker bezoeker in bezoekers)
+            {
+                if (bezoeker.Aanwezig)
+                {
+                    aanwezigen.Add(bezoeker.ToString());
+                }
+            }
+            return aanwezigen;
+        }
+
 
         
       

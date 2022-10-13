@@ -9,20 +9,20 @@ namespace Controller
 
         public Bedrijf Bedrijf { get; set; }
         public DateTime StartTijd { get; set; }
+        public DateTime EindTijd { get; set; }
 
-        public Afspraak(Bezoeker bezoeker, Werknemer contactPersoon, Bedrijf bedrijf, DateTime startTijd)
+        public Afspraak(Bezoeker bezoeker, Werknemer contactPersoon, Bedrijf bedrijf)
         {
             Bezoeker = bezoeker;
             ContactPersoon = contactPersoon;
             Bedrijf = bedrijf;
-            StartTijd = startTijd;
+            StartTijd = DateTime.Now;
         }
-        public bool ControleStartTijd(DateTime startTijd)
+       
+        public void EindeAfspraak()
         {
-            // TODO: Contole start datum geldig datum
-            return true;
+            EindTijd = DateTime.Now;
         }
-
         public override string? ToString()
         {
             return $"{Bezoeker.GeefVolledigeNaam()}\n" +

@@ -9,7 +9,7 @@ namespace Controller.Interfaces
 {
     public interface IAfspraakRepository
     {
-        int GeefAfspraakOpBezoekerId(int bezoekerId);
+        Afspraak GeefAfspraakOpBezoekerId(int bezoekerId);
         int GeefAfspraakOpDatum(DateTime datum);
         List<Afspraak> GeefAlleAfspraken();
         void RegistreerAfspraak(Afspraak afspraak);

@@ -32,8 +32,8 @@ namespace BeheerderApp
 
         public void ToonHoofdMenu()
         {
-            //AanmeldPagina meldBezoekerAan = new AanmeldPagina(_bezoekerController);
-            ////meldBezoekerAan.NavigeerHandler += NavigeerNaarPagina;
+            //BeheerderPagina meldBezoekerAan = new AanmeldPagina(_bezoekerController);
+            //meldBezoekerAan.NavigeerHandler += NavigeerNaarPagina;
             //mainFrame.Navigate(meldBezoekerAan);
         }
 

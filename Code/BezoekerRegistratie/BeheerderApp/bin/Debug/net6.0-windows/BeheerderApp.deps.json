@@ -1,0 +1,61 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "BeheerderApp/1.0.0": {
+        "dependencies": {
+          "Components": "1.0.0",
+          "Controller": "1.0.0",
+          "Persistence": "1.0.0"
+        },
+        "runtime": {
+          "BeheerderApp.dll": {}
+        }
+      },
+      "Components/1.0.0": {
+        "runtime": {
+          "Components.dll": {}
+        }
+      },
+      "Controller/1.0.0": {
+        "runtime": {
+          "Controller.dll": {}
+        }
+      },
+      "Persistence/1.0.0": {
+        "dependencies": {
+          "Controller": "1.0.0"
+        },
+        "runtime": {
+          "Persistence.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BeheerderApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Components/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Controller/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Persistence/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
