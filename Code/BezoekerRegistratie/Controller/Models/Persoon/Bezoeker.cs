@@ -14,12 +14,14 @@ namespace Controller.Models
         public int BezoekerId { get; set; }
         public string Nummerplaat { get; set; }
         public bool Aanwezig { get; private set; }
-        public Bezoeker(string voornaam, string achternaam, string email, Bedrijf bedrijfVanBezoeker, string nummerplaat= "") : 
-            base(voornaam, achternaam, email, bedrijfVanBezoeker)
+        public string Bedrijf { get; set; }
+        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, string nummerplaat= "") : 
+            base(voornaam, achternaam, email)
         {
             BezoekerId = totalBezoekers;
             Nummerplaat = nummerplaat;
             totalBezoekers += 1;
+            Bedrijf = bedrijf;
 
         }
 
