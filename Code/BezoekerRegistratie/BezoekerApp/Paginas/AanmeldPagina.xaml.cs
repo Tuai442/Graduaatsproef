@@ -44,7 +44,7 @@ namespace BezoekerApp.Paginas
         {
             string vn = voornaam.Text.ToString();
             string an = achternaam.Text.ToString();
-            bool gelukt = _bezoekerController.MeldBezoekerAan(vn, an, "", "", "");
+            bool gelukt = _bezoekerController.MeldBezoekerAan(vn, an, "", "", "", "");
 
             string text = "";
 

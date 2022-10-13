@@ -15,4 +15,5 @@ C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Deb
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.baml
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.g.cs
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.baml
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\ref\Components.dll
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.AssemblyReference.cache
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\refint\Components.dll

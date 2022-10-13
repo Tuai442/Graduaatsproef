@@ -34,7 +34,7 @@ namespace Controller.Models
                 {"Voornaam", Voornaam},
                 {"Achternaam", Achternaam},
                 {"Email", Email},
-                {"Bedrijf", Bedrijf.Naam }
+                
             };
             return result;
         }

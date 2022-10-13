@@ -30,8 +30,8 @@ namespace Persistence
 
             bezoekers = new List<Bezoeker>
             {
-                new Bezoeker("Jan", "Jansen", "janjansen@email", bedrijven[2]),
-                new Bezoeker("Jaap", "Jansen", "janjansen@email", bedrijven[1])
+                //new Bezoeker("Jan", "Jansen", "janjansen@email", bedrijven[2]),
+                //new Bezoeker("Jaap", "Jansen", "janjansen@email", bedrijven[1])
             };
            
 

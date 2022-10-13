@@ -13,11 +13,12 @@ namespace Controller.Models
         public int WerknemerId { get; set; }
         public Bedrijf Bedrijf { get; set; }
 
-        public Werknemer(string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf) : base(voornaam, achternaam, email, bedrijf)
+        public Werknemer(string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf) : base(voornaam, achternaam, email)
         {
             totalWerknemers += 1;
             WerknemerId = totalWerknemers;
             Functie = functie;
+            Bedrijf = bedrijf;
         }
     }
 }
