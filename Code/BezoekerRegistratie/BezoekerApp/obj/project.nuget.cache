@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uzDzQvr+SRhRIG2u3rO8mzeZsFmsSZDWMHR4c2HbZcZnsUm2CdsPYInCEC/bEd0sPBPGSpbLI1eXhoZct0EKig==",
+  "dgSpecHash": "B6LuGXzK1sxOqwiuc/oqRZy6wbA8Hvp5lL7D2xUw9Ah6+qjdGwTSeAuOb90alA5GqA5OLQ07glNLVQU6RxxLiw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tuur\\Desktop\\Graduaatsproef\\Code\\BezoekerRegistratie\\BezoekerApp\\BezoekerApp.csproj",
+  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\4deversie\\Code\\BezoekerRegistratie\\BezoekerApp\\BezoekerApp.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Tuur\\Desktop\\Graduaatsproef\\Code\\BezoekerRegistratie\\BezoekerApp\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
