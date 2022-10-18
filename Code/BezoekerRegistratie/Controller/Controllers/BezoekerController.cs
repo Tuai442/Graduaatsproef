@@ -24,8 +24,9 @@ namespace Controller
             _afspraakRepository = afspraakRepository;
         }
 
-        public bool MeldBezoekerAan(string vnBezoeker, string anBezoeker, string vnContactP, string anContactP, string bedrijfsNaam)
+        public bool MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email, string vnContactP, string anContactP, string bedrijfsNaam)
         {
+            // TODO: Unit test
             Bezoeker bezoeker = (Bezoeker)_bezoekerRepository.GeefPersoonOpVolledigeNaam(vnBezoeker, anBezoeker);
             Werknemer contactPersoon = (Werknemer)_werknemerRepository.GeefPersoonOpVolledigeNaam(vnContactP, anContactP);
             Bedrijf bedrijf = _bedrijfRepository.GeefBedrijfOpNaam(bedrijfsNaam);
@@ -36,15 +37,17 @@ namespace Controller
             }
 
             bezoeker.MeldAan();
-            Afspraak afspraak = new Afspraak(bezoeker, contactPersoon, bedrijf, DateTime.Now);
+            Afspraak afspraak = new Afspraak(bezoeker, contactPersoon, bedrijf);
             _bezoekerRepository.UpdateBezoeker(bezoeker);
             _afspraakRepository.RegistreerAfspraak(afspraak);
             return true;
         }
 
-        public void MeldBezoekerUit(int bezoekerId)
+        public void MeldBezoekerUit(string email)
         {
-            Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpId(bezoekerId);
+            // TODO: Unit test
+            Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpEmail(email);
+            Afspraak afspraak = _afspraakRepository.GeefAfspraakOpBezoekerId(bezoeker.BezoekerId);
             Controleer.ControleIsBezoekerNietAanwezig(bezoeker);
             bezoeker.MeldAf();
             _bezoekerRepository.UpdateBezoeker(bezoeker);
@@ -52,18 +55,14 @@ namespace Controller
 
         public void VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
         {
+            // TODO: Unit test
             Controleer.BtwNummerControle(btw);
             Controleer.EmailControle(email);
             Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
         }
 
-        public string GeefAfspraakInfoOpBezoekerId(int bezoekerId)
-        {
-
-            Afspraak afspraak = _afspraakRepository.GeefAfspraakOp(id: bezoekerId, naam: null, datum: null);
-            return afspraak.ToString();
-        }
+       
 
         
     }

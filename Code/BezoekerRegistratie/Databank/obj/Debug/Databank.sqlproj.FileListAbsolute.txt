@@ -1,0 +1,6 @@
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\bin\Debug\Databank.dacpac
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\bin\Debug\Databank.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\bin\Debug\Databank.pdb
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\obj\Debug\Databank.sqlproj.AssemblyReference.cache
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\obj\Debug\Databank.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\obj\Debug\Databank.pdb

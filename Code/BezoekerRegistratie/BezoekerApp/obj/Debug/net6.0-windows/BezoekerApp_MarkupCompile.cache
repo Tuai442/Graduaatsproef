@@ -9,12 +9,21 @@ BezoekerApp
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+<<<<<<< HEAD
 D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\App.xaml
 42137502751
 
 6-1127582358
 197922284777
 MainWindow.xaml;Paginas\AanmeldPagina.xaml;Paginas\BedrijfSelecteren.xaml;Paginas\TestNav.xaml;
+=======
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\App.xaml
+4-745776697
+
+61707901989
+197-1296210648
+MainWindow.xaml;Paginas\AanmeldPagina.xaml;Paginas\TestNav.xaml;Paginas\TestNav2.xaml;
+>>>>>>> b083086f91a4ea7331bd1880c8a7011491f175ce
 
 False
 

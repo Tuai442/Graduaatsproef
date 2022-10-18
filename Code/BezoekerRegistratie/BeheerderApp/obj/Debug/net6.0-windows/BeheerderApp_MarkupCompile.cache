@@ -12,9 +12,15 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BeheerderApp\App.xaml
 2-1830053275
 
+<<<<<<< HEAD
 41095641696
 197922284777
 MainWindow.xaml;Paginas\StartSchermBeheerder.xaml;
+=======
+3-1233169557
+1971693876232
+MainWindow.xaml;
+>>>>>>> b083086f91a4ea7331bd1880c8a7011491f175ce
 
 True
 

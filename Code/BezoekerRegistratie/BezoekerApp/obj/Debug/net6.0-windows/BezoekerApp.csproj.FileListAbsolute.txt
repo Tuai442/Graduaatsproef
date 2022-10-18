@@ -30,6 +30,7 @@ C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\De
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Components.pdb
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.g.cs
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.baml
+<<<<<<< HEAD
 D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\BezoekerApp.exe
 D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\BezoekerApp.deps.json
 D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\BezoekerApp.runtimeconfig.json
@@ -64,3 +65,7 @@ D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\
 D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\ref\BezoekerApp.dll
 D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\BedrijfSelecteren.g.cs
 D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\BedrijfSelecteren.baml
+=======
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav2.g.cs
+C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav2.baml
+>>>>>>> b083086f91a4ea7331bd1880c8a7011491f175ce

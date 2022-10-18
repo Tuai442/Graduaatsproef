@@ -33,6 +33,7 @@ namespace BezoekerApp.Paginas
             logUitBtn.ButtonClick += LogUit;
             
         }
+<<<<<<< HEAD
         
             
        
@@ -40,6 +41,21 @@ namespace BezoekerApp.Paginas
         private void LogIn(object? sender, EventArgs e)
         {
             //bool gelukt = _bezoekerController.MeldBezoekerAan(vn, an, "", "", ""); ???
+=======
+
+        private void LogUit(object? sender, EventArgs e)
+        {
+            TestNav test = new TestNav();
+            test.NavigeerHandler = NavigeerHandler;
+            NavigeerHandler.Invoke(this, test);
+        }
+
+        private void LogIn(object? sender, EventArgs e)
+        {
+            string vn = voornaam.Text.ToString();
+            string an = achternaam.Text.ToString();
+            bool gelukt = _bezoekerController.MeldBezoekerAan(vn, an, "", "", "", "");
+>>>>>>> b083086f91a4ea7331bd1880c8a7011491f175ce
 
             string email = emailInvulveld.Text.ToString(); // vanaf deze is ingevuld een controle laten gebeuren. kijken in databank of er op dit moment iemand aanwezig is met dit email om de gegvens automatis aan te vullen zodat afmelden vlotter kan verlopen.
             string voornaam = voornaamInvulveld.Text.ToString();

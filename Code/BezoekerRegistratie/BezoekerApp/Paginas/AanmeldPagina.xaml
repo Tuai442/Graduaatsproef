@@ -9,22 +9,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800">
-    
+
     <Grid Background="LightSteelBlue">
 
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Background="white" 
                     Height="334" Width="473">
-            
-            
+
+
             <Label Content="Welkom"
                    FontFamily="Cascadia code"
                    HorizontalAlignment="Center"
                    Margin="30"
                    FontSize="30"
                    FontWeight="Bold"/>
-            
+
             <Grid Height="139" Width="434">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

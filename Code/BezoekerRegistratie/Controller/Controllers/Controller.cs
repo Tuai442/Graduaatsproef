@@ -50,21 +50,21 @@ namespace Controller
             return 0;
         }
 
-        public int GeefAfspaarkId(int bezoekerId = 0, DateTime datum = new DateTime())
-        {
-            // TODO: Moet beter, wat als je wilt zoeken op naam en datum ...
-            // return 0 als niks gevonden is;
-            int id = 0;
-            if (bezoekerId != null)
-            {
-                id = _afspraakRepository.GeefAfspraakOpBezoekerId(bezoekerId);
-            }
-            else if (datum != null)
-            {
-                id = _afspraakRepository.GeefAfspraakOpDatum(datum);
-            }
-            return id;
-        }
+        //public int GeefAfspaarkId(int bezoekerId = 0, DateTime datum = new DateTime())
+        //{
+        //    // TODO: Moet beter, wat als je wilt zoeken op naam en datum ...
+        //    // return 0 als niks gevonden is;
+        //    //int id = 0;
+        //    //if (bezoekerId != null)
+        //    //{
+        //    //    id = _afspraakRepository.GeefAfspraakOpBezoekerId(bezoekerId);
+        //    //}
+        //    //else if (datum != null)
+        //    //{
+        //    //    id = _afspraakRepository.GeefAfspraakOpDatum(datum);
+        //    //}
+        //    //return id;
+        //}
 
         public Dictionary<string, int> GeefAlleGelijkbareNamen(string totaleWoord)
         {

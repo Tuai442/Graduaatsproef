@@ -9,6 +9,7 @@
       Title="TestNav">
 
     <Grid Background="red">
+        <Button Content="test" Click="Button_Click"/>
 
     </Grid>
 </Page>

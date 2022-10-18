@@ -20,9 +20,17 @@ namespace BezoekerApp.Paginas
     /// </summary>
     public partial class TestNav : Page
     {
+        public EventHandler<Page> NavigeerHandler;
+
         public TestNav()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TestNav2 testNav = new TestNav2();
+            NavigeerHandler.Invoke(this, testNav);
         }
     }
 }
