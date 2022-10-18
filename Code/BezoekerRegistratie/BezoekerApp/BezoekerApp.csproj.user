@@ -10,6 +10,9 @@
     <Compile Update="Paginas\AanmeldPagina.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Paginas\BedrijfSelecteren.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Paginas\TestNav.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,6 +22,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Paginas\AanmeldPagina.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Paginas\BedrijfSelecteren.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Paginas\TestNav.xaml">

@@ -31,34 +31,40 @@ namespace BezoekerApp.Paginas
 
             logInBtn.ButtonClick += LogIn;
             logUitBtn.ButtonClick += LogUit;
+            
         }
-
-        private void LogUit(object? sender, EventArgs e)
-        {
-            TestNav test = new TestNav();
-            NavigeerHandler.Invoke(this, test);
-        }
+        
+            
+       
 
         private void LogIn(object? sender, EventArgs e)
         {
-            string vn = voornaam.Text.ToString();
-            string an = achternaam.Text.ToString();
-            bool gelukt = _bezoekerController.MeldBezoekerAan(vn, an, "", "", "");
+            //bool gelukt = _bezoekerController.MeldBezoekerAan(vn, an, "", "", ""); ???
 
-            string text = "";
+            string email = emailInvulveld.Text.ToString(); // vanaf deze is ingevuld een controle laten gebeuren. kijken in databank of er op dit moment iemand aanwezig is met dit email om de gegvens automatis aan te vullen zodat afmelden vlotter kan verlopen.
+            string voornaam = voornaamInvulveld.Text.ToString();
+            string achternaam = achternaamInvulveld.Text.ToString();
+            string bedrijf = bedrijfInvulveld.Text.ToString();
+            
+          
 
-            // TODO: betere melding
-            if (gelukt)
-            {
-                text = "Je ben ingelogt";
-            }
-            else
-            {
-                text = "Je kan niet inloggen";
-            }
-            MessageBox.Show(text, "/", MessageBoxButton.OK, MessageBoxImage.Information);
+            BedrijfSelecteren bs = new BedrijfSelecteren();
+            NavigeerHandler.Invoke(this, bs);
+        }
+
+        private void voornaam_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void LogUit(object? sender, EventArgs e)
+        {
+            // controle indien alle gegevens ingevuld werden en gecontroleerd of deze persoon oorspronkelijk aanwezig was 
+            MessageBox.Show("Beste bezoeker u bent succesvol afgemeld. Fijne dag nog!");
+
+            // alle velden legen (mss een methode voor schrijven)
 
 
         }
+
     }
 }

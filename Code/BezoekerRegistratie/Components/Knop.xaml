@@ -39,7 +39,7 @@
             BorderBrush="Black"
             CornerRadius="10"
             Padding="5"
-            Background="Beige">
+            Background="LightSteelBlue">
 
         <Button
             x:Name="button"
@@ -55,6 +55,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#278BEF"/>
                         </Trigger>
+                        
                     </Style.Triggers>
                 </Style>
             </Button.Style>

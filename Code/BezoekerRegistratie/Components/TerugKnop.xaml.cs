@@ -28,8 +28,7 @@ namespace Components
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            ButtonClick.Invoke(this, EventArgs.Empty);
+            ButtonClick.Invoke(this,EventArgs.Empty);
         }
     }
 }

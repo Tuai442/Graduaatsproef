@@ -30,3 +30,37 @@ C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\De
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Components.pdb
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.g.cs
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.baml
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\BezoekerApp.exe
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\BezoekerApp.deps.json
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\BezoekerApp.runtimeconfig.json
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\BezoekerApp.dll
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\BezoekerApp.pdb
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Components.dll
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Controller.dll
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Persistence.dll
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Components.pdb
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Controller.pdb
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Persistence.pdb
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.csproj.AssemblyReference.cache
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\MainWindow.g.cs
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\AanmeldPagina.g.cs
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.g.cs
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\App.g.cs
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp_MarkupCompile.cache
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp_MarkupCompile.lref
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\MainWindow.baml
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\AanmeldPagina.baml
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.baml
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.g.resources
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.AssemblyInfoInputs.cache
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.AssemblyInfo.cs
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.csproj.CoreCompileInputs.cache
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.csproj.CopyComplete
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.dll
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\refint\BezoekerApp.dll
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.pdb
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.genruntimeconfig.cache
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\ref\BezoekerApp.dll
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\BedrijfSelecteren.g.cs
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\BedrijfSelecteren.baml

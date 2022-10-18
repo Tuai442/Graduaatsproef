@@ -17,3 +17,22 @@ C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Deb
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.baml
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.g.cs
 C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.baml
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.deps.json
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.dll
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.pdb
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.AssemblyReference.cache
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.g.cs
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.g.cs
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.cache
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.lref
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.baml
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.baml
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.g.resources
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.GeneratedMSBuildEditorConfig.editorconfig
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfoInputs.cache
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfo.cs
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.CoreCompileInputs.cache
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.dll
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\refint\Components.dll
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.pdb
+D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ref\Components.dll
