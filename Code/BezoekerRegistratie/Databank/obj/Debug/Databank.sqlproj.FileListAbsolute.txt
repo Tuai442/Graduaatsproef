@@ -1,6 +1,10 @@
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\bin\Debug\Databank.dacpac
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\bin\Debug\Databank.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\bin\Debug\Databank.pdb
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\obj\Debug\Databank.sqlproj.AssemblyReference.cache
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\obj\Debug\Databank.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\4deversie\Code\BezoekerRegistratie\Databank\obj\Debug\Databank.pdb
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Databank\bin\Debug\Databank.dacpac
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Databank\bin\Debug\Databank.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Databank\bin\Debug\Databank.pdb
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Databank\obj\Debug\Databank.sqlproj.AssemblyReference.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Databank\obj\Debug\Databank.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Databank\obj\Debug\Databank.pdb
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Databank\obj\Debug\Model.xml
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Databank\obj\Debug\refactor.xml
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Databank\obj\Debug\postdeploy.sql
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Databank\obj\Debug\predeploy.sql

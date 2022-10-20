@@ -14,5 +14,6 @@ namespace Controller.Interfaces
         List<Afspraak> GeefAlleAfspraken();
         void RegistreerAfspraak(Afspraak afspraak);
         Afspraak GeefAfspraakOp(int? id, string? naam, DateTime? datum); // Op deze manier kunnen we één methode maken en filter op meerdere parameters.
+        void UpdateAfspraak(int bezoekerId);
     }
 }

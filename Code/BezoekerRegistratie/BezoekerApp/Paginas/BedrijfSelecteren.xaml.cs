@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,46 +21,30 @@ namespace BezoekerApp.Paginas
     /// </summary>
     public partial class BedrijfSelecteren : Page
     {
-        public BedrijfSelecteren()
+        BezoekerController _bezoekerController;
+
+        public EventHandler<Dictionary<string, string>> AanmeldHandler;
+        public BedrijfSelecteren(BezoekerController bezoekerController)
         {
+            _bezoekerController = bezoekerController;
             InitializeComponent();
+
             TerugKnopAanmeldScherm.ButtonClick += GaTerug;
-            ListBoxBedrijven.Loaded += ListBoxBedrijven_Loaded;
-            ListBoxContactpersonen.Loaded += ListBoxContactpersonen_Loaded;
+            bedrijfComboBox.VoegLijstToe(_bezoekerController.GeefAlleBedrijven());
+            contactComboBox.VoegLijstToe(_bezoekerController.GeefAlleWerknemers());
+
             AanmeldKnop.ButtonClick += PersoonAanmelden;
         }
         private void PersoonAanmelden(object? sender, EventArgs e)
         {
-            string bedrijf = ListBoxBedrijven.SelectedValue.ToString();
-            string contactpersoon= ListBoxContactpersonen.SelectedValue.ToString();
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict.Add("bedrijf", bedrijfComboBox.searchText);
+            dict.Add("contact-persoon", contactComboBox.searchText);
 
+            // TODO: checken of dit wel geldige gegevens zijn ? Of moet dit niet?
+            // We zouden hier beter terug keren naar de Aanmeldpagina met de juist ingevulde gegevens en daar de bezoeker verder aanmelden
+            AanmeldHandler.Invoke(sender, dict);
             // doorsturen naar databank samen met klantgegevens voor de afspraak aan te maken
-        }
-
-        
-
-
-        private void ListBoxBedrijven_Loaded(object sender, RoutedEventArgs e)
-        {
-           // inladen via databank
-
-            ListBoxBedrijven.Items.Add("Bedrijf 1");
-            ListBoxBedrijven.Items.Add("Bedrijf 2");
-            ListBoxBedrijven.Items.Add("Bedrijf 3");
-            ListBoxBedrijven.Items.Add("Bedrijf 4");
-            
-
-        }
-        private void ListBoxContactpersonen_Loaded(object sender, RoutedEventArgs e)
-        {
-            // lijst inladen via databank op basis van string Bedrijf
-
-            ListBoxContactpersonen.Items.Add("Contactpersoon 1");
-            ListBoxContactpersonen.Items.Add("Contactpersoon 2");
-            ListBoxContactpersonen.Items.Add("Contactpersoon 3");
-            ListBoxContactpersonen.Items.Add("Contactpersoon 4");
-            ListBoxContactpersonen.Items.Add("Contactpersoon 5");
-
         }
 
         private void GaTerug(object? sender, EventArgs e)

@@ -12,7 +12,10 @@ namespace Controller.Models
         public static bool ControleIsBezoekerAlAanwezig(Bezoeker bezoeker)
         {
             // TODO: beter af handelen.
-            if (bezoeker.Aanwezig) throw new BezoekerException("Bezoeker bestaat al.");
+            if (bezoeker.Aanwezig)
+            {
+                return false;
+            }
             return true;
             
         }

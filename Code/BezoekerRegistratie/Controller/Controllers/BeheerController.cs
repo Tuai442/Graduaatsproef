@@ -15,13 +15,15 @@ namespace Controller
         private IBezoekerRepository _bezoekerRepository;
         private IBedrijfRepository _bedrijfRepository;
         private IAfspraakRepository _afspraakRepository;
+        private IAlgemeneRepository _algemeneRepository;
         public BeheerController(IWerknemerRepository werknemerRepository, IBezoekerRepository bezoekerRepository, 
-            IBedrijfRepository bedrijfRepository, IAfspraakRepository afspraakRepository)
+            IBedrijfRepository bedrijfRepository, IAfspraakRepository afspraakRepository, IAlgemeneRepository algemeneRepository)
         {
             _werknemerRepository = werknemerRepository;
             _bezoekerRepository = bezoekerRepository;
             _bedrijfRepository = bedrijfRepository;
             _afspraakRepository = afspraakRepository;
+            _algemeneRepository = algemeneRepository;
         }
 
         public List<string> GeefAlleWerknemers()
@@ -39,17 +41,6 @@ namespace Controller
         {
             Bedrijf bedrijf = new Bedrijf(naam, btw, adress, telefoon, email);
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
-        }
-
-        public List<object> GeefAlleBezoekersInObjecten()
-        {
-            List<object> list = new List<object>(); 
-            List<Bezoeker> bezoekers = _bezoekerRepository.GeefAlleBezoekers();
-            foreach(Bezoeker bezoeker in bezoekers)
-            {
-                list.Add(bezoeker.GeefTabelData());
-            }
-            return list;
         }
 
         public List<Dictionary<string, string>> GeefAlleBezoekersNamen()
@@ -77,8 +68,86 @@ namespace Controller
             return aanwezigen;
         }
 
+        public List<object> GeefAlleData()
+        {
+            List<ITabelData> data = _algemeneRepository.GetAll();
+            List<object> tabelData = new List<object>();
 
-        
-      
+            foreach(ITabelData d in data)
+            {
+                tabelData.Add(d.GeefTabelData());
+            }
+            return tabelData;
+
+        }
+
+
+        // TabelData
+        public List<object> GeefAlleAanwezigeBezoekersInTabelData()
+        {
+            List<object> list = new List<object>();
+            List<Bezoeker> bezoekers = _bezoekerRepository.GeefAlleAanwezigeBezoekers();
+            foreach (Bezoeker bezoeker in bezoekers)
+            {
+                list.Add(bezoeker);
+            }
+            return list;
+        }
+
+        public List<object> GeefAlleBedrijvenInTabelData()
+        {
+            List<object> list = new List<object>();
+            List<Bedrijf> bedrijven = _bedrijfRepository.GeefAlleBedrijven();
+            foreach (Bedrijf bedrijf in bedrijven)
+            {
+                list.Add(bedrijf.GeefTabelData());
+            }
+            return list;
+        }
+
+        public List<object> GeefAlleWerknemersInTabelData()
+        {
+            List<object> list = new List<object>();
+            List<Werknemer> werknemers = _werknemerRepository.GeefAlleWerknemers();
+            foreach (Werknemer werknemer in werknemers)
+            {
+                list.Add(werknemer.GeefTabelData());
+            }
+            return list;
+        }
+
+        public List<object> GeefAlleBezoekersInTabelData()
+        {
+            List<object> list = new List<object>();
+            List<Bezoeker> bezoekers = _bezoekerRepository.GeefAlleBezoekers();
+            foreach (Bezoeker bezoeker in bezoekers)
+            {
+                list.Add(bezoeker);
+            }
+            return list;
+        }
+
+        public List<object> GeefAlleAfsprakenInTabelData()
+        {
+            List<object> list = new List<object>();
+            List<Afspraak> afspraaks = _afspraakRepository.GeefAlleAfspraken();
+            foreach (Afspraak afspraak in afspraaks)
+            {
+                list.Add(afspraak.GeefTabelData());
+            }
+            return list;
+        }
+
+
+        // Updates
+        public void UpdateBezoeker(object obj)
+        {
+            Bezoeker bezoeker = (Bezoeker)obj;
+            _bezoekerRepository.UpdateBezoeker(bezoeker);
+        }
+        public void UpdateWerknemer(object obj)
+        {
+            
+        }
     }
 }

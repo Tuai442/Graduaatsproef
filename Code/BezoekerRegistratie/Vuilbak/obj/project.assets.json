@@ -1,30 +1,90 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Controller/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Controller.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Controller.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "Controller/1.0.0": {
+      "type": "project",
+      "path": "../Controller/Controller.csproj",
+      "msbuildProject": "../Controller/Controller.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "Controller >= 1.0.0",
+      "Newtonsoft.Json >= 13.0.1"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\noahg\\.nuget\\packages\\": {},
+    "C:\\Users\\Tuur\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Vuilbak\\Vuilbak.csproj",
+      "projectUniqueName": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Vuilbak\\Vuilbak.csproj",
       "projectName": "Vuilbak",
-      "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Vuilbak\\Vuilbak.csproj",
-      "packagesPath": "C:\\Users\\noahg\\.nuget\\packages\\",
-      "outputPath": "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Vuilbak\\obj\\",
+      "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Vuilbak\\Vuilbak.csproj",
+      "packagesPath": "C:\\Users\\Tuur\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Vuilbak\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\noahg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tuur\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -38,7 +98,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+              "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -50,6 +114,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -66,16 +136,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Vuilbak\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

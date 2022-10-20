@@ -1,0 +1,48 @@
+﻿<Page x:Class="BeheerderApp.Paginas.AanwezigheidPagina"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BeheerderApp.Paginas"
+      xmlns:UIC="clr-namespace:Components;assembly=Components"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AanwezigheidPagina">
+
+    <Grid Background="LightSteelBlue">
+
+        <StackPanel>
+            <Border CornerRadius="5"
+                    BorderThickness="2"
+                    BorderBrush="Black"
+                    Width="400"
+                    HorizontalAlignment="Left"
+                    Margin="10 10 10 10">
+                <Label Content="Tottal aantal aanwezigen"
+                       x:Name="aantalAanwLabel"
+                       FontSize="30"/>
+            </Border>
+
+            <DockPanel Height="600">
+                <UIC:ZoekbaarDataGrid Margin="40"
+                                      x:Name="dataGrid"
+                                      />
+                <!--<DataGrid Margin="40"
+                          x:Name="dataGrid"
+                          ScrollViewer.CanContentScroll="True" 
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+                </DataGrid>-->
+            </DockPanel>
+            
+
+            
+            
+        </StackPanel>
+        <UIC:TerugKnop VerticalAlignment="Bottom"
+                       Margin="30"
+                       x:Name="terugKnop"/>
+
+    </Grid>
+</Page>

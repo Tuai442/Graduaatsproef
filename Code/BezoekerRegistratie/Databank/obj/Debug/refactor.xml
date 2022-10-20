@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0">
+  <Operation Name="Rename Refactor" Key="b156fb96-be0b-4736-ac82-9ddb58630255" ChangeDateTime="10/14/2022 10:47:22" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Werknemer].[achternaam]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Werknemer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="naam" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="94d7e8ad-4ada-45e3-9106-8b874ee7bbb0" ChangeDateTime="10/14/2022 11:08:13" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Bezoeker].[bedrijf]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Bezoeker]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="bedrijfId" />
+  </Operation>
+</Operations>

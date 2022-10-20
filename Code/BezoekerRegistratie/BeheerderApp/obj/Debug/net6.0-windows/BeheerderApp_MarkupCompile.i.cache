@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\
 BeheerderApp
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\BeheerderApp\App.xaml
-2-1830053275
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\App.xaml
+4-1364315574
 
-6-1115031280
-197922284777
-MainWindow.xaml;Paginas\StartSchermBeheerder.xaml;
+8-326736913
+1981022477914
+MainWindow.xaml;Paginas\AanwezigheidPagina.xaml;Paginas\BeheerderPagina.xaml;Paginas\StartSchermBeheerder.xaml;
 
 True
 

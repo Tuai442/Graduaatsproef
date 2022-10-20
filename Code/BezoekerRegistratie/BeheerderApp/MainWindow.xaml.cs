@@ -1,4 +1,5 @@
-﻿using Controller;
+﻿using BeheerderApp.Paginas;
+using Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +33,9 @@ namespace BeheerderApp
 
         public void ToonHoofdMenu()
         {
-            //BeheerderPagina meldBezoekerAan = new AanmeldPagina(_bezoekerController);
-            //meldBezoekerAan.NavigeerHandler += NavigeerNaarPagina;
-            //mainFrame.Navigate(meldBezoekerAan);
+            StartSchermBeheerder meldBezoekerAan = new StartSchermBeheerder(_beheerController);
+            meldBezoekerAan.NavigeerHandler += NavigeerNaarPagina;
+            mainFrame.Navigate(meldBezoekerAan);
         }
 
         // Alle navigatie worden via deze methode gedaan.

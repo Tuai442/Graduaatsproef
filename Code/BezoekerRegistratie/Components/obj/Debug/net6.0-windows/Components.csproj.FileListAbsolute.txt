@@ -1,41 +1,32 @@
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.deps.json
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.dll
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.pdb
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.cache
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.lref
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.g.resources
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfoInputs.cache
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfo.cs
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.CoreCompileInputs.cache
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.dll
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.pdb
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ref\Components.dll
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.g.cs
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.baml
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.g.cs
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.baml
-<<<<<<< HEAD
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.deps.json
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.dll
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.pdb
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.AssemblyReference.cache
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.g.cs
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.g.cs
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.cache
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.lref
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.baml
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.baml
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.g.resources
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.GeneratedMSBuildEditorConfig.editorconfig
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfoInputs.cache
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfo.cs
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.CoreCompileInputs.cache
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.dll
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\refint\Components.dll
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.pdb
-D:\AA.SCORRO2022\graduaat proef\vscode\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ref\Components.dll
-=======
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.AssemblyReference.cache
-C:\Users\Tuur\Desktop\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\refint\Components.dll
->>>>>>> b083086f91a4ea7331bd1880c8a7011491f175ce
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.deps.json
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.pdb
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.AssemblyReference.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.lref
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.baml
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.baml
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.g.resources
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfoInputs.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfo.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.CoreCompileInputs.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\refint\Components.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.pdb
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ref\Components.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbareComboBox.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbareComboBox.baml
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\CheckBox.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\CheckBox.baml
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekForms\BezoekerZoekForm.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekForms\WerknemerZoekForm.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Controller.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Controller.pdb
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekForms\BezoekerZoekForm.baml
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekForms\WerknemerZoekForm.baml
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.CopyComplete
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbaarDataGrid.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbaarDataGrid.baml

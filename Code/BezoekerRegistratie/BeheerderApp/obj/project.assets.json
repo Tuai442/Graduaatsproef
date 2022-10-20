@@ -2,9 +2,26 @@
   "version": 3,
   "targets": {
     "net6.0-windows7.0": {
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Components/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Controller": "1.0.0",
+          "Newtonsoft.Json": "13.0.1"
+        },
         "compile": {
           "bin/placeholder/Components.dll": {}
         },
@@ -41,6 +58,33 @@
     }
   },
   "libraries": {
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Components/1.0.0": {
       "type": "project",
       "path": "../Components/Components.csproj",
@@ -65,23 +109,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\noahg\\.nuget\\packages\\": {},
+    "C:\\Users\\Tuur\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
+      "projectUniqueName": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
       "projectName": "BeheerderApp",
-      "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
-      "packagesPath": "C:\\Users\\noahg\\.nuget\\packages\\",
-      "outputPath": "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\BeheerderApp\\obj\\",
+      "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
+      "packagesPath": "C:\\Users\\Tuur\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\noahg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tuur\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -96,14 +140,14 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Components\\Components.csproj": {
-              "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Components\\Components.csproj"
+            "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj": {
+              "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj"
             },
-            "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
-              "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+            "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+              "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
             },
-            "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
-              "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
+            "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
+              "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
             }
           }
         }
@@ -136,16 +180,8 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\BeheerderApp\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

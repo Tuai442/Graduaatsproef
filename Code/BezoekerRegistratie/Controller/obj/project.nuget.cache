@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iDW68Xstn+snaAsOpucNXCo+A75ySXEF1wy+y3QPd0QYuXNtXcMQpB/8cq6x1V7Z+N7nuQGnxLmxfwkYe2hgdQ==",
+  "dgSpecHash": "qmH7N00YYc0K1OggBFrIwoapIia83H2oDTQAPEtPAIIy/GUJivA3LFP2LSoGX61ZQjsYMP/9f7LKWtJY5l0yog==",
   "success": true,
-  "projectFilePath": "D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
+  "projectFilePath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\AA.SCORRO2022\\graduaat proef\\vscode\\Code\\BezoekerRegistratie\\Controller\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

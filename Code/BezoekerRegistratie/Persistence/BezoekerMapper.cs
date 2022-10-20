@@ -10,6 +10,11 @@ namespace Persistence
 {
     public class BezoekerMapper : Mapper, IBezoekerRepository
     {
+        public List<Bezoeker> GeefAlleAanwezigeBezoekers()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Bezoeker> GeefAlleBezoekers()
         {
             throw new NotImplementedException();
@@ -36,6 +41,11 @@ namespace Persistence
         }
 
         public Bezoeker GeefBezoekerOpVolledigeNaam(string naam, string achternaam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Persoon GeefPersoonOpEmail(string email)
         {
             throw new NotImplementedException();
         }

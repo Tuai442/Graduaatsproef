@@ -2,18 +2,48 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="CheckBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Knop.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="TerugKnop.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ZoekbaarDataGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ZoekbareComboBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ZoekForms\BezoekerZoekForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ZoekForms\WerknemerZoekForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="CheckBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Knop.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TerugKnop.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ZoekbaarDataGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ZoekbareComboBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ZoekForms\BezoekerZoekForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ZoekForms\WerknemerZoekForm.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

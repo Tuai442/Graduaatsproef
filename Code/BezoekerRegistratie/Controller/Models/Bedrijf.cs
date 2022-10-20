@@ -1,6 +1,8 @@
-﻿namespace Controller.Models
+﻿using Controller.Interfaces;
+
+namespace Controller.Models
 {
-    public class Bedrijf
+    public class Bedrijf: ITabelData
     {
         public string  Naam { get; set; }
         public string Btw { get; set; }
@@ -46,6 +48,21 @@
                 "Email",
                 "Parking Contract"
             };
+        }
+
+        public object GeefTabelData()
+        {
+            object result = new
+            {
+                Naam = Naam,
+                Btw = Btw,
+                Adres = Adres,
+                telefoon = telefoon,
+                email = email
+            };
+            return result;
+
+
         }
     }
 }

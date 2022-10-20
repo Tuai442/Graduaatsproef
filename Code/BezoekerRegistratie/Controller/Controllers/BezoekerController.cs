@@ -14,6 +14,8 @@ namespace Controller
         private IBezoekerRepository _bezoekerRepository;
         private IBedrijfRepository _bedrijfRepository;
         private IAfspraakRepository _afspraakRepository;
+
+
         
         public BezoekerController(IWerknemerRepository werknemerRepository, IBezoekerRepository bezoekerRepository,
             IBedrijfRepository bedrijfRepository, IAfspraakRepository afspraakRepository)
@@ -24,33 +26,78 @@ namespace Controller
             _afspraakRepository = afspraakRepository;
         }
 
-        public bool MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email, string vnContactP, string anContactP, string bedrijfsNaam)
+
+        // Deze methode gaan we dubbel hebben beter met abstract class werken
+        public List<string> GeefAlleBedrijven()
         {
-            // TODO: Unit test
-            Bezoeker bezoeker = (Bezoeker)_bezoekerRepository.GeefPersoonOpVolledigeNaam(vnBezoeker, anBezoeker);
-            Werknemer contactPersoon = (Werknemer)_werknemerRepository.GeefPersoonOpVolledigeNaam(vnContactP, anContactP);
-            Bedrijf bedrijf = _bedrijfRepository.GeefBedrijfOpNaam(bedrijfsNaam);
-
-            if (Controleer.ControleIsBezoekerAlAanwezig(bezoeker))
+            List<Bedrijf> bedrijfList = _bedrijfRepository.GeefAlleBedrijven();
+            List<string> result = new List<string>();
+            foreach(Bedrijf bedrijf in bedrijfList)
             {
-                return false;
+                result.Add(bedrijf.Naam);
             }
-
-            bezoeker.MeldAan();
-            Afspraak afspraak = new Afspraak(bezoeker, contactPersoon, bedrijf);
-            _bezoekerRepository.UpdateBezoeker(bezoeker);
-            _afspraakRepository.RegistreerAfspraak(afspraak);
-            return true;
+            return result;
+        }
+        // Deze methode gaan we dubbel hebben beter met abstract class werken
+        public List<string> GeefAlleWerknemers()
+        {
+            List<Werknemer> werknemers = _werknemerRepository.GeefAlleWerknemers();
+            List<string> result = new List<string>();
+            foreach (Werknemer werknemer in werknemers)
+            {
+                result.Add(werknemer.Voornaam);
+            }
+            return result;
         }
 
-        public void MeldBezoekerUit(string email)
+        public Bericht MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email, string vnContactP, 
+            string anContactP, string bedrijfsNaam)
+        {
+            // TODO: Unit test
+
+            // TODO: Betere controle uitvoren
+            if (!string.IsNullOrEmpty(vnBezoeker))
+            {
+                Bezoeker bezoeker = (Bezoeker)_bezoekerRepository.GeefPersoonOpEmail(email);
+
+                if (bezoeker == null)
+                {
+                    // Als bezoeker nog niet bestaat.
+                    bezoeker = new Bezoeker(vnBezoeker, anBezoeker, email, bedrijfsNaam);
+                }
+                if (!Controleer.ControleIsBezoekerAlAanwezig(bezoeker))
+                {
+                    return new Bericht("Je ben al aanwezig en kan dus niet meer inloggen", false); ;
+                }
+
+                bezoeker.MeldAan();
+                Afspraak afspraak = new Afspraak(bezoeker, (vnContactP + anContactP), bedrijfsNaam);
+                _bezoekerRepository.UpdateBezoeker(bezoeker);
+                _afspraakRepository.RegistreerAfspraak(afspraak);
+                return new Bericht("Je bent ingelogt", true);
+            }
+            return new Bericht("Niet alle velden zijn ingevuld", false);
+
+            
+        }
+
+        public bool MeldBezoekerUit(string email)
         {
             // TODO: Unit test
             Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpEmail(email);
-            Afspraak afspraak = _afspraakRepository.GeefAfspraakOpBezoekerId(bezoeker.BezoekerId);
-            Controleer.ControleIsBezoekerNietAanwezig(bezoeker);
-            bezoeker.MeldAf();
-            _bezoekerRepository.UpdateBezoeker(bezoeker);
+            if(bezoeker is not null)
+            {
+                // TODO: kunnen we geen Messega class maken en dit terug sturen??
+                if (bezoeker.Aanwezig)
+                {
+                    bezoeker.MeldAf();
+                    _afspraakRepository.UpdateAfspraak(bezoeker.BezoekerId);
+                    _bezoekerRepository.UpdateBezoeker(bezoeker);
+                    return true;
+                }
+            }
+            
+            return false;
         }
 
         public void VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)

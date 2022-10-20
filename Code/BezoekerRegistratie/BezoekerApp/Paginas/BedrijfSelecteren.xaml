@@ -12,90 +12,74 @@
       d:DesignHeight="450" 
       d:DesignWidth="800">
 
- <Grid Background="LightSteelBlue">
+    <Grid Background="LightSteelBlue">
         
-        <!--<Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>-->
-        
-    <StackPanel HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Background="White" 
-                Height="334" Width="473">
-            <StackPanel Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    Background="white">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                </Grid.RowDefinitions>
+
                 <Label Content="Bedrijf"
-                   FontFamily="Cascadia code"
-                   Margin="50 80 0 0"
-                   FontSize="25">
-                    <!--Margin="160 90 70 0"-->
+                       FontFamily="Cascadia code"
+                       FontSize="25"
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center"
+                       Padding="10"/>
 
-                </Label>
-                <Label 
-                    Margin="75 80 0 0"
-                    Content="Contactpersoon"
-                   FontFamily="Cascadia code"
-                   FontSize="25">
 
-                </Label>
-            </StackPanel>
-       
-        
-           
-                <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <Label Content="Contactpersoon"
+                       FontFamily="Cascadia code"
+                       FontSize="25"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center"
+                       Padding="10"/>
 
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                    <RowDefinition Height="150"></RowDefinition>
-                    <RowDefinition Height="100"></RowDefinition>
-            </Grid.RowDefinitions>
-            
-                <ListBox Name="ListBoxBedrijven"
-                         Margin="50 10 30 10"
-                          FontFamily="Cascadia code"
-                    Grid.Column="0"
-                    Grid.Row="0">
-                    
-                </ListBox>
+                <StackPanel Grid.Column="0"
+                            Grid.Row="1">
+                    <UIC:ZoekbareComboBox Width="100" Height="10"
+                                          Margin="10"
+                                          x:Name="bedrijfComboBox"/>
+                </StackPanel>
 
-                <ListBox 
-                x:Name="ListBoxContactpersonen"
-                     Margin="20 10 40 10"
+                <StackPanel Grid.Column="1"
+                            Grid.Row="1">
+                    <UIC:ZoekbareComboBox Width="100" Height="20"
+                                          Margin="10"
+                                          x:Name="contactComboBox"/>
+                </StackPanel>
+                
 
-                    
-                FontFamily="Cascadia code"
-                Grid.Column="1"
-                Grid.Row="0">
-                    
-                </ListBox>
-              
-                <UIC:Knop
-                    Name="AanmeldKnop"
-                    Text="Aanmelden"
-                     Grid.Column="1"
-                    Grid.Row="2"
-                    Height="40"
-                    Margin=" 50 -30 50 10"
-
-                   
-                    FontFamily="Cascadia code"
-                    
-                    ></UIC:Knop>
-                <UIC:Knop
-                    Name="TerugKnopAanmeldScherm"
-                    Text="terug"
-                    Grid.Column="0"
-                    Grid.Row="2"
-                    Height="40"
-                    Margin=" 50 -30 50 10"
-                    
-                    FontFamily="Cascadia code"
-                    ></UIC:Knop>
             </Grid>
-    
-    </StackPanel>
+        </StackPanel>
+        
+        <Grid VerticalAlignment="Bottom"
+              Margin="20">
+
+            <UIC:Knop Name="AanmeldKnop"
+                        Text="Aanmelden"
+                        Height="40"
+                        FontFamily="Cascadia code"
+                        HorizontalAlignment="Right"/>
+
+
+            <UIC:Knop Name="TerugKnopAanmeldScherm"
+                        Text="terug"
+                        Height="40"
+                        FontFamily="Cascadia code"
+                        HorizontalAlignment="Left"/>
+        </Grid>
     </Grid>
+
 </Page>

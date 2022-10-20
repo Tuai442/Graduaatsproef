@@ -16,10 +16,12 @@ namespace BeheerderApp
     /// </summary>
     public partial class App : Application
     {
+        
         IWerknemerRepository werknemerRepository = new TestMapper();
         IBezoekerRepository bezoekerRepository = new TestMapper();
         IBedrijfRepository bedrijfRepository = new TestMapper();
         IAfspraakRepository afspraakRepository = new TestMapper();
+        IAlgemeneRepository algemeneRepository = new TestMapper();
 
         BeheerController beheerController;
         MainWindow mainWindow;
@@ -27,7 +29,7 @@ namespace BeheerderApp
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
             beheerController = new BeheerController(werknemerRepository, bezoekerRepository,
-            bedrijfRepository, afspraakRepository);
+            bedrijfRepository, afspraakRepository, algemeneRepository);
 
             mainWindow = new MainWindow(beheerController);
             mainWindow.Show();

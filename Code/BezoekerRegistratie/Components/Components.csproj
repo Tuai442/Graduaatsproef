@@ -11,6 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Controller\Controller.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Iconen\left.png" />
   </ItemGroup>
 
