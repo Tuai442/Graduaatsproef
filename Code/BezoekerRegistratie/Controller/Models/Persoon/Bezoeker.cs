@@ -15,6 +15,8 @@ namespace Controller.Models
         public string Nummerplaat { get; set; }
         public bool Aanwezig { get; private set; }
         public string Bedrijf { get; set; }
+        public int BedrijfId { get; set; }
+        //(voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig)
         public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = false, string nummerplaat= "") : 
             base(voornaam, achternaam, email)
         {
@@ -24,6 +26,14 @@ namespace Controller.Models
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
 
+        }
+
+        public Bezoeker(string voornaam, string achternaam, string email,int bedrijfId, string nummerplaat, bool aanwezig ):
+            base(voornaam, achternaam, email)
+        {
+            Nummerplaat = nummerplaat;
+            Aanwezig = aanwezig;
+            BedrijfId = bedrijfId;
         }
 
         public bool ControleNummerplaat(string nummerplaat)

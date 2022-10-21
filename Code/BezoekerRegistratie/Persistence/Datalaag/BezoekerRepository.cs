@@ -24,7 +24,7 @@ namespace Persistence
         }
         public void VoegBezoekerToe(Bezoeker bezoeker)
         {
-            string query = "INSERT INTO dbo.Bezoeker (voornaam,achternaam,email,nummerplaat) VALUES(@voornaam,@achternaam,@email,@nummerplaat)";
+            string query = "INSERT INTO dbo.Bezoeker (voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig) VALUES(@voornaam,@achternaam,@email,@bedrijfId,@nummerplaat,@aanwezig)";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -35,12 +35,16 @@ namespace Persistence
                     command.Parameters.Add(new SqlParameter("@voornaam", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@achternaam", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@bedrijfId", SqlDbType.Int));                  
                     command.Parameters.Add(new SqlParameter("@nummerplaat", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@aanwezig", SqlDbType.Bit));
                     // command.Parameters["@id"].Value = klant.KlantID;
                     command.Parameters["@voornaam"].Value = bezoeker.Voornaam;
                     command.Parameters["@achternaam"].Value = bezoeker.Achternaam;
                     command.Parameters["@email"].Value = bezoeker.Email;
+                    command.Parameters["@bedrijfId"].Value = bezoeker.BedrijfId;
                     command.Parameters["@nummerplaat"].Value = bezoeker.Nummerplaat;
+                    command.Parameters["@aanwezig"].Value = bezoeker.Aanwezig;
                     command.ExecuteNonQuery();
                 }
                 catch (Exception e)

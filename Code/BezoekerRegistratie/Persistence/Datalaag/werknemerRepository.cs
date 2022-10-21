@@ -38,8 +38,8 @@ namespace Persistence.Datalaag
                     IDataReader dataReader = command.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        Werknemer werknemer = new Werknemer(/*(int)dataReader["WerknemerId"],*/ (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["functie"], (string)dataReader["bedrijfNaam"]);
-                        werknemers.Add(werknemer);
+                        /*Werknemer werknemer = new Werknemer(/*(int)dataReader["WerknemerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["functie"], (string)dataReader["bedrijfNaam"]);
+                        werknemers.Add(werknemer);*/
                     }
                     dataReader.Close();
                     foreach (Werknemer werknemer in werknemers)
