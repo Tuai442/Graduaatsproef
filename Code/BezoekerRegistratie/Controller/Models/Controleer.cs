@@ -22,6 +22,7 @@ namespace Controller.Models
 
         public static void BtwNummerControle(string btw)
         {
+            
             // TODO controle btw nummer
             if (false) throw new BedrijfException("BTW-nummer is niet gelding.");
         }
@@ -37,5 +38,7 @@ namespace Controller.Models
             if (!bezoeker.Aanwezig) throw new BezoekerException("Bezoeker bestaat al.");
 
         }
+
+        
     }
 }

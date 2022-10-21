@@ -45,7 +45,6 @@ namespace BezoekerApp.Paginas
             NavigeerHandler.Invoke(this, bs);
         }
 
-
         private void MeldBezoekerAan(object? sender, Dictionary<string, string> e)
         {
             string email = emailInvulveld.Text; // vanaf deze is ingevuld een controle laten gebeuren. kijken in databank of er op dit moment iemand aanwezig is met dit email om de gegvens automatis aan te vullen zodat afmelden vlotter kan verlopen.
@@ -66,7 +65,6 @@ namespace BezoekerApp.Paginas
             NavigeerHandler.Invoke(this, this);
         }
 
-        
         private void LogUit(object? sender, EventArgs e)
         {
             string email = emailInvulveld.Text;
