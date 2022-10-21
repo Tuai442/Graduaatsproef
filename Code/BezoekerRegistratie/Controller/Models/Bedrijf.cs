@@ -1,8 +1,9 @@
 ﻿using Controller.Interfaces;
+using Controller.Interfaces.Models;
 
 namespace Controller.Models
 {
-    public class Bedrijf: ITabelData
+    public class Bedrijf: IBedrijf
     {
         public string  Naam { get; set; }
         public string Btw { get; set; }
@@ -50,7 +51,8 @@ namespace Controller.Models
             };
         }
 
-        public object GeefTabelData()
+        
+        public object GeefItemSource()
         {
             object result = new
             {
@@ -61,8 +63,10 @@ namespace Controller.Models
                 email = email
             };
             return result;
-
-
+        }
+        public override string? ToString()
+        {
+            return Naam;
         }
     }
 }

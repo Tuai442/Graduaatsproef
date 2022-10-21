@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,11 @@ namespace BeheerderApp.Paginas
     /// </summary>
     public partial class StartSchermBeheerder : Page
     {
-        BeheerController _beheerderController;
+        DomeinController _domeinController;
         public EventHandler<Page> NavigeerHandler;
-        public StartSchermBeheerder(BeheerController beheerderController)
+        public StartSchermBeheerder(DomeinController beheerderController)
         {
-            _beheerderController = beheerderController;
+            _domeinController = beheerderController;
             InitializeComponent();
             lijstMetAanwKnop.ButtonClick += ToonLijsMetAanwezigenPagina;
             gegevensBeherenKnop.ButtonClick += ToonBeherdersPagina;
@@ -33,13 +34,13 @@ namespace BeheerderApp.Paginas
 
         private void ToonBeherdersPagina(object? sender, EventArgs e)
         {
-            BeheerderPagina beheerderPagina = new BeheerderPagina(_beheerderController);
+            BeheerderPagina beheerderPagina = new BeheerderPagina(_domeinController);
             NavigeerHandler.Invoke(sender, beheerderPagina);
         }
 
         private void ToonLijsMetAanwezigenPagina(object? sender, EventArgs e)
         {
-            AanwezigheidPagina aanwezigheidPagina = new AanwezigheidPagina(_beheerderController);
+            AanwezigheidPagina aanwezigheidPagina = new AanwezigheidPagina(_domeinController);
             NavigeerHandler.Invoke(sender, aanwezigheidPagina);
 
         }

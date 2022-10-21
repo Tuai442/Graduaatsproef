@@ -102,7 +102,7 @@ namespace BezoekerApp.Paginas {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BezoekerApp;V1.0.0.0;component/paginas/aanmeldpagina.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BezoekerApp;component/paginas/aanmeldpagina.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Paginas\AanmeldPagina.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

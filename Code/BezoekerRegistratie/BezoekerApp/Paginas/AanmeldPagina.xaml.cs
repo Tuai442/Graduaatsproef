@@ -1,5 +1,7 @@
 ﻿using Controller;
+using Controller.Managers;
 using Controller.Models;
+using Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,28 +25,27 @@ namespace BezoekerApp.Paginas
     /// </summary>
     public partial class AanmeldPagina : Page
     {
-        BezoekerController _bezoekerController;
-        private static System.Timers.Timer _timer;
+        DomeinController _domeinController;
+        private BezoekerManager _bezoekerManger;
 
         public EventHandler<Page> NavigeerHandler;
-
-        public AanmeldPagina(BezoekerController bezoekerController)
+        public AanmeldPagina(DomeinController bezoekerController)
         {
-            _bezoekerController = bezoekerController;
             InitializeComponent();
+            _domeinController = bezoekerController;
+            _bezoekerManger = _domeinController.GeefBezoekerManager();
+            
 
             logInBtn.ButtonClick += LogIn;
             logUitBtn.ButtonClick += LogUit;
 
         }
-
         private void LogIn(object? sender, EventArgs e)
         {
-            BedrijfSelecteren bs = new BedrijfSelecteren(_bezoekerController); // Zouden we dit nie beter op één pagina zetten?
+            BedrijfSelecteren bs = new BedrijfSelecteren(_domeinController); // Zouden we dit nie beter op één pagina zetten?
             bs.AanmeldHandler += MeldBezoekerAan;
             NavigeerHandler.Invoke(this, bs);
         }
-
         private void MeldBezoekerAan(object? sender, Dictionary<string, string> e)
         {
             string email = emailInvulveld.Text; // vanaf deze is ingevuld een controle laten gebeuren. kijken in databank of er op dit moment iemand aanwezig is met dit email om de gegvens automatis aan te vullen zodat afmelden vlotter kan verlopen.
@@ -53,34 +54,43 @@ namespace BezoekerApp.Paginas
             string bedrijf = e["bedrijf"];
             string contactPersoon = e["contact-persoon"];
 
-
-            Bericht bericht = _bezoekerController.MeldBezoekerAan(voornaam, achternaam, email,
+            try
+            {
+                _bezoekerManger.MeldBezoekerAan(voornaam, achternaam, email,
                 contactPersoon, contactPersoon, bedrijf);
+                MessageBox.Show("U bent ingelogd.");
 
-            MessageBox.Show(bericht.Inhoud);
-            if (bericht.Status)
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
             {
                 LeegAlleVelden();
+                NavigeerHandler.Invoke(this, this);
             }
-            NavigeerHandler.Invoke(this, this);
+            
         }
 
         private void LogUit(object? sender, EventArgs e)
         {
             string email = emailInvulveld.Text;
-            bool gelukt = _bezoekerController.MeldBezoekerUit(email);
 
-            if (gelukt)
+            try
             {
-                MessageBox.Show("Je bent afgemeld.");
+                _bezoekerManger.MeldBezoekerUit(email);
+                MessageBox.Show("Prettige dag nog");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
                 LeegAlleVelden();
             }
-            else
-            {
-                MessageBox.Show("Je was niet aanwezig, dus kunnen we je niet afmelden");
-            }
-            
-
 
         }
 

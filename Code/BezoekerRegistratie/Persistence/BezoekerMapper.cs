@@ -1,4 +1,5 @@
 ﻿using Controller.Interfaces;
+using Controller.Interfaces.Models;
 using Controller.Models;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,11 @@ namespace Persistence
         public void UpdateBezoeker(Bezoeker bezoeker)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Bezoeker> ZoekBezoekersOp(string zoekText)
+        {
+            return null;
         }
     }
 }

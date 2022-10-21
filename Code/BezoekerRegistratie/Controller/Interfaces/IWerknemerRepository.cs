@@ -12,5 +12,6 @@ namespace Controller.Interfaces
         Werknemer GeefWerknemerOpNaam(string contactPersoon);
         Werknemer GeefWerknemerOpId(int id);
         List<Werknemer> GeefAlleWerknemers();
+        List<Werknemer> ZoekOpWerknemers(string zoekText);
     }
 }

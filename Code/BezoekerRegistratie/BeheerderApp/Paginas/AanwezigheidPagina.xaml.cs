@@ -1,4 +1,6 @@
-﻿using Controller;
+﻿
+using Controller.Managers;
+using Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,18 +23,21 @@ namespace BeheerderApp.Paginas
     /// </summary>
     public partial class AanwezigheidPagina : Page
     {
-        BeheerController _beheerController;
+        DomeinController _domeinController;
+        private BezoekerManager _bezoekerManger;
+
         public EventHandler<Page> NavigeerHandler;
 
-        public AanwezigheidPagina(BeheerController beheerController)
+        public AanwezigheidPagina(DomeinController beheerController)
         {
-            _beheerController = beheerController;
+            _domeinController = beheerController;
+            _bezoekerManger = _domeinController.GeefBezoekerManager();
             InitializeComponent();
             terugKnop.ButtonClick += GaPaginaTerug;
 
-            List<object> alleAanwezigeBezoekers = _beheerController.GeefAlleAanwezigeBezoekersInTabelData();
+            List<object> alleAanwezigeBezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekersInTabelData();
             aantalAanwLabel.Content = $"Totaal aantalbezoekers: {alleAanwezigeBezoekers.Count}";
-            dataGrid.VoegDataToe(alleAanwezigeBezoekers);
+            dataGrid.StelDataIn(alleAanwezigeBezoekers);
             dataGrid.OpDataVerandering += UpdateObject;
         }
 
@@ -41,7 +46,7 @@ namespace BeheerderApp.Paginas
             string type = obj.GetType().Name;
             if (type == "Bezoeker")
             {
-                _beheerController.UpdateBezoeker(obj);
+                _bezoekerManger.UpdateBezoeker(obj);
             }
         }
 

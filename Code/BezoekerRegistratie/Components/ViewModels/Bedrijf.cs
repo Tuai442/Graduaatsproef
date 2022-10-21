@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Controller.Models
 {
-    public class Bedrijf: ITabelData
+    public class Bedrijf
     {
         public string  Naam { get; set; }
         public string Btw { get; set; }

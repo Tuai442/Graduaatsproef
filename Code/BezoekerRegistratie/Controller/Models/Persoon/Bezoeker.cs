@@ -1,4 +1,5 @@
 ﻿using Controller.Interfaces;
+using Controller.Interfaces.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class Bezoeker: Persoon, ITabelData
+    public class Bezoeker: Persoon, IBezoeker
     {
         
         private static int totalBezoekers = 0; // TODO: tijdelijk
         public int BezoekerId { get; set; }
         public string Nummerplaat { get; set; }
-        public bool Aanwezig { get; private set; }
+        
+        // TODO: aanwezig moet private set worden 
+        public bool Aanwezig { get; set; }
         public string Bedrijf { get; set; }
         public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = false, string nummerplaat= "") : 
             base(voornaam, achternaam, email)
@@ -32,8 +35,6 @@ namespace Controller.Models
             return true;
         }
 
-
-
         public void MeldAan()
         {
             Aanwezig = true;
@@ -44,7 +45,7 @@ namespace Controller.Models
             Aanwezig = false;
         }
 
-        public object GeefTabelData()
+        public object GeefItemSource()
         {
             object result = new
             {
@@ -55,8 +56,10 @@ namespace Controller.Models
                 Aanwezig = Aanwezig
             };
             return result;
-
-
+        }
+        public override string? ToString()
+        {
+            return GeefVolledigeNaam();
         }
     }
 }

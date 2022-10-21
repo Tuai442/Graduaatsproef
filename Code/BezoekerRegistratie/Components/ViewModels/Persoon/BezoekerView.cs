@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class BezoekerView
+    public class BezoekerView: Persoon
     {
         public int BezoekerId { get; set; }
-        public string Voornaam { get; set; }
-        public string Achternaam { get; set; }
-        public string Email { get; set; }
+        
         public string Nummerplaat { get; set; }
         public bool Aanwezig { get; private set; }
         public string Bedrijf { get; set; }
-        public BezoekerView(string voornaam, string achternaam, string email, string bedrijf, string nummerplaat= "") 
+        public BezoekerView(string voornaam, string achternaam, string email, string bedrijf, string nummerplaat= ""):
+            base(voornaam, achternaam, email)
            
         {
             BezoekerId = BezoekerId;

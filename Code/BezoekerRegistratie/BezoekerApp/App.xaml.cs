@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Controller.Interfaces;
+using Controllers;
 using Persistence;
 using System;
 using System.Collections.Generic;
@@ -21,19 +22,19 @@ namespace BezoekerApp
         IBedrijfRepository bedrijfRepository = new TestMapper();
         IAfspraakRepository afspraakRepository = new TestMapper();
 
-        BezoekerController bezoekerController;
+        DomeinController _domeinController;
 
 
         MainWindow mainWindow;
 
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
-            bezoekerController = new BezoekerController(werknemerRepository, bezoekerRepository,
+            _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
             bedrijfRepository, afspraakRepository);
 
             
 
-            mainWindow = new MainWindow(bezoekerController);
+            mainWindow = new MainWindow(_domeinController);
             mainWindow.Show();
 
         }

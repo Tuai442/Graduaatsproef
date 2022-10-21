@@ -1,6 +1,9 @@
 ﻿using Components.Models;
+using Controller.Interfaces.Models;
+using Controller.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +27,7 @@ namespace Components
     public partial class ZoekbaarDataGrid : UserControl
     {
         private List<object> _data;
+
         public ZoekbaarDataGrid()
         {
             InitializeComponent();
@@ -36,8 +40,10 @@ namespace Components
 
         public EventHandler<object> OpDataVerandering;
 
+        public EventHandler<string> OpDataFiltering;
+
         private object _aanHetVeranderen;
-        public void VoegDataToe(List<object> data)
+        public void StelDataIn(List<object> data)
         {
             _data = data;
             dataGrid.ItemsSource = _data;
@@ -109,7 +115,6 @@ namespace Components
             }
         }
 
-
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _aanHetVeranderen  = e.AddedItems[0];
@@ -122,6 +127,22 @@ namespace Components
                 OpDataVerandering.Invoke(this, _aanHetVeranderen);
             }
             _aanHetVeranderen = null;
+        }
+       
+        // Dit wordt opgeroepen vanaf er een verandering in de zoekbalk gebeurt.
+        private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            // Hier kunnen we ons datagrid filter op het huidige zoekwoord.
+            string zoekText = zoekBar.Text;
+            // Manier 1:
+            // - alle gegevens worden bijgouden in memory.(niet optimaal, maar er word weinig naar de db gestuurd).
+            FilterOp(zoekText);
+
+            // Manier 2:
+            // - per verandering wordt er gecommuniceerd naar de db.(weinig in memory, veel verkeer).
+            // OpDataFiltering.Invoke(sender, zoekText);
+
         }
     }
 }

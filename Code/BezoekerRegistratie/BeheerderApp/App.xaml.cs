@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Controllers;
 
 namespace BeheerderApp
 {
@@ -21,17 +22,16 @@ namespace BeheerderApp
         IBezoekerRepository bezoekerRepository = new TestMapper();
         IBedrijfRepository bedrijfRepository = new TestMapper();
         IAfspraakRepository afspraakRepository = new TestMapper();
-        IAlgemeneRepository algemeneRepository = new TestMapper();
 
-        BeheerController beheerController;
+        DomeinController _domeinController;
         MainWindow mainWindow;
 
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
-            beheerController = new BeheerController(werknemerRepository, bezoekerRepository,
-            bedrijfRepository, afspraakRepository, algemeneRepository);
+            _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
+            bedrijfRepository, afspraakRepository);
 
-            mainWindow = new MainWindow(beheerController);
+            mainWindow = new MainWindow(_domeinController);
             mainWindow.Show();
 
         }

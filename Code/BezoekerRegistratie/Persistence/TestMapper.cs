@@ -256,27 +256,27 @@ namespace Persistence
             return result;
         }
 
-        public List<ITabelData> GetAll()
-        {
-            List<ITabelData> tabelData = new List<ITabelData>();
-            foreach(Bezoeker bezoeker in bezoekers)
-            {
-                tabelData.Add(bezoeker);
-            }
-            foreach (Werknemer werknemer in werknemers)
-            {
-                tabelData.Add(werknemer);
-            }
-            foreach (Afspraak afspraak in afspraken)
-            {
-                tabelData.Add(afspraak);
-            }
-            foreach (Bedrijf bedrijf in bedrijven)
-            {
-                tabelData.Add(bedrijf);
-            }
-            return tabelData;
-        }
+        //public List<ITabelData> GetAll()
+        //{
+        //    List<ITabelData> tabelData = new List<ITabelData>();
+        //    foreach(Bezoeker bezoeker in bezoekers)
+        //    {
+        //        tabelData.Add(bezoeker);
+        //    }
+        //    foreach (Werknemer werknemer in werknemers)
+        //    {
+        //        tabelData.Add(werknemer);
+        //    }
+        //    foreach (Afspraak afspraak in afspraken)
+        //    {
+        //        tabelData.Add(afspraak);
+        //    }
+        //    foreach (Bedrijf bedrijf in bedrijven)
+        //    {
+        //        tabelData.Add(bedrijf);
+        //    }
+        //    return tabelData;
+        //}
 
         public void UpdateAfspraak(int bezoekerId)
         {
@@ -300,6 +300,41 @@ namespace Persistence
                 }
             }
             return null;
+        }
+
+        public List<Afspraak> ZoekAfspraakOp(string zoekText)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Werknemer> ZoekOpWerknemers(string zoekText)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Bezoeker> ZoekBezoekersOp(string zoekText)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Bedrijf> ZoekBedrijfOp(string zoekText)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateAfspraak(Afspraak afspraak)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Bezoeker GeefAfspraakOp(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Afspraak GeefAfspraakOpEmail(string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }

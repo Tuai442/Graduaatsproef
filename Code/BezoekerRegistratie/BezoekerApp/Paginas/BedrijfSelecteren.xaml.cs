@@ -1,4 +1,7 @@
 ﻿using Controller;
+using Controller.Interfaces.Models;
+using Controller.Managers;
+using Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +24,24 @@ namespace BezoekerApp.Paginas
     /// </summary>
     public partial class BedrijfSelecteren : Page
     {
-        BezoekerController _bezoekerController;
+        DomeinController _domeinController;
+        BedrijfManager _bedrijfManager;
+        WerknemerManager _werknemerManager;
 
         public EventHandler<Dictionary<string, string>> AanmeldHandler;
-        public BedrijfSelecteren(BezoekerController bezoekerController)
+        public BedrijfSelecteren(DomeinController domeinController)
         {
-            _bezoekerController = bezoekerController;
+            _domeinController = domeinController;
+            _bedrijfManager = domeinController.GeefBedrijfManager();
+            _werknemerManager = domeinController.GeefWerknemerManager();
             InitializeComponent();
 
             TerugKnopAanmeldScherm.ButtonClick += GaTerug;
-            bedrijfComboBox.VoegLijstToe(_bezoekerController.GeefAlleBedrijven());
-            contactComboBox.VoegLijstToe(_bezoekerController.GeefAlleWerknemers());
+            List<IBedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+            List<IWerknemer> werknemers = _werknemerManager.GeefAlleWerknemers();
+            
+            bedrijfComboBox.VoegLijstToe(bedrijven.Select(x => x.ToString()).ToList());
+            contactComboBox.VoegLijstToe(werknemers.Select(x => x.ToString()).ToList());
 
             AanmeldKnop.ButtonClick += PersoonAanmelden;
         }

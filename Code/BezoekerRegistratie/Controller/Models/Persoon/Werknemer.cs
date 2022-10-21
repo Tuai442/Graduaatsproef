@@ -1,5 +1,7 @@
 ﻿using Controller.Interfaces;
+using Controller.Interfaces.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class Werknemer: Persoon, ITabelData
+    public class Werknemer: Persoon, IWerknemer
     {
         private static int totalWerknemers = 0;
         public string Functie { get; set; }
@@ -22,7 +24,7 @@ namespace Controller.Models
             Bedrijf = bedrijf;
         }
 
-        public object GeefTabelData()
+        public object GeefItemSource()
         {
             object result = new
             {
@@ -33,8 +35,11 @@ namespace Controller.Models
                 Bedrijf = Bedrijf.Naam,
             };
             return result;
+        }
 
-
+        public override string? ToString()
+        {
+            return GeefVolledigeNaam();
         }
     }
 }

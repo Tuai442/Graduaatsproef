@@ -13,5 +13,6 @@ namespace Controller.Interfaces
         List<Bedrijf> GeefAlleBedrijven();
         void VoegNieuwBedrijfToe(Bedrijf bedrijf);
         Bedrijf GeefBedrijfOpId(int bedrijfNaam);
+        List<Bedrijf> ZoekBedrijfOp(string zoekText);
     }
 }

@@ -16,5 +16,6 @@ namespace Controller.Interfaces
         void UpdateBezoeker(Bezoeker bezoeker);
         List<Bezoeker> GeefAlleAanwezigeBezoekers();
         Persoon GeefPersoonOpEmail(string email);
+        List<Bezoeker> ZoekBezoekersOp(string zoekText);
     }
 }
