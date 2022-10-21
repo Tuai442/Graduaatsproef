@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HLGNOBclc/93DaFLv8MwgfyEI81DXwcHszfHLZ8JptjX/htkCg3N0mpGHLDkHE5AlNF1Lyck+HIVi9WWsSzpPQ==",
+  "dgSpecHash": "/FzyCq3JF+QzdMMF45w6BzLMJTXk3O5UWgsnqaBEw/NbIZnqux7y1g1G+nV5R7LlYdbJT9VYVh9QwmA6Zxeu0Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Vuilbak\\Vuilbak.csproj",
+  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Vuilbak\\Vuilbak.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Tuur\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\soren\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }

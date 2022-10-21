@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\
 Components
 none
 false
@@ -13,7 +13,7 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 7-38758305
 
 151614812332
-196-502638566
+196-2107027554
 CheckBox.xaml;Knop.xaml;TerugKnop.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;ZoekForms\BezoekerZoekForm.xaml;ZoekForms\WerknemerZoekForm.xaml;
 
 True
