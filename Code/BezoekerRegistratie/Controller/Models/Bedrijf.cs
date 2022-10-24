@@ -1,23 +1,35 @@
 ﻿using Controller.Interfaces;
+using Controller.Interfaces.Models;
 
 namespace Controller.Models
 {
-    public class Bedrijf: ITabelData
+    public class Bedrijf: IBedrijf
     {
+        public int Id { get; set; }
         public string  Naam { get; set; }
         public string Btw { get; set; }
         public string Adres { get; set; }
-        public string telefoon { get; set; }
-        public string email { get; set; }
+        public string Telefoon { get; set; }
+        public string Email { get; set; }
         public ParkingContract ParkingContract { get; set; }
+
+        public Bedrijf(int id, string naam, string btw, string adres, string telefoon, string email)
+        {
+            Id = id;
+            Naam = naam;
+            Btw = btw;
+            Adres = adres;
+            Telefoon = telefoon;
+            Email = email;
+        }
 
         public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
         {
             Naam = naam;
             Btw = btw;
             Adres = adres;
-            this.telefoon = telefoon;
-            this.email = email;
+            Telefoon = telefoon;
+            Email = email;
         }
 
         public bool ControleTelefoon(string telefoon)
@@ -50,19 +62,22 @@ namespace Controller.Models
             };
         }
 
-        public object GeefTabelData()
+        
+        public object GeefItemSource()
         {
             object result = new
             {
                 Naam = Naam,
                 Btw = Btw,
                 Adres = Adres,
-                telefoon = telefoon,
-                email = email
+                telefoon = Telefoon,
+                email = Email
             };
             return result;
-
-
+        }
+        public override string? ToString()
+        {
+            return Naam;
         }
     }
 }

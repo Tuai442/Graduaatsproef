@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:BeheerderApp.Paginas"
       xmlns:UIC="clr-namespace:Components;assembly=Components"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1200"
       Title="AanwezigheidPagina">
 
     <Grid Background="LightSteelBlue">
@@ -23,7 +23,8 @@
                        FontSize="30"/>
             </Border>
 
-            <DockPanel Height="600">
+            <DockPanel Height="600"
+                       Width="1100">
                 <UIC:ZoekbaarDataGrid Margin="40"
                                       x:Name="dataGrid"
                                       />

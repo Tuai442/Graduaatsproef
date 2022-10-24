@@ -1,6 +1,9 @@
 ﻿using Components.Models;
+using Controller.Interfaces.Models;
+using Controller.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +14,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -23,7 +27,22 @@ namespace Components
     /// </summary>
     public partial class ZoekbaarDataGrid : UserControl
     {
+
+
+
+        public int GridHeight
+        {
+            get { return (int)GetValue(GridHeightProperty); }
+            set { SetValue(GridHeightProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for GridHeight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty GridHeightProperty =
+            DependencyProperty.Register("GridHeight", typeof(int), typeof(ZoekbaarDataGrid), new PropertyMetadata(null));
+
+
         private List<object> _data;
+
         public ZoekbaarDataGrid()
         {
             InitializeComponent();
@@ -36,11 +55,13 @@ namespace Components
 
         public EventHandler<object> OpDataVerandering;
 
+        public EventHandler<string> OpDataFiltering;
+
         private object _aanHetVeranderen;
-        public void VoegDataToe(List<object> data)
+        public void StelDataIn(List<object> data)
         {
             _data = data;
-            dataGrid.ItemsSource = _data;
+            dataGrid.ItemsSource = data;
         }
         public void Clear()
         {
@@ -50,14 +71,16 @@ namespace Components
         public void FilterOp(string zoekWoord)
         {
             DataGridRow dataGridRij;
+            List<object> temp = new List<object>();
             if (string.IsNullOrEmpty(zoekWoord))
             {
                 foreach (var row in dataGrid.ItemsSource)
                 {
                     var json = JsonConvert.SerializeObject(row);
                     var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-                    dataGridRij = dataGrid.ItemContainerGenerator.ContainerFromItem(row) as DataGridRow;
-                    dataGridRij.Visibility = System.Windows.Visibility.Visible;
+                    temp.Add(row);
+                    //dataGridRij = dataGrid.ItemContainerGenerator.ContainerFromItem(row) as DataGridRow;
+                    //dataGridRij.Visibility = System.Windows.Visibility.Visible;
                 }
             }
             else
@@ -95,20 +118,22 @@ namespace Components
 
                     }
 
-                    dataGridRij = dataGrid.ItemContainerGenerator.ContainerFromItem(row) as DataGridRow;
+                    //dataGridRij = dataGrid.ItemContainerGenerator.ContainerFromItem(row) as DataGridRow;
                     if (!gevonden)
                     {
-                        dataGridRij.Visibility = System.Windows.Visibility.Collapsed;
+                        //dataGridRij.Visibility = System.Windows.Visibility.Collapsed;
                     }
 
                     else
                     {
-                        dataGridRij.Visibility = System.Windows.Visibility.Visible;
+                        //dataGridRij.Visibility = System.Windows.Visibility.Visible;
+                        temp.Add(row);
+
                     }
                 }
             }
+            dataGrid.ItemsSource = temp;
         }
-
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -122,6 +147,22 @@ namespace Components
                 OpDataVerandering.Invoke(this, _aanHetVeranderen);
             }
             _aanHetVeranderen = null;
+        }
+       
+        // Dit wordt opgeroepen vanaf er een verandering in de zoekbalk gebeurt.
+        private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            // Hier kunnen we ons datagrid filter op het huidige zoekwoord.
+            string zoekText = zoekBar.Text;
+            // Manier 1:
+            // - alle gegevens worden bijgouden in memory.(niet optimaal, maar er word weinig naar de db gestuurd).
+            FilterOp(zoekText);
+
+            // Manier 2:
+            // - per verandering wordt er gecommuniceerd naar de db.(weinig in memory, veel verkeer).
+            // OpDataFiltering.Invoke(sender, zoekText);
+
         }
     }
 }

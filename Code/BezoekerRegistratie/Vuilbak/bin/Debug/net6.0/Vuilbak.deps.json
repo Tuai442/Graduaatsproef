@@ -104,9 +104,15 @@
           "Controller.dll": {}
         }
       },
+      "Datalaag/1.0.0": {
+        "runtime": {
+          "Datalaag.dll": {}
+        }
+      },
       "Persistence/1.0.0": {
         "dependencies": {
           "Controller": "1.0.0",
+          "Datalaag": "1.0.0",
           "System.Data.SqlClient": "4.8.4"
         },
         "runtime": {
@@ -192,6 +198,11 @@
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
     },
     "Controller/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Datalaag/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

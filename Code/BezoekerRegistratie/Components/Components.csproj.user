@@ -8,7 +8,13 @@
     <Compile Update="Knop.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Paginas\InstellingPagina.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="TerugKnop.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Test.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ZoekbaarDataGrid.xaml.cs">
@@ -31,7 +37,13 @@
     <Page Update="Knop.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Paginas\InstellingPagina.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="TerugKnop.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Test.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ZoekbaarDataGrid.xaml">

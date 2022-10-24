@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 
-7-38758305
+91237170538
 
-13806351811
+1778084902
 196-502638566
-CheckBox.xaml;Knop.xaml;TerugKnop.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;ZoekForms\BezoekerZoekForm.xaml;ZoekForms\WerknemerZoekForm.xaml;
+CheckBox.xaml;Knop.xaml;Paginas\InstellingPagina.xaml;TerugKnop.xaml;Test.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;ZoekForms\BezoekerZoekForm.xaml;ZoekForms\WerknemerZoekForm.xaml;
 
 False
 

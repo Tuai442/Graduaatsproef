@@ -9,9 +9,9 @@ namespace Controller.Interfaces
 {
     public interface IBedrijfRepository
     {
-        Bedrijf GeefBedrijfOpNaam(string bedrijf);
-        List<Bedrijf> GeefAlleBedrijven();
-        void VoegNieuwBedrijfToe(Bedrijf bedrijf);
-        Bedrijf GeefBedrijfOpId(int bedrijfNaam);
+        public List<Bedrijf> GeefAlleBedrijven();
+        public void VoegNieuwBedrijfToe(Bedrijf bedrijf);
+        public Bedrijf GeefBedrijfOpId(int id);
+        public List<Bedrijf> ZoekBedrijfOp(string zoekText);
     }
 }

@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\
 Components
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 
-7-38758305
+91237170538
 
-151614812332
-196-2107027554
-CheckBox.xaml;Knop.xaml;TerugKnop.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;ZoekForms\BezoekerZoekForm.xaml;ZoekForms\WerknemerZoekForm.xaml;
+19886545423
+196-502638566
+CheckBox.xaml;Knop.xaml;Paginas\InstellingPagina.xaml;TerugKnop.xaml;Test.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;ZoekForms\BezoekerZoekForm.xaml;ZoekForms\WerknemerZoekForm.xaml;
 
 True
 

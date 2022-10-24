@@ -1,4 +1,6 @@
-﻿using Controller.Models;
+﻿using Controller.Interfaces;
+using Controller.Models;
+using Persistence.Datalaag;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Persistence
 {
-    public class BezoekerRepository
+    public class BezoekerRepository: BaseRepository, IBezoekerRepository
     {
         private string connectionString;
 
-        public BezoekerRepository(string connectionString)
+        public BezoekerRepository()
         {
-            this.connectionString = connectionString;
+           
         }
         private SqlConnection GetConnection()
         {
@@ -42,7 +44,7 @@ namespace Persistence
                     command.Parameters["@voornaam"].Value = bezoeker.Voornaam;
                     command.Parameters["@achternaam"].Value = bezoeker.Achternaam;
                     command.Parameters["@email"].Value = bezoeker.Email;
-                    command.Parameters["@bedrijfId"].Value = bezoeker.BedrijfId;
+                    //command.Parameters["@bedrijfId"].Value = bezoeker.BedrijfId;
                     command.Parameters["@nummerplaat"].Value = bezoeker.Nummerplaat;
                     command.Parameters["@aanwezig"].Value = bezoeker.Aanwezig;
                     command.ExecuteNonQuery();
@@ -118,6 +120,35 @@ namespace Persistence
             }
         }
 
+        public Bezoeker GeefBezoekerOpEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Bezoeker> GeefAlleBezoekers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateBezoeker(Bezoeker bezoeker)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Bezoeker> GeefAlleAanwezigeBezoekers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Bezoeker> ZoekBezoekersOp(string zoekText)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Persoon GeefPersoonOpVolledigeNaam(string naam, string achternaam)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
