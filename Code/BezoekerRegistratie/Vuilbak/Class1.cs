@@ -17,6 +17,7 @@ namespace Vuilbak
             //(voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig)
             BezoekerRepository bezoekerRepository = new BezoekerRepository(connectionString);
             bezoekerRepository.VoegBezoekerToe(bezoeker);
+            bezoekerRepository.GeefAlleBezoekers();
         }
     }
 }

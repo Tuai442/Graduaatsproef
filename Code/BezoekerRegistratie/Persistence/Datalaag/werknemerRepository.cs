@@ -58,6 +58,39 @@ namespace Persistence.Datalaag
                 }
             }
         }
+        /*public List<Werknemer> GeefAlleWerknemers()
+        {
+            string query = "SELECT * from dbo.Werknemer";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    List<Werknemer> bedrijven = new List<Werknemer>();
+                    conn.Open();
+                    IDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        Werknemer werknemer= new Werknemer(/*(int)dataReader["bedrijfId"], (string)dataReader["naam"], (string)dataReader["btwNummer"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
+                        bedrijven.Add(bedrijf);
+                    }
+                    dataReader.Close();
+                    foreach (Bedrijf bedrijf in bedrijven)
+                    {
+                        Console.WriteLine(bedrijf);
+                    }
+                    return bedrijven;
+                }
+                catch (Exception ex)
+                {
+                    throw new BedrijfException("Geef bedrijven is niet gelukt.", ex);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }*/
     }
 }
 

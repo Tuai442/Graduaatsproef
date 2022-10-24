@@ -65,8 +65,14 @@ namespace Controller.Models
                 Aanwezig = Aanwezig
             };
             return result;
+            
 
+        }
+        public override string ToString()
+        {
+            string res = $"[Bezoeker] {BezoekerId},{Voornaam},{Achternaam},{Nummerplaat},{Aanwezig},{BedrijfId}";
 
+            return res;
         }
     }
 }
