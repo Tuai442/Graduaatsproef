@@ -1,7 +1,3 @@
-# Dummy data inladen
-
-Voor wie de dummy data wilt laden in de databank ga naar /TestData/ en kopieer new_query.sql open dan via ServerExplorer(in visual studio) een nieuwe query,
-kopieer in dit bestand en run de query.
 
 
 # Graduaatsproef
