@@ -1,28 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj": {}
+    "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj": {
+    "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
+        "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
         "projectName": "BeheerderApp",
-        "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
-        "packagesPath": "C:\\Users\\Tuur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\obj\\",
+        "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
+        "packagesPath": "C:\\Users\\soren\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\BeheerderApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tuur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\soren\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows"
+          "net6.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -32,14 +33,14 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj": {
-                "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj"
+              "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Components\\Components.csproj": {
+                "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Components\\Components.csproj"
               },
-              "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
-                "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+              "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+                "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
               },
-              "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
+              "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -65,8 +66,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -78,29 +78,30 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj": {
+    "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Components\\Components.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
+        "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
         "projectName": "Components",
-        "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
-        "packagesPath": "C:\\Users\\Tuur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\obj\\",
+        "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
+        "packagesPath": "C:\\Users\\soren\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Components\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tuur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\soren\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows"
+          "net6.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -110,8 +111,8 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
-                "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+              "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+                "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
               }
             }
           }
@@ -137,8 +138,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -150,24 +150,25 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+    "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
+        "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
         "projectName": "Controller",
-        "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
-        "packagesPath": "C:\\Users\\Tuur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\obj\\",
+        "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
+        "packagesPath": "C:\\Users\\soren\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Controller\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tuur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\soren\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -199,8 +200,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -209,15 +209,15 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj": {
+    "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj",
+        "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj",
         "projectName": "Datalaag",
-        "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj",
+        "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {}
@@ -228,20 +228,21 @@
         "net472": {}
       }
     },
-    "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\Tuur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\obj\\",
+        "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\soren\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tuur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\soren\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -256,11 +257,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
-                "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+              "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+                "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
               },
-              "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj": {
-                "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj"
+              "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj": {
+                "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj"
               }
             }
           }
@@ -286,8 +287,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -296,7 +296,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
