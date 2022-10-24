@@ -64,14 +64,12 @@ namespace BeheerderApp.Paginas
             _dataGrid.OpDataFiltering += FilterData;
         }
 
-        
-
         private void UpdateData(object? sender, object obj)
         {
             string type = obj.GetType().Name;
             if(type == "Bezoeker")
             {
-                _bezoekerManger.UpdateBezoeker(obj);
+                //_bezoekerManger.UpdateBezoeker(obj);
             }
             else if(type == "Werknemer")
             {
@@ -155,9 +153,9 @@ namespace BeheerderApp.Paginas
 
             if (actief)
             {
-                if (_werknemers.Count == 0)
+                if (_bezoekers.Count == 0)
                 {
-                    _bezoekers = _bezoekerManger.GeefAlleBezoekers();
+                    _bezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
                 }
 
                 VinkAllesUit();
@@ -178,7 +176,7 @@ namespace BeheerderApp.Paginas
 
             if (actief)
             {
-                if (_werknemers.Count == 0)
+                if (_afspraken.Count == 0)
                 {
                     _afspraken = _afspraakManager.GeefAlleAfspraken();
                 }
@@ -201,7 +199,7 @@ namespace BeheerderApp.Paginas
 
             if (actief)
             {
-                if (_werknemers.Count == 0)
+                if (_bedrijven.Count == 0)
                 {
                     _bedrijven = _bedrijfManager.GeefAlleBedrijven();
                 }

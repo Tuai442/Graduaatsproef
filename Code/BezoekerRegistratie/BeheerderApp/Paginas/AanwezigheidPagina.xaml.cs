@@ -1,4 +1,5 @@
 ﻿
+using Controller.Interfaces.Models;
 using Controller.Managers;
 using Controllers;
 using System;
@@ -35,19 +36,21 @@ namespace BeheerderApp.Paginas
             InitializeComponent();
             terugKnop.ButtonClick += GaPaginaTerug;
 
-            List<object> alleAanwezigeBezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekersInTabelData();
+            List<IBezoeker> alleAanwezigeBezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
+            List<object> itemSource = alleAanwezigeBezoekers.Select(x => x.GeefItemSource()).ToList();
             aantalAanwLabel.Content = $"Totaal aantalbezoekers: {alleAanwezigeBezoekers.Count}";
-            dataGrid.StelDataIn(alleAanwezigeBezoekers);
+            dataGrid.StelDataIn(itemSource);
+
             dataGrid.OpDataVerandering += UpdateObject;
         }
 
         private void UpdateObject(object? sender, object obj)
         {
             string type = obj.GetType().Name;
-            if (type == "Bezoeker")
-            {
-                _bezoekerManger.UpdateBezoeker(obj);
-            }
+            //if (type == "Bezoeker")
+            //{
+            //    _bezoekerManger.UpdateBezoeker(obj);
+            //}
         }
 
         private void GaPaginaTerug(object? sender, EventArgs e)

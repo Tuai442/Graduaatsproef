@@ -11,8 +11,8 @@ namespace Controller.Interfaces.Models
         public string Naam { get; set; }
         public string Btw { get; set; }
         public string Adres { get; set; }
-        public string telefoon { get; set; }
-        public string email { get; set; }
+        public string Telefoon { get; set; }
+        public string Email { get; set; }
         public object GeefItemSource();
 
 

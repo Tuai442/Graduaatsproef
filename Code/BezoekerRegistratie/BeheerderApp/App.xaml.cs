@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Controllers;
+using Persistence.Datalaag;
 
 namespace BeheerderApp
 {
@@ -17,11 +18,10 @@ namespace BeheerderApp
     /// </summary>
     public partial class App : Application
     {
-        
-        IWerknemerRepository werknemerRepository = new TestMapper();
-        IBezoekerRepository bezoekerRepository = new TestMapper();
-        IBedrijfRepository bedrijfRepository = new TestMapper();
-        IAfspraakRepository afspraakRepository = new TestMapper();
+        IBedrijfRepository bedrijfRepository = new BedrijfRepository();
+        IWerknemerRepository werknemerRepository = new WerknemerRepository();
+        IBezoekerRepository bezoekerRepository = new BezoekerRepository();
+        IAfspraakRepository afspraakRepository = new AfspraakRepository();
 
         DomeinController _domeinController;
         MainWindow mainWindow;

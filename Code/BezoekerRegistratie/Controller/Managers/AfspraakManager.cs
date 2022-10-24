@@ -20,7 +20,7 @@ namespace Controller.Managers
         public List<IAfspraak> GeefAlleAfspraken()
         {
             List<Afspraak> afspraaks = _afspraakRepository.GeefAlleAfspraken();
-            return afspraaks.Select(x => (IAfspraak)afspraaks).ToList();
+            return afspraaks.Select(x => (IAfspraak)x).ToList();
 
         }
 

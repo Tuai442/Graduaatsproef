@@ -1,4 +1,5 @@
-﻿using Controller;
+﻿using Components.Paginas;
+using Controller;
 using Controller.Managers;
 using Controller.Models;
 using Controllers;
@@ -99,6 +100,13 @@ namespace BezoekerApp.Paginas
             emailInvulveld.Text = ""; 
             voornaamInvulveld.Text = "";
             achternaamInvulveld.Text = "";
+        }
+
+        private void Instellingen_Click(object sender, RoutedEventArgs e)
+        {
+            InstellingPagina instellingPagina = new InstellingPagina();
+            instellingPagina.NavigeerHandler += NavigeerHandler;
+            NavigeerHandler.Invoke(this, instellingPagina);
         }
     }
 }

@@ -10,29 +10,28 @@ namespace Controller.Models
 {
     public class Bezoeker: Persoon, IBezoeker
     {
-        
-        private static int totalBezoekers = 0; // TODO: tijdelijk
         public int BezoekerId { get; set; }
         public string Nummerplaat { get; set; }
         
         // TODO: aanwezig moet private set worden 
         public bool Aanwezig { get; set; }
         public string Bedrijf { get; set; }
-        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = false, string nummerplaat= "") : 
-            base(voornaam, achternaam, email)
+        //(voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig)
+        public Bezoeker(int id, string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = true, string nummerplaat= "") : 
+            base(id, voornaam, achternaam, email)
         {
-            BezoekerId = totalBezoekers;
             Nummerplaat = nummerplaat;
-            totalBezoekers += 1;
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
 
         }
 
-        public bool ControleNummerplaat(string nummerplaat)
+        public Bezoeker(int id, string voornaam, string achternaam, string email, string nummerplaat, bool aanwezig ):
+            base(id, voornaam, achternaam, email)
         {
-            // TODO: Controlleer de nummerplaat vie Regulire expresies.
-            return true;
+            Nummerplaat = nummerplaat;
+            Aanwezig = aanwezig;
+            
         }
 
         public void MeldAan()
@@ -49,11 +48,9 @@ namespace Controller.Models
         {
             object result = new
             {
-                BezoekerId = BezoekerId,
                 Voornaam = Voornaam,
                 Achternaam = Achternaam,
                 Nummerplaat = Nummerplaat,
-                Aanwezig = Aanwezig
             };
             return result;
         }

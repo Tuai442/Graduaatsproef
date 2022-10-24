@@ -24,14 +24,13 @@ namespace BezoekerApp.Paginas
     /// </summary>
     public partial class BedrijfSelecteren : Page
     {
-        DomeinController _domeinController;
+        
         BedrijfManager _bedrijfManager;
         WerknemerManager _werknemerManager;
 
         public EventHandler<Dictionary<string, string>> AanmeldHandler;
         public BedrijfSelecteren(DomeinController domeinController)
         {
-            _domeinController = domeinController;
             _bedrijfManager = domeinController.GeefBedrijfManager();
             _werknemerManager = domeinController.GeefWerknemerManager();
             InitializeComponent();

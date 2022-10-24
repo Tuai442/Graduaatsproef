@@ -16,8 +16,9 @@ namespace Controller.Models
         public int WerknemerId { get; set; }
         public Bedrijf Bedrijf { get; set; }
 
-        public Werknemer(string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf) : base(voornaam, achternaam, email)
+        public Werknemer(int id, string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf) : base(id, voornaam, achternaam, email)
         {
+
             totalWerknemers += 1;
             WerknemerId = totalWerknemers;
             Functie = functie;
@@ -31,6 +32,7 @@ namespace Controller.Models
                 WerknemerId = WerknemerId,
                 Voornaam = Voornaam,
                 Achternaam = Achternaam,
+                Email = Email,
                 Functie = Functie,
                 Bedrijf = Bedrijf.Naam,
             };

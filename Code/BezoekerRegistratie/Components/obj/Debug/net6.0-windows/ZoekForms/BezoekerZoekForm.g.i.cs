@@ -69,7 +69,7 @@ namespace Components.ZoekForms {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Components;V1.0.0.0;component/zoekforms/bezoekerzoekform.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Components;component/zoekforms/bezoekerzoekform.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\ZoekForms\BezoekerZoekForm.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

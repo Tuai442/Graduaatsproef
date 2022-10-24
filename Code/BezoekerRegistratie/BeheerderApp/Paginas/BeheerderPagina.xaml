@@ -7,7 +7,7 @@
       xmlns:UIC="clr-namespace:Components;assembly=Components"
       xmlns:FORMS="clr-namespace:Components.ZoekForms;assembly=Components"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1200"
       Title="BeheerderPagina">
 
     <Grid Background="LightSteelBlue">
@@ -15,8 +15,9 @@
         <StackPanel VerticalAlignment="Top"
                     Background="White"
                     HorizontalAlignment="Center"
-                    Width="600"
-                    Margin="40">
+                    Width="1100"
+                    Height="800"
+                    Margin="10">
             
             
             <StackPanel HorizontalAlignment="Left">
@@ -62,7 +63,8 @@
             </StackPanel>
 
             <StackPanel x:Name="dataGridPanel">
-                <UIC:ZoekbaarDataGrid x:Name="_dataGrid"/>
+                <UIC:ZoekbaarDataGrid x:Name="_dataGrid"
+                                      GridHeight="600"/>
 
             </StackPanel>
             <!--<DataGrid x:Name="dataGrid"

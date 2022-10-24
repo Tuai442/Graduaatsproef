@@ -9,14 +9,15 @@ namespace Controller.Models
 {
     public class Persoon 
     {
-        
+        public int Id { get; set; }
         public string Voornaam { get; set; }
         public string Achternaam { get; set; }
         public string Email { get; set; }
         
 
-        public Persoon(string voornaam, string achternaam, string email)
+        public Persoon(int id, string voornaam, string achternaam, string email)
         {
+            Id = id;
             Voornaam = voornaam;
             Achternaam = achternaam;
             Email = email;

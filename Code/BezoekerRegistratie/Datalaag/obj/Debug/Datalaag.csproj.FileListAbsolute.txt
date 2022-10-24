@@ -1,0 +1,9 @@
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1.mdf
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1_log.ldf
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll.config
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.pdb
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.csproj.AssemblyReference.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.csproj.CoreCompileInputs.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.pdb
