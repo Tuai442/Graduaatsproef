@@ -19,11 +19,7 @@ namespace Persistence
         {
            
         }
-        private SqlConnection GetConnection()
-        {
-            SqlConnection connection = new SqlConnection(connectionString);
-            return connection;
-        }
+        
         public void VoegBezoekerToe(Bezoeker bezoeker)
         {
             string query = "INSERT INTO dbo.Bezoeker (voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig) VALUES(@voornaam,@achternaam,@email,@bedrijfId,@nummerplaat,@aanwezig)";
@@ -70,8 +66,8 @@ namespace Persistence
                 try
                 {
                     conn1.Open();
-                    command.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int));
-                    command.Parameters["@Id"].Value = bezoeker.BezoekerId;
+                    //command.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int));
+                    //command.Parameters["@Id"].Value = bezoeker.BezoekerId;
                     command.ExecuteNonQuery();
                 }
                 catch (Exception e)

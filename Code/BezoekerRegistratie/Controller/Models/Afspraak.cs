@@ -7,90 +7,81 @@ namespace Controller
 {
     public class Afspraak: IAfspraak
     {
-        public int Id { get; set; }
-        public string Email { get; set; }
-
-        // TODO: misschien we gelaten en met foreign key werken in tabel
-        public string VoornaamBezoeker { get; set; }
-        public string AchternaamBezoeker { get; set; }
-        public string VoornaamContactPersoon { get; set; }
-        public string AchternaamContactPersoon { get; set; }
-        // -----
-        public string Bedrijf { get; set; }
+        public Bezoeker Bezoeker { get; set; }
+        public Werknemer Werknemer { get; set; }
         public DateTime StartTijd { get; set; }
-        public DateTime EindTijd { get; set; }
+        public DateTime? EindTijd { get; set; }
+        public bool IsAanwezig { get; internal set; }
 
-        public Afspraak(string email, string vnBezoeker, string anBezoeker,
-            string vnContactpersoon, string anContactPersoon, string bedrijf)
+        // --------------
+        public string BezoekerNaam 
+        { 
+            get { return Bezoeker.GeefVolledigeNaam(); }
+           
+        } 
+        public string WerknemerNaam
         {
-            Email = email;
-            VoornaamBezoeker = vnBezoeker;
-            AchternaamBezoeker = anBezoeker;
-            VoornaamContactPersoon = vnContactpersoon;
-            AchternaamContactPersoon = anContactPersoon;
-            Bedrijf = bedrijf;
-            StartTijd = DateTime.Now;
+            get { return Bezoeker.GeefVolledigeNaam(); }
+
         }
 
 
-        public Afspraak(int id, string email, string vnBezoeker, string anBezoeker,
-            string vnContactpersoon, string anContactPersoon, string bedrijf, 
-            DateTime startTijd, DateTime eindTijd)
+        // Als een afspraak geen eindtijd heeft betekend dit dat de bezoeker nog aan wezig is.
+        // 2 constructors voor als we uit de db afspraken willen halen die toch al een eindtijd hebben.
+        public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
         {
-            Id = id;
-            Email = email;
-            VoornaamBezoeker = vnBezoeker;
-            AchternaamBezoeker = anBezoeker;
-            VoornaamContactPersoon = vnContactpersoon;
-            AchternaamContactPersoon = anContactPersoon;
-            Bedrijf = bedrijf;
+            Bezoeker = bezoeker;
+            Werknemer = werknemer;
+            StartTijd = startTijd;
+            EindTijd = null;
+            IsAanwezig = true;
+        }
+
+        public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd, DateTime? eindTijd)
+        {
+            Bezoeker = bezoeker;
+            Werknemer = werknemer;
             StartTijd = startTijd;
             EindTijd = eindTijd;
+            IsAanwezig = false;
+            if (eindTijd is null)
+            {
+                IsAanwezig = true;
+            }
+            
         }
-
-        //public Afspraak(int id, string email, string vnBezoeker, string anBezoeker,
-        //  string vnContactpersoon, string anContactPersoon, string bedrijf,
-        //  DateTime startTijd, DateTime eindTijd)
-        //{
-        //    Id = id;
-        //    Email = email;
-        //    VoornaamBezoeker = vnBezoeker;
-        //    AchternaamBezoeker = anBezoeker;
-        //    VoornaamContactPersoon = vnContactpersoon;
-        //    AchternaamContactPersoon = anContactPersoon;
-        //    Bedrijf = bedrijf;
-        //    StartTijd = startTijd;
-        //    EindTijd = eindTijd;
-        //}
-
-
 
         public void EindeAfspraak()
         {
             EindTijd = DateTime.Now;
         }
-        //public override string? ToString()
-        //{
-        //    return $"Naam: {VoornaamBezoeker}\n" +
-        //            $"Contact persoon: {ContactPersoon}\n" +
-        //            $"Datum: {StartTijd.ToString()}\n" +
-        //            $"Bedrijf: {Bedrijf}";
-        //}
+       
 
         public object GeefItemSource()
         {
+            //Dictionary<string, string> result = new Dictionary<string, string>()
+            //{
+            //    { "Voornaam" , Bezoeker.Voornaam },
+
+            //};
             object result = new
             {
-                Voornaam = VoornaamBezoeker,
-                Achternaam = AchternaamBezoeker,
-                Email = Email,
-                VoornaamContactPersoon = VoornaamContactPersoon,
-                AchternaamContactPersoon = AchternaamContactPersoon,
-                Bedrijf = Bedrijf,
+                Voornaam = Bezoeker.Voornaam,
+                Achternaam = Bezoeker.Achternaam,
+                Email = Bezoeker.Email,
+                IsAanwezig = IsAanwezig,
+
+                BedrijfBezoeker = Bezoeker.Bedrijf.ToString(),
                 StartTijd = StartTijd,
-                EindTijd = EindTijd
+                EindTijd = EindTijd,
+
+                VoornaamContactPersoon = Werknemer.Voornaam,
+                AchternaamContactPersoon = Werknemer.Achternaam,
+                BedrijfContactPersoon = Werknemer.Bedrijf.ToString(),
             };
             return result;
         }
+
+       
     }
 }

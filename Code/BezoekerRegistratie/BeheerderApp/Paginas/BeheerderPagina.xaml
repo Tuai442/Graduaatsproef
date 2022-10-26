@@ -5,7 +5,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BeheerderApp.Paginas"
       xmlns:UIC="clr-namespace:Components;assembly=Components"
-      xmlns:FORMS="clr-namespace:Components.ZoekForms;assembly=Components"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="BeheerderPagina">

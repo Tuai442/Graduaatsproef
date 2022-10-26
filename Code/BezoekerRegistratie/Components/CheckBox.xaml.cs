@@ -55,7 +55,7 @@ namespace Components
             DependencyProperty.Register("TText", typeof(string), typeof(CheckBox), new PropertyMetadata(null));
 
 
-        public EventHandler<bool> Checked;
+       
 
         public string Value
         {
@@ -67,8 +67,8 @@ namespace Components
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof(string), typeof(CheckBox), new PropertyMetadata(null));
 
-
-
+        
+        public EventHandler<bool> Checked;
         public bool IsActief { get; set; }
         public SolidColorBrush defautlColor { get; set; }
         public SolidColorBrush checkedColor { get; set; }

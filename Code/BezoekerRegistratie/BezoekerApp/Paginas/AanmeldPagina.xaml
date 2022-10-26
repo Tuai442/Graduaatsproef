@@ -67,6 +67,7 @@
                        Grid.Row="0"
                        Margin="25 7 45 10"
                        x:Name="emailInvulveld" 
+                       LostFocus="emailInvulveld_LostFocus"
                        />
 
                 <Label Content="Achternaam" 

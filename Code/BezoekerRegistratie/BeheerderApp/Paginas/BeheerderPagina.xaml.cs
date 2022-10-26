@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using Components;
 using System.ComponentModel;
 using Components.Models;
-using Components.ZoekForms;
+
 using Controller.Models;
 using Controller.Managers;
 using Controller.Interfaces.Models;
@@ -32,6 +32,7 @@ namespace BeheerderApp.Paginas
     public partial class BeheerderPagina : Page
     {
         private DomeinController _domeinController;
+
         private WerknemerManager _werknemerManger;
         private BezoekerManager _bezoekerManger;
         private AfspraakManager _afspraakManager;
@@ -39,7 +40,7 @@ namespace BeheerderApp.Paginas
 
         // Zoek lijsten
         private List<IWerknemer> _werknemers = new List<IWerknemer>(); 
-        private List<IBezoeker> _bezoekers = new List<IBezoeker>(); 
+        private List<IAfspraak> _bezoekers = new List<IAfspraak>(); 
         private List<IAfspraak> _afspraken = new List<IAfspraak>();
         private List<IBedrijf> _bedrijven = new List<IBedrijf>();
         public BeheerderPagina(DomeinController domeinController)
@@ -51,7 +52,7 @@ namespace BeheerderApp.Paginas
             _bezoekerManger = _domeinController.GeefBezoekerManager();
             _afspraakManager = _domeinController.GeefAfspraakManager();
             _bedrijfManager = _domeinController.GeefBedrijfManager();
-            
+
             // Events
             bezoekerCheckBox.Checked += CheckBoxe_Bezoeker_Toggle;
             werknemerCheckBox.Checked += CheckBoxe_Werknemer_Toggle;
@@ -136,8 +137,8 @@ namespace BeheerderApp.Paginas
                 }
 
                 VinkAllesUit();
-                Components.CheckBox checkbox = (Components.CheckBox)sender;
-                checkbox.Activeer();
+                Components.CheckBox check = (Components.CheckBox)sender;
+                check.Activeer();
 
                 List<object> itemSources = _werknemers.Select(x => x.GeefItemSource()).ToList();
                 _dataGrid.StelDataIn(itemSources);
@@ -150,7 +151,6 @@ namespace BeheerderApp.Paginas
 
         private void CheckBoxe_Bezoeker_Toggle(object sender, bool actief)
         {
-
             if (actief)
             {
                 if (_bezoekers.Count == 0)
@@ -159,8 +159,8 @@ namespace BeheerderApp.Paginas
                 }
 
                 VinkAllesUit();
-                Components.CheckBox checkbox = (Components.CheckBox)sender;
-                checkbox.Activeer();
+                Components.CheckBox check = (Components.CheckBox)sender;
+                check.Activeer();
 
                 List<object> itemSources = _bezoekers.Select(x => x.GeefItemSource()).ToList();
                 _dataGrid.StelDataIn(itemSources);
@@ -182,8 +182,8 @@ namespace BeheerderApp.Paginas
                 }
 
                 VinkAllesUit();
-                Components.CheckBox checkbox = (Components.CheckBox)sender;
-                checkbox.Activeer();
+                Components.CheckBox check = (Components.CheckBox)sender;
+                check.Activeer();
 
                 List<object> itemSources = _afspraken.Select(x => x.GeefItemSource()).ToList();
                 _dataGrid.StelDataIn(itemSources);
@@ -205,8 +205,8 @@ namespace BeheerderApp.Paginas
                 }
 
                 VinkAllesUit();
-                Components.CheckBox checkbox = (Components.CheckBox)sender;
-                checkbox.Activeer();
+                Components.CheckBox check = (Components.CheckBox)sender;
+                check.Activeer();
 
                 List<object> itemSources = _bedrijven.Select(x => x.GeefItemSource()).ToList();
                 _dataGrid.StelDataIn(itemSources);

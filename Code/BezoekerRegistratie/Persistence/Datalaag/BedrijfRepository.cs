@@ -17,11 +17,7 @@ namespace Persistence.Datalaag
         public BedrijfRepository()
         {
         }
-        private SqlConnection GetConnection()
-        {
-            SqlConnection connection = new SqlConnection(connectionString);
-            return connection;
-        }
+        
         public List<Bedrijf> GeefAlleBedrijven()
         {
             SqlConnection conn = GetConnection();
@@ -37,18 +33,15 @@ namespace Persistence.Datalaag
                 {
                     while (dataReader.Read())
                     {
-                        int id = (int)dataReader["BedrijfId"];
                         string naam = (string)dataReader["Naam"];
                         string btw = (string)dataReader["BTW"];
                         string email = (string)dataReader["Email"];
                         string adres = (string)dataReader["Adres"];
                         string tel = (string)dataReader["Telefoon"];
-                        Bedrijf bedrijf = new Bedrijf(id, naam, btw, adres, tel, email);
+                        Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
                         
                         bedrijven.Add(bedrijf);
                     }
-
-
                 }
             }
             catch (Exception e)
@@ -85,6 +78,46 @@ namespace Persistence.Datalaag
             return GeefBedrijfOpId(id);
         }
 
-       
+        public List<Bedrijf> GeefBedrijvenOpWerknemerEmail(string email)
+        {
+            SqlConnection conn = GetConnection();
+            List<Bedrijf> bedrijven = new List<Bedrijf>();
+            try
+            {
+                conn.Open();
+
+                string query = $"SELECT * FROM {_tableName} b " +
+                    $"join Werknemers w on w.BedrijfId = b.BedrijfId " +
+                    $"WHERE w.Email = '{email}';";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        
+                        string naam = (string)dataReader["Naam"];
+                        string btw = (string)dataReader["BTW"];
+                        string emailB = (string)dataReader["Email"];
+                        string adres = (string)dataReader["Adres"];
+                        string tel = (string)dataReader["Telefoon"];
+                        Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
+
+                        bedrijven.Add(bedrijf);
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new WerknemerException(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return bedrijven;
+        }
     }
 }

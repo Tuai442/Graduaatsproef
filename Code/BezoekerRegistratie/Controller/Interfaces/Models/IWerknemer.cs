@@ -13,8 +13,9 @@ namespace Controller.Interfaces.Models
         public string Achternaam { get; set; }
         public string Email { get; set; }
         public string Functie { get; set; }
-        public int WerknemerId { get; set; }
         public Bedrijf Bedrijf { get; set; }
         public object GeefItemSource();
+
+
     }
 }

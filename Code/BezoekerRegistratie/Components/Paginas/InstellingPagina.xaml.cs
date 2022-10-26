@@ -20,6 +20,20 @@ namespace Components.Paginas
     /// </summary>
     public partial class InstellingPagina : Page
     {
+
+
+
+        public SolidColorBrush achtergrond
+        {
+            get { return (SolidColorBrush)GetValue(achtergrondProperty); }
+            set { SetValue(achtergrondProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for achtergrond.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty achtergrondProperty =
+            DependencyProperty.Register("achtergrond", typeof(SolidColorBrush), typeof(InstellingPagina), new PropertyMetadata(new SolidColorBrush(Colors.LightSteelBlue)));
+
+
         public EventHandler<Page> NavigeerHandler;
         public InstellingPagina()
         {

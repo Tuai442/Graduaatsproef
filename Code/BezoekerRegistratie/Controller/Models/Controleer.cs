@@ -45,5 +45,10 @@ namespace Controller.Models
             if (afspraak.EindTijd != null) throw new UitLogException("Je kan niet uitloggen als je was nooit ingelogd.");
 
         }
+
+        internal static void LegeVelden(string vnBezoeker, string anBezoeker, string email, string emailContactPersoon, string bedrijfBezoeker)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

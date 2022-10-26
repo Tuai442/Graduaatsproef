@@ -128,7 +128,7 @@ namespace Persistence.Datalaag
                         int bedrijfId = (int)dataReader["BedrijfId"];
                         Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
 
-                        Werknemer werknemer = new Werknemer(id, voornaam, achternaam, email, functie, bedrijf);
+                        Werknemer werknemer = new Werknemer(voornaam, achternaam, email, functie, bedrijf);
                         werknemers.Add(werknemer);
                     }
 
@@ -156,7 +156,88 @@ namespace Persistence.Datalaag
             throw new NotImplementedException();
         }
 
-        
+        public Werknemer GeefWerknemerOpEmail(string email)
+        {
+            SqlConnection conn = GetConnection();
+            Werknemer werknemer = null;
+            try
+            {
+                conn.Open();
+
+                string query = $"SELECT * FROM {_tableName} WHERE Email = '{email}';";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        int id = (int)dataReader["WerknemerId"];
+                        string voornaam = (string)dataReader["Voornaam"];
+                        string achternaam = (string)dataReader["Achternaam"];
+                        string emailW = (string)dataReader["Email"];
+                        string functie = (string)dataReader["Functie"];
+                        int bedrijfId = (int)dataReader["BedrijfId"];
+                        Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
+
+                        werknemer = new Werknemer(voornaam, achternaam, emailW, functie, bedrijf);
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new WerknemerException(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return werknemer;
+        }
+
+        public List<Werknemer> GeefWerknemersOpEmailBedrijf(string email)
+        {
+            SqlConnection conn = GetConnection();
+            List<Werknemer> werknemers = new List<Werknemer>();
+            try
+            {
+                conn.Open();
+
+                string query = $"SELECT * FROM {_tableName} w " +
+                    $"join Bedrijven b on w.BedrijfId = b.BedrijfId " +
+                    $"WHERE b.Email = '{email}';";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        int id = (int)dataReader["WerknemerId"];
+                        string voornaam = (string)dataReader["Voornaam"];
+                        string achternaam = (string)dataReader["Achternaam"];
+                        string emailW = (string)dataReader["Email"];
+                        string functie = (string)dataReader["Functie"];
+                        int bedrijfId = (int)dataReader["BedrijfId"];
+                        Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
+
+                        Werknemer werknemer = new Werknemer(voornaam, achternaam, emailW, functie, bedrijf);
+                        werknemers.Add(werknemer);
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new WerknemerException(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return werknemers;
+        }
     }
 }
 

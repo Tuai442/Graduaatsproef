@@ -15,5 +15,6 @@ namespace Controller.Interfaces
         void UpdateAfspraak(Afspraak afspraak);
         List<Afspraak> ZoekAfspraakOp(string zoekText);
         Afspraak GeefAfspraakOpEmail(string email);
+        List<Afspraak> GeefAlleAanwezigeAfspraken();
     }
 }

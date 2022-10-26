@@ -1,4 +1,5 @@
 ﻿using Components.Models;
+using Controller;
 using Controller.Interfaces.Models;
 using Controller.Models;
 using Newtonsoft.Json;
@@ -27,8 +28,6 @@ namespace Components
     /// </summary>
     public partial class ZoekbaarDataGrid : UserControl
     {
-
-
 
         public int GridHeight
         {
@@ -63,6 +62,17 @@ namespace Components
             _data = data;
             dataGrid.ItemsSource = data;
         }
+
+        public void StelDataIn(IEnumerable data)
+        {
+            // _data = data;
+            dataGrid.ItemsSource = data;
+            //data.Add(new Dictionary<string, string>(){
+            //    {"Voornaam", "Tuur" }
+            //});
+            //dataGrid.ItemsSource = data;
+        }
+
         public void Clear()
         {
             dataGrid.ItemsSource = null;

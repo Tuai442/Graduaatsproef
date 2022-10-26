@@ -13,14 +13,13 @@ namespace Controller.Models
     {
         private static int totalWerknemers = 0;
         public string Functie { get; set; }
-        public int WerknemerId { get; set; }
         public Bedrijf Bedrijf { get; set; }
 
-        public Werknemer(int id, string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf) : base(id, voornaam, achternaam, email)
+        public Werknemer(string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf) 
+            : base(voornaam, achternaam, email)
         {
 
             totalWerknemers += 1;
-            WerknemerId = totalWerknemers;
             Functie = functie;
             Bedrijf = bedrijf;
         }
@@ -29,7 +28,6 @@ namespace Controller.Models
         {
             object result = new
             {
-                WerknemerId = WerknemerId,
                 Voornaam = Voornaam,
                 Achternaam = Achternaam,
                 Email = Email,

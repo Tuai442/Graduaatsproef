@@ -24,6 +24,12 @@ namespace Controller.Managers
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
         }
 
+        public List<ILijstItem> GeefAlleBedrijvenInLijstItems()
+        {
+            List<Bedrijf> bedrijven = _bedrijfRepository.GeefAlleBedrijven();
+            return bedrijven.Select(x => (ILijstItem)x).ToList();
+        }
+
         public List<IBedrijf> GeefAlleBedrijven()
         {
             List<Bedrijf> bedrijven = _bedrijfRepository.GeefAlleBedrijven();
@@ -45,5 +51,10 @@ namespace Controller.Managers
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
         }
 
+        public List<ILijstItem> GeefBedrijvenOpEmailWerknemer(string email)
+        {
+            List<Bedrijf> bedrijven = _bedrijfRepository.GeefBedrijvenOpWerknemerEmail(email);
+            return bedrijven.Select(x => (ILijstItem)x).ToList();
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace Controller.Interfaces
         public void VoegNieuwBedrijfToe(Bedrijf bedrijf);
         public Bedrijf GeefBedrijfOpId(int id);
         public List<Bedrijf> ZoekBedrijfOp(string zoekText);
+        List<Bedrijf> GeefBedrijvenOpWerknemerEmail(string email);
     }
 }
