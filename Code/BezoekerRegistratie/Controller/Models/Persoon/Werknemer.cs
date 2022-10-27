@@ -9,17 +9,20 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class Werknemer: Persoon, IWerknemer
+    public class Werknemer: Persoon, IWerknemer, ILijstItem
     {
-        private static int totalWerknemers = 0;
         public string Functie { get; set; }
         public Bedrijf Bedrijf { get; set; }
+        public int Id { get; set; }
 
-        public Werknemer(string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf) 
+        // TODO: Vraag 3 - Elk object dat waarvan we een drop down lijst willen moet deze interface inmpl. (Ilijst interface)
+        public string LabelNaam => GeefVolledigeNaam();
+        public string Waarde => Email;
+
+        public Werknemer(int id, string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf) 
             : base(voornaam, achternaam, email)
         {
-
-            totalWerknemers += 1;
+            Id = id;
             Functie = functie;
             Bedrijf = bedrijf;
         }

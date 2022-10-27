@@ -33,7 +33,7 @@ namespace Persistence
                     command.Parameters.Add(new SqlParameter("@voornaam", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@achternaam", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
-                    command.Parameters.Add(new SqlParameter("@bedrijfId", SqlDbType.Int));                  
+                    command.Parameters.Add(new SqlParameter("@bedrijfId", SqlDbType.Int));
                     command.Parameters.Add(new SqlParameter("@nummerplaat", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@aanwezig", SqlDbType.Bit));
                     // command.Parameters["@id"].Value = klant.KlantID;
@@ -82,13 +82,42 @@ namespace Persistence
                 }
             }
         }
-
-        public Bezoeker GeefBezoekerOpEmail(string email)
+        public List<Bezoeker> GeefAlleBezoekers()
         {
-            throw new NotImplementedException();
+            string query = "SELECT * from dbo.Bezoeker";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    List<Bezoeker> bezoekers = new List<Bezoeker>();
+                    conn.Open();
+                    IDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        //(string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"],(int)dataReader["bedrijfId"],(string)dataReader["nummerplaat"],(bool)dataReader["aanwezig"]
+                        //Bezoeker bezoeker = new Bezoeker();
+                        //bezoekers.Add(bezoeker);
+                    }
+                    dataReader.Close();
+                    foreach (Bezoeker bezoeker in bezoekers)
+                    {
+                        Console.WriteLine(bezoeker);
+                    }
+                    return bezoekers;
+                }
+                catch (Exception ex)
+                {
+                    throw new BezoekerException("Geef bezoekers is niet gelukt.", ex);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
-        public List<Bezoeker> GeefAlleBezoekers()
+        public Bezoeker GeefBezoekerOpEmail(string email)
         {
             throw new NotImplementedException();
         }

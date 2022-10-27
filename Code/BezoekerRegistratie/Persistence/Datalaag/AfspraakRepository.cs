@@ -70,10 +70,9 @@ namespace Persistence.Datalaag
                         command.Parameters["@EindTijd"].Value = new SqlDateTime();
                     }
 
-                    // TODO: ??? 
-                    int werknemerId = GeefIdVanWerknemer(afspraak.Werknemer.Email);
+                    
                     command.Parameters.Add(new SqlParameter("@WerknemerId", SqlDbType.Int));
-                    command.Parameters["@WerknemerId"].Value = werknemerId;
+                    command.Parameters["@WerknemerId"].Value = afspraak.Werknemer.Id;
 
 
                     command.ExecuteNonQuery();
@@ -109,7 +108,7 @@ namespace Persistence.Datalaag
                 conn.Open();
                 string query = $"select AfspraakId, " +
                     $"a.Email as a_email, VoornaamBezoeker, AchternaamBezoeker, BezoekersBedrijfNaam," +
-                    $"Voornaam, Achternaam, w.Email as w_email, Functie," +
+                    $"Voornaam, Achternaam, w.Email as w_email, Functie, w.WerknemerId, " +
                     $"Naam, BTW, b.Email as b_email, Adres, telefoon," +
                     $"StartTijd, EindTijd, Aanwezig FROM {_tableName} a " +
 
@@ -123,13 +122,14 @@ namespace Persistence.Datalaag
                     while (dataReader.Read())
                     {
                         // Bezoeker
-                        int id = (int)dataReader["AfspraakId"];
+                        int afspraakId = (int)dataReader["AfspraakId"];
                         string email = (string)dataReader["a_email"];
                         string voornaamB = (string)dataReader["VoornaamBezoeker"];
                         string achternaamB = (string)dataReader["AchternaamBezoeker"];
                         string bedrijfBezoeker = (string)dataReader["BezoekersBedrijfNaam"];
 
                         // Werknemer
+                        int werknemerId = (int)dataReader["WerknemerId"];
                         string voornaamWerknemer = (string)dataReader["Voornaam"];
                         string achternaamWerknemer = (string)dataReader["Achternaam"];
                         string emailWerknemer = (string)dataReader["w_email"];
@@ -153,9 +153,9 @@ namespace Persistence.Datalaag
 
                         Bezoeker bezoeker = new Bezoeker(email, voornaamB, achternaamB, bedrijfBezoeker);
                         Bedrijf bedrijf = new Bedrijf(bedrijfWerknemer, btw, adress, telefoon, email);
-                        Werknemer werknemer = new Werknemer(voornaamWerknemer, achternaamWerknemer, email, functie, bedrijf);
+                        Werknemer werknemer = new Werknemer(werknemerId, voornaamWerknemer, achternaamWerknemer, email, functie, bedrijf);
 
-                        Afspraak afspraak = new Afspraak(bezoeker, werknemer, startTijd, EindTijd);
+                        Afspraak afspraak = new Afspraak(afspraakId, bezoeker, werknemer, startTijd, EindTijd);
                         
                         afspraken.Add(afspraak);
                     }
@@ -186,7 +186,7 @@ namespace Persistence.Datalaag
                 conn.Open();
                 string query = $"select AfspraakId, " +
                     $"a.Email as a_email, VoornaamBezoeker, AchternaamBezoeker, BezoekersBedrijfNaam," +
-                    $"Voornaam, Achternaam, w.Email as w_email, Functie," +
+                    $"Voornaam, Achternaam, w.Email as w_email, Functie, w.WerknemerId, " +
                     $"Naam, BTW, b.Email as b_email, Adres, telefoon," +
                     $"StartTijd, EindTijd, Aanwezig FROM {_tableName} a " +
 
@@ -201,13 +201,14 @@ namespace Persistence.Datalaag
                     while (dataReader.Read())
                     {
                         // Bezoeker
-                        int id = (int)dataReader["AfspraakId"];
+                        int afspraakId = (int)dataReader["AfspraakId"];
                         string email = (string)dataReader["a_email"];
                         string voornaamB = (string)dataReader["VoornaamBezoeker"];
                         string achternaamB = (string)dataReader["AchternaamBezoeker"];
                         string bedrijfBezoeker = (string)dataReader["BezoekersBedrijfNaam"];
 
                         // Werknemer
+                        int werknemerId = (int)dataReader["WerknemerId"];
                         string voornaamWerknemer = (string)dataReader["Voornaam"];
                         string achternaamWerknemer = (string)dataReader["Achternaam"];
                         string emailWerknemer = (string)dataReader["w_email"];
@@ -228,9 +229,9 @@ namespace Persistence.Datalaag
 
                         Bezoeker bezoeker = new Bezoeker(email, voornaamB, achternaamB, bedrijfBezoeker);
                         Bedrijf bedrijf = new Bedrijf(bedrijfWerknemer, btw, adress, telefoon, email);
-                        Werknemer werknemer = new Werknemer(voornaamWerknemer, achternaamWerknemer, email, functie, bedrijf);
+                        Werknemer werknemer = new Werknemer(werknemerId ,voornaamWerknemer, achternaamWerknemer, email, functie, bedrijf);
 
-                        Afspraak afspraak = new Afspraak(bezoeker, werknemer, startTijd, EindTijd);
+                        Afspraak afspraak = new Afspraak(afspraakId, bezoeker, werknemer, startTijd, EindTijd);
 
                         afspraken.Add(afspraak);
                     }
@@ -251,7 +252,37 @@ namespace Persistence.Datalaag
         }
         public void UpdateAfspraak(Afspraak afspraak)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = GetConnection();
+            try
+            {
+                conn.Open();
+                string query = $"UPDATE Afspraken SET VoornaamBezoeker= @VoornaamBezoeker, AchternaamBezoeker= @AchternaamBezoeker," +
+                    $"BezoekersBedrijfNaam= @BezoekersBedrijfNaam, Email= @Email, Aanwezig= @Aanwezig, " +
+                    $"StartTijd= @StartTijd, EindTijd= @EindTijd, WerknemerId= @WerknemerId " +
+                    $"WHERE AfspraakId = {afspraak.Id}";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                
+                cmd.Parameters.Add("VoornaamBezoeker", SqlDbType.VarChar).Value = afspraak.Bezoeker.Voornaam;
+                cmd.Parameters.Add("AchternaamBezoeker", SqlDbType.VarChar).Value = afspraak.Bezoeker.Achternaam;
+                cmd.Parameters.Add("BezoekersBedrijfNaam", SqlDbType.VarChar).Value = afspraak.Bezoeker.Bedrijf;
+                cmd.Parameters.Add("Email", SqlDbType.VarChar).Value = afspraak.Bezoeker.Email;
+                cmd.Parameters.Add("Aanwezig", SqlDbType.Bit).Value = Convert.ToByte(afspraak.IsAanwezig);
+                cmd.Parameters.Add("StartTijd", SqlDbType.DateTime).Value = afspraak.StartTijd;
+                cmd.Parameters.Add("EindTijd", SqlDbType.DateTime).Value = afspraak.EindTijd;
+                cmd.Parameters.Add("WerknemerId", SqlDbType.Int).Value = afspraak.Werknemer.Id;
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new AfspraakException(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public List<Afspraak> ZoekAfspraakOp(string zoekText)
@@ -312,8 +343,8 @@ namespace Persistence.Datalaag
 
                 string query = $"SELECT AfspraakId, " +
                     $"a.Email as a_email, VoornaamBezoeker, AchternaamBezoeker, BezoekersBedrijfNaam, " +
-                    $"Voornaam, Achternaam, w.Email as w_email, Functie, " +
-                    $"Naam, BTW, b.Email as b_email, Adres, telefoon, " +
+                    $"Voornaam, Achternaam, w.Email as w_email, Functie, w.WerknemerId," +
+                    $"Naam, BTW, b.Email as b_email, Adres, telefoon, b.BedrijfId, " +
                     $"StartTijd, EindTijd, Aanwezig  FROM {_tableName} a " +
                     $"join Werknemers w on a.WerknemerId = w.WerknemerId " +
                     $"join Bedrijven b on w.BedrijfId = b.BedrijfId " +
@@ -326,13 +357,14 @@ namespace Persistence.Datalaag
                     while (dataReader.Read())
                     {
                         // Bezoeker
-                        int id = (int)dataReader["AfspraakId"];
+                        int afspraakId = (int)dataReader["AfspraakId"];
                         string email = (string)dataReader["a_email"];
                         string voornaamB = (string)dataReader["VoornaamBezoeker"];
                         string achternaamB = (string)dataReader["AchternaamBezoeker"];
                         string bedrijfBezoeker = (string)dataReader["BezoekersBedrijfNaam"];
 
                         // Werknemer
+                        int werknemerId = (int)dataReader["WerknemerId"];
                         string voornaamWerknemer = (string)dataReader["Voornaam"];
                         string achternaamWerknemer = (string)dataReader["Achternaam"];
                         string emailWerknemer = (string)dataReader["w_email"];
@@ -340,6 +372,7 @@ namespace Persistence.Datalaag
                         string bedrijfWerknemer = (string)dataReader["Naam"];
 
                         // Bedrijf
+                        int bedrijfId = (int)dataReader["BedrijfId"];
                         string btw = (string)dataReader["BTW"];
                         string bedrijfEmail = (string)dataReader["b_email"];
                         string adress = (string)dataReader["Adres"];
@@ -355,9 +388,9 @@ namespace Persistence.Datalaag
                         }
 
                         Bezoeker bezoeker = new Bezoeker(voornaamB, achternaamB, email, bedrijfBezoeker);
-                        Bedrijf bedrijf = new Bedrijf(bedrijfWerknemer, btw, adress, telefoon, email);
-                        Werknemer werknemer = new Werknemer(voornaamWerknemer, achternaamWerknemer, email, functie, bedrijf);
-                        afspraak = new Afspraak(bezoeker, werknemer, startTijd, EindTijd);
+                        Bedrijf bedrijf = new Bedrijf(bedrijfId, bedrijfWerknemer, btw, adress, telefoon, email);
+                        Werknemer werknemer = new Werknemer(werknemerId, voornaamWerknemer, achternaamWerknemer, email, functie, bedrijf);
+                        afspraak = new Afspraak(afspraakId, bezoeker, werknemer, startTijd, EindTijd);
 
                     }
                 }

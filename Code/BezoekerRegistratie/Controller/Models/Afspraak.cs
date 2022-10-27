@@ -7,6 +7,7 @@ namespace Controller
 {
     public class Afspraak: IAfspraak
     {
+        public int Id { get; set; }
         public Bezoeker Bezoeker { get; set; }
         public Werknemer Werknemer { get; set; }
         public DateTime StartTijd { get; set; }
@@ -28,6 +29,15 @@ namespace Controller
 
         // Als een afspraak geen eindtijd heeft betekend dit dat de bezoeker nog aan wezig is.
         // 2 constructors voor als we uit de db afspraken willen halen die toch al een eindtijd hebben.
+        public Afspraak(int id, Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
+        {
+            Id = id;
+            Bezoeker = bezoeker;
+            Werknemer = werknemer;
+            StartTijd = startTijd;
+            EindTijd = null;
+            IsAanwezig = true;
+        }
         public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
         {
             Bezoeker = bezoeker;
@@ -36,9 +46,9 @@ namespace Controller
             EindTijd = null;
             IsAanwezig = true;
         }
-
-        public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd, DateTime? eindTijd)
+        public Afspraak(int id, Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd, DateTime? eindTijd)
         {
+            Id = id;
             Bezoeker = bezoeker;
             Werknemer = werknemer;
             StartTijd = startTijd;
@@ -54,6 +64,8 @@ namespace Controller
         public void EindeAfspraak()
         {
             EindTijd = DateTime.Now;
+            IsAanwezig = false;
+            
         }
        
 

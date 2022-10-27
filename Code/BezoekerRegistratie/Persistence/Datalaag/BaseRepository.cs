@@ -89,7 +89,7 @@ namespace Persistence.Datalaag
                         int bedrijfId = (int)dataReader["BedrijfId"];
                         Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
 
-                        werknemer = new Werknemer(voornaam, achternaam, email, functie, bedrijf);
+                        werknemer = new Werknemer(idd, voornaam, achternaam, email, functie, bedrijf);
                     }
 
 

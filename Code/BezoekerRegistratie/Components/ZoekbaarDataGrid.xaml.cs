@@ -84,14 +84,7 @@ namespace Components
             List<object> temp = new List<object>();
             if (string.IsNullOrEmpty(zoekWoord))
             {
-                foreach (var row in dataGrid.ItemsSource)
-                {
-                    var json = JsonConvert.SerializeObject(row);
-                    var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-                    temp.Add(row);
-                    //dataGridRij = dataGrid.ItemContainerGenerator.ContainerFromItem(row) as DataGridRow;
-                    //dataGridRij.Visibility = System.Windows.Visibility.Visible;
-                }
+                temp = _data;
             }
             else
             {
@@ -162,15 +155,19 @@ namespace Components
         // Dit wordt opgeroepen vanaf er een verandering in de zoekbalk gebeurt.
         private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // TODO: Vraag 4 - Data in één keer ophalen of bij elke zoek click ophalen?
 
             // Hier kunnen we ons datagrid filter op het huidige zoekwoord.
             string zoekText = zoekBar.Text;
+
             // Manier 1:
             // - alle gegevens worden bijgouden in memory.(niet optimaal, maar er word weinig naar de db gestuurd).
+            // + we moeten er voor zorgen dat er bij een verandering in de db alle data opnieuw wordt opgehaald.
             FilterOp(zoekText);
 
             // Manier 2:
-            // - per verandering wordt er gecommuniceerd naar de db.(weinig in memory, veel verkeer).
+            // - per verandering wordt er gecommuniceerd naar de db.(weinig in memory, veel verkeer). 
+            // Voordeel we kunnen filteren met behulp van een query.
             // OpDataFiltering.Invoke(sender, zoekText);
 
         }

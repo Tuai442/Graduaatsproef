@@ -48,7 +48,7 @@ namespace Controller.Models
 
         internal static void LegeVelden(string vnBezoeker, string anBezoeker, string email, string emailContactPersoon, string bedrijfBezoeker)
         {
-            throw new NotImplementedException();
+            // TODO: controle Lege velden.
         }
     }
 }

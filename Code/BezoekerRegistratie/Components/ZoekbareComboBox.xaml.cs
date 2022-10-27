@@ -63,10 +63,10 @@ namespace Components
 
         }
 
-        public bool GetListItemSelected()
-        {
-            return ListItemSelected;
-        }
+        //public bool GetListItemSelected()
+        //{
+        //    return ListItemSelected;
+        //}
 
         public void VoegLijstToe(List<ILijstItem> items)
         {

@@ -6,7 +6,6 @@ namespace Controller.Models
     public class Bedrijf: IBedrijf, ILijstItem
     {
         public int Id { get; set; }
-        
         public string  Naam { get; set; }
         public string Btw { get; set; }
         public string Adres { get; set; }
@@ -22,6 +21,15 @@ namespace Controller.Models
 
         public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
         {
+            Naam = naam;
+            Btw = btw;
+            Adres = adres;
+            Telefoon = telefoon;
+            Email = email;
+        }
+        public Bedrijf(int id, string naam, string btw, string adres, string telefoon, string email)
+        {
+            Id = id;
             Naam = naam;
             Btw = btw;
             Adres = adres;

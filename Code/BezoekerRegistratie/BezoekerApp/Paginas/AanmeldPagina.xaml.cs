@@ -51,8 +51,7 @@ namespace BezoekerApp.Paginas
         }
         private void MeldBezoekerAan(object? sender, Dictionary<string, Dictionary<string, string>> dict)
         {
-            // TODO: Kan dit niet beter??
-            string email = emailInvulveld.Text; // vanaf deze is ingevuld een controle laten gebeuren. kijken in databank of er op dit moment iemand aanwezig is met dit email om de gegvens automatis aan te vullen zodat afmelden vlotter kan verlopen.
+            string email = emailInvulveld.Text; 
             string voornaam = voornaamInvulveld.Text;
             string achternaam = achternaamInvulveld.Text;
             string bedrijfB = bedrijfInvulveld.Text;

@@ -79,6 +79,7 @@ namespace BeheerderApp.Paginas
         }
         private void FilterData(object? sender, string zoekText)
         {
+            // Vraag 5 - Door de objecten te kunnen gebruiken, kan alles makkelijk aan een datagrid toegevoed worden.
             List<object> itemSource = new List<object>();
             if (bezoekerCheckBox.IsActief)
             {

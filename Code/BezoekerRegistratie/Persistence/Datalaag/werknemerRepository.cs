@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Controller.Interfaces;
+using Controller.Interfaces.Models;
 using Controller.Models;
 using Persistence.Exceptions;
 using System;
@@ -55,6 +56,7 @@ namespace Persistence.Datalaag
             }
         }
 
+
         public void VoegWerknemerToe(Werknemer werknemer)
         {
             string query = $"INSERT INTO {_tableName} (Voornaam, Achternaam, Email, Functie, BedrijfId) " +
@@ -65,36 +67,49 @@ namespace Persistence.Datalaag
             {
                 try
                 {
+
+                    List<Werknemer> bedrijven = new List<Werknemer>();
                     conn.Open();
+                    IDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        command.Parameters.Add(new SqlParameter("@Voornaam", SqlDbType.VarChar));
+                        command.Parameters["@Voornaam"].Value = werknemer.Voornaam;
 
-                    command.Parameters.Add(new SqlParameter("@Voornaam", SqlDbType.NVarChar));
-                    command.Parameters["@Voornaam"].Value = werknemer.Voornaam;
+                        command.Parameters.Add(new SqlParameter("@Achternaam", SqlDbType.VarChar));
+                        command.Parameters["@Achternaam"].Value = werknemer.Voornaam;
 
-                    command.Parameters.Add(new SqlParameter("@Achternaam", SqlDbType.NVarChar));
-                    command.Parameters["@Achternaam"].Value = werknemer.Achternaam;
+                        command.Parameters.Add(new SqlParameter("@Email", SqlDbType.VarChar));
+                        command.Parameters["@Email"].Value = werknemer.Email;
 
-                    command.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar));
-                    command.Parameters["@Email"].Value = werknemer.Email;
+                        command.Parameters.Add(new SqlParameter("@Functie", SqlDbType.VarChar));
+                        command.Parameters["@Functie"].Value = werknemer.Functie;
 
-                    command.Parameters.Add(new SqlParameter("@Functie", SqlDbType.NVarChar));
-                    command.Parameters["@Functie"].Value = werknemer.Functie;
+                        // TODO: contorle of bedrijf in db is.
+                        command.Parameters.Add(new SqlParameter("@BedrijfId", SqlDbType.VarChar));
+                        command.Parameters["@BedrijfId"].Value = werknemer.Bedrijf.Id;
 
-                    command.Parameters.Add(new SqlParameter("@BedrijfId", SqlDbType.Int));
-                    command.Parameters["@BedrijfId"].Value = werknemer.Bedrijf.Id;
+                        command.ExecuteNonQuery();
 
-                    command.ExecuteNonQuery();
+                    }
+                   
                 }
+                
                 catch (Exception e)
                 {
 
-                    throw new Exception(e.Message);
+                    throw new WerknemerException("Geef werknemers is niet gelukt.", e);
+
                 }
                 finally
                 {
                     conn.Close();
                 }
             }
+
         }
+
+        
         public Werknemer GeefWerknemerOpNaam(string contactPersoon)
         {
             throw new NotImplementedException();
@@ -128,7 +143,7 @@ namespace Persistence.Datalaag
                         int bedrijfId = (int)dataReader["BedrijfId"];
                         Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
 
-                        Werknemer werknemer = new Werknemer(voornaam, achternaam, email, functie, bedrijf);
+                        Werknemer werknemer = new Werknemer(id, voornaam, achternaam, email, functie, bedrijf);
                         werknemers.Add(werknemer);
                     }
 
@@ -179,7 +194,7 @@ namespace Persistence.Datalaag
                         int bedrijfId = (int)dataReader["BedrijfId"];
                         Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
 
-                        werknemer = new Werknemer(voornaam, achternaam, emailW, functie, bedrijf);
+                        werknemer = new Werknemer(id, voornaam, achternaam, emailW, functie, bedrijf);
                     }
 
 
@@ -221,7 +236,7 @@ namespace Persistence.Datalaag
                         int bedrijfId = (int)dataReader["BedrijfId"];
                         Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
 
-                        Werknemer werknemer = new Werknemer(voornaam, achternaam, emailW, functie, bedrijf);
+                        Werknemer werknemer = new Werknemer(id, voornaam, achternaam, emailW, functie, bedrijf);
                         werknemers.Add(werknemer);
                     }
 
@@ -238,6 +253,7 @@ namespace Persistence.Datalaag
             }
             return werknemers;
         }
+
     }
 }
 

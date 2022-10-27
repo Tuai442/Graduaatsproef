@@ -13,7 +13,7 @@ namespace Controller.Managers
 {
     public class BezoekerManager
     {
-        // TODO: nog een kijke of het wel goed is om geen BezoekerRepo te hebben.
+        // TODO: Vraag 1 - De bezoeker manager heeft meerdere repos nodig om een afspraak te kunnen maken
         private IBezoekerRepository _bezoekerRepository;
         private IAfspraakRepository _afspraakRepository;
         private IWerknemerRepository _werknemerRepository;
@@ -29,9 +29,7 @@ namespace Controller.Managers
 
         public List<IAfspraak> GeefAlleAanwezigeBezoekers()
         {
-            // TODO: Vraag,  veel overbodig omzettingen:
-            //  - Afspraken -> Bezoekers -> IBezoekers -> Objecten
-
+            
             List<Afspraak> afspraken = _afspraakRepository.GeefAlleAanwezigeAfspraken();
             return afspraken.Select(x => (IAfspraak)x).ToList();
         }

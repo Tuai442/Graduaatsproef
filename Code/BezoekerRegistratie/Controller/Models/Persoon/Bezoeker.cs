@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class Bezoeker: Persoon, IBezoeker
-    { 
+    public class Bezoeker : Persoon, IBezoeker
+    {
         public string Nummerplaat { get; set; }
-        
+
         // TODO: aanwezig moet private set worden 
         public bool Aanwezig { get; set; }
         public string Bedrijf { get; set; }
         //(voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig)
-        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = true, string nummerplaat= "") : 
+        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = true, string nummerplaat = "") :
             base(voornaam, achternaam, email)
         {
             Nummerplaat = nummerplaat;
@@ -44,14 +44,6 @@ namespace Controller.Models
                 Nummerplaat = Nummerplaat,
             };
             return result;
-
-            
-
-        }
-
-        public override string? ToString()
-        {
-            return GeefVolledigeNaam();
         }
     }
 }

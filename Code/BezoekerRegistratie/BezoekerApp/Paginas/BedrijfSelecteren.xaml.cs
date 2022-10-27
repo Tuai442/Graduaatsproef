@@ -47,7 +47,7 @@ namespace BezoekerApp.Paginas
             contactComboBox.GeSelecteerd += ContactPersoonGeselecteerd;
 
             //bedrijfComboBox.VoegLijstToe(bedrijven);
-            contactComboBox.GetListItemSelected();
+            //contactComboBox.GetListItemSelected();
 
             AanmeldKnop.ButtonClick += PersoonAanmelden;
         }
