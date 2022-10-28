@@ -17,7 +17,7 @@ namespace Persistence.Datalaag
         public BedrijfRepository()
         {
         }
-        
+
         public List<Bedrijf> GeefAlleBedrijven()
         {
             SqlConnection conn = GetConnection();
@@ -41,7 +41,7 @@ namespace Persistence.Datalaag
                         string tel = (string)dataReader["Telefoon"];
 
                         //Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
-                        
+
                         Bedrijf bedrijf = new Bedrijf(id, naam, btw, adres, tel, email);
 
                         bedrijven.Add(bedrijf);
@@ -191,9 +191,6 @@ namespace Persistence.Datalaag
                 }
             }
         }
-<<<<<<< HEAD
-=======
-
 
         public List<Bedrijf> GeefBedrijvenOpWerknemerEmail(string email)
         {
@@ -236,8 +233,6 @@ namespace Persistence.Datalaag
             }
             return bedrijven;
         }
-
->>>>>>> b4c8f09fececa4fdc618eeec96510d4a2790319f
     }
 }
 //Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);   
