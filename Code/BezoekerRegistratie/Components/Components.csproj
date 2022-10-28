@@ -22,4 +22,8 @@
     <Resource Include="Iconen\left.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Stijl\" />
+  </ItemGroup>
+
 </Project>

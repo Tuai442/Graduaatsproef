@@ -19,11 +19,7 @@ namespace Persistence
         {
            
         }
-        private SqlConnection GetConnection()
-        {
-            SqlConnection connection = new SqlConnection(connectionString);
-            return connection;
-        }
+        
         public void VoegBezoekerToe(Bezoeker bezoeker)
         {
             string query = "INSERT INTO dbo.Bezoeker (voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig) VALUES(@voornaam,@achternaam,@email,@bedrijfId,@nummerplaat,@aanwezig)";
@@ -70,8 +66,8 @@ namespace Persistence
                 try
                 {
                     conn1.Open();
-                    command.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int));
-                    command.Parameters["@Id"].Value = bezoeker.BezoekerId;
+                    //command.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int));
+                    //command.Parameters["@Id"].Value = bezoeker.BezoekerId;
                     command.ExecuteNonQuery();
                 }
                 catch (Exception e)
@@ -99,8 +95,9 @@ namespace Persistence
                     IDataReader dataReader = command.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        Bezoeker bezoeker = new Bezoeker((string)dataReader["voornaam"], (string)dataReader ["achternaam"], (string)dataReader ["email"],(int)dataReader ["bedrijfId"],(string)dataReader ["nummerplaat"],(bool)dataReader ["aanwezig"]);
-                        bezoekers.Add(bezoeker);
+                        //(string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"],(int)dataReader["bedrijfId"],(string)dataReader["nummerplaat"],(bool)dataReader["aanwezig"]
+                        //Bezoeker bezoeker = new Bezoeker();
+                        //bezoekers.Add(bezoeker);
                     }
                     dataReader.Close();
                     foreach (Bezoeker bezoeker in bezoekers)
@@ -121,11 +118,6 @@ namespace Persistence
         }
 
         public Bezoeker GeefBezoekerOpEmail(string email)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Bezoeker> GeefAlleBezoekers()
         {
             throw new NotImplementedException();
         }

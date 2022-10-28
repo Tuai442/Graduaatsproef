@@ -29,7 +29,8 @@ namespace Controllers
             _bedrijfManager = new BedrijfManager(bedrijfRepository);
             _afspraakManager = new AfspraakManager(afspraakRepository);
             _werknemerManager = new WerknemerManager(werknemerRepository);
-            _bezoekerManger = new BezoekerManager(bezoekerRepository, afspraakRepository);
+            _bezoekerManger = new BezoekerManager(bezoekerRepository, afspraakRepository,
+                werknemerRepository, bedrijfRepository);
         }
 
         public AfspraakManager GeefAfspraakManager()

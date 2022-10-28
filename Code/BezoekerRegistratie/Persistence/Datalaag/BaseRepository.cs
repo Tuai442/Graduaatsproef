@@ -41,14 +41,13 @@ namespace Persistence.Datalaag
                 {
                     while (dataReader.Read())
                     {
-                        int idd = (int)dataReader["BedrijfId"];
                         string naam = (string)dataReader["Naam"];
                         string btw = (string)dataReader["BTW"];
                         string email = (string)dataReader["Email"];
                         string adres = (string)dataReader["Adres"];
                         string telefoon = (string)dataReader["Telefoon"];
 
-                        bedrijf = new Bedrijf(idd, naam, btw, adres, telefoon, email);
+                        bedrijf = new Bedrijf(naam, btw, adres, telefoon, email);
                     }
                     
                     
@@ -106,6 +105,39 @@ namespace Persistence.Datalaag
                 conn.Close();
             }
             return werknemer;
+        }
+
+        protected int GeefIdVanWerknemer(string email)
+        {
+            SqlConnection conn = GetConnection();
+            int id = -1;
+            try
+            {
+                conn.Open();
+
+                string query = $"SELECT * FROM Werknemers WHERE email = '{email}';";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        id = (int)dataReader["WerknemerId"];
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new WerknemerException(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return id;
         }
     }
 }

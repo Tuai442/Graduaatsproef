@@ -33,8 +33,7 @@ namespace BezoekerApp
             _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
             bedrijfRepository, afspraakRepository);
 
-            
-
+         
             mainWindow = new MainWindow(_domeinController);
             mainWindow.Show();
 

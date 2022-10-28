@@ -1,8 +1,10 @@
 ﻿using Components.Paginas;
 using Controller;
+using Controller.Interfaces.Models;
 using Controller.Managers;
 using Controller.Models;
 using Controllers;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,19 +49,20 @@ namespace BezoekerApp.Paginas
             bs.AanmeldHandler += MeldBezoekerAan;
             NavigeerHandler.Invoke(this, bs);
         }
-        private void MeldBezoekerAan(object? sender, Dictionary<string, string> e)
+        private void MeldBezoekerAan(object? sender, Dictionary<string, Dictionary<string, string>> dict)
         {
-            string email = emailInvulveld.Text; // vanaf deze is ingevuld een controle laten gebeuren. kijken in databank of er op dit moment iemand aanwezig is met dit email om de gegvens automatis aan te vullen zodat afmelden vlotter kan verlopen.
+            string email = emailInvulveld.Text; 
             string voornaam = voornaamInvulveld.Text;
             string achternaam = achternaamInvulveld.Text;
-            string bedrijf = e["bedrijf"];
-            string contactPersoon = e["contact-persoon"];
+            string bedrijfB = bedrijfInvulveld.Text;
+            string contactPersoonEmail = dict["contact-persoon"]["value"];
+            string bedrijfCp = dict["contact-persoon"]["naam"];
 
             try
             {
-                _bezoekerManger.MeldBezoekerAan(voornaam, achternaam, email,
-                contactPersoon, contactPersoon, bedrijf);
+                _bezoekerManger.MeldBezoekerAan(voornaam, achternaam, email, bedrijfB, contactPersoonEmail);
                 MessageBox.Show("U bent ingelogd.");
+                LeegAlleVelden();
 
             }
             catch (Exception ex)
@@ -69,7 +72,6 @@ namespace BezoekerApp.Paginas
             }
             finally
             {
-                LeegAlleVelden();
                 NavigeerHandler.Invoke(this, this);
             }
             
@@ -83,15 +85,13 @@ namespace BezoekerApp.Paginas
             {
                 _bezoekerManger.MeldBezoekerUit(email);
                 MessageBox.Show("Prettige dag nog");
+                LeegAlleVelden();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                LeegAlleVelden();
-            }
+           
 
         }
 
@@ -100,6 +100,7 @@ namespace BezoekerApp.Paginas
             emailInvulveld.Text = ""; 
             voornaamInvulveld.Text = "";
             achternaamInvulveld.Text = "";
+            bedrijfInvulveld.Text = "";
         }
 
         private void Instellingen_Click(object sender, RoutedEventArgs e)
@@ -107,6 +108,19 @@ namespace BezoekerApp.Paginas
             InstellingPagina instellingPagina = new InstellingPagina();
             instellingPagina.NavigeerHandler += NavigeerHandler;
             NavigeerHandler.Invoke(this, instellingPagina);
+        }
+
+        private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string email = emailInvulveld.Text;
+            IBezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
+            if(bezoeker != null)
+            {
+                achternaamInvulveld.Text = bezoeker.Achternaam;
+                voornaamInvulveld.Text = bezoeker.Voornaam;
+                bedrijfInvulveld.Text = bezoeker.Bedrijf;
+            }
+            
         }
     }
 }

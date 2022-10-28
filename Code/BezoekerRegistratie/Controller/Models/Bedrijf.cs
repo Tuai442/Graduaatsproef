@@ -3,7 +3,7 @@ using Controller.Interfaces.Models;
 
 namespace Controller.Models
 {
-    public class Bedrijf: IBedrijf
+    public class Bedrijf: IBedrijf, ILijstItem
     {
         public int Id { get; set; }
         public string  Naam { get; set; }
@@ -11,20 +11,25 @@ namespace Controller.Models
         public string Adres { get; set; }
         public string Telefoon { get; set; }
         public string Email { get; set; }
-        public ParkingContract ParkingContract { get; set; }
 
-        public Bedrijf(int id, string naam, string btw, string adres, string telefoon, string email)
+
+        // ListItems
+        public string LabelNaam => Naam;
+
+        public string Waarde => Email;
+
+
+        public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
         {
-            Id = id;
             Naam = naam;
             Btw = btw;
             Adres = adres;
             Telefoon = telefoon;
             Email = email;
         }
-
-        public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
+        public Bedrijf(int id, string naam, string btw, string adres, string telefoon, string email)
         {
+            Id = id;
             Naam = naam;
             Btw = btw;
             Adres = adres;
@@ -62,7 +67,6 @@ namespace Controller.Models
             };
         }
 
-        
         public object GeefItemSource()
         {
             object result = new

@@ -14,19 +14,10 @@
     <Compile Update="TerugKnop.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Test.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="ZoekbaarDataGrid.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ZoekbareComboBox.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ZoekForms\BezoekerZoekForm.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ZoekForms\WerknemerZoekForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -43,19 +34,10 @@
     <Page Update="TerugKnop.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Test.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="ZoekbaarDataGrid.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ZoekbareComboBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="ZoekForms\BezoekerZoekForm.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="ZoekForms\WerknemerZoekForm.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -23,6 +23,18 @@ namespace Controller.Managers
             return werknemers.Select(x => (IWerknemer)x).ToList();
         }
 
+        public List<ILijstItem> GeefAlleWerknemersInLijstItems()
+        {
+            List<Werknemer> werknemers = _werknemerRepository.GeefAlleWerknemers();
+            return werknemers.Select(x => (ILijstItem)x).ToList();
+        }
+
+        public List<ILijstItem> GeefWerknemersOpEmailBedrijf(string value)
+        {
+            List<Werknemer> werknemers = _werknemerRepository.GeefWerknemersOpEmailBedrijf(value);
+            return werknemers.Select(x => (ILijstItem)x).ToList();
+        }
+
         public void UpdateWerknemer(object obj)
         {
 
