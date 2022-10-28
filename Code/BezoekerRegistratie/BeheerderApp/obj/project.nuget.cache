@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1Mrlv4Cox8Uoczc3XGTUfCcpaOEIr47WVCxPPUJVx6yOOyEPKZkQVVOg2M9z2KJiXL5xDbUrTahM0ZeIxOX8Ww==",
+  "dgSpecHash": "RUcUcyCfkDk/fx0i7OAHGrZgu6PSKGDbp11WS0T6cRNg8P08Olaxp18D5npj7M55aN+uzM3Rzmq15vTqu6J97g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
+  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\soren\\.nuget\\packages\\fontawesome.wpf\\4.7.0.9\\fontawesome.wpf.4.7.0.9.nupkg.sha512",
     "C:\\Users\\soren\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

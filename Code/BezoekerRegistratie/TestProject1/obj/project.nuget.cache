@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lv92OJesxJGAtiVed6xK1BmNG8WpaX5FJUTI6ftXBSZzuYys+0XsaOJCOL0I6hKgjrhyiIq6CZeWFKQASPfFBg==",
+  "dgSpecHash": "3/paw2/KYiBrVOnXETTmoPnflxXajvUp+h8lb+Ch2zZ5DrfCK7kFBtN8vr7aRF166E5HIg6W58gbdauCgfZyxg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\TestProject1\\TestProject1.csproj",
+  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\TestProject1\\TestProject1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\soren\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\soren\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rTW8aDZDbMCXZuAo6bJf5OaZWmfmBxJSk+lyyU9iOr93s2HxrIhqOR9lWPcOPQjeYUVVEHcYgJlzkBHDSOiPFA==",
+  "dgSpecHash": "1VLPoKZ6b/mFivADiV51GuhFJQFw/aC2VygvPhOqTH1dBSjLMu5OIEpp2y/y5IKTf+M6eOL574f0VX7G2YmUkw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Vuilbak\\Vuilbak.csproj",
+  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Vuilbak\\Vuilbak.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\soren\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\soren\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

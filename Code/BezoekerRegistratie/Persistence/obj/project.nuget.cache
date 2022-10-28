@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QEGG6N/nwGSNKjwKHIaaz07wUYzvxo8uQizVHY2g5hEctEQp5bzk5B98wlJfe/vcQLsx+tdwrbrP1goAt5WetA==",
+  "dgSpecHash": "Mw7SqG+iRF/jaW4uELtEda2JEz/NZ3wm6URKI6Tu+aCyyZV/ZcJYePBhjjnf1AUo0mN96GBA+r/cGifXYQlF2g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
+  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\soren\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\soren\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

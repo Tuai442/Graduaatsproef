@@ -131,15 +131,69 @@ namespace Persistence.Datalaag
 
         public List<Bedrijf> ZoekBedrijfOp(string zoekText)
         {
-            throw new NotImplementedException();
+            string query = "SELECT * from dbo.Bedrijf where naam=@naam";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    List<Bedrijf> bedrijven = new List<Bedrijf>();
+                    conn.Open();
+                    command.Parameters.AddWithValue("@naam", zoekText);
+                    IDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
+                        bedrijven.Add(bedrijf);
+                    }
+                    dataReader.Close();
+                    foreach (Bedrijf bedrijf in bedrijven)
+                    {
+                        Console.WriteLine(bedrijf);
+                    }
+                    return bedrijven;
+                }
+                catch (Exception ex)
+                {
+                    throw new BezoekerException("Geef bedrijven is niet gelukt.", ex);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
+
+
 
 
         public Bedrijf GeefBedrijfOpId(int id)
         {
-            return GeefBedrijfOpId(id);
+            string query = "SELECT * from dbo.Bedrijf where id=@id";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@id", id);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+                    Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
+                    dataReader.Close();
+                    Console.WriteLine(bedrijf);
+                    return bedrijf;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef bedrijf is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
-
-
     }
 }
+//Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);   
