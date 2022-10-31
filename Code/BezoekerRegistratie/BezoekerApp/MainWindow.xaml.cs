@@ -1,5 +1,6 @@
 ﻿using BezoekerApp.Paginas;
 using Controller;
+using Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,18 +23,18 @@ namespace BezoekerApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private BezoekerController _bezoekerController;
+        private DomeinController _domeinController;
 
-        public MainWindow(BezoekerController bezoekerController )
+        public MainWindow(DomeinController domeinController)
         {
-            _bezoekerController = bezoekerController;
+            _domeinController = domeinController;
             InitializeComponent();
             ToonHoofdMenu();
         }
 
         public void ToonHoofdMenu()
         {
-            AanmeldPagina meldBezoekerAan = new AanmeldPagina(_bezoekerController);
+            AanmeldPagina meldBezoekerAan = new AanmeldPagina(_domeinController);
             meldBezoekerAan.NavigeerHandler += NavigeerNaarPagina;
             mainFrame.Navigate(meldBezoekerAan);
         }

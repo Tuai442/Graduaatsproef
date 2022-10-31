@@ -1,5 +1,10 @@
-﻿using Controller;
+﻿using Components.Paginas;
+using Controller;
+using Controller.Interfaces.Models;
+using Controller.Managers;
 using Controller.Models;
+using Controllers;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,66 +28,70 @@ namespace BezoekerApp.Paginas
     /// </summary>
     public partial class AanmeldPagina : Page
     {
-        BezoekerController _bezoekerController;
-        private static System.Timers.Timer _timer;
+        DomeinController _domeinController;
+        private BezoekerManager _bezoekerManger;
 
         public EventHandler<Page> NavigeerHandler;
-
-        public AanmeldPagina(BezoekerController bezoekerController)
+        public AanmeldPagina(DomeinController bezoekerController)
         {
-            _bezoekerController = bezoekerController;
             InitializeComponent();
+            _domeinController = bezoekerController;
+            _bezoekerManger = _domeinController.GeefBezoekerManager();
+            
 
             logInBtn.ButtonClick += LogIn;
             logUitBtn.ButtonClick += LogUit;
 
         }
-
         private void LogIn(object? sender, EventArgs e)
         {
-            BedrijfSelecteren bs = new BedrijfSelecteren(_bezoekerController); // Zouden we dit nie beter op één pagina zetten?
+            BedrijfSelecteren bs = new BedrijfSelecteren(_domeinController); // Zouden we dit nie beter op één pagina zetten?
             bs.AanmeldHandler += MeldBezoekerAan;
             NavigeerHandler.Invoke(this, bs);
         }
-
-
-        private void MeldBezoekerAan(object? sender, Dictionary<string, string> e)
+        private void MeldBezoekerAan(object? sender, Dictionary<string, Dictionary<string, string>> dict)
         {
-            string email = emailInvulveld.Text; // vanaf deze is ingevuld een controle laten gebeuren. kijken in databank of er op dit moment iemand aanwezig is met dit email om de gegvens automatis aan te vullen zodat afmelden vlotter kan verlopen.
+            string email = emailInvulveld.Text; 
             string voornaam = voornaamInvulveld.Text;
             string achternaam = achternaamInvulveld.Text;
-            string bedrijf = e["bedrijf"];
-            string contactPersoon = e["contact-persoon"];
+            string bedrijfB = bedrijfInvulveld.Text;
+            string contactPersoonEmail = dict["contact-persoon"]["value"];
+            string bedrijfCp = dict["contact-persoon"]["naam"];
 
-
-            Bericht bericht = _bezoekerController.MeldBezoekerAan(voornaam, achternaam, email,
-                contactPersoon, contactPersoon, bedrijf);
-
-            MessageBox.Show(bericht.Inhoud);
-            if (bericht.Status)
+            try
             {
+                _bezoekerManger.MeldBezoekerAan(voornaam, achternaam, email, bedrijfB, contactPersoonEmail);
+                MessageBox.Show("U bent ingelogd.");
                 LeegAlleVelden();
+
             }
-            NavigeerHandler.Invoke(this, this);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                NavigeerHandler.Invoke(this, this);
+            }
+            
         }
 
-        
         private void LogUit(object? sender, EventArgs e)
         {
             string email = emailInvulveld.Text;
-            bool gelukt = _bezoekerController.MeldBezoekerUit(email);
 
-            if (gelukt)
+            try
             {
-                MessageBox.Show("Je bent afgemeld.");
+                _bezoekerManger.MeldBezoekerUit(email);
+                MessageBox.Show("Prettige dag nog");
                 LeegAlleVelden();
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Je was niet aanwezig, dus kunnen we je niet afmelden");
+                MessageBox.Show(ex.Message);
             }
-            
-
+           
 
         }
 
@@ -91,6 +100,27 @@ namespace BezoekerApp.Paginas
             emailInvulveld.Text = ""; 
             voornaamInvulveld.Text = "";
             achternaamInvulveld.Text = "";
+            bedrijfInvulveld.Text = "";
+        }
+
+        private void Instellingen_Click(object sender, RoutedEventArgs e)
+        {
+            InstellingPagina instellingPagina = new InstellingPagina();
+            instellingPagina.NavigeerHandler += NavigeerHandler;
+            NavigeerHandler.Invoke(this, instellingPagina);
+        }
+
+        private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string email = emailInvulveld.Text;
+            IBezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
+            if(bezoeker != null)
+            {
+                achternaamInvulveld.Text = bezoeker.Achternaam;
+                voornaamInvulveld.Text = bezoeker.Voornaam;
+                bedrijfInvulveld.Text = bezoeker.Bedrijf;
+            }
+            
         }
     }
 }

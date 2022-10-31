@@ -10,11 +10,17 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 
-7-38758305
+6995335258
 
+<<<<<<< HEAD
 13806351811
 1961243915717
 CheckBox.xaml;Knop.xaml;TerugKnop.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;ZoekForms\BezoekerZoekForm.xaml;ZoekForms\WerknemerZoekForm.xaml;
+=======
+11-1383126784
+196-502638566
+CheckBox.xaml;Knop.xaml;Paginas\InstellingPagina.xaml;TerugKnop.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;
+>>>>>>> 1b67baa0074e533919432dca745046b6189630fe
 
 False
 

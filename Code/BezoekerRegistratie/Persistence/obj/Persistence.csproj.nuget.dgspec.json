@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
         "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
         "outputPath": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\obj\\",
+=======
+    "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
+        "projectName": "Controller",
+        "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
+        "packagesPath": "C:\\Users\\soren\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Controller\\obj\\",
+>>>>>>> 1b67baa0074e533919432dca745046b6189630fe
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,6 +73,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -67,6 +82,31 @@
         "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
         "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
         "outputPath": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\obj\\",
+=======
+    "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj",
+        "projectName": "Datalaag",
+        "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
+        "projectName": "Persistence",
+        "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\soren\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Persistence\\obj\\",
+>>>>>>> 1b67baa0074e533919432dca745046b6189630fe
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -83,8 +123,16 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+<<<<<<< HEAD
               "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
                 "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+=======
+              "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+                "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+              },
+              "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj": {
+                "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj"
+>>>>>>> 1b67baa0074e533919432dca745046b6189630fe
               }
             }
           }

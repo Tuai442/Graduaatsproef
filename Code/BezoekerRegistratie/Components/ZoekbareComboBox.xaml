@@ -11,7 +11,10 @@
                 IsEditable="True"
                 IsTextSearchEnabled="False"
                 x:Name="comboBox"
-                PreviewTextInput="cb_PreviewTextInput"
-                TextBoxBase.TextChanged="comboBox_TextChanged"/>
+               
+                SelectionChanged="comboBox_SelectionChanged" 
+                TextBoxBase.TextChanged="comboBox_TextChanged"
+                
+              />
 
 </UserControl>

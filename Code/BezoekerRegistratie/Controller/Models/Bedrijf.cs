@@ -1,23 +1,56 @@
+<<<<<<< HEAD
 ﻿using Controller.Exceptions;
 using Controller.Interfaces;
 using System.Text.RegularExpressions;
+=======
+﻿using Controller.Interfaces;
+using Controller.Interfaces.Models;
+>>>>>>> 1b67baa0074e533919432dca745046b6189630fe
 
 namespace Controller.Models
 {
-    public class Bedrijf: ITabelData
+    public class Bedrijf: IBedrijf, ILijstItem
     {
+<<<<<<< HEAD
         public string  Naam { get; private set; }
         public string Btw { get; private set; }
         public string Adres { get; private set; }
         public string Telefoon { get; private set; }
         public string Email { get; private set; }
         public ParkingContract ParkingContract { get; set; }
+=======
+        public int Id { get; set; }
+        public string  Naam { get; set; }
+        public string Btw { get; set; }
+        public string Adres { get; set; }
+        public string Telefoon { get; set; }
+        public string Email { get; set; }
+
+
+        // ListItems
+        public string LabelNaam => Naam;
+
+        public string Waarde => Email;
+
+>>>>>>> 1b67baa0074e533919432dca745046b6189630fe
 
         public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
         {
             Naam = naam;
             Adres = adres;
+<<<<<<< HEAD
             Btw = btw;
+=======
+            Telefoon = telefoon;
+            Email = email;
+        }
+        public Bedrijf(int id, string naam, string btw, string adres, string telefoon, string email)
+        {
+            Id = id;
+            Naam = naam;
+            Btw = btw;
+            Adres = adres;
+>>>>>>> 1b67baa0074e533919432dca745046b6189630fe
             Telefoon = telefoon;
             Email = email;
         }
@@ -64,7 +97,7 @@ namespace Controller.Models
             };
         }
 
-        public object GeefTabelData()
+        public object GeefItemSource()
         {
             object result = new
             {
@@ -75,8 +108,10 @@ namespace Controller.Models
                 email = Email
             };
             return result;
-
-
+        }
+        public override string? ToString()
+        {
+            return Naam;
         }
     }
 }

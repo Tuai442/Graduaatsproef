@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net6.0-windows7.0": {
+      "FontAwesome.WPF/4.7.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -187,11 +196,21 @@
           "bin/placeholder/Controller.dll": {}
         }
       },
+      "Datalaag/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Datalaag.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Datalaag.dll": {}
+        }
+      },
       "Persistence/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Controller": "1.0.0",
+          "Datalaag": "1.0.0",
           "System.Data.SqlClient": "4.8.4"
         },
         "compile": {
@@ -204,6 +223,29 @@
     }
   },
   "libraries": {
+    "FontAwesome.WPF/4.7.0.9": {
+      "sha512": "SXE080rnyWMm9Dt0BZzMxh89/o9teuSaqL1N+0O/XM/F/HU8JuZA4XaEKxjBigwZPHHU3/udTa0QMYCHkmH43Q==",
+      "type": "package",
+      "path": "fontawesome.wpf/4.7.0.9",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fontawesome.wpf.4.7.0.9.nupkg.sha512",
+        "fontawesome.wpf.nuspec",
+        "lib/net35/FontAwesome.WPF.dll",
+        "lib/net35/FontAwesome.WPF.xml",
+        "lib/net40/FontAwesome.WPF.dll",
+        "lib/net40/FontAwesome.WPF.xml",
+        "lib/uap10.0/FontAwesome.UWP.XML",
+        "lib/uap10.0/FontAwesome.UWP.dll",
+        "lib/uap10.0/FontAwesome.UWP.pri",
+        "lib/uap10.0/FontAwesome.UWP/FontAwesome.otf",
+        "lib/wp81/FontAwesome.WIN81.dll",
+        "lib/wp81/FontAwesome.WIN81.xml",
+        "tools/install.ps1"
+      ]
+    },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "sha512": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
       "type": "package",
@@ -551,6 +593,11 @@
       "path": "../Controller/Controller.csproj",
       "msbuildProject": "../Controller/Controller.csproj"
     },
+    "Datalaag/1.0.0": {
+      "type": "project",
+      "path": "../Datalaag/Datalaag.csproj",
+      "msbuildProject": "../Datalaag/Datalaag.csproj"
+    },
     "Persistence/1.0.0": {
       "type": "project",
       "path": "../Persistence/Persistence.csproj",
@@ -561,6 +608,7 @@
     "net6.0-windows7.0": [
       "Components >= 1.0.0",
       "Controller >= 1.0.0",
+      "FontAwesome.WPF >= 4.7.0.9",
       "Persistence >= 1.0.0"
     ]
   },
@@ -570,11 +618,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
       "projectName": "BeheerderApp",
       "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
       "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
       "outputPath": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
+      "projectName": "BeheerderApp",
+      "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
+      "packagesPath": "C:\\Users\\soren\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\BeheerderApp\\obj\\",
+>>>>>>> 1b67baa0074e533919432dca745046b6189630fe
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -591,6 +647,7 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
+<<<<<<< HEAD
             "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj": {
               "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj"
             },
@@ -599,6 +656,16 @@
             },
             "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
               "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
+=======
+            "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Components\\Components.csproj": {
+              "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Components\\Components.csproj"
+            },
+            "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+              "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+            },
+            "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
+              "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
+>>>>>>> 1b67baa0074e533919432dca745046b6189630fe
             }
           }
         }
@@ -612,6 +679,12 @@
     "frameworks": {
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
+        "dependencies": {
+          "FontAwesome.WPF": {
+            "target": "Package",
+            "version": "[4.7.0.9, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -634,5 +707,23 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\BeheerderApp\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'FontAwesome.WPF 4.7.0.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "FontAwesome.WPF",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
 }

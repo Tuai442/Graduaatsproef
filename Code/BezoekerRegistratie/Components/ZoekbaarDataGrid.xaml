@@ -6,15 +6,45 @@
              xmlns:local="clr-namespace:Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    
+    <StackPanel x:Name="stackPanel">
+        
+        <Border BorderBrush="Black"
+                BorderThickness="3"
+                CornerRadius="15"
+                Margin="10"
+                Background="White">
+            <Border>
+                <Grid>
+                    
 
-    <DockPanel x:Name="dockPanel">
+                    <TextBox Text="" Foreground="#FF8E8787"
+                         BorderThickness="0"
+                         Margin="4 4 30 4"
+                         TextChanged="zoekBar_TextChanged"
+                         x:Name="zoekBar"
+                         HorizontalAlignment="Stretch"
+                         />
+                    <Image Source="Iconen/search.png"
+                           Width="20"
+                           HorizontalAlignment="Right"
+                           Margin="0 0 10 0"/>
+
+                </Grid>
+                
+               
+            </Border>
+            
+        </Border>
         <DataGrid x:Name="dataGrid"
-                  Height="auto"
+                  IsReadOnly="False"
                   SelectionChanged="dataGrid_SelectionChanged"
-                  CurrentCellChanged="dataGrid_CurrentCellChanged">
+                  CurrentCellChanged="dataGrid_CurrentCellChanged"
+                  Height="600" Width="1000">
 
         </DataGrid>
-    </DockPanel>
+    </StackPanel>
     
     
 </UserControl>

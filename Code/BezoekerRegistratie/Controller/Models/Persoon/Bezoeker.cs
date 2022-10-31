@@ -1,4 +1,5 @@
 ﻿using Controller.Interfaces;
+using Controller.Interfaces.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,27 +8,24 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class Bezoeker: Persoon, ITabelData
+    public class Bezoeker : Persoon, IBezoeker
     {
-        
-        private static int totalBezoekers = 0; // TODO: tijdelijk
-        public int BezoekerId { get; set; }
         public string Nummerplaat { get; set; }
-        public bool Aanwezig { get; private set; }
+
+        // TODO: aanwezig moet private set worden 
+        public bool Aanwezig { get; set; }
         public string Bedrijf { get; set; }
-        public int BedrijfId { get; set; }
         //(voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig)
-        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = false, string nummerplaat= "") : 
+        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = true, string nummerplaat = "") :
             base(voornaam, achternaam, email)
         {
-            BezoekerId = totalBezoekers;
             Nummerplaat = nummerplaat;
-            totalBezoekers += 1;
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
 
         }
 
+<<<<<<< HEAD
         public Bezoeker(string voornaam, string achternaam, string email,int bedrijfId, string nummerplaat, bool aanwezig ):
             base(voornaam, achternaam, email)
         {
@@ -43,6 +41,8 @@ namespace Controller.Models
             return true;
         }
 
+=======
+>>>>>>> 1b67baa0074e533919432dca745046b6189630fe
         public void MeldAan()
         {
             Aanwezig = true;
@@ -53,19 +53,15 @@ namespace Controller.Models
             Aanwezig = false;
         }
 
-        public object GeefTabelData()
+        public object GeefItemSource()
         {
             object result = new
             {
-                BezoekerId = BezoekerId,
                 Voornaam = Voornaam,
                 Achternaam = Achternaam,
                 Nummerplaat = Nummerplaat,
-                Aanwezig = Aanwezig
             };
             return result;
-
-
         }
     }
 }

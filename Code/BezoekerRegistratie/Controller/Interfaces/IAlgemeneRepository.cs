@@ -8,6 +8,6 @@ namespace Controller.Interfaces
 {
     public interface IAlgemeneRepository
     {
-        List<ITabelData> GetAll();
+        //List<ITabelData> GetAll();
     }
 }

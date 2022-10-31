@@ -5,13 +5,26 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BezoekerApp.Paginas"
       xmlns:UIC="clr-namespace:Components;assembly=Components"
-             
-             mc:Ignorable="d" 
-             d:DesignHeight="450" 
-             d:DesignWidth="800">
+      xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+    mc:Ignorable="d" 
+    d:DesignHeight="450" 
+    d:DesignWidth="800">
+
 
     <Grid Background="LightSteelBlue">
+        <StackPanel HorizontalAlignment="Left"
+                    Margin="30">
+            <Button Background="Transparent"
+                    BorderThickness="0"
+                    Click="Instellingen_Click">
+                <fa:ImageAwesome Icon="Gear" 
+                             VerticalAlignment="Center" 
+                             HorizontalAlignment="Center" 
+                             Width="30"/>
+            </Button>
+            
 
+        </StackPanel>
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Background="white" 
@@ -49,11 +62,12 @@
                        />
                 <TextBox 
                        Background="LightSteelBlue" 
-                    BorderThickness="2"
+                       BorderThickness="2"
                        Grid.Column="2"
                        Grid.Row="0"
                        Margin="25 7 45 10"
                        x:Name="emailInvulveld" 
+                       LostFocus="emailInvulveld_LostFocus"
                        />
 
                 <Label Content="Achternaam" 
@@ -91,7 +105,7 @@
                     
                        x:Name="voornaamInvulveld" 
                        />
-                <!--<Label Content="Bedrijf" 
+                <Label Content="Bedrijf" 
                    FontFamily="Cascadia code"
                        
                        Grid.Column="0" 
@@ -106,7 +120,7 @@
                     BorderThickness="2"
                     
                        x:Name="bedrijfInvulveld" 
-                       />-->
+                       />
 
             </Grid>
             <Grid Margin="0 20 0 0">

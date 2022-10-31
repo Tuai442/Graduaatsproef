@@ -1,6 +1,8 @@
 ﻿using Controller;
 using Controller.Interfaces;
+using Controllers;
 using Persistence;
+using Persistence.Datalaag;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,24 +18,23 @@ namespace BezoekerApp
     /// </summary>
     public partial class App : Application
     {
-        IWerknemerRepository werknemerRepository = new TestMapper();
-        IBezoekerRepository bezoekerRepository = new TestMapper();
-        IBedrijfRepository bedrijfRepository = new TestMapper();
-        IAfspraakRepository afspraakRepository = new TestMapper();
+        IWerknemerRepository werknemerRepository = new WerknemerRepository();
+        IBezoekerRepository bezoekerRepository = new BezoekerRepository();
+        IBedrijfRepository bedrijfRepository = new BedrijfRepository();
+        IAfspraakRepository afspraakRepository = new AfspraakRepository();
 
-        BezoekerController bezoekerController;
+        DomeinController _domeinController;
 
 
         MainWindow mainWindow;
 
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
-            bezoekerController = new BezoekerController(werknemerRepository, bezoekerRepository,
+            _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
             bedrijfRepository, afspraakRepository);
 
-            
-
-            mainWindow = new MainWindow(bezoekerController);
+         
+            mainWindow = new MainWindow(_domeinController);
             mainWindow.Show();
 
         }

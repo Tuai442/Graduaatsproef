@@ -8,6 +8,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Controllers;
+using Persistence.Datalaag;
 
 namespace BeheerderApp
 {
@@ -16,22 +18,20 @@ namespace BeheerderApp
     /// </summary>
     public partial class App : Application
     {
-        
-        IWerknemerRepository werknemerRepository = new TestMapper();
-        IBezoekerRepository bezoekerRepository = new TestMapper();
-        IBedrijfRepository bedrijfRepository = new TestMapper();
-        IAfspraakRepository afspraakRepository = new TestMapper();
-        IAlgemeneRepository algemeneRepository = new TestMapper();
+        IBedrijfRepository bedrijfRepository = new BedrijfRepository();
+        IWerknemerRepository werknemerRepository = new WerknemerRepository();
+        IBezoekerRepository bezoekerRepository = new BezoekerRepository();
+        IAfspraakRepository afspraakRepository = new AfspraakRepository();
 
-        BeheerController beheerController;
+        DomeinController _domeinController;
         MainWindow mainWindow;
 
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
-            beheerController = new BeheerController(werknemerRepository, bezoekerRepository,
-            bedrijfRepository, afspraakRepository, algemeneRepository);
+            _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
+            bedrijfRepository, afspraakRepository);
 
-            mainWindow = new MainWindow(beheerController);
+            mainWindow = new MainWindow(_domeinController);
             mainWindow.Show();
 
         }
