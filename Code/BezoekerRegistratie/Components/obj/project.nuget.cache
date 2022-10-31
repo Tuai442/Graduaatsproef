@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "LiD5hoY0UkU2CV0O0m+H+IQdXQdq0OsQnAYtN/cSoF+Bknoqbny5/1BfWQVFVW4rLdb9S8aZrntw1K72Y6IYaQ==",
+  "dgSpecHash": "oCAQ9aJ0+jjlNlv561UIv8MVSmPbKMDL5XU1FDUfqefs+CyBvU2Z/9DZryEmgY1o3t0NFvRnEYaog6ODCG+vxg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\6deVersie\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
+  "projectFilePath": "D:\\Hogent\\22-23\\Graduaatsproef\\Test\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\soren\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\diego\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }

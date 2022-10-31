@@ -36,13 +36,12 @@ namespace Controller.Models
             BedrijfId = bedrijfId;
         }
 
+        //TODO: in controleer klasse
         public bool ControleNummerplaat(string nummerplaat)
         {
             // TODO: Controlleer de nummerplaat vie Regulire expresies.
             return true;
         }
-
-
 
         public void MeldAan()
         {

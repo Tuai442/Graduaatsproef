@@ -1,4 +1,5 @@
-﻿using Controller.Interfaces;
+﻿using Controller.Exceptions;
+using Controller.Interfaces;
 using Controller.Models;
 using System;
 using System.Collections.Generic;
@@ -103,14 +104,37 @@ namespace Controller
         public void VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
         {
             // TODO: Unit test
-            Controleer.BtwNummerControle(btw);
-            Controleer.EmailControle(email);
+            try
+            {
+                Controleer.ControleBTW(btw);
+
+            }
+            catch (Exception ex)
+            {
+                throw new BedrijfException(ex.Message);
+            }
+
+            try
+            {
+                Controleer.ControleEmail(email);
+            }
+            catch (Exception ex)
+            {
+                throw new BedrijfException(ex.Message);
+            }
+
+            try
+            {
+                Controleer.ControleTelefoon(tel);
+            }
+            catch (Exception ex)
+            {
+                throw new BedrijfException(ex.Message);
+            }
+
             Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
         }
 
-       
-
-        
     }
 }
