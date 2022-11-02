@@ -11,6 +11,8 @@ namespace Controller
 {
     public class BezoekerController
     {
+
+        // is hetzelfde als manager!
         private IWerknemerRepository _werknemerRepository;
         private IBezoekerRepository _bezoekerRepository;
         private IBedrijfRepository _bedrijfRepository;

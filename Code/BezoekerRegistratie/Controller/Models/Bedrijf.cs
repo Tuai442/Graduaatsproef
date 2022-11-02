@@ -1,30 +1,31 @@
-<<<<<<< HEAD
 ﻿using Controller.Exceptions;
 using Controller.Interfaces;
 using System.Text.RegularExpressions;
-=======
 ﻿using Controller.Interfaces;
 using Controller.Interfaces.Models;
->>>>>>> 1b67baa0074e533919432dca745046b6189630fe
 
 namespace Controller.Models
 {
-    public class Bedrijf: IBedrijf, ILijstItem
+    public class Bedrijf : IBedrijf, ILijstItem
     {
-<<<<<<< HEAD
-        public string  Naam { get; private set; }
-        public string Btw { get; private set; }
-        public string Adres { get; private set; }
-        public string Telefoon { get; private set; }
-        public string Email { get; private set; }
-        public ParkingContract ParkingContract { get; set; }
-=======
+        private string naam;
+        private string btw;
+        private string adres;
+        private string telefoon;
+        private string email;
+
+        private string SetStringParameters(string p)
+        {
+            if (string.IsNullOrWhiteSpace(p)) throw new BedrijfException("Ingave niet correct");
+            return p;
+        }
+
         public int Id { get; set; }
-        public string  Naam { get; set; }
-        public string Btw { get; set; }
-        public string Adres { get; set; }
-        public string Telefoon { get; set; }
-        public string Email { get; set; }
+        public string Naam { get => naam; set => naam = SetStringParameters(value); }
+        public string Btw { get => btw; set => btw = SetStringParameters(value); }
+        public string Adres { get => adres; set => adres = SetStringParameters(value); }
+        public string Telefoon { get => telefoon; set => telefoon = SetStringParameters(value); }
+        public string Email { get => email; set => email = SetStringParameters(value); }
 
 
         // ListItems
@@ -32,15 +33,12 @@ namespace Controller.Models
 
         public string Waarde => Email;
 
->>>>>>> 1b67baa0074e533919432dca745046b6189630fe
-
+        //TODO: syntax met this
         public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
         {
             Naam = naam;
             Adres = adres;
-<<<<<<< HEAD
             Btw = btw;
-=======
             Telefoon = telefoon;
             Email = email;
         }
@@ -50,7 +48,6 @@ namespace Controller.Models
             Naam = naam;
             Btw = btw;
             Adres = adres;
->>>>>>> 1b67baa0074e533919432dca745046b6189630fe
             Telefoon = telefoon;
             Email = email;
         }

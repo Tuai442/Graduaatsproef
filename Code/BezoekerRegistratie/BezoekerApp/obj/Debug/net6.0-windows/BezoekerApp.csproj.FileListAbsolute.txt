@@ -93,3 +93,15 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Datalaag.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Datalaag.dll.config
 >>>>>>> 1b67baa0074e533919432dca745046b6189630fe
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.csproj.AssemblyReference.cache
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\MainWindow.g.cs
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\AanmeldPagina.g.cs
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\BedrijfSelecteren.g.cs
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.g.cs
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav2.g.cs
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\App.g.cs
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp_MarkupCompile.cache
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp_MarkupCompile.lref
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.dll
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\refint\BezoekerApp.dll
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.pdb

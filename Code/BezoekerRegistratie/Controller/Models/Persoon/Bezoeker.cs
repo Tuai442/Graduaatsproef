@@ -25,13 +25,14 @@ namespace Controller.Models
 
         }
 
-<<<<<<< HEAD
+
+        //TODO: BedrijfID is moeilijk aan te spreken omdat bedrijf eens tring is
         public Bezoeker(string voornaam, string achternaam, string email,int bedrijfId, string nummerplaat, bool aanwezig ):
             base(voornaam, achternaam, email)
         {
             Nummerplaat = nummerplaat;
             Aanwezig = aanwezig;
-            BedrijfId = bedrijfId;
+            //BedrijfId = bedrijfId;
         }
 
         //TODO: in controleer klasse
@@ -41,8 +42,6 @@ namespace Controller.Models
             return true;
         }
 
-=======
->>>>>>> 1b67baa0074e533919432dca745046b6189630fe
         public void MeldAan()
         {
             Aanwezig = true;

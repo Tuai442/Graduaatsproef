@@ -14,12 +14,11 @@ namespace Controller.Models
     {
         public static void ControleIsBezoekerAlAanwezig(Bezoeker bezoeker)
         {
-<<<<<<< HEAD
             if (!bezoeker.Aanwezig) throw new BezoekerException("ControleAanwezigheid - Bezoeker niet aanwezig");
         }
 
         //TODO: mss extra controle op effectief bestaan van het btw nummer
-        public static void ControleBTW(string btw)
+        public static void BtwNummerControle(string btw)
         {
             if (string.IsNullOrWhiteSpace(btw)) throw new BedrijfException("Controle BTW - geen geldige invoer");
             btw = btw.Replace(" ", "").ToLower();
@@ -35,26 +34,6 @@ namespace Controller.Models
             Regex regex = new Regex(regexString);
             if (!regex.IsMatch(email)) throw new BedrijfException("Controle email - geen geldige regex");
         }
-=======
-            
-        }
-
-        internal static void ControleEmail(string email)
-        {
-            if (string.IsNullOrEmpty(email)) throw new EmailException("Email veld mag niet leeg zijn.");
-            //TODO: regex maken van een email en daarop controle doen
-            if (false) throw new EmailException("Geen geldig email adres.");
-        }
-
-        public static void BtwNummerControle(string btw)
-        {
-            
-            // TODO controle btw nummer
-            if (false) throw new BedrijfException("BTW-nummer is niet gelding.");
-        }
-
-       
->>>>>>> 1b67baa0074e533919432dca745046b6189630fe
 
         public static void ControleTelefoon(string telefoon)
         {
@@ -65,7 +44,7 @@ namespace Controller.Models
             if (!regex.IsMatch(telefoon)) throw new BedrijfException("ControleTelefoon - geen geldige regex");
         }
 
-        internal static void ControleIsAfspraakAlAfgesloten(Afspraak afspraak)
+        public static void ControleIsAfspraakAlAfgesloten(Afspraak afspraak)
         {
             // Een bezoeker kan niet uitloggen als hij nooit was ingelogd.
             if (afspraak is null) throw new UitLogException("We konden je niet vinden in het systeem, was je ingelogd?");

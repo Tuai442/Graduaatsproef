@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\Hogent\22-23\Graduaatsproef\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\
 Components
 none
 false
@@ -12,15 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 
 6995335258
 
-<<<<<<< HEAD
-13806351811
-1961243915717
-CheckBox.xaml;Knop.xaml;TerugKnop.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;ZoekForms\BezoekerZoekForm.xaml;ZoekForms\WerknemerZoekForm.xaml;
-=======
 11-1383126784
-196-502638566
+1961464041594
 CheckBox.xaml;Knop.xaml;Paginas\InstellingPagina.xaml;TerugKnop.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;
->>>>>>> 1b67baa0074e533919432dca745046b6189630fe
 
-False
+True
 

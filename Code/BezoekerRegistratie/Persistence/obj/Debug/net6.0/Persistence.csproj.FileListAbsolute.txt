@@ -51,3 +51,11 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Persistence\bin\
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Persistence\bin\Debug\net6.0\Datalaag.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Persistence\bin\Debug\net6.0\Datalaag.dll.config
 >>>>>>> 1b67baa0074e533919432dca745046b6189630fe
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.csproj.AssemblyReference.cache
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.AssemblyInfoInputs.cache
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.AssemblyInfo.cs
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.csproj.CoreCompileInputs.cache
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.dll
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\refint\Persistence.dll
+D:\Hogent\22-23\Graduaatsproef\Test\Graduaatsproef\Code\BezoekerRegistratie\Persistence\obj\Debug\net6.0\Persistence.pdb

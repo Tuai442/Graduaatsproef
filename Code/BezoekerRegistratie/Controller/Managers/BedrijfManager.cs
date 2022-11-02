@@ -1,4 +1,5 @@
-﻿using Controller.Interfaces;
+﻿using Controller.Exceptions;
+using Controller.Interfaces;
 using Controller.Interfaces.Models;
 using Controller.Models;
 using System;
@@ -20,6 +21,17 @@ namespace Controller.Managers
 
         public void VoegNieuwBedrijfToe(string naam, string btw, string adress, string telefoon, string email)
         {
+            try
+            {
+                Controleer.BtwNummerControle(btw);
+                Controleer.ControleTelefoon(telefoon);
+                Controleer.ControleEmail(email);
+            }
+            catch(Exception ex)
+            {
+                throw new BedrijfException("VoegBedrijfToe", ex);
+            }
+
             Bedrijf bedrijf = new Bedrijf(naam, btw, adress, telefoon, email);
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
         }
@@ -42,14 +54,14 @@ namespace Controller.Managers
             return bedrijf.Select(x => (IBedrijf)x).ToList();
         }
 
-        public void VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
-        {
-            // TODO: Unit test
-            Controleer.BtwNummerControle(btw);
-            Controleer.ControleEmail(email);
-            Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
-            _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
-        }
+        //public void VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
+        //{
+        //    // TODO: Unit test
+        //    Controleer.BtwNummerControle(btw);
+        //    Controleer.ControleEmail(email);
+        //    Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
+        //    _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
+        //}
 
         public List<ILijstItem> GeefBedrijvenOpEmailWerknemer(string email)
         {

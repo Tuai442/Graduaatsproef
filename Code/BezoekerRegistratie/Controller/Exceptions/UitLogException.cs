@@ -3,7 +3,7 @@
 namespace Controller.Exceptions
 {
     [Serializable]
-    internal class UitLogException : Exception
+    public class UitLogException : Exception
     {
         public UitLogException()
         {
