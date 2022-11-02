@@ -8,6 +8,8 @@ namespace Controller
     public class Afspraak: IAfspraak
     {
         public int Id { get; set; }
+
+        
         public Bezoeker Bezoeker { get; set; }
         public Werknemer Werknemer { get; set; }
         public DateTime StartTijd { get; set; }
