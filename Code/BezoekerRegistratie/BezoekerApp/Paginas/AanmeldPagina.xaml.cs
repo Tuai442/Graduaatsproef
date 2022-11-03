@@ -113,7 +113,7 @@ namespace BezoekerApp.Paginas
         private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             string email = emailInvulveld.Text;
-            IBezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
+            Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
             if(bezoeker != null)
             {
                 achternaamInvulveld.Text = bezoeker.Achternaam;

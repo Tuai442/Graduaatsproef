@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 
 namespace Controller
 {
-    public class Afspraak: IAfspraak
+    public class Afspraak
     {
         public int Id { get; set; }
 
@@ -71,30 +71,7 @@ namespace Controller
         }
        
 
-        public object GeefItemSource()
-        {
-            //Dictionary<string, string> result = new Dictionary<string, string>()
-            //{
-            //    { "Voornaam" , Bezoeker.Voornaam },
-
-            //};
-            object result = new
-            {
-                Voornaam = Bezoeker.Voornaam,
-                Achternaam = Bezoeker.Achternaam,
-                Email = Bezoeker.Email,
-                IsAanwezig = IsAanwezig,
-
-                BedrijfBezoeker = Bezoeker.Bedrijf.ToString(),
-                StartTijd = StartTijd,
-                EindTijd = EindTijd,
-
-                VoornaamContactPersoon = Werknemer.Voornaam,
-                AchternaamContactPersoon = Werknemer.Achternaam,
-                BedrijfContactPersoon = Werknemer.Bedrijf.ToString(),
-            };
-            return result;
-        }
+       
 
        
     }

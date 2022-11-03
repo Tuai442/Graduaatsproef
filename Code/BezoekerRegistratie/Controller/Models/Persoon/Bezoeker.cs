@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class Bezoeker : Persoon, IBezoeker
+    public class Bezoeker : Persoon
     {
         public string Nummerplaat { get; set; }
-
-        // TODO: aanwezig moet private set worden 
         public bool Aanwezig { get; set; }
         public string Bedrijf { get; set; }
         //(voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig)
@@ -25,6 +23,15 @@ namespace Controller.Models
 
         }
 
+        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, string nummerplaat, bool aanwezig ):
+            base(voornaam, achternaam, email)
+        {
+            Nummerplaat = nummerplaat;
+            Aanwezig = aanwezig;
+            Bedrijf = bedrijf;
+        }
+
+
         public void MeldAan()
         {
             Aanwezig = true;
@@ -35,15 +42,15 @@ namespace Controller.Models
             Aanwezig = false;
         }
 
-        public object GeefItemSource()
-        {
-            object result = new
-            {
-                Voornaam = Voornaam,
-                Achternaam = Achternaam,
-                Nummerplaat = Nummerplaat,
-            };
-            return result;
-        }
+        //public object GeefItemSource()
+        //{
+        //    object result = new
+        //    {
+        //        Voornaam = Voornaam,
+        //        Achternaam = Achternaam,
+        //        Nummerplaat = Nummerplaat,
+        //    };
+        //    return result;
+        //}
     }
 }

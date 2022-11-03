@@ -24,37 +24,34 @@ namespace Controller.Managers
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
         }
 
-        public List<ILijstItem> GeefAlleBedrijvenInLijstItems()
+        public IReadOnlyList<Bedrijf> GeefAlleBedrijvenInLijstItems()
         {
-            List<Bedrijf> bedrijven = _bedrijfRepository.GeefAlleBedrijven();
-            return bedrijven.Select(x => (ILijstItem)x).ToList();
+            return _bedrijfRepository.GeefAlleBedrijven().AsReadOnly();   
         }
 
-        public List<IBedrijf> GeefAlleBedrijven()
+        public IReadOnlyList<Bedrijf> GeefAlleBedrijven()
         {
-            List<Bedrijf> bedrijven = _bedrijfRepository.GeefAlleBedrijven();
-            return bedrijven.Select(x => (IBedrijf)x).ToList();
+            return _bedrijfRepository.GeefAlleBedrijven().AsReadOnly();
         }
 
-        public List<IBedrijf> ZoekOp(string zoekText)
+        public IReadOnlyList<Bedrijf> ZoekOp(string zoekText)
         {
-            List<Bedrijf> bedrijf = _bedrijfRepository.ZoekBedrijfOp(zoekText);
-            return bedrijf.Select(x => (IBedrijf)x).ToList();
+            return _bedrijfRepository.ZoekBedrijfOp(zoekText).AsReadOnly();
+            
         }
 
         public void VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
         {
             // TODO: Unit test
-            Controleer.BtwNummerControle(btw);
+            Controleer.ControleBTW(btw);
             Controleer.ControleEmail(email);
             Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
         }
 
-        public List<ILijstItem> GeefBedrijvenOpEmailWerknemer(string email)
+        public IReadOnlyList<Bedrijf> GeefBedrijvenOpEmailWerknemer(string email)
         {
-            List<Bedrijf> bedrijven = _bedrijfRepository.GeefBedrijvenOpWerknemerEmail(email);
-            return bedrijven.Select(x => (ILijstItem)x).ToList();
+            return _bedrijfRepository.GeefBedrijvenOpWerknemerEmail(email).AsReadOnly();
         }
     }
 }

@@ -63,7 +63,7 @@
 
             <StackPanel x:Name="dataGridPanel">
                 <UIC:ZoekbaarDataGrid x:Name="_dataGrid"
-                                      GridHeight="600"/>
+                                      />
 
             </StackPanel>
             <!--<DataGrid x:Name="dataGrid"

@@ -39,10 +39,10 @@ namespace BeheerderApp.Paginas
         private BedrijfManager _bedrijfManager;
 
         // Zoek lijsten
-        private List<IWerknemer> _werknemers = new List<IWerknemer>(); 
-        private List<IAfspraak> _bezoekers = new List<IAfspraak>(); 
-        private List<IAfspraak> _afspraken = new List<IAfspraak>();
-        private List<IBedrijf> _bedrijven = new List<IBedrijf>();
+        private List<WerknemerViewModel> _werknemers = new List<WerknemerViewModel>(); 
+        private List<BezoekerViewModel> _bezoekers = new List<BezoekerViewModel>(); 
+        private List<AfspraakViewModel> _afspraken = new List<AfspraakViewModel>();
+        private List<BedrijfViewModel> _bedrijven = new List<BedrijfViewModel>();
         public BeheerderPagina(DomeinController domeinController)
         {
             InitializeComponent();
@@ -79,29 +79,33 @@ namespace BeheerderApp.Paginas
         }
         private void FilterData(object? sender, string zoekText)
         {
-            // Vraag 5 - Door de objecten te kunnen gebruiken, kan alles makkelijk aan een datagrid toegevoed worden.
-            List<object> itemSource = new List<object>();
+            
             if (bezoekerCheckBox.IsActief)
             {
-                List<IBezoeker> bezoekers = _bezoekerManger.ZoekOp(zoekText);
-                itemSource = bezoekers.Select(x => x.GeefItemSource()).ToList();
+                IReadOnlyList<Bezoeker> bezoekers = _bezoekerManger.ZoekOp(zoekText);
+                _bezoekers = Omzetter.ZetBezoekersOmInViewModellen(bezoekers);
+                _dataGrid.StelDataIn<BezoekerViewModel>(_bezoekers);
             }
             else if (werknemerCheckBox.IsActief)
             {
-                List<IWerknemer> werknemers = _werknemerManger.ZoekOp(zoekText);
-                itemSource = werknemers.Select(x => x.GeefItemSource()).ToList();
+                IReadOnlyList<Werknemer> werknemers = _werknemerManger.ZoekOp(zoekText);
+                _werknemers = Omzetter.ZetWerknemersOmInViewModellen(werknemers);
+                _dataGrid.StelDataIn<WerknemerViewModel>(_werknemers);
             }
             else if (afspraakCheckBox.IsActief)
             {
-                List<IAfspraak> afspraaks = _afspraakManager.ZoekOp(zoekText);
-                itemSource = afspraaks.Select(x => x.GeefItemSource()).ToList();
+                IReadOnlyList<Afspraak> afspraaks = _afspraakManager.ZoekOp(zoekText);
+                _afspraken = Omzetter.ZetAfsprakenOmInViewModellen(afspraaks);
+                _dataGrid.OpDataVerandering = _afspraakManager.OpUpdateAfspraak;
+                _dataGrid.StelDataIn<AfspraakViewModel>(_afspraken);
             }
             else if (bedrijfCheckBox.IsActief)
             {
-                List<IBedrijf> bedrijfs = _bedrijfManager.ZoekOp(zoekText);
-                itemSource = bedrijfs.Select(x => x.GeefItemSource()).ToList();
+                IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.ZoekOp(zoekText);
+                _bedrijven = Omzetter.ZetBedrijvenOmInViewModellen(bedrijven);
+                _dataGrid.StelDataIn<BedrijfViewModel>(_bedrijven);
             }
-            _dataGrid.StelDataIn(itemSource);
+            
         }
 
         private string GeefGeselecteerdBox()
@@ -132,17 +136,17 @@ namespace BeheerderApp.Paginas
 
             if (actief)
             {
-                if (_werknemers.Count == 0)
-                {
-                    _werknemers = _werknemerManger.GeefAlleWerknemers() ;
-                }
+                //if (_werknemers.Count == 0)
+                //{
+                //    IReadOnlyList<Werknemer> werknemers = (IReadOnlyList<Werknemer>)_werknemerManger.GeefAlleWerknemers() ;
+                //    _werknemers = Omzetter.ZetWerknemersOmInViewModellen(werknemers);
+                //}
 
                 VinkAllesUit();
                 Components.CheckBox check = (Components.CheckBox)sender;
                 check.Activeer();
 
-                List<object> itemSources = _werknemers.Select(x => x.GeefItemSource()).ToList();
-                _dataGrid.StelDataIn(itemSources);
+                _dataGrid.StelDataIn<Werknemer>(_werknemers);
             }
             else
             {
@@ -154,17 +158,16 @@ namespace BeheerderApp.Paginas
         {
             if (actief)
             {
-                if (_bezoekers.Count == 0)
-                {
-                    _bezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
-                }
+                //if (_bezoekers.Count == 0)
+                //{
+                //    _bezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
+                //}
 
                 VinkAllesUit();
                 Components.CheckBox check = (Components.CheckBox)sender;
                 check.Activeer();
 
-                List<object> itemSources = _bezoekers.Select(x => x.GeefItemSource()).ToList();
-                _dataGrid.StelDataIn(itemSources);
+                _dataGrid.StelDataIn<Bezoeker>(_bezoekers);
             }
             else
             {
@@ -177,17 +180,17 @@ namespace BeheerderApp.Paginas
 
             if (actief)
             {
-                if (_afspraken.Count == 0)
-                {
-                    _afspraken = _afspraakManager.GeefAlleAfspraken();
-                }
+                //if (_afspraken.Count == 0)
+                //{
+                //    IReadOnlyList<Afspraak> afspraken = (IReadOnlyList<Afspraak>)_afspraakManager.GeefAlleAfspraken();
+                //    _afspraken = Omzetter.ZetAfsprakenOmInViewModellen(afspraken);
+                //}
 
                 VinkAllesUit();
                 Components.CheckBox check = (Components.CheckBox)sender;
                 check.Activeer();
 
-                List<object> itemSources = _afspraken.Select(x => x.GeefItemSource()).ToList();
-                _dataGrid.StelDataIn(itemSources);
+                _dataGrid.StelDataIn<AfspraakViewModel>(_afspraken);
             }
             else
             {
@@ -200,17 +203,16 @@ namespace BeheerderApp.Paginas
 
             if (actief)
             {
-                if (_bedrijven.Count == 0)
-                {
-                    _bedrijven = _bedrijfManager.GeefAlleBedrijven();
-                }
+                //if (_bedrijven.Count == 0)
+                //{
+                //    _bedrijven = _bedrijfManager.GeefAlleBedrijven();
+                //}
 
                 VinkAllesUit();
                 Components.CheckBox check = (Components.CheckBox)sender;
                 check.Activeer();
 
-                List<object> itemSources = _bedrijven.Select(x => x.GeefItemSource()).ToList();
-                _dataGrid.StelDataIn(itemSources);
+                _dataGrid.StelDataIn<Bedrijf>(_bedrijven);
             }
             else
             {

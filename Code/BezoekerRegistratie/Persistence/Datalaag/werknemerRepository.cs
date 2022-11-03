@@ -56,7 +56,6 @@ namespace Persistence.Datalaag
             }
         }
 
-
         public void VoegWerknemerToe(Werknemer werknemer)
         {
             string query = $"INSERT INTO {_tableName} (Voornaam, Achternaam, Email, Functie, BedrijfId) " +
@@ -109,7 +108,6 @@ namespace Persistence.Datalaag
 
         }
 
-        
         public Werknemer GeefWerknemerOpNaam(string contactPersoon)
         {
             throw new NotImplementedException();
@@ -163,7 +161,46 @@ namespace Persistence.Datalaag
 
         public List<Werknemer> ZoekOpWerknemers(string zoekText)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = GetConnection();
+            List<Werknemer> werknemers = new List<Werknemer>();
+            try
+            {
+                conn.Open();
+
+                string query = $"SELECT * FROM {_tableName} WHERE " +
+                    $"Voornaam like '{zoekText}%' or " +
+                    $"Achternaam like '{zoekText}%' or " +
+                    $"Email like '{zoekText}%' or " +
+                    $"Functie like '{zoekText}%'; ";
+                    
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        int id = (int)dataReader["WerknemerId"];
+                        string voornaam = (string)dataReader["Voornaam"];
+                        string achternaam = (string)dataReader["Achternaam"];
+                        string email = (string)dataReader["Email"];
+                        string functie = (string)dataReader["Functie"];
+                        int bedrijfId = (int)dataReader["BedrijfId"];
+                        Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
+
+                        Werknemer werknemer = new Werknemer(id, voornaam, achternaam, email, functie, bedrijf);
+                        werknemers.Add(werknemer);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new WerknemerException(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return werknemers;
         }
 
         public Persoon GeefPersoonOpVolledigeNaam(string naam, string achternaam)

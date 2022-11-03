@@ -1,29 +1,27 @@
+
+﻿using Controller.Exceptions;
+using Controller.Interfaces;
+using System.Text.RegularExpressions;
 ﻿using Controller.Interfaces;
 using Controller.Interfaces.Models;
 
+
 namespace Controller.Models
 {
-    public class Bedrijf: IBedrijf, ILijstItem
+    public class Bedrijf
     {
-        public int Id { get; set; }
-        public string  Naam { get; set; }
-        public string Btw { get; set; }
-        public string Adres { get; set; }
-        public string Telefoon { get; set; }
-        public string Email { get; set; }
-
-
-        // ListItems
-        public string LabelNaam => Naam;
-
-        public string Waarde => Email;
-
+        public int Id { get; private set; }
+        public string  Naam { get; private set; }
+        public string Btw { get; private set; }
+        public string Adres { get; private set; }
+        public string Telefoon { get; private set; }
+        public string Email { get; private set; }
 
         public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
         {
             Naam = naam;
-            Btw = btw;
             Adres = adres;
+            Btw = btw;
             Telefoon = telefoon;
             Email = email;
         }
@@ -37,22 +35,7 @@ namespace Controller.Models
             Email = email;
         }
 
-        public bool ControleTelefoon(string telefoon)
-        {
-            // TODO: Controlleer telfoon nr door regulire expresies;
-            return true;
-        }
 
-        public bool ControleBTW(string btw)
-        {
-            // TODO: Controlleer BTW door regulire expresies;
-            return true;
-        }
-        public bool ControleEmail(string email) // We kunnen kijken voor dit anders aan te pakken want bij de Bezoeker moet er ook gecontroleerd worden op een email.
-        {
-            // TODO: Controlleer BTW door regulire expresies;
-            return true;
-        }
 
         public static List<string> GeefAttributen()
         {
@@ -67,18 +50,7 @@ namespace Controller.Models
             };
         }
 
-        public object GeefItemSource()
-        {
-            object result = new
-            {
-                Naam = Naam,
-                Btw = Btw,
-                Adres = Adres,
-                telefoon = Telefoon,
-                email = Email
-            };
-            return result;
-        }
+    
         public override string? ToString()
         {
             return Naam;

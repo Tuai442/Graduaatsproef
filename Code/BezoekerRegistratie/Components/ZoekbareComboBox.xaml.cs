@@ -63,23 +63,16 @@ namespace Components
 
         }
 
-        //public bool GetListItemSelected()
-        //{
-        //    return ListItemSelected;
-        //}
-
         public void VoegLijstToe(List<ILijstItem> items)
         {
-            comboBox.Items.Clear();
-            _alleItems = items;
-            ListBoxItem listBoxItem = new ListBoxItem();
-            foreach (ILijstItem item in items)
+            // Itemsource wordt gebruik zodat bij het filteren van data de index steeds overeenkomt.
+            comboBox.ItemsSource = null;
+            if (comboBox.Items.Count > 0)
             {
-
-                //CustomItem listItem = new CustomItem(item.LabelNaam, item.Waarde);
-                comboBox.Items.Add(item);
+                comboBox.Items.Clear();
             }
-
+            comboBox.ItemsSource = items.Select(x => x.LabelNaam);
+            _alleItems = items;
         }
 
         private void listItemSelected(object sender, RoutedEventArgs e)
@@ -90,7 +83,7 @@ namespace Components
         private void FilterLijst(List<ILijstItem> items)
         {
             _skipSelectionChangedEvent = true;
-            comboBox.Items.Clear(); // Dit roept ook het selectionChanged event op daarom tijdelijke oplossing/
+            comboBox.ItemsSource = null; // Dit roept ook het selectionChanged event op daarom tijdelijke oplossing/
             _skipSelectionChangedEvent = false;
             foreach (ILijstItem item in items)
             {
@@ -98,7 +91,6 @@ namespace Components
             }
         }
       
-
         private void comboBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(comboBox.Text))
@@ -116,7 +108,6 @@ namespace Components
 
         private List<ILijstItem> FilterOp(string zoekwoord)
         {
-            // TODO: niet efficient alleen voor demo gebruiken.
             List<ILijstItem> result = new List<ILijstItem>();
             foreach(ILijstItem w in _alleItems)
             {
@@ -152,11 +143,10 @@ namespace Components
             // zie debugger voor meer info.
             if (!_skipSelectionChangedEvent)
             {
-                string? waarde = ((ILijstItem)comboBox.Items.GetItemAt(comboBox.SelectedIndex)).Waarde;
-                string? label = ((ILijstItem)comboBox.Items.GetItemAt(comboBox.SelectedIndex)).LabelNaam;
-                SelectedValue = waarde;
-                SelectedLabel = label;
-                GeSelecteerd.Invoke(this, waarde);
+                int SelectedIndex = comboBox.SelectedIndex;
+                SelectedValue = _alleItems[SelectedIndex].Waarde;
+                SelectedLabel = _alleItems[SelectedIndex].LabelNaam; 
+                GeSelecteerd.Invoke(this, SelectedValue);
             }
             
 

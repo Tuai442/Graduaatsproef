@@ -13,7 +13,6 @@ namespace Controller.Managers
 {
     public class BezoekerManager
     {
-        // TODO: Vraag 1 - De bezoeker manager heeft meerdere repos nodig om een afspraak te kunnen maken
         private IBezoekerRepository _bezoekerRepository;
         private IAfspraakRepository _afspraakRepository;
         private IWerknemerRepository _werknemerRepository;
@@ -27,17 +26,15 @@ namespace Controller.Managers
             _bedrijfRepository = bedrijfRepository;
         }
 
-        public List<IAfspraak> GeefAlleAanwezigeBezoekers()
+        public IReadOnlyList<Bezoeker> GeefAlleAanwezigeBezoekers()
         {
-            
-            List<Afspraak> afspraken = _afspraakRepository.GeefAlleAanwezigeAfspraken();
-            return afspraken.Select(x => (IAfspraak)x).ToList();
+            List<Afspraak> afspraken =  _afspraakRepository.GeefAlleAanwezigeAfspraken();
+            return afspraken.Select(x => x.Bezoeker).ToList().AsReadOnly();
         }
 
-        public List<IBezoeker> ZoekOp(string zoekText)
+        public IReadOnlyList<Bezoeker> ZoekOp(string zoekText)
         {
-            List<Bezoeker> bezoekers = _bezoekerRepository.ZoekBezoekersOp(zoekText);
-            return bezoekers.Select(x => (IBezoeker)x).ToList();
+            return _bezoekerRepository.ZoekBezoekersOp(zoekText).AsReadOnly();
         }
 
         public void MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email, 
@@ -63,12 +60,14 @@ namespace Controller.Managers
             _afspraakRepository.UpdateAfspraak(afspraak);
         }
 
-        public IBezoeker ZoekBezoekerOpEmail(string email)
+        public Bezoeker ZoekBezoekerOpEmail(string email)
         {
+            // https://stackoverflow.com/questions/3550161/c-sharp-readonly-object
+            // TODO: Vraag 1 - We kunnen geen readonly object doorsturen ?
             Afspraak afspraak = _afspraakRepository.GeefAfspraakOpEmail(email);
             if(afspraak != null)
             {
-                return (IBezoeker)afspraak.Bezoeker;
+                return afspraak.Bezoeker;
 
             }
             return null;

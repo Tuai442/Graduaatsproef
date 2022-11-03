@@ -17,17 +17,23 @@ namespace Controller.Managers
             _afspraakRepository = afspraakRepository;
         }
 
-        public List<IAfspraak> GeefAlleAfspraken()
+
+        public IReadOnlyList<Afspraak> GeefAlleAfspraken()
         {
             List<Afspraak> afspraaks = _afspraakRepository.GeefAlleAfspraken();
-            return afspraaks.Select(x => (IAfspraak)x).ToList();
-
+            return afspraaks.AsReadOnly();
         }
 
-        public List<IAfspraak> ZoekOp(string zoekText)
+        public void OpUpdateAfspraak(object? sender, object e)
         {
-            List<Afspraak> afspraaks = _afspraakRepository.ZoekAfspraakOp(zoekText);
-            return afspraaks.Select(x => (IAfspraak)x).ToList();
+            // We kunnen de mapper hier niet gebruiken
+            //Afspraak afspraak = (IAfspraak)e
+            //_afspraakRepository.UpdateAfspraak(afspraak):
+        }
+
+        public IReadOnlyList<Afspraak> ZoekOp(string zoekText)
+        {
+            return _afspraakRepository.ZoekAfspraakOp(zoekText).AsReadOnly();
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using Controller.Interfaces;
+﻿using Controller;
+using Controller.Interfaces;
 using Controller.Interfaces.Models;
 using Controller.Models;
+using Persistence.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +19,7 @@ namespace Persistence.Datalaag
         public BedrijfRepository()
         {
         }
-        
+
         public List<Bedrijf> GeefAlleBedrijven()
         {
             SqlConnection conn = GetConnection();
@@ -41,7 +43,7 @@ namespace Persistence.Datalaag
                         string tel = (string)dataReader["Telefoon"];
 
                         //Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
-                        
+
                         Bedrijf bedrijf = new Bedrijf(id, naam, btw, adres, tel, email);
 
                         bedrijven.Add(bedrijf);
@@ -124,19 +126,76 @@ namespace Persistence.Datalaag
             }
         }
 
-
-
         public List<Bedrijf> ZoekBedrijfOp(string zoekText)
         {
-            throw new NotImplementedException();
-        }
+            SqlConnection conn = GetConnection();
+            List<Bedrijf> bedrijven = new List<Bedrijf>();
+            try
+            {
+                conn.Open();
 
+                string query = $"SELECT * FROM {_tableName} WHERE " +
+                    $"Naam like '{zoekText}%' or " +
+                    $"BTW like '{zoekText}%' or " +
+                    $"Email like '{zoekText}%' or " +
+                    $"Adres like '{zoekText}%' or " +
+                    $"Telefoon like '{zoekText}%';";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        int id = (int)dataReader["BedrijfId"];
+                        string naam = (string)dataReader["Naam"];
+                        string btw = (string)dataReader["BTW"];
+                        string email = (string)dataReader["Email"];
+                        string adres = (string)dataReader["Adres"];
+                        string tel = (string)dataReader["Telefoon"];
+
+                        Bedrijf bedrijf = new Bedrijf(id, naam, btw, adres, tel, email);
+                        bedrijven.Add(bedrijf);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new BedrijfException(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return bedrijven;
+        }
 
         public Bedrijf GeefBedrijfOpId(int id)
         {
-            return GeefBedrijfOpId(id);
+            string query = "SELECT * from dbo.Bedrijf where id=@id";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@id", id);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+                    Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
+                    dataReader.Close();
+                    Console.WriteLine(bedrijf);
+                    return bedrijf;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef bedrijf is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
-
 
         public List<Bedrijf> GeefBedrijvenOpWerknemerEmail(string email)
         {
@@ -179,6 +238,6 @@ namespace Persistence.Datalaag
             }
             return bedrijven;
         }
-
     }
 }
+//Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);   

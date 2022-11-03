@@ -1,59 +1,33 @@
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Vuilbak.exe
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Database1.mdf
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Database1_log.ldf
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Vuilbak.deps.json
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Vuilbak.runtimeconfig.json
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Vuilbak.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Vuilbak.pdb
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.csproj.AssemblyReference.cache
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.AssemblyInfoInputs.cache
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.AssemblyInfo.cs
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.csproj.CoreCompileInputs.cache
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.dll
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\refint\Vuilbak.dll
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.pdb
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.genruntimeconfig.cache
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\ref\Vuilbak.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.csproj.CopyComplete
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Controller.dll
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Controller.pdb
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.csproj.AssemblyReference.cache
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.AssemblyInfoInputs.cache
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.AssemblyInfo.cs
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.csproj.CoreCompileInputs.cache
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\refint\Vuilbak.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.pdb
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Vuilbak.exe
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Vuilbak.deps.json
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Vuilbak.runtimeconfig.json
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Vuilbak.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Vuilbak.pdb
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\System.Data.SqlClient.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Controller.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Persistence.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Controller.pdb
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Persistence.pdb
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.csproj.CopyComplete
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.genruntimeconfig.cache
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\ref\Vuilbak.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\System.Data.SqlClient.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Persistence.dll
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Persistence.pdb
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Database1.mdf
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Database1_log.ldf
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Controller.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Datalaag.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Persistence.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Controller.pdb
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Persistence.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Datalaag.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\Datalaag.dll.config
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.csproj.AssemblyReference.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.AssemblyInfoInputs.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.AssemblyInfo.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.csproj.CoreCompileInputs.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.csproj.CopyComplete
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\refint\Vuilbak.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.pdb
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.genruntimeconfig.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\ref\Vuilbak.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\AutoMapper.dll

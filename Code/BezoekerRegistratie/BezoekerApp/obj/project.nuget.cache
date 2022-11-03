@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "3VwVYHIegi+1CK/Y7U88/2Z/GiI7sY5mV7unhvaVhzo+n3z/X4fG7XSndtzfXMi0DrukoI4p/1UohjND+3XAiA==",
+  "dgSpecHash": "gOOCVCKxXGrXRegHaHuyAhXAySBjyodKoHotYJJTsZk78vxmd2TkgOsPX6OXwirQSRr3mlWH/j+2808fNys6Fg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\BezoekerApp\\BezoekerApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Tuur\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\fontawesome.wpf\\4.7.0.9\\fontawesome.wpf.4.7.0.9.nupkg.sha512",
+    "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
