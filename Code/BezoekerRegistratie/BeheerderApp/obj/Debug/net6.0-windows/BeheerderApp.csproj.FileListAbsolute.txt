@@ -1,3 +1,10 @@
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\BeheerderApp.csproj.AssemblyReference.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Paginas\AanwezigheidPagina.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Paginas\StartSchermBeheerder.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\BeheerderApp_MarkupCompile.cache
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\BeheerderApp_MarkupCompile.lref
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\BeheerderApp.exe
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\Database1.mdf
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\Database1_log.ldf
@@ -5,6 +12,7 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\BeheerderApp.runtimeconfig.json
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\BeheerderApp.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\BeheerderApp.pdb
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\AutoMapper.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\FontAwesome.WPF.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
@@ -22,14 +30,7 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\Persistence.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\Datalaag.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\Datalaag.dll.config
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\BeheerderApp.csproj.AssemblyReference.cache
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\MainWindow.g.cs
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Paginas\AanwezigheidPagina.g.cs
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Paginas\BeheerderPagina.g.cs
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Paginas\StartSchermBeheerder.g.cs
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\App.g.cs
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\BeheerderApp_MarkupCompile.cache
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\BeheerderApp_MarkupCompile.lref
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\MainWindow.baml
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Paginas\AanwezigheidPagina.baml
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Paginas\BeheerderPagina.baml
@@ -45,4 +46,3 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\BeheerderApp.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\BeheerderApp.genruntimeconfig.cache
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\ref\BeheerderApp.dll
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\AutoMapper.dll

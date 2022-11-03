@@ -32,6 +32,18 @@ namespace Controller.Models
         }
 
 
+        //TODO: BedrijfID is moeilijk aan te spreken omdat bedrijf eens tring is
+        //public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, string nummerplaat, bool aanwezig):
+        //    base(voornaam, achternaam, email)
+        //{
+        //    Nummerplaat = nummerplaat;
+        //    Aanwezig = aanwezig;
+        //    Bedrijf = bedrijf;
+        //    //BedrijfId = bedrijfId;
+
+        //}
+
+
         public void MeldAan()
         {
             Aanwezig = true;
@@ -42,15 +54,6 @@ namespace Controller.Models
             Aanwezig = false;
         }
 
-        //public object GeefItemSource()
-        //{
-        //    object result = new
-        //    {
-        //        Voornaam = Voornaam,
-        //        Achternaam = Achternaam,
-        //        Nummerplaat = Nummerplaat,
-        //    };
-        //    return result;
-        //}
+
     }
 }

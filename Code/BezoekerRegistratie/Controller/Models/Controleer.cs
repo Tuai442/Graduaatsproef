@@ -18,7 +18,7 @@ namespace Controller.Models
         }
 
         //TODO: mss extra controle op effectief bestaan van het btw nummer
-        public static void ControleBTW(string btw)
+        public static void BtwNummerControle(string btw)
         {
             if (string.IsNullOrWhiteSpace(btw)) throw new BedrijfException("Controle BTW - geen geldige invoer");
             btw = btw.Replace(" ", "").ToLower();
@@ -45,7 +45,7 @@ namespace Controller.Models
             if (!regex.IsMatch(telefoon)) throw new BedrijfException("ControleTelefoon - geen geldige regex");
         }
 
-        internal static void ControleIsAfspraakAlAfgesloten(Afspraak afspraak)
+        public static void ControleIsAfspraakAlAfgesloten(Afspraak afspraak)
         {
             // Een bezoeker kan niet uitloggen als hij nooit was ingelogd.
             if (afspraak is null) throw new UitLogException("We konden je niet vinden in het systeem, was je ingelogd?");

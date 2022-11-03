@@ -5,18 +5,36 @@ using System.Text.RegularExpressions;
 ﻿using Controller.Interfaces;
 using Controller.Interfaces.Models;
 
-
 namespace Controller.Models
 {
-    public class Bedrijf
+    public class Bedrijf 
     {
-        public int Id { get; private set; }
-        public string  Naam { get; private set; }
-        public string Btw { get; private set; }
-        public string Adres { get; private set; }
-        public string Telefoon { get; private set; }
-        public string Email { get; private set; }
+        private string naam;
+        private string btw;
+        private string adres;
+        private string telefoon;
+        private string email;
 
+        private string SetStringParameters(string p)
+        {
+            if (string.IsNullOrWhiteSpace(p)) throw new BedrijfException("Ingave niet correct");
+            return p;
+        }
+
+        public int Id { get; set; }
+        public string Naam { get => naam; set => naam = SetStringParameters(value); }
+        public string Btw { get => btw; set => btw = SetStringParameters(value); }
+        public string Adres { get => adres; set => adres = SetStringParameters(value); }
+        public string Telefoon { get => telefoon; set => telefoon = SetStringParameters(value); }
+        public string Email { get => email; set => email = SetStringParameters(value); }
+
+
+        // ListItems
+        public string LabelNaam => Naam;
+
+        public string Waarde => Email;
+
+        //TODO: syntax met this
         public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
         {
             Naam = naam;
@@ -24,31 +42,16 @@ namespace Controller.Models
             Btw = btw;
             Telefoon = telefoon;
             Email = email;
+
         }
-        public Bedrijf(int id, string naam, string btw, string adres, string telefoon, string email)
+        public Bedrijf(int id, string naam, string btw, string adres, string telefoon, string email): this(naam, btw, adres, telefoon, email)
         {
+
             Id = id;
-            Naam = naam;
-            Btw = btw;
-            Adres = adres;
-            Telefoon = telefoon;
-            Email = email;
+
         }
 
 
-
-        public static List<string> GeefAttributen()
-        {
-            return new List<string>
-            {
-                "Naam",
-                "Btw",
-                "Adres",
-                "Telefoon",
-                "Email",
-                "Parking Contract"
-            };
-        }
 
     
         public override string? ToString()

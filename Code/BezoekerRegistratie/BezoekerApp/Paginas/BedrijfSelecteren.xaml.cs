@@ -43,10 +43,12 @@ namespace BezoekerApp.Paginas
 
             IReadOnlyList<Bedrijf> temp1 = _bedrijfManager.GeefAlleBedrijven();
             List<ILijstItem> bedrijfLijstItems = GeefBedrijfItems(temp1);
+            //List<BedrijfViewModel> test = Omzetter.ZetBedrijvenOmInViewModellen(temp1);
             bedrijfComboBox.VoegLijstToe(bedrijfLijstItems);
 
             IReadOnlyList<Werknemer> temp2 = _werknemerManager.GeefAlleWerknemers();
             List<ILijstItem> werknemersLijstItems = GeefWerknemerItems(temp2);
+            //List<WerknemerViewModel> test1 = Omzetter.ZetWerknemersOmInViewModellen(temp2);
             contactComboBox.VoegLijstToe(werknemersLijstItems);
 
             bedrijfComboBox.GeSelecteerd += BedrijfGeselecteerd;

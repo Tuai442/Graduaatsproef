@@ -13,7 +13,7 @@ using Components.Models;
 
 namespace Components.ViewModels
 {
-    public class  AfspraakViewModel
+    public class AfspraakViewModel
     {
         [Hoofding("Bezoeker Naam")]
         public string BezoekerNaam { get; set ; }

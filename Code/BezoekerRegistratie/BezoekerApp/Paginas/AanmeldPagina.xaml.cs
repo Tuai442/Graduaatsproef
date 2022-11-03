@@ -60,7 +60,8 @@ namespace BezoekerApp.Paginas
 
             try
             {
-                _bezoekerManger.MeldBezoekerAan(voornaam, achternaam, email, bedrijfB, contactPersoonEmail);
+                _bezoekerManger.MeldBezoekerAan(voornaam, achternaam, 
+                    email, bedrijfB, contactPersoonEmail);
                 MessageBox.Show("U bent ingelogd.");
                 LeegAlleVelden();
 
