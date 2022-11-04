@@ -1,17 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Ha05qz9BafSOXlaRFRIOh22m5Kn+pt4Ibd8gvp0yohxhc8EKS9HGpsowgu3dkZ7mWiiWYsMmmII/w+Q2neACGQ==",
+  "dgSpecHash": "t4BJhFvQ5Om20gTqsyIm8z5tACgu952V0sG0ivgTYR7YIOMelv+eSHgY7r4I+IaAjFW53/aI0ziM+5dSTCw2gQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
+  "projectFilePath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\soren\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\Tuur\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Tuur\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\7deversie\\Code\\BezoekerRegistratie\\Components\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

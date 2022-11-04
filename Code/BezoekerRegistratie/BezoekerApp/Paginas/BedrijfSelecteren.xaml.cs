@@ -1,7 +1,10 @@
-﻿using Controller;
+﻿using Components.Models;
+using Components.ViewModels;
+using Controller;
 using Controller.Interfaces;
 using Controller.Interfaces.Models;
 using Controller.Managers;
+using Controller.Models;
 using Controllers;
 using System;
 using System.Collections.Generic;
@@ -37,19 +40,38 @@ namespace BezoekerApp.Paginas
             InitializeComponent();
 
             TerugKnopAanmeldScherm.ButtonClick += GaTerug;
-            List<ILijstItem> bedrijven = _bedrijfManager.GeefAlleBedrijvenInLijstItems();
-            List<ILijstItem> werknemers = _werknemerManager.GeefAlleWerknemersInLijstItems();
 
-            bedrijfComboBox.VoegLijstToe(bedrijven);
+            IReadOnlyList<Bedrijf> temp1 = _bedrijfManager.GeefAlleBedrijven();
+            List<ILijstItem> bedrijfLijstItems = GeefBedrijfItems(temp1);
+            //List<BedrijfViewModel> test = Omzetter.ZetBedrijvenOmInViewModellen(temp1);
+            bedrijfComboBox.VoegLijstToe(bedrijfLijstItems);
+
+            IReadOnlyList<Werknemer> temp2 = _werknemerManager.GeefAlleWerknemers();
+            List<ILijstItem> werknemersLijstItems = GeefWerknemerItems(temp2);
+            //List<WerknemerViewModel> test1 = Omzetter.ZetWerknemersOmInViewModellen(temp2);
+            contactComboBox.VoegLijstToe(werknemersLijstItems);
+
             bedrijfComboBox.GeSelecteerd += BedrijfGeselecteerd;
-
-            contactComboBox.VoegLijstToe(werknemers);
             contactComboBox.GeSelecteerd += ContactPersoonGeselecteerd;
 
             //bedrijfComboBox.VoegLijstToe(bedrijven);
             //contactComboBox.GetListItemSelected();
 
             AanmeldKnop.ButtonClick += PersoonAanmelden;
+        }
+
+        private static List<ILijstItem> GeefWerknemerItems(IReadOnlyList<Werknemer> temp2)
+        {
+            List<WerknemerViewModel> werknemerViewModels = Omzetter.ZetWerknemersOmInViewModellen(temp2);
+            List<ILijstItem> werknemersLijstItems = werknemerViewModels.Select(x => (ILijstItem)x).ToList();
+            return werknemersLijstItems;
+        }
+
+        private static List<ILijstItem> GeefBedrijfItems(IReadOnlyList<Bedrijf> temp1)
+        {
+            List<BedrijfViewModel> bedrijfViewModels = Omzetter.ZetBedrijvenOmInViewModellen(temp1);
+            List<ILijstItem> bedrijfLijstItems = bedrijfViewModels.Select(x => (ILijstItem)x).ToList();
+            return bedrijfLijstItems;
         }
 
         private void PersoonAanmelden(object? sender, EventArgs e)
@@ -73,14 +95,16 @@ namespace BezoekerApp.Paginas
 
         private void BedrijfGeselecteerd(object? sender, string value)
         {
-            List<ILijstItem> werknemers = _werknemerManager.GeefWerknemersOpEmailBedrijf(value);
-            contactComboBox.VoegLijstToe(werknemers);
+            IReadOnlyList<Werknemer> werknemers = _werknemerManager.GeefWerknemersOpEmailBedrijf(value);
+            List <ILijstItem> werknemerLijstItems = GeefWerknemerItems(werknemers); 
+            contactComboBox.VoegLijstToe(werknemerLijstItems);
         }
 
         private void ContactPersoonGeselecteerd(object? sender, string value)
         {
-            List<ILijstItem> bedrijven = _bedrijfManager.GeefBedrijvenOpEmailWerknemer(value);
-            bedrijfComboBox.VoegLijstToe(bedrijven);
+            IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefBedrijvenOpEmailWerknemer(value);
+            List<ILijstItem> bedrijfLijstItems = GeefBedrijfItems(bedrijven); 
+            bedrijfComboBox.VoegLijstToe(bedrijfLijstItems);
         }
         private void GaTerug(object? sender, EventArgs e)
         {

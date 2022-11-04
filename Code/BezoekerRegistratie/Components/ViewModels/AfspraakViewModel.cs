@@ -7,25 +7,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using Components.Models;
 
 namespace Components.ViewModels
 {
-    public class  AfspraakViewModel : IAfspraak
+    public class AfspraakViewModel
     {
-        public string BezoekerNaam { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string WerknemerNaam { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime StartTijd { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime? EindTijd { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-       
+        [Hoofding("Bezoeker Naam")]
+        public string BezoekerNaam { get; set ; }
 
-        public List<Rij> GeefDict()
-        {
-            throw new NotImplementedException();
-        }
+        [Hoofding("Werknemer Naam")]
+        public string WerknemerNaam { get; set ; }
 
-        public object GeefItemSource()
-        {
-            throw new NotImplementedException();
-        }
+        [Hoofding("Start Tijd")]
+        public DateTime StartTijd { get; set; }
+
+        [Hoofding("Eind Tijd")]
+        public DateTime? EindTijd { get; set; }
+
     }
 }

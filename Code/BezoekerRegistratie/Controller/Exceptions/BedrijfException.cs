@@ -3,7 +3,7 @@
 namespace Controller.Exceptions
 {
     [Serializable]
-    internal class BedrijfException : Exception
+    public class BedrijfException : Exception
     {
         public BedrijfException()
         {

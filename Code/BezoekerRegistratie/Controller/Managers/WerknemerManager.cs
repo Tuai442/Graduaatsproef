@@ -17,22 +17,14 @@ namespace Controller.Managers
         {
             _werknemerRepository = werknemerRepository;
         }
-        public List<IWerknemer> GeefAlleWerknemers()
+        public IReadOnlyList<Werknemer> GeefAlleWerknemers()
         {
-            List<Werknemer> werknemers = _werknemerRepository.GeefAlleWerknemers();
-            return werknemers.Select(x => (IWerknemer)x).ToList();
+            return _werknemerRepository.GeefAlleWerknemers().AsReadOnly();
         }
 
-        public List<ILijstItem> GeefAlleWerknemersInLijstItems()
+        public IReadOnlyList<Werknemer> GeefWerknemersOpEmailBedrijf(string value)
         {
-            List<Werknemer> werknemers = _werknemerRepository.GeefAlleWerknemers();
-            return werknemers.Select(x => (ILijstItem)x).ToList();
-        }
-
-        public List<ILijstItem> GeefWerknemersOpEmailBedrijf(string value)
-        {
-            List<Werknemer> werknemers = _werknemerRepository.GeefWerknemersOpEmailBedrijf(value);
-            return werknemers.Select(x => (ILijstItem)x).ToList();
+            return _werknemerRepository.GeefWerknemersOpEmailBedrijf(value).AsReadOnly();
         }
 
         public void UpdateWerknemer(object obj)
@@ -40,10 +32,9 @@ namespace Controller.Managers
 
         }
 
-        public List<IWerknemer> ZoekOp(string zoekText)
+        public IReadOnlyList<Werknemer> ZoekOp(string zoekText)
         {
-            List<Werknemer> werknemers = _werknemerRepository.ZoekOpWerknemers(zoekText);
-            return werknemers.Select(x => (IWerknemer)x).ToList();
+            return _werknemerRepository.ZoekOpWerknemers(zoekText).AsReadOnly();
         }
     }
 }

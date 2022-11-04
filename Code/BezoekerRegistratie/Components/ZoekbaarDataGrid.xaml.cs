@@ -1,4 +1,5 @@
 ﻿using Components.Models;
+using Components.ViewModels;
 using Controller;
 using Controller.Interfaces.Models;
 using Controller.Models;
@@ -7,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,7 +30,7 @@ namespace Components
     /// </summary>
     public partial class ZoekbaarDataGrid : UserControl
     {
-
+        private Type _itemSourceType;
         public int GridHeight
         {
             get { return (int)GetValue(GridHeightProperty); }
@@ -40,7 +42,7 @@ namespace Components
             DependencyProperty.Register("GridHeight", typeof(int), typeof(ZoekbaarDataGrid), new PropertyMetadata(null));
 
 
-        private List<object> _data;
+        private IEnumerable _data;
 
         public ZoekbaarDataGrid()
         {
@@ -57,20 +59,42 @@ namespace Components
         public EventHandler<string> OpDataFiltering;
 
         private object _aanHetVeranderen;
-        public void StelDataIn(List<object> data)
+        public void StelDataIn<T>(IEnumerable viewModel)
         {
-            _data = data;
-            dataGrid.ItemsSource = data;
+            _data = viewModel;
+            dataGrid.ItemsSource = viewModel;
+            _itemSourceType = typeof(T);
+            MaakHoofding<T>(viewModel);
         }
 
-        public void StelDataIn(IEnumerable data)
+        private void MaakHoofding<T>(IEnumerable viewModel)
         {
-            // _data = data;
-            dataGrid.ItemsSource = data;
-            //data.Add(new Dictionary<string, string>(){
-            //    {"Voornaam", "Tuur" }
-            //});
-            //dataGrid.ItemsSource = data;
+            var properties = typeof(T).GetProperties();
+            for (int i = 0; i < properties.Length; i++)
+            {
+                var propertie = properties[i];
+                if (Attribute.IsDefined(propertie, typeof(HoofdingAttribute)))
+                {
+                    dataGrid.Columns[i].Header = propertie.GetCustomAttribute<HoofdingAttribute>().Hoofding;
+                }
+                else
+                {
+                    //throw new NotImplementedException("Er is geen hoofding voorzien voor dit viewmodel.");
+                }
+            }
+        }
+
+        public IEnumerable<string> PropertiesFromType<T>(IEnumerable<T> input)
+        {
+            var item = input.First();
+            var properties = new List<string>();
+
+            foreach (PropertyInfo property in item.GetType().GetProperties())
+            {
+                properties.Add(property.Name);
+            }
+
+            return properties;
         }
 
         public void Clear()
@@ -78,64 +102,64 @@ namespace Components
             dataGrid.ItemsSource = null;
             dataGrid.Items.Clear();
         }
-        public void FilterOp(string zoekWoord)
+        private void FilterOp(string zoekWoord)
         {
-            DataGridRow dataGridRij;
-            List<object> temp = new List<object>();
-            if (string.IsNullOrEmpty(zoekWoord))
-            {
-                temp = _data;
-            }
-            else
-            {
-                // TODO: totaal niet effecient juist maar voor de demo gebruiken.
-                foreach (var row in dataGrid.ItemsSource)
-                {
-                    var json = JsonConvert.SerializeObject(row);
-                    var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+            //DataGridRow dataGridRij;
+            //List<object> temp = new List<object>();
+            //if (string.IsNullOrEmpty(zoekWoord))
+            //{
+            //    //temp = _data;
+            //}
+            //else
+            //{
+            //    // TODO: totaal niet effecient juist maar voor de demo gebruiken.
+            //    foreach (var row in dataGrid.ItemsSource)
+            //    {
+            //        var json = JsonConvert.SerializeObject(row);
+            //        var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-                    bool gevonden = false;
-                    foreach (string value in dictionary.Values)
-                    {
-                        if (!string.IsNullOrEmpty(value) && zoekWoord.Length <= value.Length)
-                        {
-                            bool komtVoorInString = false;
-                            for (int i = 0; i < zoekWoord.Length; i++)
-                            {
-                                if (Char.ToLower(zoekWoord[i]) == Char.ToLower(value[i]))
-                                {
-                                    komtVoorInString = true;
-                                }
-                                else
-                                {
-                                    komtVoorInString = false;
-                                    break;
-                                }
-                            }
-                            if (komtVoorInString)
-                            {
-                                gevonden = true;
-                            }
+            //        bool gevonden = false;
+            //        foreach (string value in dictionary.Values)
+            //        {
+            //            if (!string.IsNullOrEmpty(value) && zoekWoord.Length <= value.Length)
+            //            {
+            //                bool komtVoorInString = false;
+            //                for (int i = 0; i < zoekWoord.Length; i++)
+            //                {
+            //                    if (Char.ToLower(zoekWoord[i]) == Char.ToLower(value[i]))
+            //                    {
+            //                        komtVoorInString = true;
+            //                    }
+            //                    else
+            //                    {
+            //                        komtVoorInString = false;
+            //                        break;
+            //                    }
+            //                }
+            //                if (komtVoorInString)
+            //                {
+            //                    gevonden = true;
+            //                }
 
-                        }
+            //            }
 
-                    }
+            //        }
 
-                    //dataGridRij = dataGrid.ItemContainerGenerator.ContainerFromItem(row) as DataGridRow;
-                    if (!gevonden)
-                    {
-                        //dataGridRij.Visibility = System.Windows.Visibility.Collapsed;
-                    }
+            //        //dataGridRij = dataGrid.ItemContainerGenerator.ContainerFromItem(row) as DataGridRow;
+            //        if (!gevonden)
+            //        {
+            //            //dataGridRij.Visibility = System.Windows.Visibility.Collapsed;
+            //        }
 
-                    else
-                    {
-                        //dataGridRij.Visibility = System.Windows.Visibility.Visible;
-                        temp.Add(row);
+            //        else
+            //        {
+            //            //dataGridRij.Visibility = System.Windows.Visibility.Visible;
+            //            temp.Add(row);
 
-                    }
-                }
-            }
-            dataGrid.ItemsSource = temp;
+            //        }
+            //    }
+            //}
+            //dataGrid.ItemsSource = temp;
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -145,8 +169,9 @@ namespace Components
 
         private void dataGrid_CurrentCellChanged(object sender, EventArgs e)
         {
-            if(_aanHetVeranderen != null)
+            if (_aanHetVeranderen != null)
             {
+                
                 OpDataVerandering.Invoke(this, _aanHetVeranderen);
             }
             _aanHetVeranderen = null;
@@ -155,7 +180,6 @@ namespace Components
         // Dit wordt opgeroepen vanaf er een verandering in de zoekbalk gebeurt.
         private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            // TODO: Vraag 4 - Data in één keer ophalen of bij elke zoek click ophalen?
 
             // Hier kunnen we ons datagrid filter op het huidige zoekwoord.
             string zoekText = zoekBar.Text;
@@ -163,13 +187,15 @@ namespace Components
             // Manier 1:
             // - alle gegevens worden bijgouden in memory.(niet optimaal, maar er word weinig naar de db gestuurd).
             // + we moeten er voor zorgen dat er bij een verandering in de db alle data opnieuw wordt opgehaald.
-            FilterOp(zoekText);
+            //FilterOp(zoekText);
 
             // Manier 2:
             // - per verandering wordt er gecommuniceerd naar de db.(weinig in memory, veel verkeer). 
             // Voordeel we kunnen filteren met behulp van een query.
-            // OpDataFiltering.Invoke(sender, zoekText);
+            OpDataFiltering.Invoke(sender, zoekText);
 
         }
+
+       
     }
 }

@@ -10,15 +10,3 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\D
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\refint\Controller.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\ref\Controller.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.deps.json
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.pdb
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.csproj.AssemblyReference.cache
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.AssemblyInfoInputs.cache
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.AssemblyInfo.cs
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.csproj.CoreCompileInputs.cache
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\refint\Controller.dll
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.pdb
-C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\6deVersie\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\ref\Controller.dll

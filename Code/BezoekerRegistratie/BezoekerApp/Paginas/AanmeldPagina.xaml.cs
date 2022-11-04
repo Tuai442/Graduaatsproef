@@ -60,7 +60,8 @@ namespace BezoekerApp.Paginas
 
             try
             {
-                _bezoekerManger.MeldBezoekerAan(voornaam, achternaam, email, bedrijfB, contactPersoonEmail);
+                _bezoekerManger.MeldBezoekerAan(voornaam, achternaam, 
+                    email, bedrijfB, contactPersoonEmail);
                 MessageBox.Show("U bent ingelogd.");
                 LeegAlleVelden();
 
@@ -113,7 +114,7 @@ namespace BezoekerApp.Paginas
         private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             string email = emailInvulveld.Text;
-            IBezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
+            Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
             if(bezoeker != null)
             {
                 achternaamInvulveld.Text = bezoeker.Achternaam;

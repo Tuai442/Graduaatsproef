@@ -17,8 +17,6 @@
                 Background="White">
             <Border>
                 <Grid>
-                    
-
                     <TextBox Text="" Foreground="#FF8E8787"
                          BorderThickness="0"
                          Margin="4 4 30 4"
@@ -37,11 +35,15 @@
             </Border>
             
         </Border>
+
+
+
         <DataGrid x:Name="dataGrid"
                   IsReadOnly="False"
                   SelectionChanged="dataGrid_SelectionChanged"
                   CurrentCellChanged="dataGrid_CurrentCellChanged"
-                  Height="600" Width="1000">
+                  Height="600" Width="1000"
+                  >
 
         </DataGrid>
     </StackPanel>

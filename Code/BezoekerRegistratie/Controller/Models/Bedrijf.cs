@@ -1,16 +1,32 @@
+
+﻿using Controller.Exceptions;
+using Controller.Interfaces;
+using System.Text.RegularExpressions;
 ﻿using Controller.Interfaces;
 using Controller.Interfaces.Models;
 
 namespace Controller.Models
 {
-    public class Bedrijf: IBedrijf, ILijstItem
+    public class Bedrijf 
     {
+        private string naam;
+        private string btw;
+        private string adres;
+        private string telefoon;
+        private string email;
+
+        private string SetStringParameters(string p)
+        {
+            if (string.IsNullOrWhiteSpace(p)) throw new BedrijfException("Ingave niet correct");
+            return p;
+        }
+
         public int Id { get; set; }
-        public string  Naam { get; set; }
-        public string Btw { get; set; }
-        public string Adres { get; set; }
-        public string Telefoon { get; set; }
-        public string Email { get; set; }
+        public string Naam { get => naam; set => naam = SetStringParameters(value); }
+        public string Btw { get => btw; set => btw = SetStringParameters(value); }
+        public string Adres { get => adres; set => adres = SetStringParameters(value); }
+        public string Telefoon { get => telefoon; set => telefoon = SetStringParameters(value); }
+        public string Email { get => email; set => email = SetStringParameters(value); }
 
 
         // ListItems
@@ -18,67 +34,26 @@ namespace Controller.Models
 
         public string Waarde => Email;
 
-
+        //TODO: syntax met this
         public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
         {
             Naam = naam;
-            Btw = btw;
             Adres = adres;
+            Btw = btw;
             Telefoon = telefoon;
             Email = email;
+
         }
-        public Bedrijf(int id, string naam, string btw, string adres, string telefoon, string email)
+        public Bedrijf(int id, string naam, string btw, string adres, string telefoon, string email): this(naam, btw, adres, telefoon, email)
         {
+
             Id = id;
-            Naam = naam;
-            Btw = btw;
-            Adres = adres;
-            Telefoon = telefoon;
-            Email = email;
+
         }
 
-        public bool ControleTelefoon(string telefoon)
-        {
-            // TODO: Controlleer telfoon nr door regulire expresies;
-            return true;
-        }
 
-        public bool ControleBTW(string btw)
-        {
-            // TODO: Controlleer BTW door regulire expresies;
-            return true;
-        }
-        public bool ControleEmail(string email) // We kunnen kijken voor dit anders aan te pakken want bij de Bezoeker moet er ook gecontroleerd worden op een email.
-        {
-            // TODO: Controlleer BTW door regulire expresies;
-            return true;
-        }
 
-        public static List<string> GeefAttributen()
-        {
-            return new List<string>
-            {
-                "Naam",
-                "Btw",
-                "Adres",
-                "Telefoon",
-                "Email",
-                "Parking Contract"
-            };
-        }
-
-        public object GeefItemSource()
-        {
-            object result = new
-            {
-                Naam = Naam,
-                Btw = Btw,
-                Adres = Adres,
-                telefoon = Telefoon,
-                email = Email
-            };
-            return result;
-        }
+    
         public override string? ToString()
         {
             return Naam;
