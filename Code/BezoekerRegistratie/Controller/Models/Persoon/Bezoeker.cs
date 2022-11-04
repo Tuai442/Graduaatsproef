@@ -10,15 +10,18 @@ namespace Controller.Models
 {
     public class Bezoeker : Persoon, IBezoeker
     {
+        public int Id;
+
         public string Nummerplaat { get; set; }
 
         // TODO: aanwezig moet private set worden 
         public bool Aanwezig { get; set; }
         public string Bedrijf { get; set; }
         //(voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig)
-        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = true, string nummerplaat = "") :
+        public Bezoeker(int id,string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = true, string nummerplaat = "") :
             base(voornaam, achternaam, email)
         {
+            Id = id;
             Nummerplaat = nummerplaat;
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;

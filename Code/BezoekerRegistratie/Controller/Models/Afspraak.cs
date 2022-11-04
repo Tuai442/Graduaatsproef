@@ -26,6 +26,16 @@ namespace Controller
 
         }
 
+        public string V1 { get; }
+        public string V2 { get; }
+        public string V3 { get; }
+        public string V4 { get; }
+        public DateTime DateTime1 { get; }
+        public DateTime DateTime2 { get; }
+        public int V5 { get; }
+
+        //Afspraak((string)dataReader["voornaamBezoeker"], (string)dataReader["achternaamBezoeker"], (string)dataReader["bezoekerBedrijfsnaam"], (string)dataReader["email"], (DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"],(int)dataReader["werknemerId"]);
+
 
         // Als een afspraak geen eindtijd heeft betekend dit dat de bezoeker nog aan wezig is.
         // 2 constructors voor als we uit de db afspraken willen halen die toch al een eindtijd hebben.
@@ -60,6 +70,23 @@ namespace Controller
             }
             
         }
+
+        public Afspraak(string v1, string v2, string v3, string v4, DateTime dateTime1, DateTime dateTime2, int v5)
+        {
+            V1 = v1;
+            V2 = v2;
+            V3 = v3;
+            V4 = v4;
+            DateTime1 = dateTime1;
+            DateTime2 = dateTime2;
+            V5 = v5;
+        }
+
+        //Afspraak((string)dataReader["voornaamBezoeker"], (string)dataReader["achternaamBezoeker"], (string)dataReader["bezoekerBedrijfsnaam"], (string)dataReader["email"], (DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"],(int)dataReader["werknemerId"]);
+        /*public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd, DateTime? eindTijd, bool isAanwezig) : this(id, bezoeker, werknemer, startTijd, eindTijd)
+        {
+            IsAanwezig = isAanwezig;
+        }*/
 
         public void EindeAfspraak()
         {
