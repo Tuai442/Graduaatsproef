@@ -48,9 +48,12 @@
 
                 <StackPanel Grid.Column="0"
                             Grid.Row="1">
+                    
                     <UIC:ZoekbareComboBox Width="100" Height="10"
                                           Margin="10"
-                                          x:Name="bedrijfComboBox"/>
+                                          x:Name="bedrijfComboBox"
+                                          ItemsSource="{Binding Bedrijf}"
+                                          />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1"

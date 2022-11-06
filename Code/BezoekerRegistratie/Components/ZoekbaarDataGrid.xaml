@@ -40,10 +40,11 @@
 
         <DataGrid x:Name="dataGrid"
                   IsReadOnly="False"
-                  SelectionChanged="dataGrid_SelectionChanged"
-                  CurrentCellChanged="dataGrid_CurrentCellChanged"
+                  
                   Height="600" Width="1000"
                   >
+            <!--SelectionChanged="dataGrid_SelectionChanged"
+                  CurrentCellChanged="dataGrid_CurrentCellChanged"-->
 
         </DataGrid>
     </StackPanel>

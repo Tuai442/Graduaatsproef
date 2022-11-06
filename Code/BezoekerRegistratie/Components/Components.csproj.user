@@ -5,10 +5,16 @@
     <Compile Update="CheckBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Knop.xaml.cs">
+    <Compile Update="Datagrids\BezoekersDataGrid.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Paginas\InstellingPagina.xaml.cs">
+    <Compile Update="Datagrids\WerknemerDataGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Datagrids\Zoekbalk.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Knop.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="TerugKnop.xaml.cs">
@@ -25,10 +31,16 @@
     <Page Update="CheckBox.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Knop.xaml">
+    <Page Update="Datagrids\BezoekersDataGrid.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Paginas\InstellingPagina.xaml">
+    <Page Update="Datagrids\WerknemerDataGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Datagrids\Zoekbalk.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Knop.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TerugKnop.xaml">

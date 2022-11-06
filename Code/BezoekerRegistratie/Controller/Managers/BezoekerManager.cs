@@ -4,6 +4,7 @@ using Controller.Interfaces.Models;
 using Controller.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -17,6 +18,8 @@ namespace Controller.Managers
         private IAfspraakRepository _afspraakRepository;
         private IWerknemerRepository _werknemerRepository;
         private IBedrijfRepository _bedrijfRepository;
+
+
         public BezoekerManager(IBezoekerRepository bezoekerRepository, IAfspraakRepository afspraakRepository,
             IWerknemerRepository werknemerRepository, IBedrijfRepository bedrijfRepository)
         {
@@ -71,6 +74,16 @@ namespace Controller.Managers
 
             }
             return null;
+        }
+
+        public void UpdateBezoeker(object? sender, PropertyChangedEventArgs e)
+        {
+            // Een update van een bezoeker gebeurt er eigelijk niet omdat we
+            // in de afspraken de email adressen wille behouden, daarom bij elke verandering 
+            // wordt er een nieuwe bezoeker toegevoegd
+            Bezoeker bezoeker = (Bezoeker)sender;
+            _bezoekerRepository.VoegBezoekerToe(bezoeker);
+
         }
     }
 }

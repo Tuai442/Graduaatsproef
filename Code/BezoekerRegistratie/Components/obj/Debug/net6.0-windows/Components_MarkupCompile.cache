@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 
-6995335258
+8-1821414130
 
-18-1089358120
+13-654828991
 197-689942263
-CheckBox.xaml;Knop.xaml;Paginas\InstellingPagina.xaml;TerugKnop.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;
+CheckBox.xaml;Datagrids\BezoekersDataGrid.xaml;Datagrids\WerknemerDataGrid.xaml;Datagrids\Zoekbalk.xaml;Knop.xaml;TerugKnop.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;
 
 False
 

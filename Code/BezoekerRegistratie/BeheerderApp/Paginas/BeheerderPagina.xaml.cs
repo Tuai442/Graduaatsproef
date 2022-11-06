@@ -16,13 +16,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Components;
 using System.ComponentModel;
-using Components.Models;
 
 using Controller.Models;
 using Controller.Managers;
 using Controller.Interfaces.Models;
-using Components.ViewModels;
+
 using Controllers;
+using Components.Datagrids;
+using Components.ViewModels;
 
 namespace BeheerderApp.Paginas
 {
@@ -39,10 +40,10 @@ namespace BeheerderApp.Paginas
         private BedrijfManager _bedrijfManager;
 
         // Zoek lijsten
-        private List<WerknemerViewModel> _werknemers = new List<WerknemerViewModel>(); 
-        private List<BezoekerViewModel> _bezoekers = new List<BezoekerViewModel>(); 
-        private List<AfspraakViewModel> _afspraken = new List<AfspraakViewModel>();
-        private List<BedrijfViewModel> _bedrijven = new List<BedrijfViewModel>();
+        private List<WerknemerView> _werknemerViews = new List<WerknemerView>(); 
+        private List<BezoekerView> _bezoekerViews = new List<BezoekerView>(); 
+        private List<AfspraakView> _afspraakViews = new List<AfspraakView>();
+        private List<BedrijfView> _bedrijfViews = new List<BedrijfView>();
         public BeheerderPagina(DomeinController domeinController)
         {
             InitializeComponent();
@@ -61,8 +62,8 @@ namespace BeheerderApp.Paginas
 
             terugKnop.ButtonClick += GaPaginaTerug;
 
-            _dataGrid.OpDataVerandering += UpdateData;
-            _dataGrid.OpDataFiltering += FilterData;
+            //_dataGrid.OpDataVerandering += UpdateData;
+            dataGrid.OpDataFiltering += FilterData;
         }
 
         private void UpdateData(object? sender, object obj)
@@ -83,29 +84,136 @@ namespace BeheerderApp.Paginas
             if (bezoekerCheckBox.IsActief)
             {
                 IReadOnlyList<Bezoeker> bezoekers = _bezoekerManger.ZoekOp(zoekText);
-                _bezoekers = Omzetter.ZetBezoekersOmInViewModellen(bezoekers);
-                _dataGrid.StelDataIn<BezoekerViewModel>(_bezoekers);
+                BezoekersDataGrid bezoekersDataGrid = new BezoekersDataGrid();
+                bezoekersDataGrid.StelDataIn(bezoekers);
+                dataGridPanel.Children.Add(bezoekersDataGrid);
+                
             }
             else if (werknemerCheckBox.IsActief)
             {
                 IReadOnlyList<Werknemer> werknemers = _werknemerManger.ZoekOp(zoekText);
-                _werknemers = Omzetter.ZetWerknemersOmInViewModellen(werknemers);
-                _dataGrid.StelDataIn<WerknemerViewModel>(_werknemers);
             }
             else if (afspraakCheckBox.IsActief)
             {
                 IReadOnlyList<Afspraak> afspraaks = _afspraakManager.ZoekOp(zoekText);
-                _afspraken = Omzetter.ZetAfsprakenOmInViewModellen(afspraaks);
-                _dataGrid.OpDataVerandering = _afspraakManager.OpUpdateAfspraak;
-                _dataGrid.StelDataIn<AfspraakViewModel>(_afspraken);
+               
             }
             else if (bedrijfCheckBox.IsActief)
             {
                 IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.ZoekOp(zoekText);
-                _bedrijven = Omzetter.ZetBedrijvenOmInViewModellen(bedrijven);
-                _dataGrid.StelDataIn<BedrijfViewModel>(_bedrijven);
             }
             
+        }
+
+        // Checkbox Events
+        // TODO: kan allemaal in één methode gedaan worden.
+        private void CheckBoxe_Werknemer_Toggle(object sender, bool actief)
+        {
+            if (actief)
+            {
+                if(_werknemerViews.Count == 0)
+                {
+                    IReadOnlyList<Werknemer> werknemers = _werknemerManger.GeefAlleWerknemers();
+                    _werknemerViews = werknemers.Select(x => new WerknemerView(x)).ToList();
+                }
+
+                Components.CheckBox check = (Components.CheckBox)sender;
+                VinkAllesUitBehalve(check);
+
+                dataGrid.StelDataIn<WerknemerView>(_werknemerViews);
+            }
+            
+        }
+
+        private void CheckBoxe_Bezoeker_Toggle(object sender, bool actief)
+        {
+            if (actief)
+            {
+                if(_bezoekerViews.Count == 0)
+                {
+                    IReadOnlyList<Bezoeker> bezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
+                    foreach(Bezoeker bezoeker in bezoekers)
+                    {
+                        BezoekerView bezoekerView = new BezoekerView(bezoeker);
+                        bezoekerView.PropertyChanged += _bezoekerManger.UpdateBezoeker;
+                        _bezoekerViews.Add(bezoekerView);
+
+                    }
+                }
+
+                Components.CheckBox check = (Components.CheckBox)sender;
+                VinkAllesUitBehalve(check);
+
+                dataGrid.StelDataIn<BezoekerView>(_bezoekerViews);
+            }
+            
+        }
+
+        private void CheckBoxe_Afspraak_Toggle(object sender, bool actief)
+        {
+
+            if (actief)
+            {
+                if (_afspraakViews.Count == 0)
+                {
+                    IReadOnlyList<Afspraak> af = _afspraakManager.GeefAlleAfspraken();
+                    _afspraakViews = af.Select(x => new AfspraakView(x)).ToList();
+                }
+
+                Components.CheckBox check = (Components.CheckBox)sender;
+                VinkAllesUitBehalve(check);
+                
+
+                dataGrid.StelDataIn<AfspraakView>(_afspraakViews);
+
+            }
+            else
+            {
+            }
+        }
+
+        private void CheckBoxe_Bedrijven_Toggle(object sender, bool actief)
+        {
+
+            if (actief)
+            {
+                if (_bedrijfViews.Count == 0)
+                {
+                    IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+                    _bedrijfViews = bedrijven.Select(x => new BedrijfView(x)).ToList();
+                }
+                Components.CheckBox check = (Components.CheckBox)sender;
+                VinkAllesUitBehalve(check);
+
+                dataGrid.StelDataIn<BedrijfView>(_bedrijfViews);
+
+            }
+            
+        }
+        // -------------------------------------------------
+
+        private void VinkAllesUitBehalve(Components.CheckBox check)
+        {
+            if(check != bezoekerCheckBox)
+            {
+                bezoekerCheckBox.DeActiveer();
+            }
+            if (check != bedrijfCheckBox)
+            {
+                bedrijfCheckBox.DeActiveer();
+            }
+            if (check != werknemerCheckBox)
+            {
+                werknemerCheckBox.DeActiveer();
+            }
+            if (check != afspraakCheckBox)
+            {
+                afspraakCheckBox.DeActiveer();
+            }
+        }
+        private void GaPaginaTerug(object? sender, EventArgs e)
+        {
+            NavigationService.GoBack();
         }
 
         private string GeefGeselecteerdBox()
@@ -128,110 +236,5 @@ namespace BeheerderApp.Paginas
             }
             return null;
         }
-      
-        // Checkbox Events
-        // TODO: kan allemaal in één methode gedaan worden.
-        private void CheckBoxe_Werknemer_Toggle(object sender, bool actief)
-        {
-
-            if (actief)
-            {
-                //if (_werknemers.Count == 0)
-                //{
-                //    IReadOnlyList<Werknemer> werknemers = (IReadOnlyList<Werknemer>)_werknemerManger.GeefAlleWerknemers() ;
-                //    _werknemers = Omzetter.ZetWerknemersOmInViewModellen(werknemers);
-                //}
-
-                VinkAllesUit();
-                Components.CheckBox check = (Components.CheckBox)sender;
-                check.Activeer();
-
-                _dataGrid.StelDataIn<Werknemer>(_werknemers);
-            }
-            else
-            {
-                _dataGrid.Clear();
-            }
-        }
-
-        private void CheckBoxe_Bezoeker_Toggle(object sender, bool actief)
-        {
-            if (actief)
-            {
-                //if (_bezoekers.Count == 0)
-                //{
-                //    _bezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
-                //}
-
-                VinkAllesUit();
-                Components.CheckBox check = (Components.CheckBox)sender;
-                check.Activeer();
-
-                _dataGrid.StelDataIn<Bezoeker>(_bezoekers);
-            }
-            else
-            {
-                _dataGrid.Clear();
-            }
-        }
-
-        private void CheckBoxe_Afspraak_Toggle(object sender, bool actief)
-        {
-
-            if (actief)
-            {
-                //if (_afspraken.Count == 0)
-                //{
-                //    IReadOnlyList<Afspraak> afspraken = (IReadOnlyList<Afspraak>)_afspraakManager.GeefAlleAfspraken();
-                //    _afspraken = Omzetter.ZetAfsprakenOmInViewModellen(afspraken);
-                //}
-
-                VinkAllesUit();
-                Components.CheckBox check = (Components.CheckBox)sender;
-                check.Activeer();
-
-                _dataGrid.StelDataIn<AfspraakViewModel>(_afspraken);
-            }
-            else
-            {
-                _dataGrid.Clear();
-            }
-        }
-
-        private void CheckBoxe_Bedrijven_Toggle(object sender, bool actief)
-        {
-
-            if (actief)
-            {
-                //if (_bedrijven.Count == 0)
-                //{
-                //    _bedrijven = _bedrijfManager.GeefAlleBedrijven();
-                //}
-
-                VinkAllesUit();
-                Components.CheckBox check = (Components.CheckBox)sender;
-                check.Activeer();
-
-                _dataGrid.StelDataIn<Bedrijf>(_bedrijven);
-            }
-            else
-            {
-                _dataGrid.Clear();
-            }
-        }
-        // -------------------------------------------------
-
-        private void VinkAllesUit()
-        {
-            bezoekerCheckBox.DeActiveer();
-            bedrijfCheckBox.DeActiveer();
-            werknemerCheckBox.DeActiveer();
-            afspraakCheckBox.DeActiveer();
-        }
-        private void GaPaginaTerug(object? sender, EventArgs e)
-        {
-            NavigationService.GoBack();
-        }
-
     }
 }

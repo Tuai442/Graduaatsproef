@@ -62,31 +62,12 @@
             </StackPanel>
 
             <StackPanel x:Name="dataGridPanel">
-                <UIC:ZoekbaarDataGrid x:Name="_dataGrid"/>
+                <UIC:ZoekbaarDataGrid Name="dataGrid"/>
+                <!--<UIC:ZoekbaarDataGrid x:Name="_dataGrid"/>-->
 
 
             </StackPanel>
-            <!--<DataGrid x:Name="dataGrid"
-                      Margin="10">
-                --><!--<DataGrid.Columns>
-                    <DataGridTextColumn Header="Voornaam"
-                                        MinWidth="150"
-                                        />
-                    <DataGridTextColumn Header="Achternaam"
-                                        MinWidth="150"
-                                        />
-                    <DataGridTextColumn Header="Bedrijf"
-                                        MinWidth="150"
-                                        />
-                    <DataGridTextColumn Header="Start Datum"
-                                        MinWidth="150"
-                                        />
-                    <DataGridTextColumn Header="Eind Datum"
-                                        MinWidth="150"
-                                        />
-                </DataGrid.Columns>--><!--
-                
-            </DataGrid>-->
+            
 
         </StackPanel>
         

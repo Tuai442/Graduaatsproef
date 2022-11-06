@@ -13,7 +13,6 @@ namespace Controller.Models
         public string Achternaam { get; set; }
         public string Email { get; set; }
         
-
         public Persoon(string voornaam, string achternaam, string email)
         {
             Voornaam = voornaam;

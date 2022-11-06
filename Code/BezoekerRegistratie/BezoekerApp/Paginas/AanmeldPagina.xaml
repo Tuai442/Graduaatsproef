@@ -12,19 +12,8 @@
 
 
     <Grid Background="LightSteelBlue">
-        <StackPanel HorizontalAlignment="Left"
-                    Margin="30">
-            <Button Background="Transparent"
-                    BorderThickness="0"
-                    Click="Instellingen_Click">
-                <fa:ImageAwesome Icon="Gear" 
-                             VerticalAlignment="Center" 
-                             HorizontalAlignment="Center" 
-                             Width="30"/>
-            </Button>
-            
+      
 
-        </StackPanel>
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Background="white" 

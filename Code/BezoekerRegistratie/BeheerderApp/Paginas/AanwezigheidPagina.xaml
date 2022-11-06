@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BeheerderApp.Paginas"
+      xmlns:DG="clr-namespace:Components.Datagrids;assembly=Components"
       xmlns:UIC="clr-namespace:Components;assembly=Components"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1200"
@@ -25,16 +26,9 @@
 
             <DockPanel Height="600"
                        Width="1100">
-                <UIC:ZoekbaarDataGrid Margin="40"
-                                      x:Name="dataGrid"
-                                      />
-                <!--<DataGrid Margin="40"
-                          x:Name="dataGrid"
-                          ScrollViewer.CanContentScroll="True" 
-                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                          ScrollViewer.HorizontalScrollBarVisibility="Auto">
 
-                </DataGrid>-->
+                <DG:BezoekersDataGrid x:Name="dataGrid"/>
+
             </DockPanel>
             
 

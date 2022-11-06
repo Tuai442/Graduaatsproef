@@ -124,7 +124,6 @@ namespace Persistence
 
         public void UpdateBezoeker(Bezoeker bezoeker)
         {
-            throw new NotImplementedException();
         }
 
         public List<Bezoeker> GeefAlleAanwezigeBezoekers()
@@ -134,7 +133,7 @@ namespace Persistence
 
         public List<Bezoeker> ZoekBezoekersOp(string zoekText)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Persoon GeefPersoonOpVolledigeNaam(string naam, string achternaam)

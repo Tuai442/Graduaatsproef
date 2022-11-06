@@ -1,5 +1,4 @@
-﻿using Components.Paginas;
-using Controller;
+﻿using Controller;
 using Controller.Interfaces.Models;
 using Controller.Managers;
 using Controller.Models;
@@ -104,12 +103,7 @@ namespace BezoekerApp.Paginas
             bedrijfInvulveld.Text = "";
         }
 
-        private void Instellingen_Click(object sender, RoutedEventArgs e)
-        {
-            InstellingPagina instellingPagina = new InstellingPagina();
-            instellingPagina.NavigeerHandler += NavigeerHandler;
-            NavigeerHandler.Invoke(this, instellingPagina);
-        }
+     
 
         private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
