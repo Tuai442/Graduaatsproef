@@ -67,7 +67,7 @@ namespace BezoekerApp.Paginas
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Foute ingave", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
             finally

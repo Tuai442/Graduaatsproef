@@ -31,8 +31,10 @@ namespace Controller.Managers
 
         public IReadOnlyList<Bezoeker> GeefAlleAanwezigeBezoekers()
         {
-            List<Afspraak> afspraken =  _afspraakRepository.GeefAlleAanwezigeAfspraken();
-            return afspraken.Select(x => x.Bezoeker).ToList().AsReadOnly();
+            //List<Afspraak> afspraken =  _afspraakRepository.GeefAlleAanwezigeAfspraken();
+            //return afspraken.Select(x => x.Bezoeker).ToList().AsReadOnly();
+            List<Bezoeker> bezoekers = _bezoekerRepository.GeefAlleBezoekers();
+            return bezoekers.AsReadOnly();
         }
 
         public IReadOnlyList<Bezoeker> ZoekOp(string zoekText)
@@ -43,12 +45,11 @@ namespace Controller.Managers
         public void MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email, 
             string bedrijfBezoeker, string emailContactPersoon)
         {
-            // TODO: Unit test
             Controleer.LegeVelden(vnBezoeker, anBezoeker, email, emailContactPersoon, bedrijfBezoeker);
             Controleer.ControleEmail(email);
-            // Controleer.ControleIsBezoekerAlAanwezig(bezoeker);  <--- Moet er gecontroleerd worden of de bezoeker nog niet aanwezig is ???
+            // TODO: controler is bezoeker al aanwezig
 
-            Bezoeker bezoeker = new Bezoeker(vnBezoeker, anBezoeker, email, bedrijfBezoeker);
+            Bezoeker bezoeker = new Bezoeker(vnBezoeker, anBezoeker, email, bedrijfBezoeker, true);
             Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon);
             Afspraak afspraak = new Afspraak(bezoeker, werknemer, DateTime.Now);
             _afspraakRepository.VoegAfspraakToe(afspraak);
@@ -76,14 +77,18 @@ namespace Controller.Managers
             return null;
         }
 
-        public void UpdateBezoeker(object? sender, PropertyChangedEventArgs e)
+        public void UpdateBezoeker(Bezoeker bezoeker)
         {
             // Een update van een bezoeker gebeurt er eigelijk niet omdat we
             // in de afspraken de email adressen wille behouden, daarom bij elke verandering 
             // wordt er een nieuwe bezoeker toegevoegd
-            Bezoeker bezoeker = (Bezoeker)sender;
-            _bezoekerRepository.VoegBezoekerToe(bezoeker);
+            
+            _bezoekerRepository.UpdateBezoeker(bezoeker);
 
+        }
+
+        public void VoegNieweBezoekerToe(Bezoeker nieuweBezoeker)
+        {
         }
     }
 }

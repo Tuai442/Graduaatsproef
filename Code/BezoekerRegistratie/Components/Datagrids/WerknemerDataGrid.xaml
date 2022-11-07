@@ -4,9 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Components.Datagrids"
+             xmlns:BedrijfEnum="Bed"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
+
+
+        
+
     <StackPanel x:Name="stackPanel">
 
         <Border BorderBrush="Black"
@@ -24,14 +29,21 @@
                   SelectionChanged="dataGrid_SelectionChanged"
                   CurrentCellChanged="dataGrid_CurrentCellChanged"
                   Height="600" Width="1000"
-                  ItemsSource="{Binding Werknemer}">
+                  ItemsSource="{Binding WerknemerView}">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Voornaam" Binding="{Binding Voornaam}"/>
                 <DataGridTextColumn Header="Achternaam" Binding="{Binding Achternaam}"/>
                 <DataGridCheckBoxColumn Header="Email" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Funtie" Binding="{Binding Functie}"/>
+
+                <DataGridComboBoxColumn Header="Bedrijf"
+                                        SelectedItemBinding="{Binding Status}"
+                                        />
+
                 <DataGridTextColumn Header="Bedrijf" Binding="{Binding Bedrijf}"/>
-                <DataGridTextColumn Header="Funtie" Binding="{Binding Funtie}"/>
+                
+                
             </DataGrid.Columns>
 
         </DataGrid>

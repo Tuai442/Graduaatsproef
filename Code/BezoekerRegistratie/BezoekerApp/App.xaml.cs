@@ -18,10 +18,12 @@ namespace BezoekerApp
     /// </summary>
     public partial class App : Application
     {
-        IWerknemerRepository werknemerRepository = new WerknemerRepository();
-        IBezoekerRepository bezoekerRepository = new BezoekerRepository();
-        IBedrijfRepository bedrijfRepository = new BedrijfRepository();
-        IAfspraakRepository afspraakRepository = new AfspraakRepository();
+        protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
+
+        IWerknemerRepository werknemerRepository;
+        IBezoekerRepository bezoekerRepository;
+        IBedrijfRepository bedrijfRepository;
+        IAfspraakRepository afspraakRepository;
 
         DomeinController _domeinController;
 
@@ -30,6 +32,11 @@ namespace BezoekerApp
 
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
+            werknemerRepository = new WerknemerRepository();
+            bezoekerRepository = new BezoekerRepository(connectionString);
+            bedrijfRepository = new BedrijfRepository();
+            afspraakRepository = new AfspraakRepository(connectionString);
+
             _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
             bedrijfRepository, afspraakRepository);
 

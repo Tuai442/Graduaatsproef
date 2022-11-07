@@ -1,5 +1,5 @@
 ﻿using Accessibility;
-
+using Components.Interfaces;
 using Controller.Interfaces;
 using Controller.Models;
 using Newtonsoft.Json.Linq;
@@ -82,7 +82,7 @@ namespace Components
 
         public string SelectedLabel { get; private set; }
 
-        private Dictionary<string, string> _alleItems;
+        private List<ILijstItems> _alleItems;
 
         private bool _skipSelectionChangedEvent = false;
         public ZoekbareComboBox()
@@ -92,23 +92,14 @@ namespace Components
 
         }
 
-        public void VoegLijstToe(Dictionary<string, string> items)
+        public void VoegLijstToe(List<ILijstItems> items)
         {
-            // Itemsource wordt gebruik zodat bij het filteren van data de index steeds overeenkomt.
-            //comboBox.ItemsSource = null;
-            //if (comboBox.Items.Count > 0)
-            //{
-            //    comboBox.Items.Clear();
-            //}
-            //comboBox.ItemsSource = items.Select(x => x.LabelNaam);
-            //comboBox.Items.
-            //foreach(string key in items.Keys)
-            //{
-            //    comboBox.Items.Add(key);
-            //}
-            var cb = new ComboBox();
-            
+            comboBox.Items.Clear();
             _alleItems = items;
+            foreach (ILijstItems item in items)
+            {
+                comboBox.Items.Add(item.ItemNaam);
+            }
         }
 
         private void listItemSelected(object sender, RoutedEventArgs e)
@@ -177,11 +168,11 @@ namespace Components
             // TODO: elke keer als het SelectionChanged event wordt aangroepen wordt het comboBox_TextChanged ook aangeroepen
             // die dan opnieuw de SelectionChanged aaroept waarop dan een error volgt, momeneteel tijdelijk oplossing (_skipSelectionChangedEvent).
             // zie debugger voor meer info.
-            if (!_skipSelectionChangedEvent)
+            if (!_skipSelectionChangedEvent && (comboBox.SelectedIndex > 0))
             {
                 int SelectedIndex = comboBox.SelectedIndex;
-                //SelectedValue = _alleItems[SelectedIndex].Waarde;
-                //SelectedLabel = _alleItems[SelectedIndex].LabelNaam; 
+                SelectedValue = _alleItems[SelectedIndex].Id;
+                SelectedLabel = _alleItems[SelectedIndex].ItemNaam;
                 GeSelecteerd.Invoke(this, SelectedValue);
             }
             
@@ -191,4 +182,6 @@ namespace Components
 
 
     }
+
+    
 }

@@ -16,7 +16,7 @@ namespace Persistence.Datalaag
 {
     public class WerknemerRepository:  BaseRepository, IWerknemerRepository
     {
-        private string _tableName = "Werknemers";
+        private string _tableName = "Werknemer";
         public WerknemerRepository()
         {
 
@@ -58,8 +58,8 @@ namespace Persistence.Datalaag
 
         public void VoegWerknemerToe(Werknemer werknemer)
         {
-            string query = $"INSERT INTO {_tableName} (Voornaam, Achternaam, Email, Functie, BedrijfId) " +
-                $"VALUES(@Voornaam, @Achternaam, @Achternaam, @Functie, @BedrijfId);"; 
+            string query = $"INSERT INTO dbo.Werknemer (voornaam, achternaam, email, functie, bedrijfId) " +
+                $"VALUES(@voornaam, @achternaam, @email, @functie, @bedrijfId);"; 
                
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
@@ -133,12 +133,12 @@ namespace Persistence.Datalaag
                 {
                     while (dataReader.Read())
                     {
-                        int id = (int)dataReader["WerknemerId"];
-                        string voornaam = (string)dataReader["Voornaam"];
-                        string achternaam = (string)dataReader["Achternaam"];
-                        string email = (string)dataReader["Email"];
-                        string functie = (string)dataReader["Functie"];
-                        int bedrijfId = (int)dataReader["BedrijfId"];
+                        int id = (int)dataReader["werknemerId"];
+                        string voornaam = (string)dataReader["voornaam"];
+                        string achternaam = (string)dataReader["achternaam"];
+                        string email = (string)dataReader["email"];
+                        string functie = (string)dataReader["functie"];
+                        int bedrijfId = (int)dataReader["bedrijfId"];
                         Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
 
                         Werknemer werknemer = new Werknemer(id, voornaam, achternaam, email, functie, bedrijf);
@@ -257,8 +257,8 @@ namespace Persistence.Datalaag
                 conn.Open();
 
                 string query = $"SELECT * FROM {_tableName} w " +
-                    $"join Bedrijven b on w.BedrijfId = b.BedrijfId " +
-                    $"WHERE b.Email = '{email}';";
+                    $"join Bedrijf b on w.bedrijfId = b.bedrijfId " +
+                    $"WHERE b.email = '{email}';";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -291,6 +291,10 @@ namespace Persistence.Datalaag
             return werknemers;
         }
 
+        public void UpdateWerknemer(Werknemer werknemer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

@@ -35,5 +35,10 @@ namespace Controller.Managers
         {
             return _afspraakRepository.ZoekAfspraakOp(zoekText).AsReadOnly();
         }
+
+        public void UpdateAfspraak(Afspraak afspraak)
+        {
+            _afspraakRepository.UpdateAfspraak(afspraak);
+        }    
     }
 }

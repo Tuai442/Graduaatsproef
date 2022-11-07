@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "nu2g6ViPCHtnD10CfGa8CEgsSeSnMhhq4XHW5Qc/Fj4s3izcg+R9dPsSRRCYOEr+tyGmkCS0UPKYIGxai1otRQ==",
+  "dgSpecHash": "DFDzvavOdGk3BfYKoCr/GLq5c7Z7+RgDrkeTwNyw3SkXwl1WvSRQoU61nk4M2GqyzK6+0ZAXDwE0EqQR8DdkyA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\BeheerderApp\\BeheerderApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tuur\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\Tuur\\.nuget\\packages\\countryvalidator\\1.1.3\\countryvalidator.1.1.3.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\fontawesome.wpf\\4.7.0.9\\fontawesome.wpf.4.7.0.9.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

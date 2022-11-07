@@ -1,9 +1,11 @@
 ﻿using Controller.Exceptions;
+using CountryValidation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -20,11 +22,18 @@ namespace Controller.Models
         //TODO: mss extra controle op effectief bestaan van het btw nummer
         public static void BtwNummerControle(string btw)
         {
-            if (string.IsNullOrWhiteSpace(btw)) throw new BedrijfException("Controle BTW - geen geldige invoer");
-            btw = btw.Replace(" ", "").ToLower();
-            string regexString = @"^(be0([0-9]{3}.){2}[0-9]{3})$";
-            Regex regex = new Regex(regexString);
-            if (!regex.IsMatch(btw)) throw new BedrijfException("Controle BTW - geen geldige regex");
+            // uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
+            CountryValidator validator = new CountryValidator();
+            ValidationResult validationResult = validator.ValidateVAT(btw, Country.BE); // Kan momenteel alleen controle in Belgie uitvoren.
+            if (!validationResult.IsValid) throw new BedrijfException("Controle BTW - geen geldige invoer");
+            
+            
+
+            //if (string.IsNullOrWhiteSpace(btw)) throw new BedrijfException("Controle BTW - geen geldige invoer");
+            //btw = btw.Replace(" ", "").ToLower();
+            //string regexString = @"^(be0([0-9]{3}.){2}[0-9]{3})$";
+            //Regex regex = new Regex(regexString);
+            //if (!regex.IsMatch(btw)) throw new BedrijfException("Controle BTW - geen geldige regex");
         }
 
         public static void ControleEmail(string email)

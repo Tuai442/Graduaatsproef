@@ -65,5 +65,10 @@ namespace Controller.Managers
         {
             return _bedrijfRepository.GeefBedrijvenOpWerknemerEmail(email).AsReadOnly();
         }
+
+        public void UpdateBedrijf(Bedrijf bedrijf)
+        {
+            _bedrijfRepository.UpdateBedrijf(bedrijf);
+        }
     }
 }

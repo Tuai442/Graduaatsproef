@@ -15,5 +15,6 @@ namespace Controller.Interfaces
         List<Werknemer> ZoekOpWerknemers(string zoekText);
         Werknemer GeefWerknemerOpEmail(string email);
         List<Werknemer> GeefWerknemersOpEmailBedrijf(string value);
+        void UpdateWerknemer(Werknemer werknemer);
     }
 }

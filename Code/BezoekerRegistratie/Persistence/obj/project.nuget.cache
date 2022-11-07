@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "RjZd2T2o7HbNpn3dGMcbVamymRYbsn6VI4GGdS0upMUP1dY4bKpzkir4PRM9c4ZRKDrGcVGrezViVN53rpOeqg==",
+  "dgSpecHash": "pab6Orc+VXHAPF2bhHqI0lKgxIt6s8zrwOkF1mvbtoUFodQ1tE89QsPC7MTpy7jj8FtKqeddibcWdRnr4aLtwA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Tuur\\.nuget\\packages\\countryvalidator\\1.1.3\\countryvalidator.1.1.3.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",

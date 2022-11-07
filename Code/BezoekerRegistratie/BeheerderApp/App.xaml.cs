@@ -18,16 +18,20 @@ namespace BeheerderApp
     /// </summary>
     public partial class App : Application
     {
+        private string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
+
         IBedrijfRepository bedrijfRepository = new BedrijfRepository();
         IWerknemerRepository werknemerRepository = new WerknemerRepository();
-        IBezoekerRepository bezoekerRepository = new BezoekerRepository();
-        IAfspraakRepository afspraakRepository = new AfspraakRepository();
+        IBezoekerRepository bezoekerRepository;
+        IAfspraakRepository afspraakRepository;
 
         DomeinController _domeinController;
         MainWindow mainWindow;
 
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
+            bezoekerRepository = new BezoekerRepository(_connectionString);
+            afspraakRepository = new AfspraakRepository(_connectionString);
             _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
             bedrijfRepository, afspraakRepository);
 

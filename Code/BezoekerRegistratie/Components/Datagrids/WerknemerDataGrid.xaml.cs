@@ -1,4 +1,5 @@
-﻿using Controller.Models;
+﻿using Components.ViewModels;
+using Controller.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,11 +36,11 @@ namespace Components.Datagrids
 
         }
 
-        public void StelDataIn(IReadOnlyList<Bezoeker> bezoekers)
+        public void StelDataIn(List<WerknemerView> werknemerViews)
         {
-            foreach (Bezoeker bezoeker in bezoekers)
+            foreach (WerknemerView werknemer in werknemerViews)
             {
-                dataGrid.Items.Add(bezoeker);
+                dataGrid.Items.Add(werknemer);
             }
         }
 

@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "CountryValidator/1.1.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/CountryValidator.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/CountryValidator.dll": {}
+        }
+      },
       "coverlet.collector/3.1.2": {
         "type": "package",
         "build": {
@@ -1806,6 +1815,9 @@
       "Controller/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "CountryValidator": "1.1.3"
+        },
         "compile": {
           "bin/placeholder/Controller.dll": {}
         },
@@ -1816,6 +1828,21 @@
     }
   },
   "libraries": {
+    "CountryValidator/1.1.3": {
+      "sha512": "bYqED+A2smQ2qMna3wOIsXle1Is2GkwcRGNfFFnTanY5Jrx4uxL7Y+iPRn91FddKGsVPbpOP6K9BjnHzMEYxbQ==",
+      "type": "package",
+      "path": "countryvalidator/1.1.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CountryValidator.png",
+        "countryvalidator.1.1.3.nupkg.sha512",
+        "countryvalidator.nuspec",
+        "lib/net47/CountryValidator.dll",
+        "lib/netstandard2.0/CountryValidator.dll",
+        "lib/netstandard2.1/CountryValidator.dll"
+      ]
+    },
     "coverlet.collector/3.1.2": {
       "sha512": "wuLDIDKD5XMt0A7lE31JPenT7QQwZPFkP5rRpdJeblyXZ9MGLI8rYjvm5fvAKln+2/X+4IxxQDxBtwdrqKNLZw==",
       "type": "package",

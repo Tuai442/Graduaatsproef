@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "bbO+uKeTpsMIv7YlhSb1Ft7a85jBgfaIghLmZ7Qj6EGO4uDxZiIb3GxWdJJxL7jREr+h8jMFdzTVQ6WBFBp5mw==",
+  "dgSpecHash": "hEPxqj8kwQRwCo76Of4VW7tfDUpK2ok6ClsfQggHkQUAe5hXPezrZkcagm02uT1lHZAp1jb/YIKLkeejgcSmJg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Tuur\\.nuget\\packages\\countryvalidator\\1.1.3\\countryvalidator.1.1.3.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
     "C:\\Users\\Tuur\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",

@@ -1,5 +1,5 @@
-﻿
-using Components.ViewModels;
+﻿using Components.ViewModels;
+using Components.ViewModels.overige;
 using Controller;
 using Controller.Interfaces.Models;
 
@@ -40,7 +40,6 @@ namespace Components
         public static readonly DependencyProperty GridHeightProperty =
             DependencyProperty.Register("GridHeight", typeof(int), typeof(ZoekbaarDataGrid), new PropertyMetadata(null));
 
-        private Type _type;
         private IEnumerable _data;
         public ZoekbaarDataGrid()
         {
@@ -61,8 +60,8 @@ namespace Components
         public void StelDataIn<T>(IEnumerable viewModel)
         {
             _data = viewModel;
-            MaakHoofding<T>(viewModel);
             dataGrid.ItemsSource = null;
+            MaakHoofding<T>(viewModel);
             dataGrid.ItemsSource = viewModel;
         }
 
@@ -70,14 +69,30 @@ namespace Components
         {
             dataGrid.Columns.Clear();
             Dictionary<string, string> hoofding = HoofdingManager.GeefHoofding<T>();
-            int index = 0;
+            Dictionary<string, CellType> cellTypes = CellManager.GeefCellType<T>();
             foreach (string key in hoofding.Keys)
             {
-                DataGridTextColumn c = new DataGridTextColumn();
-                c.Header = hoofding[key];
-                c.Binding = new Binding(key);
-
-                dataGrid.Columns.Add(c);
+                if (cellTypes.ContainsKey(key))
+                {
+                    DataGridComboBoxColumn c = new DataGridComboBoxColumn();
+                    c.Header = hoofding[key];
+                    List<string> test = new List<string>
+                    {
+                        "A", "B"
+                    };
+                    c.ItemsSource = new Binding(key);
+                    c.SelectedItemBinding = new Binding(key);
+                    dataGrid.Columns.Add(c);
+                }
+                else
+                {
+                    DataGridTextColumn c = new DataGridTextColumn();
+                    c.Header = hoofding[key];
+                    c.Binding = new Binding(key);
+                    dataGrid.Columns.Add(c);
+                }
+                
+        
             }
             dataGrid.AutoGenerateColumns = false;
         }
@@ -90,20 +105,19 @@ namespace Components
         // Als er een aanpassing wordt gedaan worden deze 2 events opgeroepen.
         //private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
-        //    _aanHetVeranderen  = e.AddedItems[0];
+        //    _aanHetVeranderen = e.AddedItems[0];
         //}
 
         //private void dataGrid_CurrentCellChanged(object sender, EventArgs e)
         //{
         //    if (_aanHetVeranderen != null)
         //    {
-                
         //        OpDataVerandering.Invoke(this, _aanHetVeranderen);
         //    }
         //    _aanHetVeranderen = null;
         //}
         // -------------------------------------------------------------------
-        
+
         // Dit wordt opgeroepen vanaf er een verandering in de zoekbalk gebeurt.
         private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -111,14 +125,9 @@ namespace Components
             // Hier kunnen we ons datagrid filter op het huidige zoekwoord.
             string zoekText = zoekBar.Text;
 
-            // Manier 1:
-            // - alle gegevens worden bijgouden in memory.(niet optimaal, maar er word weinig naar de db gestuurd).
-            // + we moeten er voor zorgen dat er bij een verandering in de db alle data opnieuw wordt opgehaald.
-            //FilterOp(zoekText);
+            // Eerst wordt er intern gefiltder met de data die we al hebben.
+            // FilterOp(zoekText);
 
-            // Manier 2:
-            // - per verandering wordt er gecommuniceerd naar de db.(weinig in memory, veel verkeer). 
-            // Voordeel we kunnen filteren met behulp van een query.
             OpDataFiltering.Invoke(sender, zoekText);
 
         }

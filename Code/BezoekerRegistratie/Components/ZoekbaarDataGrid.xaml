@@ -40,8 +40,8 @@
 
         <DataGrid x:Name="dataGrid"
                   IsReadOnly="False"
-                  
                   Height="600" Width="1000"
+                  
                   >
             <!--SelectionChanged="dataGrid_SelectionChanged"
                   CurrentCellChanged="dataGrid_CurrentCellChanged"-->

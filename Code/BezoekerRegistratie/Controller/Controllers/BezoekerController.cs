@@ -62,7 +62,7 @@ namespace Controller
             //Controleer.LegeVelden(vnBezoeker, anBezoeker, email, contactPEmail);
             if (!string.IsNullOrEmpty(vnBezoeker))
             {
-                Bezoeker bezoeker = new Bezoeker(vnBezoeker, anBezoeker, email, bedrijfsNaam);
+                Bezoeker bezoeker = new Bezoeker(vnBezoeker, anBezoeker, email, bedrijfsNaam, true);
                 bezoeker.MeldAan();
                 Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(contactPEmail);
                 Afspraak afspraak = new Afspraak(bezoeker, werknemer, DateTime.Now);

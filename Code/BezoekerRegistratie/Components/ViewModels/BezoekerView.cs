@@ -1,8 +1,11 @@
-﻿using Controller.Models;
+﻿using Components.Interfaces;
+using Components.ViewModels.overige;
+using Controller.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,7 +54,8 @@ namespace Components.ViewModels
             {
                 _email = value;
                 _bezoeker.Email = value;
-                OnPropertyChanged();
+                OnPropertyChanged(value);
+                //OnClassChanged(bezoekerCpy);
             }
         }
 
@@ -68,17 +72,18 @@ namespace Components.ViewModels
         }
 
         [Hoofding("Bedrijf")]
-        public string Bedrijf 
-        { 
+        public string Bedrijf
+        {
             get => _bedrijf;
             set
             {
                 _bedrijf = value;
                 _bezoeker.Bedrijf = value;
-                OnPropertyChanged(); 
+                OnPropertyChanged();
             }
         }
 
+        public Bezoeker Bezoeker { get => _bezoeker; set => _bezoeker = value; }
         public BezoekerView(Bezoeker bezoeker)
         {
             _bezoeker = bezoeker;
@@ -91,9 +96,12 @@ namespace Components.ViewModels
 
         private void OnPropertyChanged(string name = null)
         {
-            PropertyChanged?.Invoke(_bezoeker, new PropertyChangedEventArgs(name));
+            // We willen dat er bij de afspraken in het verleden nog altijd oude data terug gevonden wordt.
+            // Daarom nieuwe bezoeker een NIET de oude update.
+            if (PropertyChanged != null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
         }
-
-
     }
 }

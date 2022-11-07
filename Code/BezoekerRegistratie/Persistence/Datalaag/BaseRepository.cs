@@ -34,18 +34,18 @@ namespace Persistence.Datalaag
 
                 conn.Open();
 
-                string query = $"SELECT * FROM Bedrijven WHERE BedrijfId = {id};";
+                string query = $"SELECT * FROM Bedrijf WHERE BedrijfId = {id};";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     while (dataReader.Read())
                     {
-                        string naam = (string)dataReader["Naam"];
-                        string btw = (string)dataReader["BTW"];
-                        string email = (string)dataReader["Email"];
-                        string adres = (string)dataReader["Adres"];
-                        string telefoon = (string)dataReader["Telefoon"];
+                        string naam = (string)dataReader["naam"];
+                        string btw = (string)dataReader["btwNummer"];
+                        string email = (string)dataReader["email"];
+                        string adres = (string)dataReader["adres"];
+                        string telefoon = (string)dataReader["telefoon"];
 
                         bedrijf = new Bedrijf(naam, btw, adres, telefoon, email);
                     }

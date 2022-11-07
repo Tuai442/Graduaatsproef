@@ -48,3 +48,4 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.genruntimeconfig.cache
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\ref\BezoekerApp.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\CountryValidator.dll

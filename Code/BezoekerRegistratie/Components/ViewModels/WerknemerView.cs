@@ -1,41 +1,111 @@
-﻿using Controller.Models;
+﻿using Accessibility;
+using Components.Interfaces;
+using Components.ViewModels.overige;
+using Controller.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Components.ViewModels
 {
-    public class WerknemerView
+    public class WerknemerView : ILijstItems, INotifyPropertyChanged
     {
-        public Werknemer werknemer;
+        public Werknemer Werknemer;
+        private string _voornaam;
+        private string _achternaam;
+        private string _email;
+        private string _functie;
+        private string _bedrijf;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         [Hoofding("Voornaam")]
-        public string Voornaam { get; set; }
-
-        [Hoofding("Achternaam")]
-        public string Achternaam { get; set; }
-
-        [Hoofding("Email")]
-        public string Email { get; set; }
-
-        [Hoofding("Functie")]
-        public string Functie { get; set; }
-
-        [Hoofding("Bedrijf")]
-        public string Bedrijf { get; set; }
-
-        public WerknemerView(Werknemer werknemer)
+        public string Voornaam
         {
-            werknemer = werknemer;
-            Voornaam = werknemer.Voornaam;
-            Achternaam = werknemer.Achternaam;
-            Email = werknemer.Email;
-            Functie = werknemer.Functie;
-            Bedrijf = werknemer.Bedrijf.ToString();
+            get => _voornaam;
+            set
+            {
+                _voornaam = value;
+                Werknemer.Voornaam = value;
+                OnPropertyChanged(value);
+            }
         }
 
-        
+        [Hoofding("Achternaam")]
+        public string Achternaam
+        {
+            get => _achternaam;
+            set
+            {
+                _achternaam = value;
+                Werknemer.Achternaam = value;
+                OnPropertyChanged(value);
+            }
+        }
+
+        [Hoofding("Email")]
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                Werknemer.Email = value;
+                OnPropertyChanged(value);
+            }
+        }
+
+        [Hoofding("Functie")]
+        public string Functie
+        {
+            get => _functie;
+            set
+            {
+                _functie = value;
+                Werknemer.Functie = value;
+                OnPropertyChanged(value);
+            }
+        }
+
+        [Hoofding("Bedrijf")]
+        [CellType(CellType.ComboBox)]
+        public string Bedrijf
+        { 
+            get => _bedrijf;
+            set
+            {
+                _bedrijf = value;
+                //Werknemer.Bedrijf = value;
+                //OnPropertyChanged(value);
+            }
+        }
+
+       
+        // Lijst items
+        public string Id { get => Email; }
+        public string ItemNaam { get => $"{Voornaam} {Achternaam}"; }
+
+        public WerknemerView(Werknemer werkn)
+        {
+            Werknemer = werkn;
+            _voornaam = werkn.Voornaam;
+            _achternaam = werkn.Achternaam;
+            _email = werkn.Email;
+            _functie = werkn.Functie;
+            _bedrijf = werkn.Bedrijf.ToString();
+        }
+
+        private void OnPropertyChanged(string name = null)
+        {
+
+            if (PropertyChanged != null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
     }
 }

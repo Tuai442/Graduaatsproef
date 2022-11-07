@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "qmH7N00YYc0K1OggBFrIwoapIia83H2oDTQAPEtPAIIy/GUJivA3LFP2LSoGX61ZQjsYMP/9f7LKWtJY5l0yog==",
+  "dgSpecHash": "Bub4fDt4ZCCUBwxgyPOSA5jXhRCxwxs2UFJ/XPf1AilqSWc/wjJwBH5obsWKu3RsaGFOtRQb4JzCrqglz5IXvw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Tuur\\.nuget\\packages\\countryvalidator\\1.1.3\\countryvalidator.1.1.3.nupkg.sha512"
+  ],
   "logs": []
 }

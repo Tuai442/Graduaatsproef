@@ -1,4 +1,5 @@
-﻿using Controller;
+﻿using Components.ViewModels.overige;
+using Controller;
 using Controller.Models;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,13 @@ namespace Components.ViewModels
         [Hoofding("Is aanwezig")]
         public bool IsAanwezig { get; internal set; }
 
-        // --------------
         [Hoofding("Bezoekers Naam")]
         public string BezoekerNaam
         {
             get { return Afspraak.Bezoeker.GeefVolledigeNaam(); }
             set { }
         }
+
         [Hoofding("Werknemer Naam")]
         public string WerknemerNaam
         {

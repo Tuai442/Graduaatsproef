@@ -10,20 +10,22 @@ namespace Controller.Models
 {
     public class Bezoeker : Persoon
     {
+        public int Id;
+
         public string Nummerplaat { get; set; }
         public bool Aanwezig { get; set; }
         public string Bedrijf { get; set; }
         //(voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig)
-        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = true, string nummerplaat = "") :
+        public Bezoeker(int id, string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = true, string nummerplaat = "") :
             base(voornaam, achternaam, email)
         {
+            Id = id;
             Nummerplaat = nummerplaat;
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
-
         }
 
-        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, string nummerplaat, bool aanwezig ):
+        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig, string nummerplaat=null) :
             base(voornaam, achternaam, email)
         {
             Nummerplaat = nummerplaat;
@@ -54,6 +56,10 @@ namespace Controller.Models
             Aanwezig = false;
         }
 
-
+        public Bezoeker DeepCopy()
+        {
+            Bezoeker bezoekerCopy = (Bezoeker)this.MemberwiseClone();
+            return bezoekerCopy;
+        }
     }
 }
