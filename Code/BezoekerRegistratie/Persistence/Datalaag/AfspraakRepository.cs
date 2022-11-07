@@ -131,7 +131,7 @@ namespace Persistence.Datalaag
                     IDataReader dataReader = command.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        Afspraak afspraak = new Afspraak((Bezoeker)dataReader["bezoekerId"],(Werknemer)dataReader["werknemerId"],(DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"]);
+                        Afspraak afspraak = new Afspraak((int)dataReader["afspraakId"], (Bezoeker)dataReader["bezoekerId"],(Werknemer)dataReader["werknemerId"],(DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"]);
 
                         afspraken.Add(afspraak);
                     }
