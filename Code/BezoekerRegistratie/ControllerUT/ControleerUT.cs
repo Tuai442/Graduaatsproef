@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Controller.Exceptions;
 using Controller.Models;
+//using Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,5 +103,43 @@ namespace ControllerUT
             Afspraak f = new Afspraak(0, bezoeker, werknemer, DateTime.Now, DateTime.Now);
             Assert.Throws<UitLogException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
         }
+
+        [Theory]
+        [InlineData("1-ABC-123")]
+        [InlineData("2-ABC-123")]
+        [InlineData("ABC-123")]
+        public void ControleNummerplaat_Valid(string nummerplaat)
+        {
+            Controleer.ControleNummerplaat(nummerplaat);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("1ABC-123")]
+        [InlineData("1-ABC123")]
+        [InlineData("1-AC-123")]
+        [InlineData("1-ABC-23")]
+        [InlineData("3-ABC-123")]
+        [InlineData("2ABC123")]
+        public void ControleNummerplaat_Invalid(string nummerplaat)
+        {
+            Assert.Throws<BezoekerException>(() => Controleer.ControleNummerplaat(nummerplaat));
+        }
+
+        [Fact]
+        public void SetStringParameters_Valid()
+        {
+            string s = Controleer.SetStringParameters("Neal");
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void SetStringParameters_Invalid(string s)
+        {
+            Assert.Throws<Exception>(() => Controleer.SetStringParameters(s));
+        }
+
     }
 }
