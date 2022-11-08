@@ -18,11 +18,9 @@ namespace Persistence.Datalaag
     public class AfspraakRepository : BaseRepository,  IAfspraakRepository
     {
 
-        private string connectionString;
 
-        public AfspraakRepository(string connectionString)
+        public AfspraakRepository()
         {
-            this.connectionString = connectionString;
         }
         private SqlConnection GetConnection()
         {

@@ -23,7 +23,7 @@ namespace Persistence.Datalaag
             return connection;
         }
 
-
+        
         // Deze methode's worden alleen gebruikt voor data in te laden
         protected Bedrijf GeefBedrijfOpId(int id)
         {

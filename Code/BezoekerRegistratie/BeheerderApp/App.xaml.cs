@@ -18,7 +18,6 @@ namespace BeheerderApp
     /// </summary>
     public partial class App : Application
     {
-        private string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
 
         IBedrijfRepository bedrijfRepository = new BedrijfRepository();
         IWerknemerRepository werknemerRepository = new WerknemerRepository();
@@ -30,8 +29,8 @@ namespace BeheerderApp
 
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
-            bezoekerRepository = new BezoekerRepository(_connectionString);
-            afspraakRepository = new AfspraakRepository(_connectionString);
+            bezoekerRepository = new BezoekerRepository();
+            afspraakRepository = new AfspraakRepository();
             _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
             bedrijfRepository, afspraakRepository);
 
