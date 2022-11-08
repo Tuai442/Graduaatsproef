@@ -12,13 +12,11 @@ using System.Threading.Tasks;
 
 namespace Persistence
 {
-    public class BezoekerRepository : IBezoekerRepository
+    public class BezoekerRepository : BaseRepository , IBezoekerRepository
     {
-        private string connectionString;
 
-        public BezoekerRepository(string connectionString)
+        public BezoekerRepository()
         {
-            this.connectionString = connectionString;
         }
 
         private SqlConnection GetConnection()
