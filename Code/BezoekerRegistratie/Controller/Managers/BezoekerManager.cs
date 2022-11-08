@@ -42,6 +42,7 @@ namespace Controller.Managers
             return _bezoekerRepository.ZoekBezoekersOp(zoekText).AsReadOnly();
         }
 
+
         public void MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email, 
             string bedrijfBezoeker, string emailContactPersoon)
         {

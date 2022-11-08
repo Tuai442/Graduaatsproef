@@ -26,7 +26,6 @@ namespace BezoekerApp
 
         DomeinController _domeinController;
 
-
         MainWindow mainWindow;
 
         protected void ApplicationStart(object sender, StartupEventArgs e)
@@ -39,7 +38,6 @@ namespace BezoekerApp
             _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
             bedrijfRepository, afspraakRepository);
 
-         
             mainWindow = new MainWindow(_domeinController);
             mainWindow.Show();
 

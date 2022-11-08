@@ -57,15 +57,15 @@ namespace Components
 
         private object _aanHetVeranderen;
 
-        public void StelDataIn<T>(IEnumerable viewModel)
+        public void StelDataIn<T>(IEnumerable viewModel, List<string> extraInfo = null)
         {
             _data = viewModel;
             dataGrid.ItemsSource = null;
-            MaakHoofding<T>(viewModel);
+            MaakHoofding<T>(viewModel, extraInfo);
             dataGrid.ItemsSource = viewModel;
         }
 
-        private void MaakHoofding<T>(IEnumerable viewModel)
+        private void MaakHoofding<T>(IEnumerable viewModel, List<string> extraInfo = null)
         {
             dataGrid.Columns.Clear();
             Dictionary<string, string> hoofding = HoofdingManager.GeefHoofding<T>();
@@ -73,16 +73,20 @@ namespace Components
             foreach (string key in hoofding.Keys)
             {
                 if (cellTypes.ContainsKey(key))
-                {
-                    DataGridComboBoxColumn c = new DataGridComboBoxColumn();
-                    c.Header = hoofding[key];
-                    List<string> test = new List<string>
-                    {
-                        "A", "B"
-                    };
-                    c.ItemsSource = test;
-                    c.SelectedItemBinding = new Binding(key);
-                    dataGrid.Columns.Add(c);
+                { 
+                    DataGridTemplateColumn dataGridTemplateColumn = new DataGridTemplateColumn();
+                    DataTemplate dataTemplate = new DataTemplate();
+                    FrameworkElementFactory comboBox = new FrameworkElementFactory(typeof(ComboBox)); ;
+
+                    comboBox.SetValue(NameProperty, new Binding("cc" + dataGridTemplateColumn.Header));
+                    comboBox.SetValue(ComboBox.ItemsSourceProperty, extraInfo);
+                    comboBox.SetValue(ComboBox.SelectedIndexProperty, 0);
+
+                    dataTemplate.VisualTree = comboBox;
+                    dataGridTemplateColumn.CellTemplate = dataTemplate;
+                    dataGridTemplateColumn.Header = key;
+                    dataGrid.Columns.Add(dataGridTemplateColumn);
+
                 }
                 else
                 {

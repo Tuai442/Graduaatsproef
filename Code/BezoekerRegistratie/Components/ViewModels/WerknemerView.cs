@@ -96,6 +96,7 @@ namespace Components.ViewModels
             _email = werkn.Email;
             _functie = werkn.Functie;
             _bedrijf = werkn.Bedrijf.ToString();
+            
         }
 
         private void OnPropertyChanged(string name = null)

@@ -44,6 +44,7 @@ namespace BeheerderApp.Paginas
         private List<BezoekerView> _bezoekerViews = new List<BezoekerView>(); 
         private List<AfspraakView> _afspraakViews = new List<AfspraakView>();
         private List<BedrijfView> _bedrijfViews = new List<BedrijfView>();
+        private List<string> bedrijven = new List<string>();
         public BeheerderPagina(DomeinController domeinController)
         {
             InitializeComponent();
@@ -138,6 +139,9 @@ namespace BeheerderApp.Paginas
                 //dataGrid.Visibility = Visibility.Collapsed;
                 if (_werknemerViews.Count == 0)
                 {
+                    IReadOnlyList<Bedrijf> bedrijfModels = _bedrijfManager.GeefAlleBedrijven();
+                    bedrijven = bedrijfModels.Select(x => x.Naam).ToList();
+
                     IReadOnlyList<Werknemer> werknemers = _werknemerManger.GeefAlleWerknemers();
                     foreach (Werknemer werknemer in werknemers)
                     {
@@ -150,7 +154,7 @@ namespace BeheerderApp.Paginas
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
 
-                dataGrid.StelDataIn<WerknemerView>(_werknemerViews);
+                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijven);
                 //werknemerDataGrid.StelDataIn(_werknemerViews);
                 //dataGrid.StelDataIn<WerknemerView>(_werknemerViews);
 
