@@ -1,4 +1,5 @@
-﻿using Controller.Models;
+﻿using Controller.Exceptions;
+using Controller.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace ControllerUT
         [InlineData("")]
         public void Werknemer_Invalid(string functie)
         {
-            Assert.Throws<Exception>(() => new Werknemer(1, "Tuur", "VanH", "T@gmail.com", functie, b));
+            Assert.Throws<ControleerException>(() => new Werknemer(1, "Tuur", "VanH", "T@gmail.com", functie, b));
         }
     }
 }

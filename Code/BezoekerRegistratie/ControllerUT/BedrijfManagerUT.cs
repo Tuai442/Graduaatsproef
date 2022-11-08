@@ -21,7 +21,7 @@ namespace ControllerUT
             manager = new BedrijfManager(_repo);
         }
 
-        //TODO: kan niet communiceren met datalaag doordat databank lokaal is
+        //TODO: exception door btw controle
         [Fact]
         public void ControleVoegNieuwBedrijfToe_Valid()
         {

@@ -30,9 +30,10 @@ namespace ControllerUT
         [InlineData("048722888558558787")]
         public void ControleTelefoon_Invalid(string telefoon)
         {
-            Assert.Throws<BedrijfException>(() => Controleer.ControleTelefoon(telefoon));
+            Assert.Throws<ControleerException>(() => Controleer.ControleTelefoon(telefoon));
         }
 
+        //TODO: hoe controle doen via api
         [Theory]
         [InlineData("BE 0123.321.123")]
         [InlineData("BE0123.321.123")]
@@ -53,7 +54,7 @@ namespace ControllerUT
         [InlineData("BE 1212121122")]
         public void ControleBTW_Invalid(string btw)
         {
-            Assert.Throws<BedrijfException>(() => Controleer.BtwNummerControle(btw));
+            Assert.Throws<ControleerException>(() => Controleer.BtwNummerControle(btw));
         }
 
         [Theory]
@@ -76,7 +77,7 @@ namespace ControllerUT
         [InlineData("015@ergeg")]
         public void ControleEmail_Invalid(string email)
         {
-            Assert.Throws<BedrijfException>(() => Controleer.ControleEmail(email));
+            Assert.Throws<ControleerException>(() => Controleer.ControleEmail(email));
         }
 
         [Fact]
@@ -92,7 +93,7 @@ namespace ControllerUT
         public void ControleIsAfspraakAlAfgesloten_Null_Invalid()
         {
             Afspraak f = null;
-            Assert.Throws<UitLogException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
+            Assert.Throws<ControleerException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
         }
 
         [Fact]
@@ -101,7 +102,7 @@ namespace ControllerUT
             Bezoeker bezoeker = null;
             Werknemer werknemer = null;
             Afspraak f = new Afspraak(0, bezoeker, werknemer, DateTime.Now, DateTime.Now);
-            Assert.Throws<UitLogException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
+            Assert.Throws<ControleerException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
         }
 
         [Theory]
@@ -124,7 +125,7 @@ namespace ControllerUT
         [InlineData("2ABC123")]
         public void ControleNummerplaat_Invalid(string nummerplaat)
         {
-            Assert.Throws<BezoekerException>(() => Controleer.ControleNummerplaat(nummerplaat));
+            Assert.Throws<ControleerException>(() => Controleer.ControleNummerplaat(nummerplaat));
         }
 
         [Fact]
@@ -138,7 +139,7 @@ namespace ControllerUT
         [InlineData("")]
         public void SetStringParameters_Invalid(string s)
         {
-            Assert.Throws<Exception>(() => Controleer.SetStringParameters(s));
+            Assert.Throws<ControleerException>(() => Controleer.SetStringParameters(s));
         }
 
     }

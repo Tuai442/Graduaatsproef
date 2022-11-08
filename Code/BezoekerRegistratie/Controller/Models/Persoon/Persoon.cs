@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class Persoon 
-    { 
-        public string Voornaam { get; set; }
-        public string Achternaam { get; set; }
+    public class Persoon
+    {
+        private string voornaam;
+        private string achternaam;
+
+        public string Voornaam { get => voornaam; set => voornaam = Controleer.SetStringParameters(value); }
+        public string Achternaam { get => achternaam; set => achternaam = Controleer.SetStringParameters(value); }
         public string Email { get; set; }
-        
+
         public Persoon(string voornaam, string achternaam, string email)
         {
             Voornaam = voornaam;
@@ -32,11 +35,11 @@ namespace Controller.Models
                 {"Voornaam", Voornaam},
                 {"Achternaam", Achternaam},
                 {"Email", Email},
-                
+
             };
             return result;
         }
 
-      
+
     }
 }
