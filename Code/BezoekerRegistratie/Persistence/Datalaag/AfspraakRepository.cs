@@ -155,6 +155,31 @@ namespace Persistence.Datalaag
         }
         public void UpdateAfspraak(Afspraak afspraak)
         {
+            string query = "update dbo.Afspraak set eindtijd=@eindtijd where afspraakId=@afspraakId";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@afspraakId", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@eindtijd", SqlDbType.DateTime));
+                    command.Parameters["@afspraakId"].Value = afspraak.Id;
+                    command.Parameters["@eindtijd"].Value = afspraak.EindTijd;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    AfspraakException ae = new AfspraakException("Update is niet gelukt", e);
+                    ae.Data.Add("Afspraak", afspraak);
+                    throw ae;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+
+            }
         }
         public List<Afspraak> ZoekAfspraakOp(string zoekText)
         {
