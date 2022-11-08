@@ -74,7 +74,7 @@ namespace Persistence.Datalaag
 
                 conn.Open();
 
-                string query = $"SELECT * FROM Werknemers WHERE WerknemerId = {id};";
+                string query = $"SELECT * FROM Werknemer WHERE werknemerId = {id};";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -115,7 +115,7 @@ namespace Persistence.Datalaag
             {
                 conn.Open();
 
-                string query = $"SELECT * FROM Werknemers WHERE email = '{email}';";
+                string query = $"SELECT * FROM Werknemer WHERE email = '{email}';";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
@@ -138,6 +138,47 @@ namespace Persistence.Datalaag
                 conn.Close();
             }
             return id;
+        }
+
+        protected Bezoeker GeefBezoekerOpId(int id)
+        {
+            SqlConnection conn = GetConnection();
+            Bezoeker bezoeker = null;
+            try
+            {
+
+                conn.Open();
+
+                string query = $"SELECT * FROM Bezoeker WHERE bezoekerId = {id};";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        int idd = (int)dataReader["bezoekerId"];
+                        string voornaam = (string)dataReader["voornaam"];
+                        string achternaam = (string)dataReader["achternaam"];
+                        string email = (string)dataReader["email"];
+                        bool aanwezig = Convert.ToBoolean(dataReader["aanwezig"]);
+                        string bedrijf = (string)dataReader["bedrijf"];
+
+                        bezoeker = new Bezoeker(idd, voornaam, achternaam, email, bedrijf, aanwezig);
+                    }
+
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new BedrijfException(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return bezoeker;
         }
     }
 }

@@ -80,7 +80,7 @@ namespace Components
                     {
                         "A", "B"
                     };
-                    c.ItemsSource = new Binding(key);
+                    c.ItemsSource = test;
                     c.SelectedItemBinding = new Binding(key);
                     dataGrid.Columns.Add(c);
                 }

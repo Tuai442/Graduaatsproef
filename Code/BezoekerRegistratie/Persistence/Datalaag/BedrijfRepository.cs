@@ -61,9 +61,32 @@ namespace Persistence.Datalaag
             return bedrijven;
         }
 
-        public Bedrijf GeefBedrijfOpNaam(string bedrijf)
+        public Bedrijf GeefBedrijfOpNaam(string bedrijfNaam)
         {
-            throw new NotImplementedException();
+            string query = "SELECT * from dbo.Bedrijf where naam=@naam";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@naam", bedrijfNaam);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+                    Bedrijf bedrijf = new Bedrijf((int)dataReader["BedrijfId"],(string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
+                    dataReader.Close();
+                    Console.WriteLine(bedrijf);
+                    return bedrijf;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef bedrijf is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public void VoegNieuwBedrijfToe(Bedrijf bedrijf)
@@ -181,7 +204,7 @@ namespace Persistence.Datalaag
                     command.Parameters.AddWithValue("@id", id);
                     IDataReader dataReader = command.ExecuteReader();
                     dataReader.Read();
-                    Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
+                    Bedrijf bedrijf = new Bedrijf((int)dataReader["BedrijfId"], (string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
                     dataReader.Close();
                     Console.WriteLine(bedrijf);
                     return bedrijf;
@@ -243,6 +266,7 @@ namespace Persistence.Datalaag
         {
             throw new NotImplementedException();
         }
+
     }
 }
 //Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);   

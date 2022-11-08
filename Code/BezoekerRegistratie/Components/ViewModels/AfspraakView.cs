@@ -3,13 +3,14 @@ using Controller;
 using Controller.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Components.ViewModels
 {
-    public class AfspraakView
+    public class AfspraakView: INotifyPropertyChanged
     {
 
         public int Id { get; set; }
@@ -48,5 +49,17 @@ namespace Components.ViewModels
             BezoekerNaam = Afspraak.BezoekerNaam;
             WerknemerNaam = Afspraak.WerknemerNaam;
         }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void OnPropertyChanged(string name = null)
+        {
+            // We willen dat er bij de afspraken in het verleden nog altijd oude data terug gevonden wordt.
+            // Daarom nieuwe bezoeker een NIET de oude update.
+            if (PropertyChanged != null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
     }
 }

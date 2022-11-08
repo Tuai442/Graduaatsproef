@@ -68,7 +68,7 @@ namespace Controller.Managers
 
         public void UpdateBedrijf(Bedrijf bedrijf)
         {
-            _bedrijfRepository.UpdateBedrijf(bedrijf);
+            _bedrijfRepository.UpdateBedrijfGegevens(bedrijf);
         }
     }
 }

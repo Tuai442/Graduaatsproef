@@ -31,3 +31,4 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debu
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\Vuilbak.genruntimeconfig.cache
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\obj\Debug\net6.0\ref\Vuilbak.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Vuilbak\bin\Debug\net6.0\CountryValidator.dll

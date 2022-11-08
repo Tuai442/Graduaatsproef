@@ -51,7 +51,7 @@ namespace BezoekerApp.Paginas
             contactComboBox.VoegLijstToe(werknemerItems);
 
             bedrijfComboBox.GeSelecteerd += BedrijfGeselecteerd;
-            contactComboBox.GeSelecteerd += ContactPersoonGeselecteerd;
+            //contactComboBox.GeSelecteerd += ContactPersoonGeselecteerd;
 
             AanmeldKnop.ButtonClick += PersoonAanmelden;
         }
@@ -80,12 +80,12 @@ namespace BezoekerApp.Paginas
             List<ILijstItems> werknemerItems = werknemers.Select(x => (ILijstItems)new WerknemerView(x)).ToList();
             contactComboBox.VoegLijstToe(werknemerItems);
         }
-        private void ContactPersoonGeselecteerd(object? sender, string value)
-        {
-            IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefBedrijvenOpEmailWerknemer(value);
-            List<ILijstItems> bedrijfItems = bedrijven.Select(x => (ILijstItems)new BedrijfView(x)).ToList();
-            bedrijfComboBox.VoegLijstToe(bedrijfItems);
-        }
+        //private void ContactPersoonGeselecteerd(object? sender, string value)
+        //{
+        //    IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefBedrijvenOpEmailWerknemer(value);
+        //    List<ILijstItems> bedrijfItems = bedrijven.Select(x => (ILijstItems)new BedrijfView(x)).ToList();
+        //    bedrijfComboBox.VoegLijstToe(bedrijfItems);
+        //}
         private void GaTerug(object? sender, EventArgs e)
         {
             NavigationService.GoBack();

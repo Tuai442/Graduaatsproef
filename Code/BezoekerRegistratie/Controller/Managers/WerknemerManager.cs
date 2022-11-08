@@ -29,7 +29,7 @@ namespace Controller.Managers
 
         public void UpdateWerknemer(Werknemer werknemer)
         {
-            _werknemerRepository.UpdateWerknemer(werknemer);
+            _werknemerRepository.UpdateWerknemerGegevens(werknemer);
         }
 
         public IReadOnlyList<Werknemer> ZoekOp(string zoekText)

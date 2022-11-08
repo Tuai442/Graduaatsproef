@@ -15,7 +15,7 @@ using System.Data.SqlTypes;
 
 namespace Persistence.Datalaag
 {
-    public class AfspraakRepository : IAfspraakRepository
+    public class AfspraakRepository : BaseRepository,  IAfspraakRepository
     {
 
         private string connectionString;
@@ -43,8 +43,9 @@ namespace Persistence.Datalaag
                     command.Parameters.Add(new SqlParameter("@eindTijd", SqlDbType.DateTime));
                     command.Parameters.Add(new SqlParameter("@werknemerId", SqlDbType.Int));
                     command.Parameters.Add(new SqlParameter("@bezoekerId", SqlDbType.Int));
+
                     command.Parameters["@startTijd"].Value = afspraak.StartTijd;
-                    command.Parameters["@eindTijd"].Value = afspraak.EindTijd;
+                    command.Parameters["@eindTijd"].Value = afspraak.EindTijd; // TODO: moet mogelijk zijn om null in te steken
                     command.Parameters["@werknemerId"].Value = afspraak.Werknemer.Id;
                     command.Parameters["@bezoekerId"].Value = afspraak.Bezoeker.Id;
                     command.ExecuteNonQuery();
@@ -116,8 +117,7 @@ namespace Persistence.Datalaag
         }
         public List<Afspraak> GeefAlleAfspraken()
         {
-            string query = "SELECT startTijd, eindTijd, bezoekerId, werknemerId from dbo.Afspraak" +
-                "JOIN Bezoeker.bezoekerId on bezoekerId";
+            string query = "SELECT startTijd, eindTijd, bezoekerId, werknemerId from dbo.Afspraak;";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -128,8 +128,10 @@ namespace Persistence.Datalaag
                     IDataReader dataReader = command.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        Bezoeker bezoeker = (Bezoeker)dataReader["bezoekerId"];
-                        Werknemer werknemer = (Werknemer)dataReader["werknemerId"];
+                        int bezoekerId = (int)dataReader["bezoekerId"];
+                        Bezoeker bezoeker = GeefBezoekerOpId(bezoekerId);
+                        int werknemerId = (int)dataReader["werknemerId"];
+                        Werknemer werknemer = GeefWerknemerOpId(werknemerId);
                         DateTime startTijd = (DateTime)dataReader["startTijd"];
                         DateTime? eindTijd = (DateTime)dataReader["eindTijd"]; ;
                         Afspraak afspraak = new Afspraak(bezoeker, werknemer, startTijd, eindTijd);
@@ -197,6 +199,48 @@ namespace Persistence.Datalaag
         public List<Afspraak> GeefAlleAanwezigeAfspraken()
         {
             throw new NotImplementedException();
+        }
+
+        public Afspraak GeefAfspraakOpBezoekerId(int id)
+        {
+            string query = "SELECT * from dbo.Afspraak where bezoekerId=@id";
+            SqlConnection conn = GetConnection();
+            Afspraak afspraak = null;
+
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@id", id);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+
+                    if (dataReader.Read())
+                    {
+                        int bezoekerId = (int)dataReader["bezoekerId"];
+                        Bezoeker bezoeker = GeefBezoekerOpId(bezoekerId);
+                        int werknemerId = (int)dataReader["werknemerId"];
+                        Werknemer werknemer = GeefWerknemerOpId(werknemerId);
+                        DateTime startTijd = (DateTime)dataReader["startTijd"];
+                        DateTime? eindTijd = (DateTime)dataReader["eindTijd"]; ;
+                        afspraak = new Afspraak(bezoeker, werknemer, startTijd, eindTijd);
+                    }
+
+                     
+                    dataReader.Close();
+                    return afspraak;
+                }
+                catch (Exception e)
+                {
+                    throw new AfspraakException("Geef afspraak is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+                return null;
+            }
         }
     }
 }

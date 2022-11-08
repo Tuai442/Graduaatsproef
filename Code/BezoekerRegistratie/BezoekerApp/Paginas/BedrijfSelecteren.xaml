@@ -52,7 +52,7 @@
                     <UIC:ZoekbareComboBox Width="100" Height="20"
                                           Margin="10"
                                           x:Name="bedrijfComboBox"
-                                          ItemsSource="{Binding Bedrijf}"
+                                          
                                           />
                 </StackPanel>
 

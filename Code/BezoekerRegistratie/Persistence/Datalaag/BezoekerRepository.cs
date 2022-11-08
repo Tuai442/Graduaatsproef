@@ -1,5 +1,6 @@
 ﻿using Controller.Interfaces;
 using Controller.Models;
+using CountryValidation.Countries;
 using Persistence.Datalaag;
 using System;
 using System.Collections.Generic;
@@ -44,8 +45,8 @@ namespace Persistence
                     command.Parameters["@achternaam"].Value = bezoeker.Achternaam;
                     command.Parameters["@email"].Value = bezoeker.Email;
                     command.Parameters["@bedrijf"].Value = bezoeker.Bedrijf;
-                    command.Parameters["@nummerplaat"].Value = bezoeker.Nummerplaat;
-                    command.Parameters["@aanwezig"].Value = bezoeker.Aanwezig;
+                    command.Parameters["@nummerplaat"].Value = "test";// Nog niet van toepassing
+                    command.Parameters["@aanwezig"].Value = Convert.ToInt32(bezoeker.Aanwezig);
                     command.ExecuteNonQuery();
                 }
                 catch (Exception e)
@@ -130,24 +131,31 @@ namespace Persistence
                     conn.Open();
                     command.Parameters.AddWithValue("@email", email);
                     IDataReader dataReader = command.ExecuteReader();
-                    dataReader.Read();
-                    Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["bedrijf"], (bool)dataReader["aanwezig"], (string)dataReader["nummerplaat"]);
-                    dataReader.Close();
-                    Console.WriteLine(bezoeker);
-                    return bezoeker;
+                    if (dataReader.Read())
+                    {
+                        // string nummerplaat = (string)dataReader["nummerplaat"]; // Kan niet gedaan worden omdat we geen data in dit veld hebben.
+                        string nummerplaat = "";
+                        bool aanwezig = Convert.ToBoolean(dataReader["aanwezig"]);
+                        Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["bedrijf"], aanwezig, nummerplaat);
+                        dataReader.Close();
+                        return bezoeker;
+                    }
                 }
                 catch (Exception e)
                 {
-                    throw new BedrijfException("Geef bezoeker op email is niet gelukt", e);
+                    throw new BezoekerException("Geef bezoeker op email is niet gelukt", e);
                 }
                 finally
                 {
                     conn.Close();
                 }
+                return null;
             }
         }
         public void UpdateBezoeker(Bezoeker bezoeker)
         {
+            // Alleen gebruiken bij wijziging van aanwezigheid
+
         }
 
         public List<Bezoeker> GeefAlleAanwezigeBezoekers(bool aanwezig)
@@ -189,7 +197,12 @@ namespace Persistence
         {
 
             //weet niet welk statement er hier moet
-            string query = "SELECT * from dbo.Bezoeker where ";
+            string query = $"SELECT * from dbo.Bezoeker where " +
+                $"voornaam like '{zoekText}%' or " +
+                $"achternaam like '{zoekText}%' or " +
+                $"bedrijf like '{zoekText}%' or " +
+                $"email like '{zoekText}%'; ";
+
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -197,18 +210,23 @@ namespace Persistence
                 {
                     List<Bezoeker> bezoekers = new List<Bezoeker>();
                     conn.Open();
-                    command.Parameters.AddWithValue("@zoektext", zoekText);
+
                     IDataReader dataReader = command.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["bedrijf"], (bool)dataReader["aanwezig"], (string)dataReader["nummerplaat"]);
+                        int id = (int)dataReader["bezoekerId"];
+                        string voornaam = (string)dataReader["voornaam"];
+                        string achternaam = (string)dataReader["achternaam"];
+                        string email = (string)dataReader["email"];
+                        string bedrijf = (string)dataReader["bedrijf"];
+                        string nummerplaat = (string)dataReader["nummerplaat"];
+
+                        bool aanwezig = Convert.ToBoolean(dataReader["aanwezig"]);
+                        Bezoeker bezoeker = new Bezoeker(id, voornaam, achternaam, email, bedrijf, aanwezig, nummerplaat);
                         bezoekers.Add(bezoeker);
                     }
                     dataReader.Close();
-                    foreach (Bezoeker bezoeker in bezoekers)
-                    {
-                        Console.WriteLine(bezoeker);
-                    }
+
                     return bezoekers;
                 }
                 catch (Exception ex)
@@ -235,7 +253,7 @@ namespace Persistence
                     command.Parameters.AddWithValue("@voornaam", voornaam);
                     command.Parameters.AddWithValue("@achternaam", achternaam);
                     IDataReader dataReader = command.ExecuteReader();
-                    Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["bedrijf"], (bool)dataReader["aanwezig"], (string)dataReader["nummerplaat"]);                    
+                    Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["bedrijf"], (bool)dataReader["aanwezig"], (string)dataReader["nummerplaat"]);
                     dataReader.Close();
                     Console.WriteLine(bezoeker);
                     return bezoeker;
@@ -260,7 +278,10 @@ namespace Persistence
         {
             throw new NotImplementedException();
         }
+
+      
     }
+    
     
 }
 

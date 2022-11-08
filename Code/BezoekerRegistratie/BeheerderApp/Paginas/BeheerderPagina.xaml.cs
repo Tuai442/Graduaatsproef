@@ -139,7 +139,12 @@ namespace BeheerderApp.Paginas
                 if (_werknemerViews.Count == 0)
                 {
                     IReadOnlyList<Werknemer> werknemers = _werknemerManger.GeefAlleWerknemers();
-                    _werknemerViews = werknemers.Select(x => new WerknemerView(x)).ToList();
+                    foreach (Werknemer werknemer in werknemers)
+                    {
+                        WerknemerView werknemerView = new WerknemerView(werknemer);
+                        werknemerView.PropertyChanged += UpdateWerknemer;
+                        _werknemerViews.Add(werknemerView);
+                    }
                 }
 
                 Components.CheckBox check = (Components.CheckBox)sender;
@@ -160,16 +165,16 @@ namespace BeheerderApp.Paginas
                 werknemerDataGrid.Visibility = Visibility.Hidden;
                 dataGrid.Visibility = Visibility.Visible;
 
-                //if (_bezoekerViews.Count == 0)
-                //{
-                //    IReadOnlyList<Bezoeker> bezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
-                //    foreach (Bezoeker bezoeker in bezoekers)
-                //    {
-                //        BezoekerView bezoekerView = new BezoekerView(bezoeker);
-                //        //bezoekerView.PropertyChanged += UpdateBezoeker;
-                //        _bezoekerViews.Add(bezoekerView);
-                //    }
-                //}
+                if (_bezoekerViews.Count == 0)
+                {
+                    IReadOnlyList<Bezoeker> bezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
+                    foreach (Bezoeker bezoeker in bezoekers)
+                    {
+                        BezoekerView bezoekerView = new BezoekerView(bezoeker);
+                        bezoekerView.PropertyChanged += UpdateBezoeker;
+                        _bezoekerViews.Add(bezoekerView);
+                    }
+                }
 
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
@@ -188,11 +193,16 @@ namespace BeheerderApp.Paginas
                 werknemerDataGrid.Visibility = Visibility.Hidden;
                 dataGrid.Visibility = Visibility.Visible;
 
-                //if (_afspraakViews.Count == 0)
-                //{
-                //    IReadOnlyList<Afspraak> af = _afspraakManager.GeefAlleAfspraken();
-                //    _afspraakViews = af.Select(x => new AfspraakView(x)).ToList();
-                //}
+                if (_afspraakViews.Count == 0)
+                {
+                    IReadOnlyList<Afspraak> afspraken = _afspraakManager.GeefAlleAfspraken();
+                    foreach (Afspraak afspraak in afspraken)
+                    {
+                        AfspraakView afspraakView = new AfspraakView(afspraak);
+                        afspraakView.PropertyChanged += UpdateAfspraak;
+                        _afspraakViews.Add(afspraakView);
+                    }
+                }
 
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
@@ -210,11 +220,16 @@ namespace BeheerderApp.Paginas
             {
                 werknemerDataGrid.Visibility = Visibility.Hidden;
                 dataGrid.Visibility = Visibility.Visible;
-                //if (_bedrijfViews.Count == 0)
-                //{
-                //    IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
-                //    _bedrijfViews = bedrijven.Select(x => new BedrijfView(x)).ToList();
-                //}
+                if (_bedrijfViews.Count == 0)
+                {
+                    IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+                    foreach (Bedrijf bedrijf in bedrijven)
+                    {
+                        BedrijfView bedrijfView = new BedrijfView(bedrijf);
+                        bedrijfView.PropertyChanged += UpdateBedrijf;
+                        _bedrijfViews.Add(bedrijfView);
+                    }
+                }
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
 
@@ -223,14 +238,28 @@ namespace BeheerderApp.Paginas
             }
             
         }
+
         // -------------------------------------------------
 
-        // Updates
-
+        // Updates - Mogen we dit niet rechtstreeks naar de managers leggen ?
+        private void UpdateWerknemer(object? sender, PropertyChangedEventArgs e)
+        {
+            WerknemerView werknemerView = (WerknemerView)sender;
+            _werknemerManger.UpdateWerknemer(werknemerView.Werknemer);
+        }
         private void UpdateBezoeker(object? sender, PropertyChangedEventArgs e)
         {
             BezoekerView bezoekerView = (BezoekerView)sender;
             _bezoekerManger.UpdateBezoeker(bezoekerView.Bezoeker);
+        }
+        private void UpdateAfspraak(object? sender, PropertyChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void UpdateBedrijf(object? sender, PropertyChangedEventArgs e)
+        {
+            BedrijfView bedrijfView = (BedrijfView)sender;
+            _bedrijfManager.UpdateBedrijf(bedrijfView.Bedrijf);
         }
 
         // -------------------------------------------------
@@ -281,7 +310,12 @@ namespace BeheerderApp.Paginas
 
         private void herlaadBtn_Click(object sender, RoutedEventArgs e)
         {
-            dataGrid.StelDataIn<BezoekerView>(_bezoekerViews);
+            
+            _bezoekerViews = new List<BezoekerView>();
+            _bedrijfViews = new List<BedrijfView>();
+            _afspraakViews = new List<AfspraakView>();
+            _werknemerViews = new List<WerknemerView>();
+            dataGrid.StelDataIn<object>(null);
         }
     }
 }

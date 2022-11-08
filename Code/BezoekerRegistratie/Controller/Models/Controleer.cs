@@ -16,6 +16,7 @@ namespace Controller.Models
     {
         public static void ControleIsBezoekerAlAanwezig(Bezoeker bezoeker)
         {
+            if (bezoeker == null) throw new BezoekerException("Bezoeker staat niet in de databank");
             if (!bezoeker.Aanwezig) throw new BezoekerException("ControleAanwezigheid - Bezoeker niet aanwezig");
         }
 
@@ -65,6 +66,11 @@ namespace Controller.Models
         internal static void LegeVelden(string vnBezoeker, string anBezoeker, string email, string emailContactPersoon, string bedrijfBezoeker)
         {
             // TODO: controle Lege velden.
+        }
+
+        internal static void BezoekerIsAlAangemeld(Bezoeker bezoekerMetId)
+        {
+            if (bezoekerMetId.Aanwezig) throw new BezoekerException("Je bent al aanwezig");
         }
     }
 }

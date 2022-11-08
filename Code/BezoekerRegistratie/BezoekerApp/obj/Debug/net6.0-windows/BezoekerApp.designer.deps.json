@@ -17,6 +17,14 @@
           }
         }
       },
+      "CountryValidator/1.1.3": {
+        "runtime": {
+          "lib/netstandard2.1/CountryValidator.dll": {
+            "assemblyVersion": "1.1.0.3",
+            "fileVersion": "1.1.0.3"
+          }
+        }
+      },
       "FontAwesome.WPF/4.7.0.9": {
         "runtime": {
           "lib/net40/FontAwesome.WPF.dll": {
@@ -173,6 +181,13 @@
       "sha512": "sha512-0Rmg0zI5AFu1O/y//o9VGyhxKjhggWpk9mOA1tp0DEVx40c61bs+lnQv+0jUq8XbniF7FKgIVvI1perqiMtLrA==",
       "path": "automapper/12.0.0",
       "hashPath": "automapper.12.0.0.nupkg.sha512"
+    },
+    "CountryValidator/1.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bYqED+A2smQ2qMna3wOIsXle1Is2GkwcRGNfFFnTanY5Jrx4uxL7Y+iPRn91FddKGsVPbpOP6K9BjnHzMEYxbQ==",
+      "path": "countryvalidator/1.1.3",
+      "hashPath": "countryvalidator.1.1.3.nupkg.sha512"
     },
     "FontAwesome.WPF/4.7.0.9": {
       "type": "package",

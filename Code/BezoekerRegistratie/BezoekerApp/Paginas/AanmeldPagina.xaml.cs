@@ -103,18 +103,21 @@ namespace BezoekerApp.Paginas
             bedrijfInvulveld.Text = "";
         }
 
-     
-
         private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             string email = emailInvulveld.Text;
-            Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
-            if(bezoeker != null)
+            if (!string.IsNullOrEmpty(email))
             {
-                achternaamInvulveld.Text = bezoeker.Achternaam;
-                voornaamInvulveld.Text = bezoeker.Voornaam;
-                bedrijfInvulveld.Text = bezoeker.Bedrijf;
+                Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
+                if (bezoeker != null)
+                {
+                    achternaamInvulveld.Text = bezoeker.Achternaam;
+                    voornaamInvulveld.Text = bezoeker.Voornaam;
+                    bedrijfInvulveld.Text = bezoeker.Bedrijf;
+                }
+
             }
+            
             
         }
     }

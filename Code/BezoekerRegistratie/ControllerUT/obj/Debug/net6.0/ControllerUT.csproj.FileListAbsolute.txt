@@ -100,3 +100,4 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.genruntimeconfig.cache
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ref\ControllerUT.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\CountryValidator.dll

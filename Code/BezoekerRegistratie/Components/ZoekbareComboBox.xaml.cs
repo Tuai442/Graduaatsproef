@@ -29,44 +29,36 @@ namespace Components
     public partial class ZoekbareComboBox : UserControl
     {
 
-        public IEnumerable ItemsSource
-        {
-            get { return (IEnumerable)GetValue(ItemsSourceProperty); }
-            set { SetValue(ItemsSourceProperty, value); }
-        }
+       
+        //private static void OnItemsSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    var control = sender as ZoekbareComboBox;
+        //    if (control != null)
+        //        control.OnItemsSourceChanged((IEnumerable)e.OldValue, (IEnumerable)e.NewValue);
+        //}
 
-        public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(ZoekbareComboBox), new PropertyMetadata(new PropertyChangedCallback(OnItemsSourcePropertyChanged)));
+        //private void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
+        //{
+        //    // Remove handler for oldValue.CollectionChanged
+        //    var oldValueINotifyCollectionChanged = oldValue as INotifyCollectionChanged;
 
-        private static void OnItemsSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            var control = sender as ZoekbareComboBox;
-            if (control != null)
-                control.OnItemsSourceChanged((IEnumerable)e.OldValue, (IEnumerable)e.NewValue);
-        }
+        //    if (null != oldValueINotifyCollectionChanged)
+        //    {
+        //        oldValueINotifyCollectionChanged.CollectionChanged -= new NotifyCollectionChangedEventHandler(newValueINotifyCollectionChanged_CollectionChanged);
+        //    }
+        //    // Add handler for newValue.CollectionChanged (if possible)
+        //    var newValueINotifyCollectionChanged = newValue as INotifyCollectionChanged;
+        //    if (null != newValueINotifyCollectionChanged)
+        //    {
+        //        newValueINotifyCollectionChanged.CollectionChanged += new NotifyCollectionChangedEventHandler(newValueINotifyCollectionChanged_CollectionChanged);
+        //    }
 
-        private void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
-        {
-            // Remove handler for oldValue.CollectionChanged
-            var oldValueINotifyCollectionChanged = oldValue as INotifyCollectionChanged;
+        //}
 
-            if (null != oldValueINotifyCollectionChanged)
-            {
-                oldValueINotifyCollectionChanged.CollectionChanged -= new NotifyCollectionChangedEventHandler(newValueINotifyCollectionChanged_CollectionChanged);
-            }
-            // Add handler for newValue.CollectionChanged (if possible)
-            var newValueINotifyCollectionChanged = newValue as INotifyCollectionChanged;
-            if (null != newValueINotifyCollectionChanged)
-            {
-                newValueINotifyCollectionChanged.CollectionChanged += new NotifyCollectionChangedEventHandler(newValueINotifyCollectionChanged_CollectionChanged);
-            }
-
-        }
-
-        void newValueINotifyCollectionChanged_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            //Do your stuff here.
-        }
+        //void newValueINotifyCollectionChanged_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    //Do your stuff here.
+        //}
 
 
 
@@ -84,7 +76,6 @@ namespace Components
 
         private List<ILijstItems> _alleItems;
 
-        private bool _skipSelectionChangedEvent = false;
         public ZoekbareComboBox()
         {
             InitializeComponent();
@@ -107,74 +98,76 @@ namespace Components
             throw new NotImplementedException();
         }
 
-        //private void FilterLijst(List<ILijstItem> items)
-        //{
-        //    _skipSelectionChangedEvent = true;
-        //    comboBox.ItemsSource = null; // Dit roept ook het selectionChanged event op daarom tijdelijke oplossing/
-        //    _skipSelectionChangedEvent = false;
-        //    foreach (ILijstItem item in items)
-        //    {
-        //        comboBox.Items.Add(item.LabelNaam);
-        //    }
-        //}
-      
-        private void comboBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void FilterLijst(List<ILijstItems> items)
         {
-            //if (string.IsNullOrWhiteSpace(comboBox.Text))
-            //{
-            //    FilterLijst(_alleItems);
-            //}
-            //else
-            //{
-            //    comboBox.IsDropDownOpen = true;
-            //    string text = comboBox.Text;
-            //    FilterLijst(FilterOp(text));
-            //}
-                
+            //comboBox.ItemsSource = null; // Dit roept ook het selectionChanged event op daarom tijdelijke oplossing/
+            comboBox.Items.Clear();
+            foreach (ILijstItems item in items)
+            {
+                comboBox.Items.Add(item.ItemNaam);
+            }
         }
 
-        //private List<ILijstItem> FilterOp(string zoekwoord)
-        //{
-        //    List<ILijstItem> result = new List<ILijstItem>();
-        //    foreach(ILijstItem w in _alleItems)
-        //    {
-        //        string woord = w.LabelNaam;
-        //        bool gevonden = true;
-        //        if (zoekwoord.Length <= woord.Length)
-        //        {
-        //            for (int i = 0; i < zoekwoord.Length; i++)
-        //            {
-        //                if (Char.ToLower(zoekwoord[i]) == Char.ToLower(woord[i]))
-        //                {
-        //                    gevonden = true;
-        //                }
-        //                else
-        //                {
-        //                    gevonden = false;
-        //                    break;
-        //                }
-        //            }
-        //            if (gevonden)
-        //            {
-        //                result.Add(w);
-        //            }
-        //        }
-        //    }
-        //    return result;
-        //}
+        private void comboBox_TextChanged(object sender, TextChangedEventArgs e){
+            if (string.IsNullOrWhiteSpace(comboBox.Text))
+            {
+                FilterLijst(_alleItems);
+            }
+            else
+            {
+                comboBox.IsDropDownOpen = true;
+                string text = comboBox.Text;
+                FilterLijst(FilterOp(text));
+            }
+
+        }
+
+        private List<ILijstItems> FilterOp(string zoekwoord)
+        {
+            List<ILijstItems> result = new List<ILijstItems>();
+            foreach (ILijstItems w in _alleItems)
+            {
+                string woord = w.ItemNaam;
+                bool gevonden = true;
+                if (zoekwoord.Length <= woord.Length)
+                {
+                    for (int i = 0; i < zoekwoord.Length; i++)
+                    {
+                        if (Char.ToLower(zoekwoord[i]) == Char.ToLower(woord[i]))
+                        {
+                            gevonden = true;
+                        }
+                        else
+                        {
+                            gevonden = false;
+                            break;
+                        }
+                    }
+                    if (gevonden)
+                    {
+                        result.Add(w);
+                    }
+                }
+            }
+            return result;
+        }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // TODO: elke keer als het SelectionChanged event wordt aangroepen wordt het comboBox_TextChanged ook aangeroepen
             // die dan opnieuw de SelectionChanged aaroept waarop dan een error volgt, momeneteel tijdelijk oplossing (_skipSelectionChangedEvent).
             // zie debugger voor meer info.
-            if (!_skipSelectionChangedEvent && (comboBox.SelectedIndex > 0))
+            if ((e.AddedItems.Count > 0))
             {
                 int SelectedIndex = comboBox.SelectedIndex;
                 SelectedValue = _alleItems[SelectedIndex].Id;
                 SelectedLabel = _alleItems[SelectedIndex].ItemNaam;
-                GeSelecteerd.Invoke(this, SelectedValue);
+                if (GeSelecteerd != null)
+                {
+                    GeSelecteerd.Invoke(this, SelectedValue);
+                }
             }
+               
             
 
 

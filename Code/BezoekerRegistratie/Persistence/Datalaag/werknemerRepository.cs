@@ -14,14 +14,14 @@ using System.Threading.Tasks;
 
 namespace Persistence.Datalaag
 {
-    public class WerknemerRepository:  BaseRepository, IWerknemerRepository
+    public class WerknemerRepository: BaseRepository, IWerknemerRepository
     {
         private string _tableName = "Werknemer";
         public WerknemerRepository()
         {
 
         }
-        
+
         public List<Werknemer> GeefAlleWerknemer()
         {
             string query = "SELECT * FROM dbo.Werknemer INNER JOIN Bedrijf ON dbo.Werknemer_bedrijfId = dbo.Bedrijf_bedrijfId";
@@ -60,7 +60,7 @@ namespace Persistence.Datalaag
         {
             string query = $"INSERT INTO dbo.Werknemer (voornaam, achternaam, email, functie, bedrijfId) " +
                 $"VALUES(@voornaam, @achternaam, @email, @functie, @bedrijfId);"; 
-               
+
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -91,9 +91,9 @@ namespace Persistence.Datalaag
                         command.ExecuteNonQuery();
 
                     }
-                   
+
                 }
-                
+
                 catch (Exception e)
                 {
 
@@ -108,14 +108,67 @@ namespace Persistence.Datalaag
 
         }
 
-        public Werknemer GeefWerknemerOpNaam(string contactPersoon)
+        public Werknemer GeefWerknemerOpNaam(string voornaam, string achternaam)
         {
-            throw new NotImplementedException();
+            string query = "SELECT * from dbo.Bedrijf where voornaam=@voornaam and achternaam=@achternaam";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@voornaam", voornaam);
+                    command.Parameters.AddWithValue("@achternaam", achternaam);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+
+                    int bedrijfId = (int)dataReader["bedrijfId"];
+                    Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
+                    Werknemer werknemer = new Werknemer((int)dataReader["id"], (string)dataReader["Voornaam"], (string)dataReader["Achternaam"], (string)dataReader["email"], (string)dataReader["functie"], bedrijf);
+                    dataReader.Close();
+                    Console.WriteLine(werknemer);
+                    return werknemer;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef werknemer is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public Werknemer GeefWerknemerOpId(int id)
         {
-            return GeefWerknemerOpId(id);
+            string query = "SELECT * from dbo.Bedrijf where id=@id";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@id", id);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+
+                    int bedrijfId = (int)dataReader["bedrijfId"];
+                    Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
+                    Werknemer werknemer = new Werknemer((int)dataReader["id"], (string)dataReader["Voornaam"], (string)dataReader["Achternaam"], (string)dataReader["email"], (string)dataReader["functie"], bedrijf);
+                    dataReader.Close();
+                    Console.WriteLine(werknemer);
+                    return werknemer;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef werknemer is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public List<Werknemer> GeefAlleWerknemers()
@@ -172,7 +225,7 @@ namespace Persistence.Datalaag
                     $"Achternaam like '{zoekText}%' or " +
                     $"Email like '{zoekText}%' or " +
                     $"Functie like '{zoekText}%'; ";
-                    
+
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -295,6 +348,13 @@ namespace Persistence.Datalaag
         {
             throw new NotImplementedException();
         }
+
+        public Werknemer GeefWerknemerOpNaam(string contactPersoon)
+        {
+            throw new NotImplementedException();
+        }
+
+      
     }
 }
 

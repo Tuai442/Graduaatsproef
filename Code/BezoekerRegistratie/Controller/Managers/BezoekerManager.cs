@@ -47,32 +47,48 @@ namespace Controller.Managers
         {
             Controleer.LegeVelden(vnBezoeker, anBezoeker, email, emailContactPersoon, bedrijfBezoeker);
             Controleer.ControleEmail(email);
-            // TODO: controler is bezoeker al aanwezig
 
-            Bezoeker bezoeker = new Bezoeker(vnBezoeker, anBezoeker, email, bedrijfBezoeker, true);
-            Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon);
-            Afspraak afspraak = new Afspraak(bezoeker, werknemer, DateTime.Now);
+            // TODO: Dit moet via een transactie gebeuren in de db.
+            Bezoeker bezoekerMetId = _bezoekerRepository.GeefBezoekerOpEmail(email);
+            if(bezoekerMetId == null)
+            {
+                // Opgelet hier maken we een nieuwe bezoeker aan ZONDER id mee te geven.
+                Bezoeker bezoeker = new Bezoeker(vnBezoeker, anBezoeker, email, bedrijfBezoeker, false);
+                _bezoekerRepository.VoegBezoekerToe(bezoeker);
+                bezoekerMetId = _bezoekerRepository.GeefBezoekerOpEmail(email);
+            }
+            Controleer.BezoekerIsAlAangemeld(bezoekerMetId);
+
+            bezoekerMetId.MeldAan();
+            Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon); // TODO: controle bestaat werknemer
+            Afspraak afspraak = new Afspraak(bezoekerMetId, werknemer, DateTime.Now);
             _afspraakRepository.VoegAfspraakToe(afspraak);
         }
 
         public void MeldBezoekerUit(string email)
         {
             // TODO: Unit test
-            Afspraak afspraak = _afspraakRepository.GeefAfspraakOpEmail(email);
+            Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpEmail(email);
+            Controleer.ControleIsBezoekerAlAanwezig(bezoeker);
+
+            Afspraak afspraak = _afspraakRepository.GeefAfspraakOpBezoekerId(bezoeker.Id);
             Controleer.ControleIsAfspraakAlAfgesloten(afspraak);
+
+            bezoeker.MeldAf();
             afspraak.EindeAfspraak();
+            _bezoekerRepository.UpdateBezoeker(bezoeker);
             _afspraakRepository.UpdateAfspraak(afspraak);
         }
 
         public Bezoeker ZoekBezoekerOpEmail(string email)
         {
-            // https://stackoverflow.com/questions/3550161/c-sharp-readonly-object
-            // TODO: Vraag 1 - We kunnen geen readonly object doorsturen ?
-            Afspraak afspraak = _afspraakRepository.GeefAfspraakOpEmail(email);
-            if(afspraak != null)
+            Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpEmail(email);
+            if(bezoeker != null)
             {
-                return afspraak.Bezoeker;
-
+                if (bezoeker.Aanwezig)
+                {
+                    return bezoeker;
+                }
             }
             return null;
         }
@@ -83,12 +99,10 @@ namespace Controller.Managers
             // in de afspraken de email adressen wille behouden, daarom bij elke verandering 
             // wordt er een nieuwe bezoeker toegevoegd
             
-            _bezoekerRepository.UpdateBezoeker(bezoeker);
+            _bezoekerRepository.VoegBezoekerToe(bezoeker);
 
         }
 
-        public void VoegNieweBezoekerToe(Bezoeker nieuweBezoeker)
-        {
-        }
+        
     }
 }
