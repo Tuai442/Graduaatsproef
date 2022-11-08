@@ -37,5 +37,57 @@ namespace ControllerUT
             Assert.Throws<BedrijfException>(() => manager.VoegNieuwBedrijfToe("naam", btw, "adres", telefoon, email));
         }
 
+        [Fact]
+        public void GeefAlleBedrijvenInLijstItems()
+        {
+            IReadOnlyList<Bedrijf> lijst = manager.GeefAlleBedrijvenInLijstItems();
+        }
+
+        [Fact]
+        public void GeefAlleBedrijven()
+        {
+            IReadOnlyList<Bedrijf> lijst = manager.GeefAlleBedrijven();
+        }
+
+        [Fact]
+        public void ZoekOp_Valid()
+        {
+            IReadOnlyList<Bedrijf> lijst = manager.ZoekOp("k");
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void ZoekOp_Invalid(string s)
+        {
+            Assert.Throws<BedrijfException>(()=> manager.ZoekOp(s));
+        }
+
+        [Fact]
+        public void GeefBedrijvenOpEmailWerknemer_Valid()
+        {
+            IReadOnlyList<Bedrijf> lijst = manager.GeefBedrijvenOpEmailWerknemer("k@gmail.com");
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void GeefBedrijvenOpEmailWerknemer_Invalid(string s)
+        {
+            Assert.Throws<ControleerException>(() => manager.GeefBedrijvenOpEmailWerknemer(s));
+        }
+
+        [Fact]
+        public void UpdateBedrijf_Valid()
+        {
+            Bedrijf b = new Bedrijf("naam", "BE 0123.321.123", "adres", "0487878787", "school@hotmail.com");
+            manager.UpdateBedrijf(b);
+        }
+
+        [Fact]
+        public void UpdateBedrijf_Invalid()
+        {
+            Assert.Throws<BedrijfException>(() => manager.UpdateBedrijf(null));
+        }
     }
 }

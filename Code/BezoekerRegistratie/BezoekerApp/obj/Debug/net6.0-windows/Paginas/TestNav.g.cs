@@ -10,8 +10,6 @@
 //------------------------------------------------------------------------------
 
 using BezoekerApp.Paginas;
-using Components;
-using FontAwesome.WPF;
 using System;
 using System.Diagnostics;
 using System.Windows;
