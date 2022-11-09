@@ -112,8 +112,6 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.genruntimeconfig.cache
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ref\ControllerUT.dll
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\Database.mdf
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\Database_log.ldf
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\CoverletSourceRootsMapping
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\testhost.exe
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\testhost.dll
@@ -230,3 +228,5 @@ D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Contr
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ref\ControllerUT.dll
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\Database1.mdf
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\Database1_log.ldf
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\Database1.mdf
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\Database1_log.ldf

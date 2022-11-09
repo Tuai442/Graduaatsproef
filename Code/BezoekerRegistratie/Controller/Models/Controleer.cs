@@ -25,7 +25,7 @@ namespace Controller.Models
             // uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
             CountryValidator validator = new CountryValidator();
             ValidationResult validationResult = validator.ValidateVAT(btw, Country.BE); // Kan momenteel alleen controle in Belgie uitvoren.
-            if (!validationResult.IsValid) throw new ControleerException("BTWnummerControle");
+            if (!validationResult.IsValid) throw new ControleerException("BTW nummer niet correct");
             
             
 
@@ -51,7 +51,7 @@ namespace Controller.Models
             telefoon = telefoon.Replace(" ", "");
             string regexString = @"^(((\+32|0|0032)4){1}[1-9]{1}[0-9]{7})$";
             Regex regex = new Regex(regexString);
-            if (!regex.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
+            if (!regex.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");// aanpassen naar "geen geldig telefoon nr" ??
         }
 
         public static void ControleIsAfspraakAlAfgesloten(Afspraak afspraak)

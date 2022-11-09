@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="VoegBedrijfToe" Height="auto" Width="300">
     
-    <Grid Background="Beige">
+    <Grid Background="#FF2F2253">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
