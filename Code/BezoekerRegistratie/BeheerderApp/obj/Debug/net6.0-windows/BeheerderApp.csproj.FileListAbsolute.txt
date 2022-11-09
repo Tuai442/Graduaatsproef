@@ -100,3 +100,5 @@ D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Behee
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\ref\BeheerderApp.dll
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\Database1.mdf
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\Database1_log.ldf
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Windows\VoegBedrijfToe.g.cs
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Windows\VoegBedrijfToe.baml
