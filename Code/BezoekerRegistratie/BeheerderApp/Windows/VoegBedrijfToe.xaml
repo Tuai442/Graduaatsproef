@@ -25,35 +25,36 @@
 
         <Label Content="Naam"
                Grid.Row="0" Grid.Column="0"
-               Margin="10"/>
+               Margin="10" Foreground="#FFCA79FF"
+               />
         <TextBox  Grid.Row="0" Grid.Column="1"
                   Margin="10"
                   Name="naamTxtbox"/>
 
         <Label Content="Email"
                Grid.Row="1" Grid.Column="0"
-               Margin="10"/>
+               Margin="10" Foreground="#FFCA79FF"/>
         <TextBox  Grid.Row="1" Grid.Column="1"
                   Margin="10"
                   Name="emailTxtbox"/>
 
         <Label Content="Btw-nummer"
                Grid.Row="2" Grid.Column="0"
-               Margin="10"/>
+               Margin="10" Foreground="#FFCA79FF"/>
         <TextBox  Grid.Row="2" Grid.Column="1"
                   Margin="10"
                   Name="btwTxtbox"/>
 
         <Label Content="adress"
                Grid.Row="3" Grid.Column="0"
-               Margin="10"/>
+               Margin="10" Foreground="#FFCA79FF"/>
         <TextBox  Grid.Row="3" Grid.Column="1"
                   Margin="10"
                   Name="adressTextbox"/>
         
         <Label Content="telefoon"
                Grid.Row="4" Grid.Column="0"
-               Margin="10"/>
+               Margin="10" Foreground="#FFCA79FF"/>
         <TextBox  Grid.Row="4" Grid.Column="1"
                   Margin="10"
                   Name="telefoonTxtbox"/>
@@ -63,10 +64,21 @@
 
 
 
-        <Button Grid.Row="5" Grid.Column="0"
-                Height="50" Grid.ColumnSpan="2"
+        <Button Grid.Row="5" 
+                Grid.Column="0"
+                Height="30" 
+                Width="100"
+                Grid.ColumnSpan="2"
                 Margin="20" Content="Voeg Toe"
-                Click="Button_Click"/>
+                Click="Button_Click"
+                
+                >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
     </Grid>
 </Window>
