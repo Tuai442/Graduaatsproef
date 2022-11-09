@@ -98,7 +98,7 @@ namespace BezoekerApp.Paginas
 
         private void LeegAlleVelden()
         {
-            emailInvulveld.Text = "E-mail"; 
+            emailInvulveld.Text = "E-mail";
             voornaamInvulveld.Text = "Voornaam";
             achternaamInvulveld.Text = "Achternaam";
             bedrijfInvulveld.Text = "Bdrijf";
@@ -119,26 +119,30 @@ namespace BezoekerApp.Paginas
                 }
 
             }
+            else if (emailInvulveld.Text == "")
+            {
+                emailInvulveld.Text = " E-mail";
+            }
         }
 
         private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (emailInvulveld.Text == "E-mail")
+            if (emailInvulveld.Text.Trim() == "E-mail")
                 emailInvulveld.Clear();
         }
         private void bedrijfInvulveld_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (bedrijfInvulveld.Text == "Bedrijf")
+            if (bedrijfInvulveld.Text.Trim() == "Bedrijf")
                 bedrijfInvulveld.Clear();
         }
         private void voornaamInvulveld_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (voornaamInvulveld.Text == "Voornaam")
+            if (voornaamInvulveld.Text.Trim() == "Voornaam")
                 voornaamInvulveld.Clear();
         }
         private void achternaamInvulveld_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (achternaamInvulveld.Text == "Achternaam")
+            if (achternaamInvulveld.Text.Trim() == "Achternaam")
                 achternaamInvulveld.Clear();
         }
 
@@ -146,7 +150,7 @@ namespace BezoekerApp.Paginas
         {
             if (achternaamInvulveld.Text == "")
             {
-                achternaamInvulveld.Text = "Achternaam";
+                achternaamInvulveld.Text = " Achternaam";
             }
         }
 
@@ -154,7 +158,7 @@ namespace BezoekerApp.Paginas
         {
             if (voornaamInvulveld.Text == "")
             {
-                voornaamInvulveld.Text = "Voornaam";
+                voornaamInvulveld.Text = " Voornaam";
             }
         }
 
@@ -162,7 +166,7 @@ namespace BezoekerApp.Paginas
         {
             if (bedrijfInvulveld.Text == "")
             {
-                bedrijfInvulveld.Text = "Bedrijf";
+                bedrijfInvulveld.Text = " Bedrijf";
             }
 
         }

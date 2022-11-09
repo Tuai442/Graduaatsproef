@@ -12,7 +12,7 @@
     >
     <Page.Resources>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="Transparent"/>
-        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="green"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="Purple"/>
         <SolidColorBrush x:Key="TextBox.Focus.Border" Color="Red"/>
         <Style x:Key="TextBoxStyle123" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
@@ -64,22 +64,13 @@
                 <GradientStop Color="#FF2F2253" Offset="0.734"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <StackPanel HorizontalAlignment="Left"
-                    Margin="30">
-            <Button Background="Transparent"
-                    BorderThickness="0"
-                    >
-                <fa:ImageAwesome Icon="Gear" 
-                             VerticalAlignment="Center" 
-                             HorizontalAlignment="Center" 
-                             Width="30"/>
-            </Button>
-
-
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
 
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center" 
-                    Height="400" Width="473">
+                    
+                    >
 
             <Label Content="Welkom"
                    FontFamily="Consolas"
@@ -120,7 +111,7 @@
                     >
                     
                     <TextBox Style="{DynamicResource TextBoxStyle123}" 
-                       Text="E-mail"
+                       Text=" E-mail"
                        
                        Grid.Row="0"
                        Background="Transparent"
@@ -150,7 +141,7 @@
                     >
                 
                 <TextBox 
-                    Text="Achternaam"
+                    Text=" Achternaam"
                     FontFamily="Consolas"
                     FontSize="17" 
                     Background="Transparent" 
@@ -171,7 +162,7 @@
                     Grid.Row="2"
                     >
                     <TextBox 
-                    Text="Voornaam"
+                    Text=" Voornaam"
                     FontFamily="Consolas"
                     FontSize="17" 
                     Background="Transparent" 
@@ -193,7 +184,7 @@
                     Grid.Row="3"
                     >
                 <TextBox 
-                    Text="Bedrijf"
+                    Text=" Bedrijf"
                     FontFamily="Consolas"
                     FontSize="17"
                     Background="Transparent" 
@@ -217,7 +208,8 @@
                     
                     x:Name="logInBtn" 
                     Width="115" 
-                    Margin="70 0 0 0"/>
+                    Margin="33,0,14,0"
+                    />
                 <UIC:Knop 
                     Grid.Column="1"
                     FontFamily="Consolas"
@@ -225,7 +217,7 @@
                     
                     Text="Log Uit"
                     x:Name="logUitBtn"
-                    Margin="0 0 72 0"
+                    Margin="41,0,40,3"
                     Width="115"
                    />
 

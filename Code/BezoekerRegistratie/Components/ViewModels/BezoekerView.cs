@@ -61,17 +61,17 @@ namespace Components.ViewModels
             }
         }
 
-        [Hoofding("Is Aanwezig")]
-        public bool Aanwezig
-        {
-            get => _aanwezig;
-            set
-            {
-                _aanwezig = value;
-                _bezoeker.Aanwezig = value;
-                OnPropertyChanged();
-            }
-        }
+        //[Hoofding("Is Aanwezig")]
+        //public bool Aanwezig
+        //{
+        //    get => _aanwezig;
+        //    set
+        //    {
+        //        _aanwezig = value;
+        //        _bezoeker.Aanwezig = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         [Hoofding("Bedrijf")]
         public string Bedrijf
@@ -94,6 +94,7 @@ namespace Components.ViewModels
             _email = bezoeker.Email;
             _aanwezig = bezoeker.Aanwezig;
             _bedrijf = bezoeker.Bedrijf;
+            // contactpersoon en zijn bedrijf 
         }
 
         private void OnPropertyChanged(string name = null)
