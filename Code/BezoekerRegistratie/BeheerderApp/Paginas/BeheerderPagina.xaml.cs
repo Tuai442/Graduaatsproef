@@ -25,6 +25,7 @@ using Controllers;
 using Components.Datagrids;
 using Components.ViewModels;
 using System.Collections.ObjectModel;
+using BeheerderApp.Windows;
 
 namespace BeheerderApp.Paginas
 {
@@ -149,6 +150,7 @@ namespace BeheerderApp.Paginas
                         _werknemerViews.Add(werknemerView);
                     }
 
+                    voegToeBtns.Content = "Voeg werknemer toe";
                     IReadOnlyList<Bedrijf> bedrijfModels = _bedrijfManager.GeefAlleBedrijven();                    
                     bedrijven = bedrijfModels.Select(x => x).ToList();
                     
@@ -181,6 +183,7 @@ namespace BeheerderApp.Paginas
                         _bezoekerViews.Add(bezoekerView);
                     }
                 }
+                voegToeBtns.Content = "Voeg bezoeker toe";
 
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
@@ -209,6 +212,7 @@ namespace BeheerderApp.Paginas
                         _afspraakViews.Add(afspraakView);
                     }
                 }
+                voegToeBtns.Content = "Voeg afspraak toe";
 
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
@@ -236,6 +240,8 @@ namespace BeheerderApp.Paginas
                         _bedrijfViews.Add(bedrijfView);
                     }
                 }
+                voegToeBtns.Content = "Voeg afspraak toe";
+
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
 
@@ -304,6 +310,10 @@ namespace BeheerderApp.Paginas
             dataGrid.StelDataIn<object>(null);
         }
 
-      
+        private void voegToeBtns_Click(object sender, RoutedEventArgs e)
+        {
+            VoegWerknemerToeWindow v = new VoegWerknemerToeWindow();
+            v.Show();
+        }
     }
 }

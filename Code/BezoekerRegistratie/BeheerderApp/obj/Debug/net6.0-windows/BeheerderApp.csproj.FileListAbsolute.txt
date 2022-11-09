@@ -47,3 +47,5 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\ref\BeheerderApp.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\Database.mdf
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\Database_log.ldf
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Windows\VoegWerknemerToeWindow.g.cs
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\Windows\VoegWerknemerToeWindow.baml

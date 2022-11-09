@@ -32,7 +32,7 @@
                     BorderBrush="Black"
                     Width="510"
                     HorizontalAlignment="Left"
-                    Margin="200 50 10 0">
+                    Margin="80 50 10 0">
                 <Label Content="Totaal aantal aanwezige bezoekers: "
                        x:Name="aantalAanwLabel"
                        FontSize="30"
@@ -51,7 +51,8 @@
                        Width="800">
                 <UIC:ZoekbaarDataGrid Margin="60 5 60 60"
                                       x:Name="dataGrid"
-                                      />
+                                      Width="500"
+                />
               
                
 

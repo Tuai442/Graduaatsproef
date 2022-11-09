@@ -79,7 +79,7 @@ namespace Components
         public ZoekbareComboBox()
         {
             InitializeComponent();
-            comboBox.IsDropDownOpen = true;
+            comboBox.IsDropDownOpen = false;
 
         }
 

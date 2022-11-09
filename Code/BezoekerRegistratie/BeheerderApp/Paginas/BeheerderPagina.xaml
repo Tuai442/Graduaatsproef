@@ -30,7 +30,7 @@
 
             <Border BorderBrush="Black"
                     BorderThickness="0 0 0 2">
-                <Grid>
+                <Grid x:Name="toolbar">
                     <WrapPanel Background="white">
                         <UIC:CheckBox TText="Bezoeker"
                                   Margin="10"
@@ -55,14 +55,26 @@
                                   x:Name="afspraakCheckBox"/>
                     </WrapPanel>
 
-                    
-                    <Button Name="herlaadBtn"
+
+
+                    <StackPanel HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                        <Button Content="Voeg toe"
+                                Margin="10"
+                                FontSize="16"
+                                Width="250"
+                                Name="voegToeBtns"
+                                Click="voegToeBtns_Click"/>
+                        
+                        <Button Name="herlaadBtn"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             Content="Herlaad"
                             Margin="10" Padding="10"
                             FontSize="20"
                             Click="herlaadBtn_Click"/>
+                    </StackPanel>
+                    
                     
                     
                 </Grid>

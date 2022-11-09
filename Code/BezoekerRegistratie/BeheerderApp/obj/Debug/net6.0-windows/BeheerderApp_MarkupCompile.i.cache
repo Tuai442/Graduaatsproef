@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\App.xaml
-4-1364315574
+51586235212
 
-8-326736913
+9-88402955
 203980100870
-MainWindow.xaml;Paginas\AanwezigheidPagina.xaml;Paginas\BeheerderPagina.xaml;Paginas\StartSchermBeheerder.xaml;
+MainWindow.xaml;Paginas\AanwezigheidPagina.xaml;Paginas\BeheerderPagina.xaml;Paginas\StartSchermBeheerder.xaml;Windows\VoegWerknemerToeWindow.xaml;
 
-True
+False
 
