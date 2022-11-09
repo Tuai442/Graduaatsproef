@@ -248,7 +248,6 @@ namespace Persistence.Datalaag
                     conn.Open();
                     command.Parameters.AddWithValue("@id", id);
                     IDataReader dataReader = command.ExecuteReader();
-                    dataReader.Read();
 
                     if (dataReader.Read())
                     {
@@ -257,7 +256,7 @@ namespace Persistence.Datalaag
                         int werknemerId = (int)dataReader["werknemerId"];
                         Werknemer werknemer = GeefWerknemerOpId(werknemerId);
                         DateTime startTijd = (DateTime)dataReader["startTijd"];
-                        DateTime? eindTijd = (DateTime)dataReader["eindTijd"]; ;
+                        DateTime? eindTijd = GeefDateTime(dataReader["eindTijd"]); ;
                         afspraak = new Afspraak(bezoeker, werknemer, startTijd, eindTijd);
                     }
 
