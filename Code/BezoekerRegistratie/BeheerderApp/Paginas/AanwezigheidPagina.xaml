@@ -31,8 +31,8 @@
                     BorderThickness="2"
                     BorderBrush="Black"
                     Width="510"
-                    HorizontalAlignment="Left"
-                    Margin="80 50 10 0">
+                    HorizontalAlignment="Center"
+                    Margin="0 50 0 0">
                 <Label Content="Totaal aantal aanwezige bezoekers: "
                        x:Name="aantalAanwLabel"
                        FontSize="30"
@@ -48,10 +48,13 @@
 
 
             <DockPanel Height="450"
-                       Width="800">
+                       Width="800"
+                       >
                 <UIC:ZoekbaarDataGrid Margin="60 5 60 60"
                                       x:Name="dataGrid"
                                       Width="500"
+                                      Height="400"
+                                      
                 />
               
                
@@ -63,7 +66,7 @@
 
         </StackPanel>
         <UIC:TerugKnop VerticalAlignment="Bottom"
-                       Margin="50,0,10,210"
+                       Margin="245,0,10,210"
                        x:Name="terugKnop"/>
 
     </Grid>
