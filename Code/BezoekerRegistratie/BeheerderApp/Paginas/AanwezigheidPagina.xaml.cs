@@ -1,5 +1,5 @@
 ﻿
-using Components.Models;
+
 using Components.ViewModels;
 using Controller;
 using Controller.Interfaces.Models;
@@ -40,13 +40,21 @@ namespace BeheerderApp.Paginas
             InitializeComponent();
             terugKnop.ButtonClick += GaPaginaTerug;
 
-            IReadOnlyList<Bezoeker> temp = _bezoekerManger.GeefAlleAanwezigeBezoekers();
-            List<BezoekerViewModel> alleAanwezigeBezoekers = Omzetter.ZetBezoekersOmInViewModellen(temp);
-            dataGrid.StelDataIn<BezoekerViewModel>(alleAanwezigeBezoekers);
+            IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
+            List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
+            dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
+            dataGrid.OpDataFiltering += ZoekBezoekerOp;
 
             aantalAanwLabel.Content = $"Totaal aantalbezoekers: {alleAanwezigeBezoekers.Count}";
 
-            dataGrid.OpDataVerandering += UpdateObject;
+            //dataGrid.OpDataVerandering += UpdateObject;
+        }
+
+        private void ZoekBezoekerOp(object? sender, string e)
+        {
+            IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.ZoekOp(e);
+            List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
+            dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
         }
 
         private void UpdateObject(object? sender, object obj)

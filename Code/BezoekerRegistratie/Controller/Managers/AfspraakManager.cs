@@ -1,4 +1,5 @@
-﻿using Controller.Interfaces;
+﻿using Controller.Exceptions;
+using Controller.Interfaces;
 using Controller.Interfaces.Models;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace Controller.Managers
             return afspraaks.AsReadOnly();
         }
 
+
+        //TODO: methode uitwerken
         public void OpUpdateAfspraak(object? sender, object e)
         {
             // We kunnen de mapper hier niet gebruiken
@@ -33,7 +36,15 @@ namespace Controller.Managers
 
         public IReadOnlyList<Afspraak> ZoekOp(string zoekText)
         {
+
+            // if (string.IsNullOrWhiteSpace(zoekText)) throw new AfspraakException("AM - ZoekOp");
             return _afspraakRepository.ZoekAfspraakOp(zoekText).AsReadOnly();
         }
+
+        public void UpdateAfspraak(Afspraak afspraak)
+        {
+            if (afspraak == null) throw new AfspraakException("AM - UpdateAfspraak");
+            _afspraakRepository.UpdateAfspraak(afspraak);
+        }    
     }
 }

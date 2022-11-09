@@ -15,7 +15,7 @@ namespace Persistence.Datalaag
 {
     public class BedrijfRepository : BaseRepository, IBedrijfRepository
     {
-        private string _tableName = "Bedrijven";
+        private string _tableName = "Bedrijf";
         public BedrijfRepository()
         {
         }
@@ -35,12 +35,12 @@ namespace Persistence.Datalaag
                 {
                     while (dataReader.Read())
                     {
-                        int id = (int)dataReader["BedrijfId"];
-                        string naam = (string)dataReader["Naam"];
-                        string btw = (string)dataReader["BTW"];
-                        string email = (string)dataReader["Email"];
-                        string adres = (string)dataReader["Adres"];
-                        string tel = (string)dataReader["Telefoon"];
+                        int id = (int)dataReader["bedrijfId"];
+                        string naam = (string)dataReader["naam"];
+                        string btw = (string)dataReader["btwNummer"];
+                        string email = (string)dataReader["email"];
+                        string adres = (string)dataReader["adres"];
+                        string tel = (string)dataReader["telefoon"];
 
                         //Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
 
@@ -61,9 +61,32 @@ namespace Persistence.Datalaag
             return bedrijven;
         }
 
-        public Bedrijf GeefBedrijfOpNaam(string bedrijf)
+        public Bedrijf GeefBedrijfOpNaam(string bedrijfNaam)
         {
-            throw new NotImplementedException();
+            string query = "SELECT * from dbo.Bedrijf where naam=@naam";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@naam", bedrijfNaam);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+                    Bedrijf bedrijf = new Bedrijf((int)dataReader["BedrijfId"],(string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
+                    dataReader.Close();
+                    Console.WriteLine(bedrijf);
+                    return bedrijf;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef bedrijf is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public void VoegNieuwBedrijfToe(Bedrijf bedrijf)
@@ -79,7 +102,7 @@ namespace Persistence.Datalaag
                     command.Parameters.Add(new SqlParameter("@naam", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@btwNummer", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@adres", SqlDbType.NVarChar));
-                    command.Parameters.Add(new SqlParameter("@telefoon", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@telefoon", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
                     command.Parameters["@naam"].Value = bedrijf.Naam;
                     command.Parameters["@btwNummer"].Value = bedrijf.Btw;
@@ -135,23 +158,23 @@ namespace Persistence.Datalaag
                 conn.Open();
 
                 string query = $"SELECT * FROM {_tableName} WHERE " +
-                    $"Naam like '{zoekText}%' or " +
-                    $"BTW like '{zoekText}%' or " +
-                    $"Email like '{zoekText}%' or " +
-                    $"Adres like '{zoekText}%' or " +
-                    $"Telefoon like '{zoekText}%';";
+                    $"naam like '{zoekText}%' or " +
+                    $"btwNummer like '{zoekText}%' or " +
+                    $"email like '{zoekText}%' or " +
+                    $"adres like '{zoekText}%' or " +
+                    $"telefoon like '{zoekText}%';";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     while (dataReader.Read())
                     {
-                        int id = (int)dataReader["BedrijfId"];
-                        string naam = (string)dataReader["Naam"];
-                        string btw = (string)dataReader["BTW"];
-                        string email = (string)dataReader["Email"];
-                        string adres = (string)dataReader["Adres"];
-                        string tel = (string)dataReader["Telefoon"];
+                        int id = (int)dataReader["bedrijfId"];
+                        string naam = (string)dataReader["naam"];
+                        string btw = (string)dataReader["btwNummer"];
+                        string email = (string)dataReader["email"];
+                        string adres = (string)dataReader["adres"];
+                        string tel = (string)dataReader["telefoon"];
 
                         Bedrijf bedrijf = new Bedrijf(id, naam, btw, adres, tel, email);
                         bedrijven.Add(bedrijf);
@@ -181,7 +204,7 @@ namespace Persistence.Datalaag
                     command.Parameters.AddWithValue("@id", id);
                     IDataReader dataReader = command.ExecuteReader();
                     dataReader.Read();
-                    Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
+                    Bedrijf bedrijf = new Bedrijf((int)dataReader["BedrijfId"], (string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
                     dataReader.Close();
                     Console.WriteLine(bedrijf);
                     return bedrijf;
@@ -206,20 +229,20 @@ namespace Persistence.Datalaag
                 conn.Open();
 
                 string query = $"SELECT * FROM {_tableName} b " +
-                    $"join Werknemers w on w.BedrijfId = b.BedrijfId " +
-                    $"WHERE w.Email = '{email}';";
+                    $"join werknemer w on w.bedrijfId = b.bedrijfId " +
+                    $"WHERE w.email = '{email}';";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     while (dataReader.Read())
                     {
-                        int id = (int)dataReader["BedrijfId"];
-                        string naam = (string)dataReader["Naam"];
-                        string btw = (string)dataReader["BTW"];
-                        string emailB = (string)dataReader["Email"];
-                        string adres = (string)dataReader["Adres"];
-                        string tel = (string)dataReader["Telefoon"];
+                        int id = (int)dataReader["bedrijfId"];
+                        string naam = (string)dataReader["naam"];
+                        string btw = (string)dataReader["btwNummer"];
+                        string emailB = (string)dataReader["email"];
+                        string adres = (string)dataReader["adres"];
+                        string tel = (string)dataReader["telefoon"];
                         Bedrijf bedrijf = new Bedrijf(id, naam, btw, adres, tel, email);
 
                         bedrijven.Add(bedrijf);
@@ -238,6 +261,12 @@ namespace Persistence.Datalaag
             }
             return bedrijven;
         }
+
+        public void UpdateBedrijf(Bedrijf bedrijf)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
 //Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);   

@@ -28,12 +28,6 @@ namespace Controller.Models
         public string Telefoon { get => telefoon; set => telefoon = SetStringParameters(value); }
         public string Email { get => email; set => email = SetStringParameters(value); }
 
-
-        // ListItems
-        public string LabelNaam => Naam;
-
-        public string Waarde => Email;
-
         //TODO: syntax met this
         public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
         {
@@ -51,9 +45,6 @@ namespace Controller.Models
 
         }
 
-
-
-    
         public override string? ToString()
         {
             return Naam;

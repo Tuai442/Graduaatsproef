@@ -9,13 +9,15 @@ using System.Threading.Tasks;
 
 namespace Controller.Models
 {
-    public class Werknemer: Persoon
+    public class Werknemer : Persoon
     {
-        public string Functie { get; set; }
+        private string functie;
+
+        public string Functie { get => functie; set => functie = Controleer.SetStringParameters(value); }
         public Bedrijf Bedrijf { get; set; }
         public int Id { get; set; }
 
-        public Werknemer(int id, string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf) 
+        public Werknemer(int id, string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf)
             : base(voornaam, achternaam, email)
         {
             Id = id;
@@ -23,7 +25,7 @@ namespace Controller.Models
             Bedrijf = bedrijf;
         }
 
-       
+
 
         public override string? ToString()
         {

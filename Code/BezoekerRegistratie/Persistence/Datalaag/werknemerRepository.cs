@@ -14,14 +14,14 @@ using System.Threading.Tasks;
 
 namespace Persistence.Datalaag
 {
-    public class WerknemerRepository:  BaseRepository, IWerknemerRepository
+    public class WerknemerRepository: BaseRepository, IWerknemerRepository
     {
-        private string _tableName = "Werknemers";
+        private string _tableName = "Werknemer";
         public WerknemerRepository()
         {
 
         }
-        
+
         public List<Werknemer> GeefAlleWerknemer()
         {
             string query = "SELECT * FROM dbo.Werknemer INNER JOIN Bedrijf ON dbo.Werknemer_bedrijfId = dbo.Bedrijf_bedrijfId";
@@ -58,46 +58,41 @@ namespace Persistence.Datalaag
 
         public void VoegWerknemerToe(Werknemer werknemer)
         {
-            string query = $"INSERT INTO {_tableName} (Voornaam, Achternaam, Email, Functie, BedrijfId) " +
-                $"VALUES(@Voornaam, @Achternaam, @Achternaam, @Functie, @BedrijfId);"; 
-               
+            string query = $"INSERT INTO dbo.Werknemer (voornaam, achternaam, email, functie, bedrijfId) " +
+                $"VALUES(@voornaam, @achternaam, @email, @functie, @bedrijfId);"; 
+
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
                 try
                 {
-
-                    List<Werknemer> bedrijven = new List<Werknemer>();
                     conn.Open();
-                    IDataReader dataReader = command.ExecuteReader();
-                    while (dataReader.Read())
-                    {
-                        command.Parameters.Add(new SqlParameter("@Voornaam", SqlDbType.VarChar));
-                        command.Parameters["@Voornaam"].Value = werknemer.Voornaam;
+                    
+                    command.Parameters.Add(new SqlParameter("@voornaam", SqlDbType.VarChar));
+                    command.Parameters["@voornaam"].Value = werknemer.Voornaam;
 
-                        command.Parameters.Add(new SqlParameter("@Achternaam", SqlDbType.VarChar));
-                        command.Parameters["@Achternaam"].Value = werknemer.Voornaam;
+                    command.Parameters.Add(new SqlParameter("@achternaam", SqlDbType.VarChar));
+                    command.Parameters["@achternaam"].Value = werknemer.Voornaam;
 
-                        command.Parameters.Add(new SqlParameter("@Email", SqlDbType.VarChar));
-                        command.Parameters["@Email"].Value = werknemer.Email;
+                    command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar));
+                    command.Parameters["@email"].Value = werknemer.Email;
 
-                        command.Parameters.Add(new SqlParameter("@Functie", SqlDbType.VarChar));
-                        command.Parameters["@Functie"].Value = werknemer.Functie;
+                    command.Parameters.Add(new SqlParameter("@functie", SqlDbType.VarChar));
+                    command.Parameters["@functie"].Value = werknemer.Functie;
 
-                        // TODO: contorle of bedrijf in db is.
-                        command.Parameters.Add(new SqlParameter("@BedrijfId", SqlDbType.VarChar));
-                        command.Parameters["@BedrijfId"].Value = werknemer.Bedrijf.Id;
+                    
+                    // TODO: contorle of bedrijf in db is.
+                    command.Parameters.Add(new SqlParameter("@bedrijfId", SqlDbType.VarChar));
+                    command.Parameters["@bedrijfId"].Value = werknemer.Bedrijf.Id;
 
-                        command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
 
-                    }
-                   
                 }
-                
+
                 catch (Exception e)
                 {
 
-                    throw new WerknemerException("Geef werknemers is niet gelukt.", e);
+                    throw new WerknemerException("Werknemer toevoegen niet gelukt", e);
 
                 }
                 finally
@@ -108,14 +103,67 @@ namespace Persistence.Datalaag
 
         }
 
-        public Werknemer GeefWerknemerOpNaam(string contactPersoon)
+        public Werknemer GeefWerknemerOpNaam(string voornaam, string achternaam)
         {
-            throw new NotImplementedException();
+            string query = "SELECT * from dbo.Bedrijf where voornaam=@voornaam and achternaam=@achternaam";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@voornaam", voornaam);
+                    command.Parameters.AddWithValue("@achternaam", achternaam);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+
+                    int bedrijfId = (int)dataReader["bedrijfId"];
+                    Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
+                    Werknemer werknemer = new Werknemer((int)dataReader["id"], (string)dataReader["Voornaam"], (string)dataReader["Achternaam"], (string)dataReader["email"], (string)dataReader["functie"], bedrijf);
+                    dataReader.Close();
+                    Console.WriteLine(werknemer);
+                    return werknemer;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef werknemer is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public Werknemer GeefWerknemerOpId(int id)
         {
-            return GeefWerknemerOpId(id);
+            string query = "SELECT * from dbo.Bedrijf where id=@id";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@id", id);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+
+                    int bedrijfId = (int)dataReader["bedrijfId"];
+                    Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
+                    Werknemer werknemer = new Werknemer((int)dataReader["id"], (string)dataReader["Voornaam"], (string)dataReader["Achternaam"], (string)dataReader["email"], (string)dataReader["functie"], bedrijf);
+                    dataReader.Close();
+                    Console.WriteLine(werknemer);
+                    return werknemer;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef werknemer is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public List<Werknemer> GeefAlleWerknemers()
@@ -133,12 +181,12 @@ namespace Persistence.Datalaag
                 {
                     while (dataReader.Read())
                     {
-                        int id = (int)dataReader["WerknemerId"];
-                        string voornaam = (string)dataReader["Voornaam"];
-                        string achternaam = (string)dataReader["Achternaam"];
-                        string email = (string)dataReader["Email"];
-                        string functie = (string)dataReader["Functie"];
-                        int bedrijfId = (int)dataReader["BedrijfId"];
+                        int id = (int)dataReader["werknemerId"];
+                        string voornaam = (string)dataReader["voornaam"];
+                        string achternaam = (string)dataReader["achternaam"];
+                        string email = (string)dataReader["email"];
+                        string functie = (string)dataReader["functie"];
+                        int bedrijfId = (int)dataReader["bedrijfId"];
                         Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
 
                         Werknemer werknemer = new Werknemer(id, voornaam, achternaam, email, functie, bedrijf);
@@ -172,7 +220,7 @@ namespace Persistence.Datalaag
                     $"Achternaam like '{zoekText}%' or " +
                     $"Email like '{zoekText}%' or " +
                     $"Functie like '{zoekText}%'; ";
-                    
+
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -257,8 +305,8 @@ namespace Persistence.Datalaag
                 conn.Open();
 
                 string query = $"SELECT * FROM {_tableName} w " +
-                    $"join Bedrijven b on w.BedrijfId = b.BedrijfId " +
-                    $"WHERE b.Email = '{email}';";
+                    $"join Bedrijf b on w.bedrijfId = b.bedrijfId " +
+                    $"WHERE b.email = '{email}';";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -291,6 +339,17 @@ namespace Persistence.Datalaag
             return werknemers;
         }
 
+        public void UpdateWerknemer(Werknemer werknemer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Werknemer GeefWerknemerOpNaam(string contactPersoon)
+        {
+            throw new NotImplementedException();
+        }
+
+      
     }
 }
 

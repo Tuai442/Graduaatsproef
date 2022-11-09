@@ -18,22 +18,26 @@ namespace BezoekerApp
     /// </summary>
     public partial class App : Application
     {
-        IWerknemerRepository werknemerRepository = new WerknemerRepository();
-        IBezoekerRepository bezoekerRepository = new BezoekerRepository();
-        IBedrijfRepository bedrijfRepository = new BedrijfRepository();
-        IAfspraakRepository afspraakRepository = new AfspraakRepository();
+
+        IWerknemerRepository werknemerRepository;
+        IBezoekerRepository bezoekerRepository;
+        IBedrijfRepository bedrijfRepository;
+        IAfspraakRepository afspraakRepository;
 
         DomeinController _domeinController;
-
 
         MainWindow mainWindow;
 
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
+            werknemerRepository = new WerknemerRepository();
+            bezoekerRepository = new BezoekerRepository();
+            bedrijfRepository = new BedrijfRepository();
+            afspraakRepository = new AfspraakRepository();
+
             _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
             bedrijfRepository, afspraakRepository);
 
-         
             mainWindow = new MainWindow(_domeinController);
             mainWindow.Show();
 

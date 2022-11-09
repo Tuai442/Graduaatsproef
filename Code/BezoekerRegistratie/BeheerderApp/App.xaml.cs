@@ -18,16 +18,19 @@ namespace BeheerderApp
     /// </summary>
     public partial class App : Application
     {
+
         IBedrijfRepository bedrijfRepository = new BedrijfRepository();
         IWerknemerRepository werknemerRepository = new WerknemerRepository();
-        IBezoekerRepository bezoekerRepository = new BezoekerRepository();
-        IAfspraakRepository afspraakRepository = new AfspraakRepository();
+        IBezoekerRepository bezoekerRepository;
+        IAfspraakRepository afspraakRepository;
 
         DomeinController _domeinController;
         MainWindow mainWindow;
 
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
+            bezoekerRepository = new BezoekerRepository();
+            afspraakRepository = new AfspraakRepository();
             _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
             bedrijfRepository, afspraakRepository);
 

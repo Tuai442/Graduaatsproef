@@ -6,7 +6,7 @@ namespace ControllerUT
 {
     public class BedrijfUT
     {
-        private Bedrijf b;
+        private Bedrijf b = new Bedrijf("naam", "BE 0123.321.123", "adres", "0487878787", "school@hotmail.com");
 
         [Theory]
         [InlineData(null)]

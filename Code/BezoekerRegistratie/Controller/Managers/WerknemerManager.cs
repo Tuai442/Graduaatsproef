@@ -27,9 +27,9 @@ namespace Controller.Managers
             return _werknemerRepository.GeefWerknemersOpEmailBedrijf(value).AsReadOnly();
         }
 
-        public void UpdateWerknemer(object obj)
+        public void UpdateWerknemer(Werknemer werknemer)
         {
-
+            _werknemerRepository.VoegWerknemerToe(werknemer);
         }
 
         public IReadOnlyList<Werknemer> ZoekOp(string zoekText)

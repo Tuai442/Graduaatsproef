@@ -1,11 +1,14 @@
 ﻿using Accessibility;
-using Components.Models;
-using Components.ViewModels;
+using Components.Interfaces;
 using Controller.Interfaces;
+using Controller.Models;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,23 +28,40 @@ namespace Components
     /// </summary>
     public partial class ZoekbareComboBox : UserControl
     {
-        public int Width
-        {
-            get { return (int)GetValue(WidthProperty); }
-            set { SetValue(WidthProperty, value); }
-        }
 
-        // Using a DependencyProperty as the backing store for Width.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty WidthProperty =
-            DependencyProperty.Register("Width", typeof(int), typeof(ZoekbareComboBox), new PropertyMetadata(null));
+       
+        //private static void OnItemsSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    var control = sender as ZoekbareComboBox;
+        //    if (control != null)
+        //        control.OnItemsSourceChanged((IEnumerable)e.OldValue, (IEnumerable)e.NewValue);
+        //}
 
-        public int Height
-        {
-            get { return (int)GetValue(HeightProperty); }
-            set { SetValue(HeightProperty, value); }
-        }
-        
-        public bool ListItemSelected { get; private set; }
+        //private void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
+        //{
+        //    // Remove handler for oldValue.CollectionChanged
+        //    var oldValueINotifyCollectionChanged = oldValue as INotifyCollectionChanged;
+
+        //    if (null != oldValueINotifyCollectionChanged)
+        //    {
+        //        oldValueINotifyCollectionChanged.CollectionChanged -= new NotifyCollectionChangedEventHandler(newValueINotifyCollectionChanged_CollectionChanged);
+        //    }
+        //    // Add handler for newValue.CollectionChanged (if possible)
+        //    var newValueINotifyCollectionChanged = newValue as INotifyCollectionChanged;
+        //    if (null != newValueINotifyCollectionChanged)
+        //    {
+        //        newValueINotifyCollectionChanged.CollectionChanged += new NotifyCollectionChangedEventHandler(newValueINotifyCollectionChanged_CollectionChanged);
+        //    }
+
+        //}
+
+        //void newValueINotifyCollectionChanged_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    //Do your stuff here.
+        //}
+
+
+
 
         // Using a DependencyProperty as the backing store for Height.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HeightProperty =
@@ -54,9 +74,8 @@ namespace Components
 
         public string SelectedLabel { get; private set; }
 
-        private List<ILijstItem> _alleItems;
+        private List<ILijstItems> _alleItems;
 
-        private bool _skipSelectionChangedEvent = false;
         public ZoekbareComboBox()
         {
             InitializeComponent();
@@ -64,16 +83,14 @@ namespace Components
 
         }
 
-        public void VoegLijstToe(List<ILijstItem> items)
+        public void VoegLijstToe(List<ILijstItems> items)
         {
-            // Itemsource wordt gebruik zodat bij het filteren van data de index steeds overeenkomt.
-            comboBox.ItemsSource = null;
-            if (comboBox.Items.Count > 0)
-            {
-                comboBox.Items.Clear();
-            }
-            comboBox.ItemsSource = items.Select(x => x.LabelNaam);
+            comboBox.Items.Clear();
             _alleItems = items;
+            foreach (ILijstItems item in items)
+            {
+                comboBox.Items.Add(item.ItemNaam);
+            }
         }
 
         private void listItemSelected(object sender, RoutedEventArgs e)
@@ -81,19 +98,17 @@ namespace Components
             throw new NotImplementedException();
         }
 
-        private void FilterLijst(List<ILijstItem> items)
+        private void FilterLijst(List<ILijstItems> items)
         {
-            _skipSelectionChangedEvent = true;
-            comboBox.ItemsSource = null; // Dit roept ook het selectionChanged event op daarom tijdelijke oplossing/
-            _skipSelectionChangedEvent = false;
-            foreach (ILijstItem item in items)
+            //comboBox.ItemsSource = null; // Dit roept ook het selectionChanged event op daarom tijdelijke oplossing/
+            comboBox.Items.Clear();
+            foreach (ILijstItems item in items)
             {
-                comboBox.Items.Add(item.LabelNaam);
+                comboBox.Items.Add(item.ItemNaam);
             }
         }
-      
-        private void comboBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+
+        private void comboBox_TextChanged(object sender, TextChangedEventArgs e){
             if (string.IsNullOrWhiteSpace(comboBox.Text))
             {
                 FilterLijst(_alleItems);
@@ -104,15 +119,15 @@ namespace Components
                 string text = comboBox.Text;
                 FilterLijst(FilterOp(text));
             }
-                
+
         }
 
-        private List<ILijstItem> FilterOp(string zoekwoord)
+        private List<ILijstItems> FilterOp(string zoekwoord)
         {
-            List<ILijstItem> result = new List<ILijstItem>();
-            foreach(ILijstItem w in _alleItems)
+            List<ILijstItems> result = new List<ILijstItems>();
+            foreach (ILijstItems w in _alleItems)
             {
-                string woord = w.LabelNaam;
+                string woord = w.ItemNaam;
                 bool gevonden = true;
                 if (zoekwoord.Length <= woord.Length)
                 {
@@ -142,13 +157,17 @@ namespace Components
             // TODO: elke keer als het SelectionChanged event wordt aangroepen wordt het comboBox_TextChanged ook aangeroepen
             // die dan opnieuw de SelectionChanged aaroept waarop dan een error volgt, momeneteel tijdelijk oplossing (_skipSelectionChangedEvent).
             // zie debugger voor meer info.
-            if (!_skipSelectionChangedEvent)
+            if ((e.AddedItems.Count > 0))
             {
                 int SelectedIndex = comboBox.SelectedIndex;
-                SelectedValue = _alleItems[SelectedIndex].Waarde;
-                SelectedLabel = _alleItems[SelectedIndex].LabelNaam; 
-                GeSelecteerd.Invoke(this, SelectedValue);
+                SelectedValue = _alleItems[SelectedIndex].Id;
+                SelectedLabel = _alleItems[SelectedIndex].ItemNaam;
+                if (GeSelecteerd != null)
+                {
+                    GeSelecteerd.Invoke(this, SelectedValue);
+                }
             }
+               
             
 
 
@@ -156,4 +175,6 @@ namespace Components
 
 
     }
+
+    
 }

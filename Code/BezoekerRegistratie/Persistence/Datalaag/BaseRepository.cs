@@ -12,6 +12,9 @@ namespace Persistence.Datalaag
     public class BaseRepository
     {
         protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
+
+        //link Diego
+        //protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
         
         public BaseRepository()
         {
@@ -23,7 +26,7 @@ namespace Persistence.Datalaag
             return connection;
         }
 
-
+        
         // Deze methode's worden alleen gebruikt voor data in te laden
         protected Bedrijf GeefBedrijfOpId(int id)
         {
@@ -34,20 +37,20 @@ namespace Persistence.Datalaag
 
                 conn.Open();
 
-                string query = $"SELECT * FROM Bedrijven WHERE BedrijfId = {id};";
+                string query = $"SELECT * FROM Bedrijf WHERE BedrijfId = {id};";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     while (dataReader.Read())
                     {
-                        string naam = (string)dataReader["Naam"];
-                        string btw = (string)dataReader["BTW"];
-                        string email = (string)dataReader["Email"];
-                        string adres = (string)dataReader["Adres"];
-                        string telefoon = (string)dataReader["Telefoon"];
+                        string naam = (string)dataReader["naam"];
+                        string btw = (string)dataReader["btwNummer"];
+                        string email = (string)dataReader["email"];
+                        string adres = (string)dataReader["adres"];
+                        string telefoon = (string)dataReader["telefoon"];
 
-                        bedrijf = new Bedrijf(naam, btw, adres, telefoon, email);
+                        bedrijf = new Bedrijf(id, naam, btw, adres, telefoon, email);
                     }
                     
                     
@@ -74,7 +77,7 @@ namespace Persistence.Datalaag
 
                 conn.Open();
 
-                string query = $"SELECT * FROM Werknemers WHERE WerknemerId = {id};";
+                string query = $"SELECT * FROM Werknemer WHERE werknemerId = {id};";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -115,7 +118,7 @@ namespace Persistence.Datalaag
             {
                 conn.Open();
 
-                string query = $"SELECT * FROM Werknemers WHERE email = '{email}';";
+                string query = $"SELECT * FROM Werknemer WHERE email = '{email}';";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
@@ -138,6 +141,47 @@ namespace Persistence.Datalaag
                 conn.Close();
             }
             return id;
+        }
+
+        protected Bezoeker GeefBezoekerOpId(int id)
+        {
+            SqlConnection conn = GetConnection();
+            Bezoeker bezoeker = null;
+            try
+            {
+
+                conn.Open();
+
+                string query = $"SELECT * FROM Bezoeker WHERE bezoekerId = {id};";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        int idd = (int)dataReader["bezoekerId"];
+                        string voornaam = (string)dataReader["voornaam"];
+                        string achternaam = (string)dataReader["achternaam"];
+                        string email = (string)dataReader["email"];
+                        bool aanwezig = Convert.ToBoolean(dataReader["aanwezig"]);
+                        string bedrijf = (string)dataReader["bedrijf"];
+
+                        bezoeker = new Bezoeker(idd, voornaam, achternaam, email, bedrijf, aanwezig);
+                    }
+
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new BedrijfException(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return bezoeker;
         }
     }
 }

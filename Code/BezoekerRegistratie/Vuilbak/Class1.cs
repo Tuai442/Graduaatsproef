@@ -10,28 +10,44 @@ using System.Threading.Tasks;
 
 namespace Vuilbak
 {
+
+
+
+    class MyAttribute : Attribute
+    {
+        public string Description { get; set; }
+
+    }
+
+    public class SomeClass
+    {
+        [MyAttribute]
+        public string GetValue()
+        {
+            return "Hello World";
+        }
+    }
+
+   
+
     public class Program
     {
         static void Main(string[] args)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Persoon, ViewPersoon>());
-            var mapper = new Mapper(config);
-            
-            IPersoon persoon = new Persoon();
-            persoon.Naam = "Tuur";
+            object[] attributes = typeof(SomeClass).
+                         GetMethod("GetValue").
+                         ReturnTypeCustomAttributes.
+                         GetCustomAttributes(false);
 
-            ViewPersoon viewPersson = mapper.Map<ViewPersoon>(persoon);
-            Console.WriteLine(viewPersson);
-            
+            foreach (object attribute in attributes)
+            {
+                Console.WriteLine(attribute);
+            }
 
         }
 
 
-        public static void Test<T>()
-        {
-            Console.WriteLine(typeof(T));
-        }
-
+       
         
     }
 }

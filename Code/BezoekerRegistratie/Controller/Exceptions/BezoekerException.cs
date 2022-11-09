@@ -3,7 +3,7 @@
 namespace Controller.Exceptions
 {
     [Serializable]
-    internal class BezoekerException : Exception
+    public class BezoekerException : Exception
     {
         public BezoekerException()
         {

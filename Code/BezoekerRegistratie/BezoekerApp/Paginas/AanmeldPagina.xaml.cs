@@ -1,5 +1,4 @@
-﻿using Components.Paginas;
-using Controller;
+﻿using Controller;
 using Controller.Interfaces.Models;
 using Controller.Managers;
 using Controller.Models;
@@ -69,7 +68,7 @@ namespace BezoekerApp.Paginas
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Foute ingave", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
             finally
@@ -105,34 +104,21 @@ namespace BezoekerApp.Paginas
             bedrijfInvulveld.Text = "Bdrijf";
         }
 
-        private void Instellingen_Click(object sender, RoutedEventArgs e)
-        {
-            InstellingPagina instellingPagina = new InstellingPagina();
-            instellingPagina.NavigeerHandler += NavigeerHandler;
-            NavigeerHandler.Invoke(this, instellingPagina);
-        }
-
         private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
-            string emailInvulveldText = emailInvulveld.Text;
+            string email = emailInvulveld.Text;
 
-            if (emailInvulveldText == "")
+            if (!string.IsNullOrEmpty(email))
             {
-                emailInvulveld.Text = "E-mail";
+                Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
+                if (bezoeker != null)
+                {
+                    achternaamInvulveld.Text = bezoeker.Achternaam;
+                    voornaamInvulveld.Text = bezoeker.Voornaam;
+                    bedrijfInvulveld.Text = bezoeker.Bedrijf;
+                }
+
             }
-
-            Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(emailInvulveldText);
-
-            if (bezoeker != null)
-            {
-                achternaamInvulveld.Text = bezoeker.Achternaam;
-                voornaamInvulveld.Text = bezoeker.Voornaam;
-                bedrijfInvulveld.Text = bezoeker.Bedrijf;
-            }
-
-
-
-
         }
 
         private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
@@ -178,6 +164,7 @@ namespace BezoekerApp.Paginas
             {
                 bedrijfInvulveld.Text = "Bedrijf";
             }
+
         }
     }
 }

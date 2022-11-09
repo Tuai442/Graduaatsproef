@@ -1,0 +1,65 @@
+﻿using Components.ViewModels.overige;
+using Controller;
+using Controller.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Components.ViewModels
+{
+    public class AfspraakView: INotifyPropertyChanged
+    {
+
+        public int Id { get; set; }
+
+        [Hoofding("Start Tijd")]
+        public DateTime StartTijd { get; set; }
+
+        [Hoofding("Eind Tijd")]
+        public DateTime? EindTijd { get; set; }
+
+        [Hoofding("Is aanwezig")]
+        public bool IsAanwezig { get; internal set; }
+
+        [Hoofding("Bezoekers Naam")]
+        public string BezoekerNaam
+        {
+            get { return Afspraak.Bezoeker.GeefVolledigeNaam(); }
+            set { }
+        }
+
+        [Hoofding("Werknemer Naam")]
+        public string WerknemerNaam
+        {
+            get { return Afspraak.Werknemer.GeefVolledigeNaam(); }
+            set { }
+        }
+
+        public Afspraak Afspraak { get; set; }
+        public AfspraakView(Afspraak afspraak)
+        {
+            Afspraak = afspraak;
+
+            StartTijd = Afspraak.StartTijd;
+            EindTijd = Afspraak.EindTijd;
+            IsAanwezig = Afspraak.IsAanwezig;
+            BezoekerNaam = Afspraak.BezoekerNaam;
+            WerknemerNaam = Afspraak.WerknemerNaam;
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void OnPropertyChanged(string name = null)
+        {
+            // We willen dat er bij de afspraken in het verleden nog altijd oude data terug gevonden wordt.
+            // Daarom nieuwe bezoeker een NIET de oude update.
+            if (PropertyChanged != null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+    }
+}

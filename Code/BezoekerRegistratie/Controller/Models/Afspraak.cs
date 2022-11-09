@@ -1,6 +1,7 @@
 ﻿using Controller.Interfaces;
 using Controller.Interfaces.Models;
 using Controller.Models;
+using System.ComponentModel;
 using System.Security.Cryptography;
 
 namespace Controller
@@ -14,7 +15,6 @@ namespace Controller
         public DateTime? EindTijd { get; set; }
         public bool IsAanwezig { get; internal set; }
 
-        // --------------
         public string BezoekerNaam 
         { 
             get { return Bezoeker.GeefVolledigeNaam(); }
@@ -26,15 +26,28 @@ namespace Controller
 
         }
 
+        public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd, DateTime? eindTijd) 
+        {
+            Bezoeker = bezoeker;
+            Werknemer = werknemer;
+            EindTijd = eindTijd;
+            StartTijd = startTijd;
+        }
+
+
+        //Afspraak (string) , (DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"],(int)dataReader["werknemerId"],(int)dataReader["bezoekerId"];
+
 
         // Als een afspraak geen eindtijd heeft betekend dit dat de bezoeker nog aan wezig is.
         // 2 constructors voor als we uit de db afspraken willen halen die toch al een eindtijd hebben.
+
         public Afspraak(int id, Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
         {
             Id = id;
             Bezoeker = bezoeker;
             Werknemer = werknemer;
             StartTijd = startTijd;
+            //TODO: eindtijd kan  iet null zijn want een datetime is een non nullable value type!
             EindTijd = null;
             IsAanwezig = true;
         }
@@ -61,6 +74,14 @@ namespace Controller
             
         }
 
+    
+
+        //Afspraak((string)dataReader["voornaamBezoeker"], (string)dataReader["achternaamBezoeker"], (string)dataReader["bezoekerBedrijfsnaam"], (string)dataReader["email"], (DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"],(int)dataReader["werknemerId"]);
+        /*public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd, DateTime? eindTijd, bool isAanwezig) : this(id, bezoeker, werknemer, startTijd, eindTijd)
+        {
+            IsAanwezig = isAanwezig;
+        }*/
+
         public void EindeAfspraak()
         {
             EindTijd = DateTime.Now;
@@ -69,8 +90,5 @@ namespace Controller
         }
        
 
-       
-
-       
     }
 }

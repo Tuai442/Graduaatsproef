@@ -1,4 +1,5 @@
-﻿using Components.Models;
+﻿
+using Components.Interfaces;
 using Components.ViewModels;
 using Controller;
 using Controller.Interfaces;
@@ -41,41 +42,23 @@ namespace BezoekerApp.Paginas
 
             TerugKnopAanmeldScherm.ButtonClick += GaTerug;
 
-            IReadOnlyList<Bedrijf> temp1 = _bedrijfManager.GeefAlleBedrijven();
-            List<ILijstItem> bedrijfLijstItems = GeefBedrijfItems(temp1);
-            //List<BedrijfViewModel> test = Omzetter.ZetBedrijvenOmInViewModellen(temp1);
-            bedrijfComboBox.VoegLijstToe(bedrijfLijstItems);
+            IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+            List<ILijstItems> bedrijfItems = bedrijven.Select(x => (ILijstItems)new BedrijfView(x)).ToList();
+            bedrijfComboBox.VoegLijstToe(bedrijfItems);
 
-            IReadOnlyList<Werknemer> temp2 = _werknemerManager.GeefAlleWerknemers();
-            List<ILijstItem> werknemersLijstItems = GeefWerknemerItems(temp2);
-            //List<WerknemerViewModel> test1 = Omzetter.ZetWerknemersOmInViewModellen(temp2);
-            contactComboBox.VoegLijstToe(werknemersLijstItems);
+            IReadOnlyList<Werknemer> werknemers = _werknemerManager.GeefAlleWerknemers();
+            List<ILijstItems> werknemerItems = werknemers.Select(x => (ILijstItems)new WerknemerView(x)).ToList();
+            contactComboBox.VoegLijstToe(werknemerItems);
 
             bedrijfComboBox.GeSelecteerd += BedrijfGeselecteerd;
-            contactComboBox.GeSelecteerd += ContactPersoonGeselecteerd;
-
-            //bedrijfComboBox.VoegLijstToe(bedrijven);
-            //contactComboBox.GetListItemSelected();
+            //contactComboBox.GeSelecteerd += ContactPersoonGeselecteerd;
 
             AanmeldKnop.ButtonClick += PersoonAanmelden;
         }
 
-        private static List<ILijstItem> GeefWerknemerItems(IReadOnlyList<Werknemer> temp2)
-        {
-            List<WerknemerViewModel> werknemerViewModels = Omzetter.ZetWerknemersOmInViewModellen(temp2);
-            List<ILijstItem> werknemersLijstItems = werknemerViewModels.Select(x => (ILijstItem)x).ToList();
-            return werknemersLijstItems;
-        }
-
-        private static List<ILijstItem> GeefBedrijfItems(IReadOnlyList<Bedrijf> temp1)
-        {
-            List<BedrijfViewModel> bedrijfViewModels = Omzetter.ZetBedrijvenOmInViewModellen(temp1);
-            List<ILijstItem> bedrijfLijstItems = bedrijfViewModels.Select(x => (ILijstItem)x).ToList();
-            return bedrijfLijstItems;
-        }
-
         private void PersoonAanmelden(object? sender, EventArgs e)
         {
+            // TODO: Kan beter
             Dictionary<string, Dictionary<string, string>> dict = new Dictionary<string, Dictionary<string, string>>();
             dict.Add("bedrijf", new Dictionary<string, string>() {
                 {"naam", bedrijfComboBox.SelectedLabel},
@@ -92,20 +75,18 @@ namespace BezoekerApp.Paginas
             AanmeldHandler.Invoke(sender, dict);
             // doorsturen naar databank samen met klantgegevens voor de afspraak aan te maken
         }
-
         private void BedrijfGeselecteerd(object? sender, string value)
         {
             IReadOnlyList<Werknemer> werknemers = _werknemerManager.GeefWerknemersOpEmailBedrijf(value);
-            List <ILijstItem> werknemerLijstItems = GeefWerknemerItems(werknemers); 
-            contactComboBox.VoegLijstToe(werknemerLijstItems);
+            List<ILijstItems> werknemerItems = werknemers.Select(x => (ILijstItems)new WerknemerView(x)).ToList();
+            contactComboBox.VoegLijstToe(werknemerItems);
         }
-
-        private void ContactPersoonGeselecteerd(object? sender, string value)
-        {
-            IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefBedrijvenOpEmailWerknemer(value);
-            List<ILijstItem> bedrijfLijstItems = GeefBedrijfItems(bedrijven); 
-            bedrijfComboBox.VoegLijstToe(bedrijfLijstItems);
-        }
+        //private void ContactPersoonGeselecteerd(object? sender, string value)
+        //{
+        //    IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefBedrijvenOpEmailWerknemer(value);
+        //    List<ILijstItems> bedrijfItems = bedrijven.Select(x => (ILijstItems)new BedrijfView(x)).ToList();
+        //    bedrijfComboBox.VoegLijstToe(bedrijfItems);
+        //}
         private void GaTerug(object? sender, EventArgs e)
         {
             NavigationService.GoBack();

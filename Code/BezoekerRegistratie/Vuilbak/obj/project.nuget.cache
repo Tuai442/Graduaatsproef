@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "tQNuljrPlqTL0qi30pKhNRfet7Z1pYNCrYAZkycAgbsFGkXm1+6X7FD+Z/EoZYqCW1bu2GAUgT1EPjlfTIlfQg==",
+  "dgSpecHash": "QIin03VduT7cSZ0+enXTSonEFXnziKjWwEpogEaRC+KwPe1If5BuFibvKtxwLEhKAe9sA/MPBQN6KQWQvLCVkw==",
   "success": true,
   "projectFilePath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Vuilbak\\Vuilbak.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\noahg\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\noahg\\.nuget\\packages\\countryvalidator\\1.1.3\\countryvalidator.1.1.3.nupkg.sha512",
     "C:\\Users\\noahg\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\noahg\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\noahg\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
@@ -17,5 +18,12 @@
     "C:\\Users\\noahg\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\noahg\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Vuilbak\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

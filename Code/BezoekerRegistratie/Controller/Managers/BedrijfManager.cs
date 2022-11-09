@@ -48,22 +48,31 @@ namespace Controller.Managers
 
         public IReadOnlyList<Bedrijf> ZoekOp(string zoekText)
         {
+            // if (string.IsNullOrWhiteSpace(zoekText)) throw new BedrijfException("BM - ZoekOp");
             return _bedrijfRepository.ZoekBedrijfOp(zoekText).AsReadOnly();
             
         }
 
-        public void VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
-        {
-            // TODO: Unit test
-            Controleer.BtwNummerControle(btw);
-            Controleer.ControleEmail(email);
-            Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
-            _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
-        }
+        //TODO: dubbele methode
+        //public void VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
+        //{
+        //    // TODO: Unit test
+        //    Controleer.BtwNummerControle(btw);
+        //    Controleer.ControleEmail(email);
+        //    Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
+        //    _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
+        //}
 
         public IReadOnlyList<Bedrijf> GeefBedrijvenOpEmailWerknemer(string email)
         {
+            Controleer.ControleEmail(email);
             return _bedrijfRepository.GeefBedrijvenOpWerknemerEmail(email).AsReadOnly();
+        }
+
+        public void UpdateBedrijf(Bedrijf bedrijf)
+        {
+            if (bedrijf == null) throw new BedrijfException("BM - UpdateBedrijf");
+            _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
         }
     }
 }

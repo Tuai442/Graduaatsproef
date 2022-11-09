@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BeheerderApp.Paginas"
       xmlns:UIC="clr-namespace:Components;assembly=Components"
+      xmlns:DG="clr-namespace:Components.Datagrids;assembly=Components"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="BeheerderPagina">
@@ -29,29 +30,44 @@
 
             <Border BorderBrush="Black"
                     BorderThickness="0 0 0 2">
-                <WrapPanel Background="white">
-                    <UIC:CheckBox TText="Bezoeker"
+                <Grid>
+                    <WrapPanel Background="white">
+                        <UIC:CheckBox TText="Bezoeker"
                                   Margin="10"
                                   Height="40" Width="100"
                                   x:Name="bezoekerCheckBox"
-                                  Value="bezoeker"/>
+                                  Value="bezoeker"
+                                  />
 
-                    <UIC:CheckBox TText="Werknemer"
+                        <UIC:CheckBox TText="Werknemer"
                                   Height="40" Width="100"
                                   Margin="10" 
                                   x:Name="werknemerCheckBox"/>
 
-                    <UIC:CheckBox TText="Bedrijf"
+                        <UIC:CheckBox TText="Bedrijf"
                                   Height="40" Width="100"
                                   Margin="10" 
                                   x:Name="bedrijfCheckBox"/>
 
-                    <UIC:CheckBox TText="Afspraak"
+                        <UIC:CheckBox TText="Afspraak"
                                   Height="40" Width="100"
                                   Margin="10" 
                                   x:Name="afspraakCheckBox"/>
-
-                </WrapPanel>
+                    </WrapPanel>
+                    
+                    <Button Name="herlaadBtn"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Content="Herlaad"
+                            Margin="10" Padding="10"
+                            FontSize="20"
+                            Click="herlaadBtn_Click"/>
+                    
+                    
+                </Grid>
+                
+                
+               
             </Border>
 
             
@@ -62,31 +78,14 @@
             </StackPanel>
 
             <StackPanel x:Name="dataGridPanel">
-                <UIC:ZoekbaarDataGrid x:Name="_dataGrid"/>
+                <UIC:ZoekbaarDataGrid Name="dataGrid"/>
+                <!--<DG:WerknemerDataGrid Name="werknemerDataGrid" Visibility="Hidden"/>-->
+
+                <!--<UIC:ZoekbaarDataGrid x:Name="_dataGrid"/>-->
 
 
             </StackPanel>
-            <!--<DataGrid x:Name="dataGrid"
-                      Margin="10">
-                --><!--<DataGrid.Columns>
-                    <DataGridTextColumn Header="Voornaam"
-                                        MinWidth="150"
-                                        />
-                    <DataGridTextColumn Header="Achternaam"
-                                        MinWidth="150"
-                                        />
-                    <DataGridTextColumn Header="Bedrijf"
-                                        MinWidth="150"
-                                        />
-                    <DataGridTextColumn Header="Start Datum"
-                                        MinWidth="150"
-                                        />
-                    <DataGridTextColumn Header="Eind Datum"
-                                        MinWidth="150"
-                                        />
-                </DataGrid.Columns>--><!--
-                
-            </DataGrid>-->
+            
 
         </StackPanel>
         
