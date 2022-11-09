@@ -341,7 +341,40 @@ namespace Persistence.Datalaag
 
         public void UpdateWerknemer(Werknemer werknemer)
         {
-            throw new NotImplementedException();
+            string query = "UPDATE dbo.Werknemer " +
+                "SET voornaam=@voornaam, achternaam=@achternaam, email=@email, bedrijfId=@bedrijfId, functie=@functie " +
+                "WHERE werknemerId = @id;";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@voornaam", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@achternaam", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@bedrijfId", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@functie", SqlDbType.NVarChar));
+
+                    command.Parameters["@id"].Value = werknemer.Id;
+                    command.Parameters["@voornaam"].Value = werknemer.Voornaam;
+                    command.Parameters["@achternaam"].Value = werknemer.Achternaam;
+                    command.Parameters["@email"].Value = werknemer.Email;
+                    command.Parameters["@bedrijfId"].Value = werknemer.Bedrijf.Id;
+                    command.Parameters["@functie"].Value = werknemer.Functie;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    BezoekerException be = new BezoekerException("Bezoeker updaten is niet gelukt", e);
+                    throw be;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public Werknemer GeefWerknemerOpNaam(string contactPersoon)

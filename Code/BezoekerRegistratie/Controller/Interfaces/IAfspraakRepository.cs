@@ -9,13 +9,13 @@ namespace Controller.Interfaces
 {
     public interface IAfspraakRepository
     {
-        int GeefAfspraakOpDatum(DateTime datum);
+        
         List<Afspraak> GeefAlleAfspraken();
         void VoegAfspraakToe(Afspraak afspraak);
         void UpdateAfspraak(Afspraak afspraak);
         List<Afspraak> ZoekAfspraakOp(string zoekText);
-        Afspraak GeefAfspraakOpEmail(string email);
-        List<Afspraak> GeefAlleAanwezigeAfspraken();
+      
         Afspraak GeefAfspraakOpBezoekerId(int id);
+        Afspraak GeefAfspraakOpBezoekerEmail(string email);
     }
 }

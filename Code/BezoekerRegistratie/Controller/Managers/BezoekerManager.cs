@@ -66,7 +66,8 @@ namespace Controller.Managers
 
             bezoekerMetId.MeldAan();
             Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon); // TODO: controle bestaat werknemer
-            Afspraak afspraak = new Afspraak(bezoekerMetId, werknemer, DateTime.Now);
+            Afspraak afspraak = new Afspraak(bezoekerMetId.Voornaam, bezoekerMetId.Achternaam, bezoekerMetId.Email,
+                werknemer.Voornaam, werknemer.Achternaam, werknemer.Email, werknemer.Bedrijf.ToString(), DateTime.Now, null); ;
             _afspraakRepository.VoegAfspraakToe(afspraak);
         }
 
@@ -76,7 +77,7 @@ namespace Controller.Managers
             Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpEmail(email);
             Controleer.ControleIsBezoekerAlAanwezig(bezoeker);
 
-            Afspraak afspraak = _afspraakRepository.GeefAfspraakOpBezoekerId(bezoeker.Id);
+            Afspraak afspraak = _afspraakRepository.GeefAfspraakOpBezoekerEmail(bezoeker.Email);
             Controleer.ControleIsAfspraakAlAfgesloten(afspraak);
 
             bezoeker.MeldAf();
@@ -104,7 +105,7 @@ namespace Controller.Managers
             // in de afspraken de email adressen wille behouden, daarom bij elke verandering 
             // wordt er een nieuwe bezoeker toegevoegd
             
-            _bezoekerRepository.VoegBezoekerToe(bezoeker);
+            _bezoekerRepository.UpdateBezoeker(bezoeker);
 
         }
 

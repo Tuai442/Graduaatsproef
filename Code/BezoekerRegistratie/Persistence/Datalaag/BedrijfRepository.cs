@@ -264,7 +264,41 @@ namespace Persistence.Datalaag
 
         public void UpdateBedrijf(Bedrijf bedrijf)
         {
-            throw new NotImplementedException();
+            string query = "UPDATE dbo.Bedrijf " +
+                 "SET naam=@naam, btwNummer=@btwNummer, email=@email, telefoon=@telefoon, adres=@adres " +
+                 "WHERE bedrijfId = @id;";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@naam", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@btwNummer", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@telefoon", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@adres", SqlDbType.NVarChar));
+
+                    command.Parameters["@id"].Value = bedrijf.Id;
+                    command.Parameters["@naam"].Value = bedrijf.Naam;
+                    command.Parameters["@btwNummer"].Value = bedrijf.Btw;
+                    command.Parameters["@email"].Value = bedrijf.Email;
+                    command.Parameters["@telefoon"].Value = bedrijf.Telefoon;
+                    command.Parameters["@adres"].Value = bedrijf.Adres;
+
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    BedrijfException be = new BedrijfException("Bedrijf kon niet geupdate worden", e);
+                    throw be;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
     }
