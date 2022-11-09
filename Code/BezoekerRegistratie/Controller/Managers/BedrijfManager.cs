@@ -74,5 +74,10 @@ namespace Controller.Managers
             if (bedrijf == null) throw new BedrijfException("BM - UpdateBedrijf");
             _bedrijfRepository.UpdateBedrijf(bedrijf);
         }
+
+        public Bedrijf GeefBedrijfOpEmail(string email)
+        {
+            return _bedrijfRepository.GeefBedrijfOpEmail(email);
+        }
     }
 }

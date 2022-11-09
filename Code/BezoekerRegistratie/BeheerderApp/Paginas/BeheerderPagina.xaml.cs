@@ -26,6 +26,7 @@ using Components.Datagrids;
 using Components.ViewModels;
 using System.Collections.ObjectModel;
 using BeheerderApp.Windows;
+using Components.Interfaces;
 
 namespace BeheerderApp.Paginas
 {
@@ -46,7 +47,6 @@ namespace BeheerderApp.Paginas
         private List<BezoekerView> _bezoekerViews = new List<BezoekerView>(); 
         private List<AfspraakView> _afspraakViews = new List<AfspraakView>();
         private List<BedrijfView> _bedrijfViews = new List<BedrijfView>();
-        private List<Bedrijf> bedrijven = new List<Bedrijf>();
         public BeheerderPagina(DomeinController domeinController)
         {
             InitializeComponent();
@@ -97,7 +97,8 @@ namespace BeheerderApp.Paginas
                     _werknemerViews.Add(werknemerView);
                 }
                 //werknemerDataGrid.StelDataIn(_werknemerViews);
-                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijven);
+                List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
+                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijbString);
             }
             else if (afspraakCheckBox.IsActief)
             {
@@ -152,7 +153,7 @@ namespace BeheerderApp.Paginas
 
                     voegToeBtns.Content = "Voeg werknemer toe";
                     IReadOnlyList<Bedrijf> bedrijfModels = _bedrijfManager.GeefAlleBedrijven();                    
-                    bedrijven = bedrijfModels.Select(x => x).ToList();
+                    //bedrijven = bedrijfModels.Select(x => x).ToList();
                     
                 }
 
@@ -160,7 +161,8 @@ namespace BeheerderApp.Paginas
                 VinkAllesUitBehalve(check);
 
                 //werknemerDataGrid.StelDataIn(_werknemerViews);
-                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijven);
+                List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
+                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijbString);
 
             }
 
@@ -212,7 +214,7 @@ namespace BeheerderApp.Paginas
                         _afspraakViews.Add(afspraakView);
                     }
                 }
-                voegToeBtns.Content = "Voeg afspraak toe";
+                voegToeBtns.Visibility = Visibility.Hidden;
 
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
@@ -312,8 +314,20 @@ namespace BeheerderApp.Paginas
 
         private void voegToeBtns_Click(object sender, RoutedEventArgs e)
         {
-            VoegWerknemerToeWindow v = new VoegWerknemerToeWindow();
+            List<ILijstItems> bedrijfItems = _bedrijfViews.Select(x => (ILijstItems)x).ToList();
+            VoegWerknemerToeWindow v = new VoegWerknemerToeWindow(_domeinController, bedrijfItems);
+            v.VoegToe += VoegWerknemerToe;
             v.Show();
+        }
+
+        // Toe voegen
+        private void VoegWerknemerToe(object? sender, Dictionary<string, string> dict)
+        {
+            Bedrijf bedrijf = _bedrijfManager.GeefBedrijfOpEmail(dict["bedrijf"]);
+            _werknemerManger.VoegWerknemerToe(dict["voornaam"], dict["achternaam"],
+                dict["email"], dict["functie"], bedrijf);
+            VoegWerknemerToeWindow window = (VoegWerknemerToeWindow)sender;
+            window.Close();
         }
     }
 }

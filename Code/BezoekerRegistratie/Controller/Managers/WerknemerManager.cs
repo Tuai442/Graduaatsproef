@@ -32,6 +32,14 @@ namespace Controller.Managers
             _werknemerRepository.UpdateWerknemer(werknemer);
         }
 
+        public void VoegWerknemerToe(string voornaam, string achternaam, string email, string funttie,
+            Bedrijf bedrijf)
+        {
+            //TODO - controle gegevens
+            Werknemer werknemer = new Werknemer(voornaam, achternaam, email, funttie, bedrijf);
+            _werknemerRepository.VoegWerknemerToe(werknemer);
+        }
+
         public IReadOnlyList<Werknemer> ZoekOp(string zoekText)
         {
             return _werknemerRepository.ZoekOpWerknemers(zoekText).AsReadOnly();

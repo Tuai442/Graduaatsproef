@@ -4,9 +4,66 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeheerderApp.Windows"
+        xmlns:UIC="clr-namespace:Components;assembly=Components"
+
         mc:Ignorable="d"
-        Title="VoegWerknemerToeWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="VoegWerknemerToeWindow" Height="auto" Width="400">
+    <Grid Background="Beige">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Voornaam"
+               Grid.Row="0" Grid.Column="0"
+               Margin="10"/>
+        <TextBox  Grid.Row="0" Grid.Column="1"
+                  Margin="10"
+                  Name="voornaamTxtbox"/>
+
+        <Label Content="Achternaam"
+               Grid.Row="1" Grid.Column="0"
+               Margin="10"/>
+        <TextBox  Grid.Row="1" Grid.Column="1"
+                  Margin="10"
+                  Name="achternaamTxtbox"/>
+
+        <Label Content="Email"
+               Grid.Row="2" Grid.Column="0"
+               Margin="10"/>
+        <TextBox  Grid.Row="2" Grid.Column="1"
+                  Margin="10"
+                  Name="emailTxtbox"/>
+
+        <Label Content="Functie"
+               Grid.Row="3" Grid.Column="0"
+               Margin="10"/>
+        <TextBox  Grid.Row="3" Grid.Column="1"
+                  Margin="10"
+                  Name="functieTxtbox"/>
+
+        <Label Content="Bedrijf"
+               Grid.Row="4" Grid.Column="0"
+               Margin="10"/>
+
+        <UIC:ZoekbareComboBox Grid.Row="4" Grid.Column="1"
+                              Name="bedrijfCombobox" Margin="10"/>
+       
+
+        <Button Grid.Row="5" Grid.Column="0"
+                Height="50" Grid.ColumnSpan="2"
+                Margin="20" Content="Voeg Toe"
+                Click="Button_Click"/>
+
     </Grid>
 </Window>
