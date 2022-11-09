@@ -72,7 +72,7 @@ namespace Controller.Managers
         public void UpdateBedrijf(Bedrijf bedrijf)
         {
             if (bedrijf == null) throw new BedrijfException("BM - UpdateBedrijf");
-            _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
+            _bedrijfRepository.UpdateBedrijf(bedrijf);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Controller.Models
 {
     public class Bezoeker : Persoon
     {
-        public int Id;
+        public int Id { get; set; }
         public string Nummerplaat { get; set; }
         public bool Aanwezig { get; set; }
         public string Bedrijf { get; set; }

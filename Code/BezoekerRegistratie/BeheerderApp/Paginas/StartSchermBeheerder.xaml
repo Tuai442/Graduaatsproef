@@ -9,23 +9,61 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StartSchermBeheerder">
 
-    <Grid Background="LightSteelBlue">
-        
-        <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Background="white"
-                    Orientation="Horizontal">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF2F2253" Offset="0.734"/>
+            </LinearGradientBrush>
+        </Grid.Background>
 
-            <UIC:Knop Width="200" Height="40"
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Label Content="Welkom"
+                   FontFamily="Consolas"
+                   HorizontalAlignment="Center"
+                   Margin="30"
+                   FontSize="50"
+                   FontWeight="ExtraBold" 
+                   Foreground="#FF6A2A94"
+                   >
+                <Label.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF8E4A4A" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.BorderBrush>
+            </Label>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+
+                <UIC:Knop Width="200" Height="40"
                       Text="Lijst met aanwezigen"
                       Margin="10"
-                      x:Name="lijstMetAanwKnop"/>
+                      x:Name="lijstMetAanwKnop"
+                          Grid.Row="0"
+                          Grid.Column="0"/>
 
-            <UIC:Knop Width="200" Height="40"
+                <UIC:Knop Width="200" Height="40"
                       Text="Gegevens beheren"
                       Margin="10"
-                      x:Name="gegevensBeherenKnop"/>
-
+                      x:Name="gegevensBeherenKnop"
+                           Grid.Row="1"
+                          Grid.Column="1"/>
+            </Grid>
         </StackPanel>
+
+
+
+       
     </Grid>
 </Page>

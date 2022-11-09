@@ -1,15 +1,6 @@
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.deps.json
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.dll
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.pdb
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.csproj.AssemblyReference.cache
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.GeneratedMSBuildEditorConfig.editorconfig
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.AssemblyInfoInputs.cache
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.AssemblyInfo.cs
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.csproj.CoreCompileInputs.cache
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.dll
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\refint\Controller.dll
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.pdb
-D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\ref\Controller.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.deps.json
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.dll
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.csproj.AssemblyReference.cache
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.AssemblyInfoInputs.cache
@@ -18,7 +9,4 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\D
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\refint\Controller.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.pdb
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.deps.json
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.dll
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\ref\Controller.dll

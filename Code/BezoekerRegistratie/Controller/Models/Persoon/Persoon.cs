@@ -28,18 +28,6 @@ namespace Controller.Models
             return Voornaam + " " + Achternaam;
         }
 
-        public virtual Dictionary<string, string> ToDictionary()
-        {
-            Dictionary<string, string> result = new Dictionary<string, string>()
-            {
-                {"Voornaam", Voornaam},
-                {"Achternaam", Achternaam},
-                {"Email", Email},
-
-            };
-            return result;
-        }
-
 
     }
 }

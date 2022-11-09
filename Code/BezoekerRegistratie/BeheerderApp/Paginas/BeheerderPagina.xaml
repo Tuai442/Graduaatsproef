@@ -54,6 +54,7 @@
                                   Margin="10" 
                                   x:Name="afspraakCheckBox"/>
                     </WrapPanel>
+
                     
                     <Button Name="herlaadBtn"
                             HorizontalAlignment="Right"
@@ -79,7 +80,7 @@
 
             <StackPanel x:Name="dataGridPanel">
                 <UIC:ZoekbaarDataGrid Name="dataGrid"/>
-                <DG:WerknemerDataGrid Name="werknemerDataGrid" Visibility="Hidden"/>
+                <!--<DG:WerknemerDataGrid Name="werknemerDataGrid" Visibility="Hidden"/>-->
 
                 <!--<UIC:ZoekbaarDataGrid x:Name="_dataGrid"/>-->
 
