@@ -37,7 +37,7 @@ namespace BezoekerApp.Paginas
             InitializeComponent();
             _domeinController = bezoekerController;
             _bezoekerManger = _domeinController.GeefBezoekerManager();
-            
+
 
             logInBtn.ButtonClick += LogIn;
             logUitBtn.ButtonClick += LogUit;
@@ -49,9 +49,10 @@ namespace BezoekerApp.Paginas
             bs.AanmeldHandler += MeldBezoekerAan;
             NavigeerHandler.Invoke(this, bs);
         }
+
         private void MeldBezoekerAan(object? sender, Dictionary<string, Dictionary<string, string>> dict)
         {
-            string email = emailInvulveld.Text; 
+            string email = emailInvulveld.Text;
             string voornaam = voornaamInvulveld.Text;
             string achternaam = achternaamInvulveld.Text;
             string bedrijfB = bedrijfInvulveld.Text;
@@ -60,7 +61,7 @@ namespace BezoekerApp.Paginas
 
             try
             {
-                _bezoekerManger.MeldBezoekerAan(voornaam, achternaam, 
+                _bezoekerManger.MeldBezoekerAan(voornaam, achternaam,
                     email, bedrijfB, contactPersoonEmail);
                 MessageBox.Show("U bent ingelogd.");
                 LeegAlleVelden();
@@ -75,7 +76,7 @@ namespace BezoekerApp.Paginas
             {
                 NavigeerHandler.Invoke(this, this);
             }
-            
+
         }
 
         private void LogUit(object? sender, EventArgs e)
@@ -88,20 +89,20 @@ namespace BezoekerApp.Paginas
                 MessageBox.Show("Prettige dag nog");
                 LeegAlleVelden();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
 
         }
 
         private void LeegAlleVelden()
         {
-            emailInvulveld.Text = ""; 
-            voornaamInvulveld.Text = "";
-            achternaamInvulveld.Text = "";
-            bedrijfInvulveld.Text = "";
+            emailInvulveld.Text = "E-mail"; 
+            voornaamInvulveld.Text = "Voornaam";
+            achternaamInvulveld.Text = "Achternaam";
+            bedrijfInvulveld.Text = "Bdrijf";
         }
 
         private void Instellingen_Click(object sender, RoutedEventArgs e)
@@ -113,15 +114,70 @@ namespace BezoekerApp.Paginas
 
         private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
-            string email = emailInvulveld.Text;
-            Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
-            if(bezoeker != null)
+            string emailInvulveldText = emailInvulveld.Text;
+
+            if (emailInvulveldText == "")
+            {
+                emailInvulveld.Text = "E-mail";
+            }
+
+            Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(emailInvulveldText);
+
+            if (bezoeker != null)
             {
                 achternaamInvulveld.Text = bezoeker.Achternaam;
                 voornaamInvulveld.Text = bezoeker.Voornaam;
                 bedrijfInvulveld.Text = bezoeker.Bedrijf;
             }
-            
+
+
+
+
+        }
+
+        private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (emailInvulveld.Text == "E-mail")
+                emailInvulveld.Clear();
+        }
+        private void bedrijfInvulveld_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (bedrijfInvulveld.Text == "Bedrijf")
+                bedrijfInvulveld.Clear();
+        }
+        private void voornaamInvulveld_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (voornaamInvulveld.Text == "Voornaam")
+                voornaamInvulveld.Clear();
+        }
+        private void achternaamInvulveld_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (achternaamInvulveld.Text == "Achternaam")
+                achternaamInvulveld.Clear();
+        }
+
+        private void achternaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (achternaamInvulveld.Text == "")
+            {
+                achternaamInvulveld.Text = "Achternaam";
+            }
+        }
+
+        private void voornaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (voornaamInvulveld.Text == "")
+            {
+                voornaamInvulveld.Text = "Voornaam";
+            }
+        }
+
+        private void bedrijfInvulveld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (bedrijfInvulveld.Text == "")
+            {
+                bedrijfInvulveld.Text = "Bedrijf";
+            }
         }
     }
 }

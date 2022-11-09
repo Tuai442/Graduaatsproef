@@ -28,3 +28,33 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\D
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\refint\Components.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ref\Components.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.deps.json
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.pdb
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Controller.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Controller.pdb
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.AssemblyReference.cache
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\CheckBox.g.cs
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.g.cs
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Paginas\InstellingPagina.g.cs
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.g.cs
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbaarDataGrid.g.cs
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbareComboBox.g.cs
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.cache
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.lref
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\CheckBox.baml
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.baml
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Paginas\InstellingPagina.baml
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.baml
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbaarDataGrid.baml
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbareComboBox.baml
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.g.resources
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.GeneratedMSBuildEditorConfig.editorconfig
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfoInputs.cache
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfo.cs
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.CoreCompileInputs.cache
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.CopyComplete
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\refint\Components.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.pdb
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ref\Components.dll

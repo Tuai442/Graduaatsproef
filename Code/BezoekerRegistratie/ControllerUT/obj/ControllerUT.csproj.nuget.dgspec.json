@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj": {}
+    "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj": {
+    "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj",
+        "projectUniqueName": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj",
         "projectName": "ControllerUT",
-        "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj",
-        "packagesPath": "C:\\Users\\Tuur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\obj\\",
+        "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj",
+        "packagesPath": "C:\\Users\\noahg\\.nuget\\packages\\",
+        "outputPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\ControllerUT\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tuur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\noahg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
-                "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+              "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+                "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
               }
             }
           }
@@ -85,24 +85,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+    "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
+        "projectUniqueName": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
         "projectName": "Controller",
-        "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
-        "packagesPath": "C:\\Users\\Tuur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\obj\\",
+        "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj",
+        "packagesPath": "C:\\Users\\noahg\\.nuget\\packages\\",
+        "outputPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Controller\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tuur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\noahg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -144,7 +144,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

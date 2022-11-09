@@ -7,3 +7,12 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Deb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.csproj.CoreCompileInputs.cache
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.pdb
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1.mdf
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1_log.ldf
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll.config
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.pdb
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.csproj.AssemblyReference.cache
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.csproj.CoreCompileInputs.cache
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.pdb

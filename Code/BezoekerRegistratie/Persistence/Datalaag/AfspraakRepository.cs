@@ -447,7 +447,7 @@ namespace Persistence.Datalaag
             }
             catch (Exception e)
             {
-                throw new AfspraakException(e.Message);
+                throw new AfspraakException(e.Message); // ik land hier altijd (in wanneer ik met een nieuw email wil inloggen)
             }
             finally
             {
