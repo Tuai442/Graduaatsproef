@@ -33,3 +33,38 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\D
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Datagrids\WerknemerDataGrid.g.cs
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Datagrids\WerknemerDataGrid.baml
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.deps.json
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Components.pdb
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Controller.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\bin\Debug\net6.0-windows\Controller.pdb
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.AssemblyReference.cache
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\CheckBox.g.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Datagrids\BezoekersDataGrid.g.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Datagrids\WerknemerDataGrid.g.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Datagrids\Zoekbalk.g.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.g.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.g.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbaarDataGrid.g.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbareComboBox.g.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.cache
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components_MarkupCompile.lref
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\CheckBox.baml
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Datagrids\BezoekersDataGrid.baml
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Datagrids\WerknemerDataGrid.baml
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Datagrids\Zoekbalk.baml
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Knop.baml
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\TerugKnop.baml
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbaarDataGrid.baml
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ZoekbareComboBox.baml
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.g.resources
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfoInputs.cache
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.AssemblyInfo.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.CoreCompileInputs.cache
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.csproj.CopyComplete
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\refint\Components.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\Components.pdb
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\ref\Components.dll

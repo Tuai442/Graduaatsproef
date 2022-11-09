@@ -30,7 +30,6 @@ namespace Components.Datagrids
 
         public void VerbindEventHanlder()
         {
-            zoekbalk.OpZoekbalkVerandering += OpZoekBalkVerandering;
 
         }
 

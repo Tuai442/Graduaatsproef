@@ -66,38 +66,33 @@ namespace Persistence.Datalaag
             {
                 try
                 {
-
-                    List<Werknemer> bedrijven = new List<Werknemer>();
                     conn.Open();
-                    IDataReader dataReader = command.ExecuteReader();
-                    while (dataReader.Read())
-                    {
-                        command.Parameters.Add(new SqlParameter("@Voornaam", SqlDbType.VarChar));
-                        command.Parameters["@Voornaam"].Value = werknemer.Voornaam;
+                    
+                    command.Parameters.Add(new SqlParameter("@voornaam", SqlDbType.VarChar));
+                    command.Parameters["@voornaam"].Value = werknemer.Voornaam;
 
-                        command.Parameters.Add(new SqlParameter("@Achternaam", SqlDbType.VarChar));
-                        command.Parameters["@Achternaam"].Value = werknemer.Voornaam;
+                    command.Parameters.Add(new SqlParameter("@achternaam", SqlDbType.VarChar));
+                    command.Parameters["@achternaam"].Value = werknemer.Voornaam;
 
-                        command.Parameters.Add(new SqlParameter("@Email", SqlDbType.VarChar));
-                        command.Parameters["@Email"].Value = werknemer.Email;
+                    command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar));
+                    command.Parameters["@email"].Value = werknemer.Email;
 
-                        command.Parameters.Add(new SqlParameter("@Functie", SqlDbType.VarChar));
-                        command.Parameters["@Functie"].Value = werknemer.Functie;
+                    command.Parameters.Add(new SqlParameter("@functie", SqlDbType.VarChar));
+                    command.Parameters["@functie"].Value = werknemer.Functie;
 
-                        // TODO: contorle of bedrijf in db is.
-                        command.Parameters.Add(new SqlParameter("@BedrijfId", SqlDbType.VarChar));
-                        command.Parameters["@BedrijfId"].Value = werknemer.Bedrijf.Id;
+                    
+                    // TODO: contorle of bedrijf in db is.
+                    command.Parameters.Add(new SqlParameter("@bedrijfId", SqlDbType.VarChar));
+                    command.Parameters["@bedrijfId"].Value = werknemer.Bedrijf.Id;
 
-                        command.ExecuteNonQuery();
-
-                    }
+                    command.ExecuteNonQuery();
 
                 }
 
                 catch (Exception e)
                 {
 
-                    throw new WerknemerException("Geef werknemers is niet gelukt.", e);
+                    throw new WerknemerException("Werknemer toevoegen niet gelukt", e);
 
                 }
                 finally

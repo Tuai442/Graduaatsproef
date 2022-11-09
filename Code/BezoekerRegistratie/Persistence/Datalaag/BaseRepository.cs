@@ -47,7 +47,7 @@ namespace Persistence.Datalaag
                         string adres = (string)dataReader["adres"];
                         string telefoon = (string)dataReader["telefoon"];
 
-                        bedrijf = new Bedrijf(naam, btw, adres, telefoon, email);
+                        bedrijf = new Bedrijf(id, naam, btw, adres, telefoon, email);
                     }
                     
                     

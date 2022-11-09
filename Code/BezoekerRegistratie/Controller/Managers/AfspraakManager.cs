@@ -33,7 +33,7 @@ namespace Controller.Managers
 
         public IReadOnlyList<Afspraak> ZoekOp(string zoekText)
         {
-            return _afspraakRepository.ZoekAfspraakOp(zoekText).AsReadOnly();
+           return _afspraakRepository.ZoekAfspraakOp(zoekText).AsReadOnly();
         }
 
         public void UpdateAfspraak(Afspraak afspraak)

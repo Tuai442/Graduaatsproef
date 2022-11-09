@@ -2,11 +2,12 @@
 using Components.ViewModels.overige;
 using Controller;
 using Controller.Interfaces.Models;
-
+using Controller.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -28,7 +29,7 @@ namespace Components
     /// <summary>
     /// Interaction logic for ZoekbaarDataGrid.xaml
     /// </summary>
-    public partial class ZoekbaarDataGrid : UserControl
+    public partial class ZoekbaarDataGrid : UserControl, INotifyPropertyChanged
     {
         public int GridHeight
         {
@@ -50,6 +51,7 @@ namespace Components
 
         }
 
+        
 
         public EventHandler<object> OpDataVerandering;
 
@@ -57,7 +59,9 @@ namespace Components
 
         private object _aanHetVeranderen;
 
-        public void StelDataIn<T>(IEnumerable viewModel, List<string> extraInfo = null)
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public void StelDataIn<T>(IEnumerable viewModel, IEnumerable extraInfo = null)
         {
             _data = viewModel;
             dataGrid.ItemsSource = null;
@@ -65,7 +69,7 @@ namespace Components
             dataGrid.ItemsSource = viewModel;
         }
 
-        private void MaakHoofding<T>(IEnumerable viewModel, List<string> extraInfo = null)
+        private void MaakHoofding<T>(IEnumerable viewModel, IEnumerable extraInfo = null)
         {
             dataGrid.Columns.Clear();
             Dictionary<string, string> hoofding = HoofdingManager.GeefHoofding<T>();
@@ -73,19 +77,29 @@ namespace Components
             foreach (string key in hoofding.Keys)
             {
                 if (cellTypes.ContainsKey(key))
-                { 
-                    DataGridTemplateColumn dataGridTemplateColumn = new DataGridTemplateColumn();
-                    DataTemplate dataTemplate = new DataTemplate();
-                    FrameworkElementFactory comboBox = new FrameworkElementFactory(typeof(ComboBox)); ;
+                {
+                    //DataGridTemplateColumn dataGridTemplateColumn = new DataGridTemplateColumn();
+                    //DataTemplate dataTemplate = new DataTemplate();
+                    //FrameworkElementFactory comboBox = new FrameworkElementFactory(typeof(ComboBox)); ;
 
-                    comboBox.SetValue(NameProperty, new Binding("cc" + dataGridTemplateColumn.Header));
-                    comboBox.SetValue(ComboBox.ItemsSourceProperty, extraInfo);
-                    comboBox.SetValue(ComboBox.SelectedIndexProperty, 0);
+                    //comboBox.SetValue(NameProperty, new Binding("cc" + dataGridTemplateColumn.Header));
+                    //comboBox.SetValue(ComboBox.ItemsSourceProperty, viewModel);
+                    //comboBox.SetValue(ComboBox.SelectedIndexProperty, defaulIndex);
+                    //comboBox.SetValue(ComboBox.DisplayMemberPathProperty, key);
+                    //comboBox.SetValue(ComboBox.SelectedEvent, )
 
-                    dataTemplate.VisualTree = comboBox;
-                    dataGridTemplateColumn.CellTemplate = dataTemplate;
-                    dataGridTemplateColumn.Header = key;
-                    dataGrid.Columns.Add(dataGridTemplateColumn);
+                    //dataTemplate.VisualTree = comboBox;
+                    //dataGridTemplateColumn.CellTemplate = dataTemplate;
+                    //dataGridTemplateColumn.Header = key;
+                    //dataGrid.Columns.Add(dataGridTemplateColumn);
+
+
+                    DataGridComboBoxColumn dataGridComboBoxColumn = new DataGridComboBoxColumn();
+                    dataGridComboBoxColumn.Header = key;
+
+                    dataGridComboBoxColumn.ItemsSource = extraInfo;
+                    dataGridComboBoxColumn.TextBinding = new Binding("Bedrijf");
+                    dataGrid.Columns.Add(dataGridComboBoxColumn);
 
                 }
                 else

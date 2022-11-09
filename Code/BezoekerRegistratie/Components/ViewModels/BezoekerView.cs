@@ -54,6 +54,7 @@ namespace Components.ViewModels
             {
                 _email = value;
                 _bezoeker.Email = value;
+
                 OnPropertyChanged(value);
                 
                 //OnClassChanged(bezoekerCpy);

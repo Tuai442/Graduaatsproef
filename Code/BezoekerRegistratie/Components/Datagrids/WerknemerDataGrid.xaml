@@ -8,9 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-
-
-        
+    
 
     <StackPanel x:Name="stackPanel">
 
@@ -37,11 +35,12 @@
                 <DataGridCheckBoxColumn Header="Email" Binding="{Binding Email}"/>
                 <DataGridTextColumn Header="Funtie" Binding="{Binding Functie}"/>
 
-                <DataGridComboBoxColumn Header="Bedrijf"
-                                        SelectedItemBinding="{Binding Status}"
+                <DataGridComboBoxColumn Header="Bedri"
+                                        ItemsSource="{Binding Bedrijven, Source=WerknemerView}"
+                                        DisplayMemberPath="Bedrijf"
                                         />
 
-                <DataGridTextColumn Header="Bedrijf" Binding="{Binding Bedrijf}"/>
+                <!--<DataGridTextColumn Header="Bedrijf" Binding="{Binding Bedrijf}"/>-->
                 
                 
             </DataGrid.Columns>

@@ -11,7 +11,7 @@ namespace Components.ViewModels
 
         public CellTypeAttribute(CellType cellType)
         {
-            CellType = cellType;
+            CellType = cellType;            
         }
     }
 

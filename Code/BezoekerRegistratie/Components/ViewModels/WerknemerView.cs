@@ -19,6 +19,7 @@ namespace Components.ViewModels
         private string _email;
         private string _functie;
         private string _bedrijf;
+        private Bedrijf _bedrijfModel;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -73,17 +74,22 @@ namespace Components.ViewModels
         [Hoofding("Bedrijf")]
         [CellType(CellType.ComboBox)]
         public string Bedrijf
-        { 
+        {
             get => _bedrijf;
             set
             {
                 _bedrijf = value;
-                //Werknemer.Bedrijf = value;
-                //OnPropertyChanged(value);
+                // Werknemer.Bedrijf = value;
+                OnPropertyChanged();
             }
         }
 
-       
+        public List<string> Bedrijven = new List<string>()
+        {
+            "A", "B", "C", "D", "E", "F",
+        };
+
+
         // Lijst items
         public string Id { get => Email; }
         public string ItemNaam { get => $"{Voornaam} {Achternaam}"; }
@@ -96,7 +102,8 @@ namespace Components.ViewModels
             _email = werkn.Email;
             _functie = werkn.Functie;
             _bedrijf = werkn.Bedrijf.ToString();
-            
+            _bedrijfModel = werkn.Bedrijf;
+           
         }
 
         private void OnPropertyChanged(string name = null)
