@@ -67,12 +67,13 @@
 
 
                     <StackPanel HorizontalAlignment="Left"
-                                Orientation="Horizontal" Margin="780,0,0,0" Width="270">
+                                Orientation="Horizontal" Margin="720,0,0,0" Width="380">
                         <Button Content="Voeg toe"
                                 Margin="10"
                                 FontSize="20"
                                 Padding="8"
                                 Width="auto"
+                                Height="56"
                                 Name="voegToeBtns"
                                 Click="voegToeBtns_Click" 
                                 HorizontalAlignment="Center" 
@@ -94,7 +95,9 @@
                             FontSize="20"
                             Click="herlaadBtn_Click"
                                 Width="120"
-                                BorderThickness="3" Background="#FF8C7AC3" BorderBrush="#FF47245D"
+                                BorderThickness="3" 
+                                Background="#FF8C7AC3" 
+                                BorderBrush="#FF47245D"
                                 
                                 >
                             <Button.Resources>

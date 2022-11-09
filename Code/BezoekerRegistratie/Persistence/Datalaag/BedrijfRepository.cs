@@ -73,7 +73,7 @@ namespace Persistence.Datalaag
                     command.Parameters.AddWithValue("@naam", bedrijfNaam);
                     IDataReader dataReader = command.ExecuteReader();
                     dataReader.Read();
-                    Bedrijf bedrijf = new Bedrijf((int)dataReader["BedrijfId"],(string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
+                    Bedrijf bedrijf = new Bedrijf((int)dataReader["BedrijfId"], (string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
                     dataReader.Close();
                     Console.WriteLine(bedrijf);
                     return bedrijf;
@@ -301,6 +301,41 @@ namespace Persistence.Datalaag
             }
         }
 
+        public Bedrijf GeefBedrijfOpEmail(string email)
+        {
+            string query = "SELECT * from dbo.Bedrijf where email=@email";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@email", email);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+                    int id = (int)dataReader["BedrijfId"];
+                    string naam = (string)dataReader["naam"];
+                    string btw = (string)dataReader["btwNummer"];
+                    string adres = (string)dataReader["adres"];
+                    string telefoon = (string)dataReader["telefoon"];
+                    string emial = (string)dataReader["email"];
+                    Bedrijf bedrijf = new Bedrijf(id, naam, btw, adres, telefoon, email);
+                    dataReader.Close();
+
+                    return bedrijf;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef bedrijf is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+                
+            }
+            return null;
+        }
     }
 }
 //Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);   
