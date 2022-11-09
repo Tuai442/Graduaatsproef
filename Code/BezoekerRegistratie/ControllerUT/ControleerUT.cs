@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Controller.Exceptions;
 using Controller.Models;
+//using Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,10 @@ namespace ControllerUT
         [InlineData("048722888558558787")]
         public void ControleTelefoon_Invalid(string telefoon)
         {
-            Assert.Throws<BedrijfException>(() => Controleer.ControleTelefoon(telefoon));
+            Assert.Throws<ControleerException>(() => Controleer.ControleTelefoon(telefoon));
         }
 
+        //TODO: hoe controle doen via api
         [Theory]
         [InlineData("BE 0123.321.123")]
         [InlineData("BE0123.321.123")]
@@ -52,7 +54,7 @@ namespace ControllerUT
         [InlineData("BE 1212121122")]
         public void ControleBTW_Invalid(string btw)
         {
-            Assert.Throws<BedrijfException>(() => Controleer.BtwNummerControle(btw));
+            Assert.Throws<ControleerException>(() => Controleer.BtwNummerControle(btw));
         }
 
         [Theory]
@@ -75,7 +77,7 @@ namespace ControllerUT
         [InlineData("015@ergeg")]
         public void ControleEmail_Invalid(string email)
         {
-            Assert.Throws<BedrijfException>(() => Controleer.ControleEmail(email));
+            Assert.Throws<ControleerException>(() => Controleer.ControleEmail(email));
         }
 
         [Fact]
@@ -91,7 +93,7 @@ namespace ControllerUT
         public void ControleIsAfspraakAlAfgesloten_Null_Invalid()
         {
             Afspraak f = null;
-            Assert.Throws<UitLogException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
+            Assert.Throws<ControleerException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
         }
 
         [Fact]
@@ -100,7 +102,45 @@ namespace ControllerUT
             Bezoeker bezoeker = null;
             Werknemer werknemer = null;
             Afspraak f = new Afspraak(0, bezoeker, werknemer, DateTime.Now, DateTime.Now);
-            Assert.Throws<UitLogException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
+            Assert.Throws<ControleerException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
         }
+
+        [Theory]
+        [InlineData("1-ABC-123")]
+        [InlineData("2-ABC-123")]
+        [InlineData("ABC-123")]
+        public void ControleNummerplaat_Valid(string nummerplaat)
+        {
+            Controleer.ControleNummerplaat(nummerplaat);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("1ABC-123")]
+        [InlineData("1-ABC123")]
+        [InlineData("1-AC-123")]
+        [InlineData("1-ABC-23")]
+        [InlineData("3-ABC-123")]
+        [InlineData("2ABC123")]
+        public void ControleNummerplaat_Invalid(string nummerplaat)
+        {
+            Assert.Throws<ControleerException>(() => Controleer.ControleNummerplaat(nummerplaat));
+        }
+
+        [Fact]
+        public void SetStringParameters_Valid()
+        {
+            string s = Controleer.SetStringParameters("Neal");
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void SetStringParameters_Invalid(string s)
+        {
+            Assert.Throws<ControleerException>(() => Controleer.SetStringParameters(s));
+        }
+
     }
 }

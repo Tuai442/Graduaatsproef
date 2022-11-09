@@ -190,6 +190,8 @@ namespace Persistence.Datalaag
 
             }
         }
+
+        //TODO: methode uitwerken
         public List<Afspraak> ZoekAfspraakOp(string zoekText)
         {
             return null;

@@ -46,7 +46,7 @@ namespace Controller.Managers
         public void MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email, 
             string bedrijfBezoeker, string emailContactPersoon)
         {
-            Controleer.LegeVelden(vnBezoeker, anBezoeker, email, emailContactPersoon, bedrijfBezoeker);
+            Controleer.LegeVelden(vnBezoeker, anBezoeker, email, bedrijfBezoeker, emailContactPersoon);
             Controleer.ControleEmail(email);
 
             // TODO: Dit moet via een transactie gebeuren in de db.

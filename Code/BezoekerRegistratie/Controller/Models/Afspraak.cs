@@ -48,6 +48,7 @@ namespace Controller
             Bezoeker = bezoeker;
             Werknemer = werknemer;
             StartTijd = startTijd;
+            //TODO: eindtijd kan  iet null zijn want een datetime is een non nullable value type!
             EindTijd = null;
             IsAanwezig = true;
         }
