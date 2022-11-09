@@ -28,7 +28,6 @@ namespace BeheerderApp.Windows
         DomeinController _controller;
         BedrijfManager _bedrijfManager;
         WerknemerManager _werknemerManager;
-        public EventHandler<Dictionary<string, string>> VoegToe;
         public List<ILijstItems> Bedrijven;
         public VoegWerknemerToeWindow(DomeinController controller, List<ILijstItems> bedrijven)
         {

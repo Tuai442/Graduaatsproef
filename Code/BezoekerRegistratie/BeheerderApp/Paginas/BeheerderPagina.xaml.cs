@@ -316,18 +316,9 @@ namespace BeheerderApp.Paginas
         {
             List<ILijstItems> bedrijfItems = _bedrijfViews.Select(x => (ILijstItems)x).ToList();
             VoegWerknemerToeWindow v = new VoegWerknemerToeWindow(_domeinController, bedrijfItems);
-            v.VoegToe += VoegWerknemerToe;
             v.Show();
         }
 
-        // Toe voegen
-        private void VoegWerknemerToe(object? sender, Dictionary<string, string> dict)
-        {
-            Bedrijf bedrijf = _bedrijfManager.GeefBedrijfOpEmail(dict["bedrijf"]);
-            _werknemerManger.VoegWerknemerToe(dict["voornaam"], dict["achternaam"],
-                dict["email"], dict["functie"], bedrijf);
-            VoegWerknemerToeWindow window = (VoegWerknemerToeWindow)sender;
-            window.Close();
-        }
+       
     }
 }
