@@ -16,6 +16,9 @@
     <Compile Update="Paginas\StartSchermBeheerder.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\VoegBedrijfToe.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\VoegWerknemerToeWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Paginas\StartSchermBeheerder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\VoegBedrijfToe.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\VoegWerknemerToeWindow.xaml">

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Controller.Managers;
+using Controller.Models;
+using Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +22,32 @@ namespace BeheerderApp.Windows
     /// </summary>
     public partial class VoegBedrijfToe : Window
     {
-        public VoegBedrijfToe()
+        BedrijfManager _bedrijfManager;
+        public VoegBedrijfToe(DomeinController controller)
         {
+            _bedrijfManager = controller.GeefBedrijfManager();
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string naam = naamTxtbox.Text;
+            string email = emailTxtbox.Text;
+            string btw = btwTxtbox.Text;
+            string adres = adressTextbox.Text;
+            string telefoon = telefoonTxtbox.Text;
+
+            try
+            {
+
+                _bedrijfManager.VoegNieuwBedrijfToe(naam, btw, adres, telefoon, email);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

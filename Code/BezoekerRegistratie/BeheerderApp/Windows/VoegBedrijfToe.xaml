@@ -5,8 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeheerderApp.Windows"
         mc:Ignorable="d"
-        Title="VoegBedrijfToe" Height="450" Width="800">
-    <Grid>
+        Title="VoegBedrijfToe" Height="auto" Width="300">
+    
+    <Grid Background="Beige">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Naam"
+               Grid.Row="0" Grid.Column="0"
+               Margin="10"/>
+        <TextBox  Grid.Row="0" Grid.Column="1"
+                  Margin="10"
+                  Name="naamTxtbox"/>
+
+        <Label Content="Email"
+               Grid.Row="1" Grid.Column="0"
+               Margin="10"/>
+        <TextBox  Grid.Row="1" Grid.Column="1"
+                  Margin="10"
+                  Name="emailTxtbox"/>
+
+        <Label Content="Btw-nummer"
+               Grid.Row="2" Grid.Column="0"
+               Margin="10"/>
+        <TextBox  Grid.Row="2" Grid.Column="1"
+                  Margin="10"
+                  Name="btwTxtbox"/>
+
+        <Label Content="adress"
+               Grid.Row="3" Grid.Column="0"
+               Margin="10"/>
+        <TextBox  Grid.Row="3" Grid.Column="1"
+                  Margin="10"
+                  Name="adressTextbox"/>
         
+        <Label Content="telefoon"
+               Grid.Row="4" Grid.Column="0"
+               Margin="10"/>
+        <TextBox  Grid.Row="4" Grid.Column="1"
+                  Margin="10"
+                  Name="telefoonTxtbox"/>
+
+
+
+
+
+
+        <Button Grid.Row="5" Grid.Column="0"
+                Height="50" Grid.ColumnSpan="2"
+                Margin="20" Content="Voeg Toe"
+                Click="Button_Click"/>
+
     </Grid>
 </Window>

@@ -5,8 +5,6 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Deb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll.config
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.pdb
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database.mdf
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database_log.ldf
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll.config
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.pdb
@@ -16,3 +14,5 @@ D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datal
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.pdb
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1.mdf
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1_log.ldf
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1.mdf
+C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1_log.ldf
