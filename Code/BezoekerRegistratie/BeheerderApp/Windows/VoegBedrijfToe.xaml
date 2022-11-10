@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="VoegBedrijfToe" Height="auto" Width="300">
     
-    <Grid Background="#FF2F2253">
+    <Grid Background="#FF1B1628">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
@@ -25,7 +25,7 @@
 
         <Label Content="Naam"
                Grid.Row="0" Grid.Column="0"
-               Margin="10" Foreground="#FFCA79FF"
+               Margin="10" Foreground="white"
                />
         <TextBox  Grid.Row="0" Grid.Column="1"
                   Margin="10"
@@ -33,28 +33,28 @@
 
         <Label Content="Email"
                Grid.Row="1" Grid.Column="0"
-               Margin="10" Foreground="#FFCA79FF"/>
+               Margin="10" Foreground="white"/>
         <TextBox  Grid.Row="1" Grid.Column="1"
                   Margin="10"
                   Name="emailTxtbox"/>
 
-        <Label Content="Btw-nummer"
+        <Label Content="BTW-nummer"
                Grid.Row="2" Grid.Column="0"
-               Margin="10" Foreground="#FFCA79FF"/>
+               Margin="10" Foreground="white"/>
         <TextBox  Grid.Row="2" Grid.Column="1"
                   Margin="10"
                   Name="btwTxtbox"/>
 
         <Label Content="adress"
                Grid.Row="3" Grid.Column="0"
-               Margin="10" Foreground="#FFCA79FF"/>
+               Margin="10" Foreground="white"/>
         <TextBox  Grid.Row="3" Grid.Column="1"
                   Margin="10"
                   Name="adressTextbox"/>
         
         <Label Content="telefoon"
                Grid.Row="4" Grid.Column="0"
-               Margin="10" Foreground="#FFCA79FF"/>
+               Margin="10" Foreground="white"/>
         <TextBox  Grid.Row="4" Grid.Column="1"
                   Margin="10"
                   Name="telefoonTxtbox"/>

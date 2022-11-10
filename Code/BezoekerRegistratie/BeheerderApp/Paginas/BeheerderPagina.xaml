@@ -29,7 +29,7 @@
 
             <StackPanel HorizontalAlignment="Left">
                 <Label Content="Filter op"
-                   Margin="50 10 0 0"
+                   Margin="100 10 0 0"
                    Width="100"
                    HorizontalContentAlignment="Left"
                    FontSize="20" Foreground="#FF6A2A94"/>
@@ -39,9 +39,11 @@
                     BorderThickness="0 0 0 2">
                 <Grid x:Name="toolbar">
                     <WrapPanel Background="Transparent"
-                               Height="80" VerticalAlignment="Center">
+                               Height="80" 
+                               VerticalAlignment="Center"
+                               Width="900">
                         <UIC:CheckBox TText="Bezoeker"
-                                  Margin="60 10 10 0"
+                                  Margin="0 10 0 0"
                                   x:Name="bezoekerCheckBox"
                                   FontSize="20"
                                   Value="bezoeker"
@@ -50,16 +52,16 @@
 
                         <UIC:CheckBox TText="Werknemer"
                                       FontSize="20"
-                                  Margin="10 10 10 0"
+                                  Margin="0 10 0 0"
                                   x:Name="werknemerCheckBox"/>
 
                         <UIC:CheckBox TText="Bedrijf"
                                       FontSize="20"
-                                  Margin="10 10 10 0" 
+                                  Margin="0 10 0 0" 
                                   x:Name="bedrijfCheckBox"/>
 
                         <UIC:CheckBox TText="Afspraak"
-                                  Margin="10 10 0 0"
+                                  Margin="0 10 0 0"
                                       FontSize="20"
                                   x:Name="afspraakCheckBox"/>
                     </WrapPanel>
@@ -126,21 +128,22 @@
             <StackPanel x:Name="dataGridPanel">
                 <UIC:ZoekbaarDataGrid Name="dataGrid" 
                                       Margin=" 40 0 40 0" 
-                                      Height="566"/>
+                                      Height="500"
+                                      Width="900"/>
                 <!--<DG:WerknemerDataGrid Name="werknemerDataGrid" Visibility="Hidden"/>-->
 
                 <!--<UIC:ZoekbaarDataGrid x:Name="_dataGrid"/>-->
 
 
             </StackPanel>
+            <UIC:TerugKnop x:Name="terugKnop" Width="904"
+                           Margin="0 20 0 0"/>
 
 
         </StackPanel>
 
         <StackPanel VerticalAlignment="Bottom"
-                    Margin="40">
-            <UIC:TerugKnop x:Name="terugKnop"/>
-        </StackPanel>
+                    Margin="40"/>
 
     </Grid>
 </Page>
