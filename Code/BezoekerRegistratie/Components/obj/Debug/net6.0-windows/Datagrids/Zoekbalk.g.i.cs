@@ -61,7 +61,7 @@ namespace Components.Datagrids {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Components;V1.0.0.0;component/datagrids/zoekbalk.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Components;component/datagrids/zoekbalk.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Datagrids\Zoekbalk.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
