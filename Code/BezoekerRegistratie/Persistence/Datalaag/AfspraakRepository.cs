@@ -222,7 +222,7 @@ namespace Persistence.Datalaag
 
         public Afspraak GeefAfspraakOpBezoekerEmail(string email)
         {
-            string query = $"SELECT * from dbo.Afspraak where bezoeker_email='{email}'; ";
+            string query = $"SELECT * from dbo.Afspraak where bezoeker_email='{email}' and eindTijd is null; ";
             SqlConnection conn = GetConnection();
             Afspraak afspraak = null;
 
