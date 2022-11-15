@@ -1,42 +1,82 @@
-DROP TABLE Afspraken;
-DROP TABLE Werknemers;
-DROP TABLE Bedrijven;
+DROP TABLE Afspraak;
+DROP TABLE Werknemer;
+DROP TABLE Bedrijf;
+DROP TABLE Bezoeker;
 
-CREATE TABLE Bedrijven (
-    BedrijfId int IDENTITY,
-    Naam varchar(255) not null,
-    BTW varchar(255) not null,
-    Email varchar(255) not null,
-    Adres varchar(255) not null,
-    Telefoon varchar(255) not null,
-    PRIMARY KEY (BedrijfId),
+CREATE TABLE Bedrijf (
+    bedrijfId int IDENTITY,
+    naam varchar(255) not null,
+    btwNummer varchar(255) not null,
+    email varchar(255) not null,
+    adres varchar(255) not null,
+    telefoon varchar(255) not null,
+    PRIMARY KEY (bedrijfId),
 );
 
-CREATE TABLE Werknemers (
-    WerknemerId int IDENTITY,
-    Voornaam varchar(255)  not null,
-    Achternaam varchar(255) not null,
-    Email varchar(255) not null,
-    Functie varchar(255) not null,
-    BedrijfId int,
-    PRIMARY KEY (WerknemerId),
-    FOREIGN KEY (BedrijfId) REFERENCES Bedrijven(BedrijfId)
+CREATE TABLE Werknemer (
+    werknemerId int IDENTITY,
+    voornaam varchar(255)  not null,
+    achternaam varchar(255) not null,
+    email varchar(255) not null,
+    functie varchar(255) not null,
+    bedrijfId int,
+    PRIMARY KEY (werknemerId),
+    FOREIGN KEY (bedrijfId) REFERENCES Bedrijf(bedrijfId)
+);
+
+CREATE TABLE Bezoeker (
+    bezoekerId int IDENTITY,
+    voornaam varchar(255)  not null,
+    achternaam varchar(255) not null,
+    email varchar(255) not null,
+    bedrijf varchar(255) not null,
+    nummerplaat varchar(255) null,
+    aanwezig bit not null
+    PRIMARY KEY (bezoekerId),
+);
+
+CREATE TABLE Afspraak (
+    afspraakId int IDENTITY,
+    startTijd Datetime not null,
+    eindTijd Datetime null,
+
+    werknemerId int,
+    bezoekerId int,
+    PRIMARY KEY (afspraakId),
+    FOREIGN KEY (werknemerId) REFERENCES Werknemer(werknemerId),
+    FOREIGN KEY (bezoekerId) REFERENCES Bezoeker(bezoekerId)
 );
 
 
+CREATE TABLE Afspraak (
+    afspraakId int IDENTITY,
+    bezoeker_voornaam varchar(255) not null,
+    bezoeker_achternaam varchar(255) not null,
+    bezoeker_email varchar(255) not null,
 
-CREATE TABLE Afspraken (
-    AfspraakId int IDENTITY,
-    VoornaamBezoeker varchar(255) not null,
-    AchternaamBezoeker varchar(255) not null,
-    BezoekersBedrijfNaam varchar(255) not null,
-    Email varchar(255) not null,
-    Aanwezig bit not null,
+    werknemer_voornaam varchar(255) not null,
+    werknemer_achternaam varchar(255) not null,
+    werknemer_email varchar(255) not null,
 
-    StartTijd Datetime not null,
-    EindTijd Datetime null,
+    startTijd Datetime not null,
+    eindTijd Datetime null,
 
-    WerknemerId int,
-    PRIMARY KEY (AfspraakId),
-    FOREIGN KEY (WerknemerId) REFERENCES Werknemers(WerknemerId)
+    bedrijf varchar(255) not null,
+    PRIMARY KEY (afspraakId),
+
 );
+
+
+--CREATE TABLE Werknemer_Afspraken(
+    --WerknemerId int not null
+    --AfspraakId int not null
+    --FOREIGN KEY (WerknemerId) REFERENCES Werknemers(WerknemerId)
+    --FOREIGN KEY (AfspraakId) REFERENCES Afspraken(AfspraakId)
+--)
+
+--CREATE TABLE Bezoeker_Afspraken(
+    --BezoekerId int not null
+    --AfspraakId int not null
+    --FOREIGN KEY (BezoekerId) REFERENCES Bezoekers(BezoekerId)
+    --FOREIGN KEY (AfspraakId) REFERENCES Afspraken(AfspraakId)
+--)

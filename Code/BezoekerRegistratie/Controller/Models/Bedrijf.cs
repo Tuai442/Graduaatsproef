@@ -15,20 +15,13 @@ namespace Controller.Models
         private string telefoon;
         private string email;
 
-        private string SetStringParameters(string p)
-        {
-            if (string.IsNullOrWhiteSpace(p)) throw new BedrijfException("Ingave niet correct");
-            return p;
-        }
-
         public int Id { get; set; }
-        public string Naam { get => naam; set => naam = SetStringParameters(value); }
-        public string Btw { get => btw; set => btw = SetStringParameters(value); }
-        public string Adres { get => adres; set => adres = SetStringParameters(value); }
-        public string Telefoon { get => telefoon; set => telefoon = SetStringParameters(value); }
-        public string Email { get => email; set => email = SetStringParameters(value); }
+        public string Naam { get => naam; set => naam = Controleer.SetStringParameters(value); }
+        public string Btw { get => btw; set => btw = Controleer.BtwNummerControle(value); }
+        public string Adres { get => adres; set => adres = Controleer.SetStringParameters(value); }
+        public string Telefoon { get => telefoon; set => telefoon = Controleer.ControleTelefoon(value); }
+        public string Email { get => email; set => email = Controleer.ControleEmail(value); }
 
-        //TODO: syntax met this
         public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
         {
             Naam = naam;

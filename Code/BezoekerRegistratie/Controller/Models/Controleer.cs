@@ -16,42 +16,56 @@ namespace Controller.Models
     {
         public static void ControleIsBezoekerAlAanwezig(Bezoeker bezoeker)
         {
-            if (bezoeker == null | !bezoeker.Aanwezig) throw new ControleerException("ControleBezoekerAlAanwezig");
+            if (!bezoeker.Aanwezig) throw new ControleerException("ControleBezoekerAlAanwezig");
         }
 
         //TODO: mss extra controle op effectief bestaan van het btw nummer
-        public static void BtwNummerControle(string btw)
+        public static string BtwNummerControle(string btw)
         {
-            // uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
-            CountryValidator validator = new CountryValidator();
-            ValidationResult validationResult = validator.ValidateVAT(btw, Country.BE); // Kan momenteel alleen controle in Belgie uitvoren.
-            if (!validationResult.IsValid) throw new ControleerException("BTWnummerControle");
-            
-            
+            //// uitleg over VAT-validator class:
+            //// https://github.com/anghelvalentin/CountryValidator
+            //CountryValidator validator = new CountryValidator();
+            //ValidationResult validationResult = validator.ValidateVAT(btw, Country.BE); // Kan momenteel alleen controle in Belgie uitvoren.
+            //if (!validationResult.IsValid) throw new ControleerException("BTWnummerControle");
+            //return btw;
 
-            //if (string.IsNullOrWhiteSpace(btw)) throw new BedrijfException("Controle BTW - geen geldige invoer");
-            //btw = btw.Replace(" ", "").ToLower();
-            //string regexString = @"^(be0([0-9]{3}.){2}[0-9]{3})$";
-            //Regex regex = new Regex(regexString);
-            //if (!regex.IsMatch(btw)) throw new BedrijfException("Controle BTW - geen geldige regex");
+
+            if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
+            btw = btw.Replace(" ", "").ToLower();
+            string regexString = @"^(be0([0-9]{3}.){2}[0-9]{3})$";
+            Regex regex = new Regex(regexString);
+
+            //voor dummy data
+            string regexString2 = @"([0-9]{2}-[0-9]{3}-[0-9]{4})$";
+            Regex regex2 = new Regex(regexString2);
+
+            if (!regex.IsMatch(btw) && !regex2.IsMatch(btw)) throw new ControleerException("Controle BTW - geen geldige regex");
+            return btw;
         }
 
-        public static void ControleEmail(string email)
+        public static string ControleEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email)) throw new ControleerException("ControleEmail");
             string regexString = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
             Regex regex = new Regex(regexString);
             if (!regex.IsMatch(email)) throw new ControleerException("ControleEmail - geen geldige regex");
+            return email;
         }
 
         
-        public static void ControleTelefoon(string telefoon)
+        public static string ControleTelefoon(string telefoon)
         {
             if (string.IsNullOrWhiteSpace(telefoon)) throw new ControleerException("ControleTelefoon");
             telefoon = telefoon.Replace(" ", "");
             string regexString = @"^(((\+32|0|0032)4){1}[1-9]{1}[0-9]{7})$";
             Regex regex = new Regex(regexString);
-            if (!regex.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
+
+            //voor dummy data
+            string regexString2 = @"^(([0-9]{3}-){2}[0-9]{4})$";
+            Regex regex2 = new Regex(regexString2);
+
+            if (!regex.IsMatch(telefoon)&& !regex2.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
+            return telefoon;
         }
 
         public static void ControleIsAfspraakAlAfgesloten(Afspraak afspraak)
@@ -72,7 +86,7 @@ namespace Controller.Models
             ControleEmail(emailContactPersoon);
         }
 
-        internal static void BezoekerIsAlAangemeld(Bezoeker bezoekerMetId)
+        public static void BezoekerIsAlAangemeld(Bezoeker bezoekerMetId)
         {
             if (bezoekerMetId.Aanwezig) throw new ControleerException("Je bent al aanwezig");
         }

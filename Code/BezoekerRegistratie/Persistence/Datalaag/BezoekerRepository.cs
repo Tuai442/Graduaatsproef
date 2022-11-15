@@ -156,50 +156,15 @@ namespace Persistence
 
         }
 
-        public List<Bezoeker> GeefAlleAanwezigeBezoekers(bool aanwezig)
-        {
-            string query = "SELECT * from dbo.Bezoeker where @aanwezig='TRUE";
-            SqlConnection conn = GetConnection();
-            using (SqlCommand command = new SqlCommand(query, conn))
-            {
-                try
-                {
-                    List<Bezoeker> bezoekers = new List<Bezoeker>();
-                    conn.Open();
-                    command.Parameters.AddWithValue("@aanwezig", aanwezig);
-                    IDataReader dataReader = command.ExecuteReader();
-                    while (dataReader.Read())
-                    {
-                        Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["bedrijf"], (bool)dataReader["aanwezig"], (string)dataReader["nummerplaat"]);
-                        bezoekers.Add(bezoeker);
-                    }
-                    dataReader.Close();
-                    foreach (Bezoeker bezoeker in bezoekers)
-                    {
-                        Console.WriteLine(bezoeker);
-                    }
-                    return bezoekers;
-                }
-                catch (Exception ex)
-                {
-                    throw new BezoekerException("Geef bezoekers is niet gelukt.", ex);
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-        }
-
         public List<Bezoeker> ZoekBezoekersOp(string zoekText)
         {
 
             //weet niet welk statement er hier moet
             string query = $"SELECT * from dbo.Bezoeker where " +
-                $"voornaam like '{zoekText}%' or " +
+                $"(voornaam like '{zoekText}%' or " +
                 $"achternaam like '{zoekText}%' or " +
                 $"bedrijf like '{zoekText}%' or " +
-                $"email like '{zoekText}%'; ";
+                $"email like '{zoekText}%') and aanwezig='True'; ";
 
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
@@ -238,7 +203,6 @@ namespace Persistence
             }
         }
 
-
         public Bezoeker GeefbezoekerOpVolledigeNaam(string voornaam, string achternaam)
         {
             string query = "SELECT * from dbo.Bezoeker where voornaam=@voornaam and achtnaam=@achternaam";
@@ -269,7 +233,44 @@ namespace Persistence
 
         public List<Bezoeker> GeefAlleAanwezigeBezoekers()
         {
-            throw new NotImplementedException();
+            string query = "SELECT * from dbo.Bezoeker where aanwezig='TRUE' ";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    List<Bezoeker> bezoekers = new List<Bezoeker>();
+                    conn.Open();
+                    IDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        int id = (int)dataReader["bezoekerId"];
+                        string voornaam = (string)dataReader["voornaam"];
+                        string achternaam = (string)dataReader["achternaam"];
+                        string email = (string)dataReader["email"];
+                        string bedrijf = (string)dataReader["bedrijf"];
+                        string nummerplaat = (string)dataReader["nummerplaat"];
+
+                        bool aanwezig = Convert.ToBoolean(dataReader["aanwezig"]);
+                        Bezoeker bezoeker = new Bezoeker(id, voornaam, achternaam, email, bedrijf, aanwezig, nummerplaat);
+                        bezoekers.Add(bezoeker);
+                    }
+                    dataReader.Close();
+                    foreach (Bezoeker bezoeker in bezoekers)
+                    {
+                        Console.WriteLine(bezoeker);
+                    }
+                    return bezoekers;
+                }
+                catch (Exception ex)
+                {
+                    throw new BezoekerException("Geef bezoekers is niet gelukt.", ex);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public Persoon GeefPersoonOpVolledigeNaam(string naam, string achternaam)

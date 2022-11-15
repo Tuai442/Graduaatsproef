@@ -14,6 +14,9 @@ namespace Persistence.Datalaag
         //link Sören
         //protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
         
+        //link Tuur
+        //protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
+
         //link Diego
         protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
         
@@ -51,7 +54,7 @@ namespace Persistence.Datalaag
                         string adres = (string)dataReader["adres"];
                         string telefoon = (string)dataReader["telefoon"];
 
-                        bedrijf = new Bedrijf(naam, btw, adres, telefoon, email);
+                        bedrijf = new Bedrijf(id, naam, btw, adres, telefoon, email);
                     }
                     
                     

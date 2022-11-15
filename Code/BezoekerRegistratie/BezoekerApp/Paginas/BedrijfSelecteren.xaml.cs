@@ -58,6 +58,7 @@ namespace BezoekerApp.Paginas
 
         private void PersoonAanmelden(object? sender, EventArgs e)
         {
+            // TODO: Kan beter
             Dictionary<string, Dictionary<string, string>> dict = new Dictionary<string, Dictionary<string, string>>();
             dict.Add("bedrijf", new Dictionary<string, string>() {
                 {"naam", bedrijfComboBox.SelectedLabel},

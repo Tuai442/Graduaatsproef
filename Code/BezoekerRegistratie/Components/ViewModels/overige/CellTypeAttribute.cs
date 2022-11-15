@@ -11,7 +11,7 @@ namespace Components.ViewModels
 
         public CellTypeAttribute(CellType cellType)
         {
-            CellType = cellType;
+            CellType = cellType;            
         }
     }
 
@@ -20,7 +20,7 @@ namespace Components.ViewModels
         public static Dictionary<string, CellType> GeefCellType<T>()
         {
             Dictionary<string, CellType> _dict = new Dictionary<string, CellType>();
-
+            
             PropertyInfo[] props = typeof(T).GetProperties();
             foreach (PropertyInfo prop in props)
             {

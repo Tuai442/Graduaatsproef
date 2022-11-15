@@ -102,7 +102,7 @@ namespace Persistence.Datalaag
                     command.Parameters.Add(new SqlParameter("@naam", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@btwNummer", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@adres", SqlDbType.NVarChar));
-                    command.Parameters.Add(new SqlParameter("@telefoon", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@telefoon", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
                     command.Parameters["@naam"].Value = bedrijf.Naam;
                     command.Parameters["@btwNummer"].Value = bedrijf.Btw;

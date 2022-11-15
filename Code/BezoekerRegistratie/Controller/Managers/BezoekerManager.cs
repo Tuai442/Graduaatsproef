@@ -33,7 +33,7 @@ namespace Controller.Managers
         {
             //List<Afspraak> afspraken =  _afspraakRepository.GeefAlleAanwezigeAfspraken();
             //return afspraken.Select(x => x.Bezoeker).ToList().AsReadOnly();
-            List<Bezoeker> bezoekers = _bezoekerRepository.GeefAlleBezoekers();
+            List<Bezoeker> bezoekers = _bezoekerRepository.GeefAlleAanwezigeBezoekers();
             return bezoekers.AsReadOnly();
         }
 
@@ -41,6 +41,7 @@ namespace Controller.Managers
         {
             return _bezoekerRepository.ZoekBezoekersOp(zoekText).AsReadOnly();
         }
+
 
         public void MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email, 
             string bedrijfBezoeker, string emailContactPersoon)
@@ -53,15 +54,19 @@ namespace Controller.Managers
             if(bezoekerMetId == null)
             {
                 // Opgelet hier maken we een nieuwe bezoeker aan ZONDER id mee te geven.
-                Bezoeker bezoeker = new Bezoeker(vnBezoeker, anBezoeker, email, bedrijfBezoeker, false);
+                Bezoeker bezoeker = new Bezoeker(vnBezoeker, anBezoeker, email, bedrijfBezoeker, true);
                 _bezoekerRepository.VoegBezoekerToe(bezoeker);
                 bezoekerMetId = _bezoekerRepository.GeefBezoekerOpEmail(email);
             }
-            Controleer.BezoekerIsAlAangemeld(bezoekerMetId);
+            else
+            {
+                Controleer.BezoekerIsAlAangemeld(bezoekerMetId);
+            }
+            
 
             bezoekerMetId.MeldAan();
             Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon); // TODO: controle bestaat werknemer
-            Afspraak afspraak = new Afspraak(bezoekerMetId, werknemer, DateTime.Now);
+            Afspraak afspraak = new Afspraak(bezoekerMetId, werknemer, DateTime.Now, null);
             _afspraakRepository.VoegAfspraakToe(afspraak);
         }
 

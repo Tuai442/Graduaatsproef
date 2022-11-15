@@ -12,6 +12,7 @@ using Controller.Interfaces.Models;
 using Persistence.Exceptions;
 using System.Globalization;
 using System.Data.SqlTypes;
+using System.Reflection.PortableExecutable;
 
 namespace Persistence.Datalaag
 {
@@ -43,7 +44,15 @@ namespace Persistence.Datalaag
                     command.Parameters.Add(new SqlParameter("@bezoekerId", SqlDbType.Int));
 
                     command.Parameters["@startTijd"].Value = afspraak.StartTijd;
-                    command.Parameters["@eindTijd"].Value = afspraak.EindTijd; // TODO: moet mogelijk zijn om null in te steken
+                    if(afspraak.EindTijd == null)
+                    {
+                        command.Parameters["@eindTijd"].Value = DBNull.Value;
+                    }
+                    else
+                    {
+                        command.Parameters["@eindTijd"].Value = afspraak.EindTijd; // TODO: moet mogelijk zijn om null in te steken
+
+                    }
                     command.Parameters["@werknemerId"].Value = afspraak.Werknemer.Id;
                     command.Parameters["@bezoekerId"].Value = afspraak.Bezoeker.Id;
                     command.ExecuteNonQuery();
@@ -131,7 +140,7 @@ namespace Persistence.Datalaag
                         int werknemerId = (int)dataReader["werknemerId"];
                         Werknemer werknemer = GeefWerknemerOpId(werknemerId);
                         DateTime startTijd = (DateTime)dataReader["startTijd"];
-                        DateTime? eindTijd = (DateTime)dataReader["eindTijd"]; ;
+                        DateTime? eindTijd = GeefDateTime(dataReader["eindTijd"]);
                         Afspraak afspraak = new Afspraak(bezoeker, werknemer, startTijd, eindTijd);
 
                         afspraken.Add(afspraak);
@@ -265,6 +274,18 @@ namespace Persistence.Datalaag
                     conn.Close();
                 }
                 return null;
+            }
+        }
+
+        public static DateTime? GeefDateTime(object obj)
+        {
+            if (obj == null || obj == DBNull.Value)
+            {
+                return null; 
+            }
+            else
+            {
+                return (DateTime)obj;
             }
         }
     }

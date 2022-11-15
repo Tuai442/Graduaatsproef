@@ -1,6 +1,7 @@
 ﻿using Controller.Interfaces;
 using Controller.Interfaces.Models;
 using Controller.Models;
+using System.ComponentModel;
 using System.Security.Cryptography;
 
 namespace Controller
@@ -12,7 +13,7 @@ namespace Controller
         public Werknemer Werknemer { get; set; }
         public DateTime StartTijd { get; set; }
         public DateTime? EindTijd { get; set; }
-        public bool IsAanwezig { get; internal set; }
+        public bool IsAanwezig = false;
 
         // --------------
         public string BezoekerNaam 
@@ -30,43 +31,47 @@ namespace Controller
         {
             Bezoeker = bezoeker;
             Werknemer = werknemer;
+            StartTijd = startTijd;
             EindTijd = eindTijd;
-            StartTijd = startTijd;
+            if (eindTijd is null)
+            {
+                IsAanwezig = true;
+            }
         }
 
 
-        //Afspraak (string) , (DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"],(int)dataReader["werknemerId"],(int)dataReader["bezoekerId"];
+        ////Afspraak (string) , (DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"],(int)dataReader["werknemerId"],(int)dataReader["bezoekerId"];
 
 
-        // Als een afspraak geen eindtijd heeft betekend dit dat de bezoeker nog aan wezig is.
-        // 2 constructors voor als we uit de db afspraken willen halen die toch al een eindtijd hebben.
+        //// Als een afspraak geen eindtijd heeft betekend dit dat de bezoeker nog aan wezig is.
+        //// 2 constructors voor als we uit de db afspraken willen halen die toch al een eindtijd hebben.
 
-        public Afspraak(int id, Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
-        {
-            Id = id;
-            Bezoeker = bezoeker;
-            Werknemer = werknemer;
-            StartTijd = startTijd;
-            //TODO: eindtijd kan  iet null zijn want een datetime is een non nullable value type!
-            EindTijd = null;
-            IsAanwezig = true;
-        }
-        public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
-        {
-            Bezoeker = bezoeker;
-            Werknemer = werknemer;
-            StartTijd = startTijd;
-            EindTijd = null;
-            IsAanwezig = true;
-        }
+        ////public Afspraak(int id, Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
+        ////{
+        ////    Id = id;
+        ////    Bezoeker = bezoeker;
+        ////    Werknemer = werknemer;
+        ////    StartTijd = startTijd;
+        ////    //TODO: eindtijd kan  iet null zijn want een datetime is een non nullable value type!
+        ////    EindTijd = null;
+        ////    IsAanwezig = true;
+        ////}
+        //public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
+        //{
+        //    Bezoeker = bezoeker;
+        //    Werknemer = werknemer;
+        //    StartTijd = startTijd;
+        //    EindTijd = null;
+        //    IsAanwezig = true;
+        //}
         public Afspraak(int id, Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd, DateTime? eindTijd)
+            :this(bezoeker, werknemer, startTijd, eindTijd)
         {
             Id = id;
-            Bezoeker = bezoeker;
-            Werknemer = werknemer;
-            StartTijd = startTijd;
-            EindTijd = eindTijd;
-            IsAanwezig = false;
+            //Bezoeker = bezoeker;
+            //Werknemer = werknemer;
+            //StartTijd = startTijd;
+            //EindTijd = eindTijd;
             if (eindTijd is null)
             {
                 IsAanwezig = true;

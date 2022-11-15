@@ -36,6 +36,7 @@ namespace Controller.Managers
 
         public IReadOnlyList<Afspraak> ZoekOp(string zoekText)
         {
+
             if (string.IsNullOrWhiteSpace(zoekText)) throw new AfspraakException("AM - ZoekOp");
             return _afspraakRepository.ZoekAfspraakOp(zoekText).AsReadOnly();
         }

@@ -27,7 +27,8 @@
             <DockPanel Height="600"
                        Width="1100">
 
-                <DG:BezoekersDataGrid x:Name="dataGrid"/>
+                <!--<DG:BezoekersDataGrid x:Name="dataGrid"/>-->
+                <UIC:ZoekbaarDataGrid Name="dataGrid" Margin="10"/>
 
             </DockPanel>
             
