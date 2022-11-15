@@ -10,34 +10,63 @@
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="AanwezigheidPagina">
 
-    <Grid Background="LightSteelBlue">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF2F2253" Offset="0.734"/>
+            </LinearGradientBrush>
+        </Grid.Background>
 
-        <StackPanel>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF2F2253" Offset="1"
+                                  />
+                </LinearGradientBrush>
+            </StackPanel.Background>
             <Border CornerRadius="5"
                     BorderThickness="2"
                     BorderBrush="Black"
-                    Width="400"
-                    HorizontalAlignment="Left"
-                    Margin="10 10 10 10">
-                <Label Content="Tottal aantal aanwezigen"
+                    Width="510"
+                    HorizontalAlignment="Center"
+                    Margin="0 50 0 0">
+                <Label Content="Totaal aantal aanwezige bezoekers: "
                        x:Name="aantalAanwLabel"
-                       FontSize="30"/>
+                       FontSize="30"
+                       Margin="0 0 0 0 " Foreground="#FF6A2A94">
+                    <Label.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FFE1D9E8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Label.BorderBrush>
+                </Label>
             </Border>
 
-            <DockPanel Height="600"
-                       Width="1100">
 
-                <!--<DG:BezoekersDataGrid x:Name="dataGrid"/>-->
-                <UIC:ZoekbaarDataGrid Name="dataGrid" Margin="10"/>
+            <DockPanel Height="450"
+                       Width="800"
+                       >
+                <UIC:ZoekbaarDataGrid Margin="60 5 60 60"
+                                      x:Name="dataGrid"
+                                      Width="500"
+                                      Height="400"
+                                      
+                />
+              
+               
 
             </DockPanel>
-            
 
-            
-            
+
+
+
         </StackPanel>
         <UIC:TerugKnop VerticalAlignment="Bottom"
-                       Margin="30"
+                       Margin="245,0,10,210"
                        x:Name="terugKnop"/>
 
     </Grid>

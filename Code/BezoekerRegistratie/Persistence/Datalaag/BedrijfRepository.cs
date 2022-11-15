@@ -73,7 +73,7 @@ namespace Persistence.Datalaag
                     command.Parameters.AddWithValue("@naam", bedrijfNaam);
                     IDataReader dataReader = command.ExecuteReader();
                     dataReader.Read();
-                    Bedrijf bedrijf = new Bedrijf((int)dataReader["BedrijfId"],(string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
+                    Bedrijf bedrijf = new Bedrijf((int)dataReader["BedrijfId"], (string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);
                     dataReader.Close();
                     Console.WriteLine(bedrijf);
                     return bedrijf;
@@ -264,9 +264,78 @@ namespace Persistence.Datalaag
 
         public void UpdateBedrijf(Bedrijf bedrijf)
         {
-            throw new NotImplementedException();
+            string query = "UPDATE dbo.Bedrijf " +
+                 "SET naam=@naam, btwNummer=@btwNummer, email=@email, telefoon=@telefoon, adres=@adres " +
+                 "WHERE bedrijfId = @id;";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@naam", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@btwNummer", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@telefoon", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@adres", SqlDbType.NVarChar));
+
+                    command.Parameters["@id"].Value = bedrijf.Id;
+                    command.Parameters["@naam"].Value = bedrijf.Naam;
+                    command.Parameters["@btwNummer"].Value = bedrijf.Btw;
+                    command.Parameters["@email"].Value = bedrijf.Email;
+                    command.Parameters["@telefoon"].Value = bedrijf.Telefoon;
+                    command.Parameters["@adres"].Value = bedrijf.Adres;
+
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    BedrijfException be = new BedrijfException("Bedrijf kon niet geupdate worden", e);
+                    throw be;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
+        public Bedrijf GeefBedrijfOpEmail(string email)
+        {
+            string query = "SELECT * from dbo.Bedrijf where email=@email";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@email", email);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+                    int id = (int)dataReader["BedrijfId"];
+                    string naam = (string)dataReader["naam"];
+                    string btw = (string)dataReader["btwNummer"];
+                    string adres = (string)dataReader["adres"];
+                    string telefoon = (string)dataReader["telefoon"];
+                    string emial = (string)dataReader["email"];
+                    Bedrijf bedrijf = new Bedrijf(id, naam, btw, adres, telefoon, email);
+                    dataReader.Close();
+
+                    return bedrijf;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef bedrijf is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+                
+            }
+            return null;
+        }
     }
 }
 //Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);   

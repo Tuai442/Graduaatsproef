@@ -21,16 +21,16 @@ namespace Controller.Managers
 
         public void VoegNieuwBedrijfToe(string naam, string btw, string adress, string telefoon, string email)
         {
-            try
-            {
+            //try
+            //{
                 Controleer.BtwNummerControle(btw);
                 Controleer.ControleTelefoon(telefoon);
                 Controleer.ControleEmail(email);
-            }
-            catch(Exception ex)
-            {
-                throw new BedrijfException("VoegBedrijfToe", ex);
-            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    throw new BedrijfException("Kan bedrijf niet toevoegen. Ingevulde gegevens waren nie", ex);
+            //}
 
             Bedrijf bedrijf = new Bedrijf(naam, btw, adress, telefoon, email);
             _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
@@ -72,7 +72,12 @@ namespace Controller.Managers
         public void UpdateBedrijf(Bedrijf bedrijf)
         {
             if (bedrijf == null) throw new BedrijfException("BM - UpdateBedrijf");
-            _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
+            _bedrijfRepository.UpdateBedrijf(bedrijf);
+        }
+
+        public Bedrijf GeefBedrijfOpEmail(string email)
+        {
+            return _bedrijfRepository.GeefBedrijfOpEmail(email);
         }
     }
 }

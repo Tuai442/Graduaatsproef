@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\App.xaml
-4-1364315574
+6-1846739561
 
-8-326736913
+10-228630615
 203-793695543
-MainWindow.xaml;Paginas\AanwezigheidPagina.xaml;Paginas\BeheerderPagina.xaml;Paginas\StartSchermBeheerder.xaml;
+MainWindow.xaml;Paginas\AanwezigheidPagina.xaml;Paginas\BeheerderPagina.xaml;Paginas\StartSchermBeheerder.xaml;Windows\VoegBedrijfToe.xaml;Windows\VoegWerknemerToeWindow.xaml;
 
 True
 

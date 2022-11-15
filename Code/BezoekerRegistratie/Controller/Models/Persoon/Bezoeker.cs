@@ -10,11 +10,14 @@ namespace Controller.Models
 {
     public class Bezoeker : Persoon
     {
-        public int Id;
-        private string nummerplaat;
+        //public int Id;
+        //private string nummerplaat;
         private string bedrijf;
 
-        public string Nummerplaat { get => nummerplaat; set => nummerplaat = Controleer.ControleNummerplaat(value); }
+        //public string Nummerplaat { get => nummerplaat; set => nummerplaat = Controleer.ControleNummerplaat(value); }
+        public int Id { get; set; }
+        public string Nummerplaat { get; set; }
+
         public bool Aanwezig { get; set; }
         public string Bedrijf { get => bedrijf; set => bedrijf = Controleer.SetStringParameters(value); }
         //(voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig)

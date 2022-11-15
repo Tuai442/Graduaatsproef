@@ -35,17 +35,17 @@ CREATE TABLE Bezoeker (
     PRIMARY KEY (bezoekerId),
 );
 
-CREATE TABLE Afspraak (
-    afspraakId int IDENTITY,
-    startTijd Datetime not null,
-    eindTijd Datetime null,
+-- CREATE TABLE Afspraak (
+--     afspraakId int IDENTITY,
+--     startTijd Datetime not null,
+--     eindTijd Datetime null,
 
-    werknemerId int,
-    bezoekerId int,
-    PRIMARY KEY (afspraakId),
-    FOREIGN KEY (werknemerId) REFERENCES Werknemer(werknemerId),
-    FOREIGN KEY (bezoekerId) REFERENCES Bezoeker(bezoekerId)
-);
+--     werknemerId int,
+--     bezoekerId int,
+--     PRIMARY KEY (afspraakId),
+--     FOREIGN KEY (werknemerId) REFERENCES Werknemer(werknemerId),
+--     FOREIGN KEY (bezoekerId) REFERENCES Bezoeker(bezoekerId)
+-- );
 
 
 CREATE TABLE Afspraak (
@@ -67,16 +67,3 @@ CREATE TABLE Afspraak (
 );
 
 
---CREATE TABLE Werknemer_Afspraken(
-    --WerknemerId int not null
-    --AfspraakId int not null
-    --FOREIGN KEY (WerknemerId) REFERENCES Werknemers(WerknemerId)
-    --FOREIGN KEY (AfspraakId) REFERENCES Afspraken(AfspraakId)
---)
-
---CREATE TABLE Bezoeker_Afspraken(
-    --BezoekerId int not null
-    --AfspraakId int not null
-    --FOREIGN KEY (BezoekerId) REFERENCES Bezoekers(BezoekerId)
-    --FOREIGN KEY (AfspraakId) REFERENCES Afspraken(AfspraakId)
---)

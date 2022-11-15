@@ -152,8 +152,43 @@ namespace Persistence
         }
         public void UpdateBezoeker(Bezoeker bezoeker)
         {
-            // Alleen gebruiken bij wijziging van aanwezigheid
-
+            string query = "UPDATE dbo.Bezoeker " +
+                "SET voornaam=@voornaam, achternaam=@achternaam, email=@email, bedrijf=@bedrijf, nummerplaat=@nummerplaat, " +
+                "aanwezig=@aanwezig " +
+                "WHERE bezoekerId = @id;";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@voornaam", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@achternaam", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@bedrijf", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@nummerplaat", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@aanwezig", SqlDbType.Bit));
+                    command.Parameters["@id"].Value = bezoeker.Id;
+                    command.Parameters["@voornaam"].Value = bezoeker.Voornaam;
+                    command.Parameters["@achternaam"].Value = bezoeker.Achternaam;
+                    command.Parameters["@email"].Value = bezoeker.Email;
+                    command.Parameters["@bedrijf"].Value = bezoeker.Bedrijf;
+                    command.Parameters["@nummerplaat"].Value = "test";// Nog niet van toepassing
+                    command.Parameters["@aanwezig"].Value = Convert.ToInt32(bezoeker.Aanwezig);
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    BezoekerException be = new BezoekerException("Bezoeker updaten is niet gelukt", e);
+                    be.Data.Add("Bezoeker:", bezoeker);
+                    throw be;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public List<Bezoeker> ZoekBezoekersOp(string zoekText)
@@ -233,7 +268,7 @@ namespace Persistence
 
         public List<Bezoeker> GeefAlleAanwezigeBezoekers()
         {
-            string query = "SELECT * from dbo.Bezoeker where aanwezig='TRUE' ";
+            string query = "SELECT * from dbo.Bezoeker where aanwezig='TRUE' ;";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -280,8 +315,7 @@ namespace Persistence
 
       
     }
-    
-    
+   
 }
 
 

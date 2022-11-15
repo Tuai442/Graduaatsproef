@@ -15,5 +15,6 @@ namespace Controller.Interfaces
         public List<Bedrijf> ZoekBedrijfOp(string zoekText);
         List<Bedrijf> GeefBedrijvenOpWerknemerEmail(string email);
         void UpdateBedrijf(Bedrijf bedrijf);
+        Bedrijf GeefBedrijfOpEmail(string email);
     }
 }

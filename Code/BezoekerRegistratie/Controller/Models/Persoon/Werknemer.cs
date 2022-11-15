@@ -25,6 +25,13 @@ namespace Controller.Models
             Bedrijf = bedrijf;
         }
 
+        public Werknemer(string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf)
+            : base(voornaam, achternaam, email)
+        {
+            Functie = functie;
+            Bedrijf = bedrijf;
+        }
+
 
 
         public override string? ToString()

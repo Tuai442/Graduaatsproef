@@ -8,111 +8,194 @@
       xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
     mc:Ignorable="d" 
     d:DesignHeight="450" 
-    d:DesignWidth="800">
+    d:DesignWidth="800"
+    >
+    <Page.Resources>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="Purple"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="Red"/>
+        <Style x:Key="TextBoxStyle123" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
 
-
-    <Grid Background="LightSteelBlue">
-      
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF2F2253" Offset="0.734"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
 
         <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Background="white" 
-                    Height="334" Width="473">
-
+                    VerticalAlignment="Center" 
+                    
+                    >
 
             <Label Content="Welkom"
-                   FontFamily="Cascadia code"
+                   FontFamily="Consolas"
                    HorizontalAlignment="Center"
                    Margin="30"
-                   FontSize="30"
-                   FontWeight="Bold"/>
+                   FontSize="50"
+                   FontWeight="ExtraBold" 
+                   Foreground="#FF6A2A94"
+                   >
+                <Label.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF8E4A4A" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.BorderBrush>
+            </Label>
 
-            <Grid Height="139" Width="434">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <Grid Height="170" Width="300">
+               
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
 
                 </Grid.RowDefinitions>
 
 
-                <Label Content="E-mail"
-                   FontFamily="Cascadia code"
+                <Border
+                    CornerRadius="10"
+                    BorderThickness="3"
+                    
+                    Height="30"
+                    Width="280"
+                    BorderBrush="#FF47245D"
+                    Background="#FF8C7AC3"
+                    Grid.Row="0"
+                    >
+                    
+                    <TextBox Style="{DynamicResource TextBoxStyle123}" 
+                       Text=" E-mail"
                        
-                       Grid.Column="0"
-                       Grid.Row="0" 
-                       Margin="80 0 0 0 "
-                       
-                       />
-                <TextBox 
-                       Background="LightSteelBlue" 
-                       BorderThickness="2"
-                       Grid.Column="2"
                        Grid.Row="0"
-                       Margin="25 7 45 10"
+                       Background="Transparent"
+                       BorderBrush="Transparent"
                        x:Name="emailInvulveld" 
+                       GotFocus="emailInvulveld_GotFocus"
                        LostFocus="emailInvulveld_LostFocus"
-                       />
+                       FontFamily="Consolas"
+                    
+                       FontSize="17"  
+                       >
 
-                <Label Content="Achternaam" 
-                   FontFamily="Cascadia code"
-                       
-                       Grid.Column="0" 
-                       Grid.Row="1"
-                       Margin="80 0 0 0 "
-                       
-                       />
-                <TextBox 
-                    Background="LightSteelBlue" 
-                    Grid.Column="2"
+                    </TextBox>
+                </Border>
+
+
+                <Border
+                    CornerRadius="10"
+                    BorderThickness="3"
+                    
+                    BorderBrush="#FF47245D"
+                    Background="#FF8C7AC3"
+                    Height="30"
+                    Width="280"
                     Grid.Row="1"
-                       Margin="25 7 45 10"
+                    Margin="0 0 0 0"
+                    >
+                
+                <TextBox 
+                    Text=" Achternaam"
+                    FontFamily="Consolas"
+                    FontSize="17" 
+                    Background="Transparent" 
+                    BorderBrush="Transparent"
                     x:Name="achternaamInvulveld" 
-                    BorderThickness="2"
-                    
+                    GotFocus="achternaamInvulveld_GotFocus"
+                    LostFocus="achternaamInvulveld_LostFocus"
                     />
+                </Border>
 
-                <Label Content="Voornaam" 
-                   FontFamily="Cascadia code"
-                       
-                       Grid.Column="0" 
-                       Grid.Row="2" 
-                       Margin="80 0 0 0 "
-                       
-                       />
-                <TextBox 
-                       Background="LightSteelBlue" 
-                       Grid.Column="2"
-                       Grid.Row="2"
-                       Margin="25 7 45 10"
-                    BorderThickness="2"
-                    
-                       x:Name="voornaamInvulveld" 
-                       />
-                <Label Content="Bedrijf" 
-                   FontFamily="Cascadia code"
-                       
-                       Grid.Column="0" 
-                       Grid.Row="3"
-                       Margin="80 0 0 0 "
-                       />
-                <TextBox 
-                       Background="LightSteelBlue" 
-                       Grid.Column="2"
-                       Grid.Row="3"
-                       Margin="25 7 45 10"
-                    BorderThickness="2"
-                    
-                       x:Name="bedrijfInvulveld" 
-                       />
+                <Border
+                    CornerRadius="10"
+                    BorderBrush="#FF47245D"
+                    BorderThickness="3"
+                    Background="#FF8C7AC3"
+                    Height="30"
+                    Width="280"
+                    Grid.Row="2"
+                    >
+                    <TextBox 
+                    Text=" Voornaam"
+                    FontFamily="Consolas"
+                    FontSize="17" 
+                    Background="Transparent" 
+                    BorderBrush="Transparent"
 
+                    GotFocus="voornaamInvulveld_GotFocus"
+                    LostFocus="voornaamInvulveld_LostFocus"
+                    x:Name="voornaamInvulveld" 
+                       
+                       />
+                </Border>
+                <Border
+                    CornerRadius="10"
+                    BorderBrush="#FF47245D"
+                    BorderThickness="3"
+                    Background="#FF8C7AC3"
+                    Height="30"
+                    Width="280"
+                    Grid.Row="3"
+                    >
+                <TextBox 
+                    Text=" Bedrijf"
+                    FontFamily="Consolas"
+                    FontSize="17"
+                    Background="Transparent" 
+                    BorderBrush="Transparent"
+                    GotFocus="bedrijfInvulveld_GotFocus"
+                    LostFocus="bedrijfInvulveld_LostFocus"
+                    x:Name="bedrijfInvulveld" 
+                       />
+                </Border>
             </Grid>
-            <Grid Margin="0 20 0 0">
+            <Grid Margin="0 10 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -120,23 +203,29 @@
                 <UIC:Knop
                     Grid.Column="0"
                     Text="Log In"
-                    FontFamily="Cascadia code"
+                    FontFamily="Consolas"
+                    FontSize="17"
                     
                     x:Name="logInBtn" 
-                    Width="116" 
-                    Margin="70 0 0 0"/>
+                    Width="115" 
+                    Margin="33,0,14,0"
+                    />
                 <UIC:Knop 
                     Grid.Column="1"
-                    FontFamily="Cascadia code"
+                    FontFamily="Consolas"
+                    FontSize="17"
                     
                     Text="Log Uit"
                     x:Name="logUitBtn"
-                    Margin="0 0 10 0"
-                    Width="116"/>
+                    Margin="41,0,40,3"
+                    Width="115"
+                   />
 
             </Grid>
 
 
         </StackPanel>
+    </StackPanel>
     </Grid>
-    </Page>
+
+</Page>

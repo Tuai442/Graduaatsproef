@@ -21,20 +21,20 @@ namespace Components.ViewModels
         [Hoofding("Eind Tijd")]
         public DateTime? EindTijd { get; set; }
 
-        [Hoofding("Is aanwezig")]
-        public bool IsAanwezig { get; internal set; }
+        [Hoofding("Bedrijf")]
+        public string Bedrijf { get; set; }
 
         [Hoofding("Bezoekers Naam")]
         public string BezoekerNaam
         {
-            get { return Afspraak.Bezoeker.GeefVolledigeNaam(); }
+            get { return $"{Afspraak.BezoekerVoornaam} {Afspraak.BezoekerAchternaam}"; }
             set { }
         }
 
         [Hoofding("Werknemer Naam")]
         public string WerknemerNaam
         {
-            get { return Afspraak.Werknemer.GeefVolledigeNaam(); }
+            get { return $"{Afspraak.WerknemerVoornaam} {Afspraak.WerknemerAchternaam}"; }
             set { }
         }
 
@@ -42,12 +42,11 @@ namespace Components.ViewModels
         public AfspraakView(Afspraak afspraak)
         {
             Afspraak = afspraak;
-
+            Bedrijf = afspraak.Bedrijf.ToString();
             StartTijd = Afspraak.StartTijd;
             EindTijd = Afspraak.EindTijd;
-            IsAanwezig = Afspraak.IsAanwezig;
-            BezoekerNaam = Afspraak.BezoekerNaam;
-            WerknemerNaam = Afspraak.WerknemerNaam;
+            
+           
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

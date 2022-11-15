@@ -25,6 +25,8 @@ using Controllers;
 using Components.Datagrids;
 using Components.ViewModels;
 using System.Collections.ObjectModel;
+using BeheerderApp.Windows;
+using Components.Interfaces;
 
 namespace BeheerderApp.Paginas
 {
@@ -41,11 +43,10 @@ namespace BeheerderApp.Paginas
         private BedrijfManager _bedrijfManager;
 
         // Zoek lijsten
-        private List<WerknemerView> _werknemerViews = new List<WerknemerView>(); 
-        private List<BezoekerView> _bezoekerViews = new List<BezoekerView>(); 
+        private List<WerknemerView> _werknemerViews = new List<WerknemerView>();
+        private List<BezoekerView> _bezoekerViews = new List<BezoekerView>();
         private List<AfspraakView> _afspraakViews = new List<AfspraakView>();
         private List<BedrijfView> _bedrijfViews = new List<BedrijfView>();
-        private List<Bedrijf> bedrijven = new List<Bedrijf>();
         public BeheerderPagina(DomeinController domeinController)
         {
             InitializeComponent();
@@ -63,8 +64,16 @@ namespace BeheerderApp.Paginas
             bedrijfCheckBox.Checked += CheckBoxe_Bedrijven_Toggle;
 
             terugKnop.ButtonClick += GaPaginaTerug;
-
+            voegToeBtns.Visibility=Visibility.Hidden;
             dataGrid.OpDataFiltering += FilterData;
+
+            IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+            foreach (Bedrijf bedrijf in bedrijven)
+            {
+                BedrijfView bedrijfView = new BedrijfView(bedrijf);
+                bedrijfView.PropertyChanged += UpdateBedrijf;
+                _bedrijfViews.Add(bedrijfView);
+            }
         }
 
         private void FilterData(object? sender, string zoekText)
@@ -96,7 +105,8 @@ namespace BeheerderApp.Paginas
                     _werknemerViews.Add(werknemerView);
                 }
                 //werknemerDataGrid.StelDataIn(_werknemerViews);
-                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijven);
+                List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
+                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijbString);
             }
             else if (afspraakCheckBox.IsActief)
             {
@@ -148,25 +158,26 @@ namespace BeheerderApp.Paginas
                         werknemerView.PropertyChanged += UpdateWerknemer;
                         _werknemerViews.Add(werknemerView);
                     }
-
-                    IReadOnlyList<Bedrijf> bedrijfModels = _bedrijfManager.GeefAlleBedrijven();                    
-                    bedrijven = bedrijfModels.Select(x => x).ToList();
                     
+
+                    IReadOnlyList<Bedrijf> bedrijfModels = _bedrijfManager.GeefAlleBedrijven();
+                    //bedrijven = bedrijfModels.Select(x => x).ToList();
+
                 }
+                voegToeBtns.Visibility = Visibility.Visible;
+                voegToeBtns.Content = "Voeg werknemer toe";
 
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
 
                 //werknemerDataGrid.StelDataIn(_werknemerViews);
-                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijven);
-
+                List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
+                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijbString);
             }
-
         }
-
         private void CheckBoxe_Bezoeker_Toggle(object sender, bool actief)
         {
-            if (actief) 
+            if (actief)
             {
                 //werknemerDataGrid.Visibility = Visibility.Hidden;
                 //dataGrid.Visibility = Visibility.Visible;
@@ -181,6 +192,8 @@ namespace BeheerderApp.Paginas
                         _bezoekerViews.Add(bezoekerView);
                     }
                 }
+                voegToeBtns.Visibility = Visibility.Hidden;
+               // voegToeBtns.Content = "Voeg bezoeker toe"; // gaat normaal niet nodig zijn
 
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
@@ -209,6 +222,7 @@ namespace BeheerderApp.Paginas
                         _afspraakViews.Add(afspraakView);
                     }
                 }
+                voegToeBtns.Visibility = Visibility.Hidden;
 
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
@@ -236,13 +250,16 @@ namespace BeheerderApp.Paginas
                         _bedrijfViews.Add(bedrijfView);
                     }
                 }
+                voegToeBtns.Visibility = Visibility.Visible;
+                voegToeBtns.Content = "Voeg bedrijf toe";
+
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
 
                 dataGrid.StelDataIn<BedrijfView>(_bedrijfViews);
 
             }
-            
+
         }
 
         // -------------------------------------------------
@@ -273,7 +290,7 @@ namespace BeheerderApp.Paginas
 
         private void VinkAllesUitBehalve(Components.CheckBox check)
         {
-            if(check != bezoekerCheckBox)
+            if (check != bezoekerCheckBox)
             {
                 bezoekerCheckBox.DeActiveer();
             }
@@ -293,10 +310,10 @@ namespace BeheerderApp.Paginas
         private void GaPaginaTerug(object? sender, EventArgs e)
         {
             NavigationService.GoBack();
-        }  
+        }
         private void herlaadBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+
             _bezoekerViews = new List<BezoekerView>();
             _bedrijfViews = new List<BedrijfView>();
             _afspraakViews = new List<AfspraakView>();
@@ -304,6 +321,20 @@ namespace BeheerderApp.Paginas
             dataGrid.StelDataIn<object>(null);
         }
 
-      
+        private void voegToeBtns_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (werknemerCheckBox.IsActief)
+            {
+                List<ILijstItems> bedrijfItems = _bedrijfViews.Select(x => (ILijstItems)x).ToList();
+                VoegWerknemerToeWindow v = new VoegWerknemerToeWindow(_domeinController, bedrijfItems);
+                v.Show();
+            }
+            else if (bedrijfCheckBox.IsActief)
+            {
+                VoegBedrijfToe bedrijfWindow = new VoegBedrijfToe(_domeinController);
+                bedrijfWindow.Show();
+            }
+        }
     }
 }

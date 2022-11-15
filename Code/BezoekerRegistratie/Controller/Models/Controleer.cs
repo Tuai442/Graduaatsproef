@@ -22,12 +22,13 @@ namespace Controller.Models
         //TODO: mss extra controle op effectief bestaan van het btw nummer
         public static string BtwNummerControle(string btw)
         {
-            //// uitleg over VAT-validator class:
-            //// https://github.com/anghelvalentin/CountryValidator
-            //CountryValidator validator = new CountryValidator();
-            //ValidationResult validationResult = validator.ValidateVAT(btw, Country.BE); // Kan momenteel alleen controle in Belgie uitvoren.
-            //if (!validationResult.IsValid) throw new ControleerException("BTWnummerControle");
-            //return btw;
+
+            // uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
+            CountryValidator validator = new CountryValidator();
+            ValidationResult validationResult = validator.ValidateVAT(btw, Country.BE); // Kan momenteel alleen controle in Belgie uitvoren.
+            if (!validationResult.IsValid) throw new ControleerException("BTW nummer niet correct");
+            
+            
 
 
             if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");

@@ -28,6 +28,6 @@ namespace Controller.Models
         {
             return Voornaam + " " + Achternaam;
         }
-        
+
     }
 }
