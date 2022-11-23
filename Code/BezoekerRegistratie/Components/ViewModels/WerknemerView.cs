@@ -3,11 +3,14 @@ using Components.Interfaces;
 using Components.ViewModels.overige;
 using Controller.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
+using System.Windows;
 
 namespace Components.ViewModels
 {
@@ -21,7 +24,12 @@ namespace Components.ViewModels
         private string _bedrijf;
         private Bedrijf _bedrijfModel;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        private List<Bedrijf> test =  new List<Bedrijf>
+        {
+            new Bedrijf("test", "", "", "", "")
+        };
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
         [Hoofding("Voornaam")]
         public string Voornaam
@@ -53,9 +61,20 @@ namespace Components.ViewModels
             get => _email;
             set
             {
-                _email = value;
-                Werknemer.Email = value;
-                OnPropertyChanged(value);
+                // TODO: noah kun jij alle properties zo maken?
+                try
+                {
+                    Werknemer.Email = value;
+                    _email = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
+                
             }
         }
 
@@ -78,9 +97,30 @@ namespace Components.ViewModels
             get => _bedrijf;
             set
             {
-                _bedrijf = value;
-                // Werknemer.Bedrijf = value;
-                OnPropertyChanged();
+                try
+                {
+                    //Werknemer.Bedrijf = value;
+                    _bedrijf = value;
+                    OnPropertyChanged();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                      MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
+            }
+        }
+
+
+        [Hoofding("Bedrijf-TEST")]
+        [CellType(CellType.ComboBox)]
+        public List<Bedrijf> Test
+        {
+            get => test;
+            set
+            {
+
             }
         }
 
@@ -88,7 +128,6 @@ namespace Components.ViewModels
         {
             "A", "B", "C", "D", "E", "F",
         };
-
 
         // Lijst items
         public string Id { get => Email; }

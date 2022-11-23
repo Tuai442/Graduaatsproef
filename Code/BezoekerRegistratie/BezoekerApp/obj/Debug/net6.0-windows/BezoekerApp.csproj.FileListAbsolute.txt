@@ -21,16 +21,12 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\MainWindow.g.cs
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\AanmeldPagina.g.cs
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\BedrijfSelecteren.g.cs
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.g.cs
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav2.g.cs
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp_MarkupCompile.cache
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp_MarkupCompile.lref
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\MainWindow.baml
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\AanmeldPagina.baml
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\BedrijfSelecteren.baml
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav.baml
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\Paginas\TestNav2.baml
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.g.resources
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.AssemblyInfoInputs.cache

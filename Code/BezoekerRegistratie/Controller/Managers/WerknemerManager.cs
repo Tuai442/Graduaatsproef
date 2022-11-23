@@ -1,6 +1,7 @@
 ﻿using Controller.Interfaces;
 using Controller.Interfaces.Models;
 using Controller.Models;
+using DebounceThrottle;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace Controller.Managers
 
         public IReadOnlyList<Werknemer> ZoekOp(string zoekText)
         {
-            return _werknemerRepository.ZoekOpWerknemers(zoekText).AsReadOnly();
+           return _werknemerRepository.ZoekOpWerknemers(zoekText);
         }
     }
 }

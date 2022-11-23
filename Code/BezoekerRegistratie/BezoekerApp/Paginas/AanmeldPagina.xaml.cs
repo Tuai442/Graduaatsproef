@@ -62,7 +62,7 @@ namespace BezoekerApp.Paginas
             {
                 _bezoekerManger.MeldBezoekerAan(voornaam, achternaam,
                     email, bedrijfB, contactPersoonEmail);
-                MessageBox.Show("U bent ingelogd.");
+                MessageBox.Show("U bent succesvol ingelogd.");
                 LeegAlleVelden();
 
             }
@@ -85,7 +85,7 @@ namespace BezoekerApp.Paginas
             try
             {
                 _bezoekerManger.MeldBezoekerUit(email);
-                MessageBox.Show("Prettige dag nog");
+                MessageBox.Show("U bent succesvol afgemeld. Prettige dag nog.");
                 LeegAlleVelden();
             }
             catch (Exception ex)
@@ -124,6 +124,8 @@ namespace BezoekerApp.Paginas
                 emailInvulveld.Text = " E-mail";
             }
         }
+
+      
 
         private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
         {

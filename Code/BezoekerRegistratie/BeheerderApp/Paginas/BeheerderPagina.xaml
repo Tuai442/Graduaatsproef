@@ -128,7 +128,7 @@
             <StackPanel x:Name="dataGridPanel">
                 <UIC:ZoekbaarDataGrid Name="dataGrid" 
                                       Margin=" 40 0 40 0" 
-                                      Height="500"
+                                      Height="auto"
                                       Width="900"/>
                 <!--<DG:WerknemerDataGrid Name="werknemerDataGrid" Visibility="Hidden"/>-->
 

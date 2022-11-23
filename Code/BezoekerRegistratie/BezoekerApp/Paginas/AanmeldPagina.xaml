@@ -113,6 +113,7 @@
                     <TextBox Style="{DynamicResource TextBoxStyle123}" 
                        Text=" E-mail"
                        
+                            
                        Grid.Row="0"
                        Background="Transparent"
                        BorderBrush="Transparent"
@@ -139,8 +140,8 @@
                     Grid.Row="1"
                     Margin="0 0 0 0"
                     >
-                
-                <TextBox 
+
+                        <TextBox Style="{DynamicResource TextBoxStyle123}" 
                     Text=" Achternaam"
                     FontFamily="Consolas"
                     FontSize="17" 
@@ -161,7 +162,7 @@
                     Width="280"
                     Grid.Row="2"
                     >
-                    <TextBox 
+                        <TextBox Style="{DynamicResource TextBoxStyle123}" 
                     Text=" Voornaam"
                     FontFamily="Consolas"
                     FontSize="17" 
@@ -183,7 +184,7 @@
                     Width="280"
                     Grid.Row="3"
                     >
-                <TextBox 
+                        <TextBox Style="{DynamicResource TextBoxStyle123}" 
                     Text=" Bedrijf"
                     FontFamily="Consolas"
                     FontSize="17"
@@ -209,6 +210,7 @@
                     x:Name="logInBtn" 
                     Width="115" 
                     Margin="33,0,14,0"
+                    Height="30"
                     />
                 <UIC:Knop 
                     Grid.Column="1"
@@ -219,6 +221,8 @@
                     x:Name="logUitBtn"
                     Margin="41,0,40,3"
                     Width="115"
+                                        Height="30"
+
                    />
 
             </Grid>

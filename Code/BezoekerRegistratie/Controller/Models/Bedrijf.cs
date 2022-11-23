@@ -17,8 +17,9 @@ namespace Controller.Models
 
         private string SetStringParameters(string p)
         {
-            if (string.IsNullOrWhiteSpace(p)) throw new BedrijfException("Ingave niet correct");
+            //if (string.IsNullOrWhiteSpace(p)) throw new BedrijfException("Ingave niet correct");
             return p;
+
         }
 
         public int Id { get; set; }
