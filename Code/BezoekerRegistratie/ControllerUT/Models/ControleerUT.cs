@@ -36,9 +36,12 @@ namespace ControllerUT.Models
 
         //TODO: hoe controle doen via api
         [Theory]
-        [InlineData("BE 0123.321.123")]
-        [InlineData("BE0123.321.123")]
-        [InlineData("be 0123.321.123")]
+        [InlineData("BE0427250554")]
+        [InlineData("BE 0427.250.554")]
+        [InlineData("BE 0427 250 554")]
+        [InlineData("be0427250554")]
+        [InlineData("be 0427 250 554")]
+        [InlineData("be 0427.250.554")]
         public void ControleBTW_Valid(string btw)
         {
             Controleer.BtwNummerControle(btw);

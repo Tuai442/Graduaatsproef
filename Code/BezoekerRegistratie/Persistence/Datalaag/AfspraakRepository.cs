@@ -86,7 +86,16 @@ namespace Persistence.Datalaag
         
         public List<Afspraak> GeefAlleAfspraken()
         {
-            string query = "SELECT * from dbo.Afspraak;";
+            //string query = "SELECT * from dbo.Afspraak;";
+            string query = "select Afspraak.afspraakId, Afspraak.startTijd, Afspraak.eindTijd, " +
+                "Bezoeker.voornaam as bezoeker_voornaam, " +
+                "Bezoeker.achternaam as bezoeker_achternaam, Bezoeker.email as bezoeker_email, " +
+                "Bezoeker.bedrijf, Werknemer.voornaam as werknemer_voornaam, " +
+                "Werknemer.achternaam as werknemer_achternaam, Werknemer.email as werknemer_email " +
+                "from Afspraak " +
+                "inner join Bezoeker on Afspraak.bezoekerId = Bezoeker.bezoekerId " +
+                "inner join Werknemer on Afspraak.werknemerId = Werknemer.werknemerId;";
+
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {

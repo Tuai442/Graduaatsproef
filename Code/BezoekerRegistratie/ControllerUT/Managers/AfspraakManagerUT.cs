@@ -28,6 +28,7 @@ namespace ControllerUT.Managers
             IReadOnlyList<Afspraak> afspraak = manager.GeefAlleAfspraken();
         }
 
+        //TODO: zoekop is nog niet uitgewerkt
         [Fact]
         public void ZoekOp_Valid()
         {

@@ -25,7 +25,7 @@ namespace Controller.Models
             base(voornaam, achternaam, email)
         {
             Id = id;
-            Nummerplaat = nummerplaat;
+            Nummerplaat = Controleer.ControleNummerplaat(nummerplaat);
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
         }
@@ -35,9 +35,9 @@ namespace Controller.Models
         public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig, string nummerplaat = null) :
             base(voornaam, achternaam, email)
         {
-            Nummerplaat = nummerplaat;
-            Aanwezig = aanwezig;
+            Nummerplaat = Controleer.ControleNummerplaat(nummerplaat);
             Bedrijf = bedrijf;
+            Aanwezig = aanwezig;
         }
 
 

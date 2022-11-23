@@ -6,12 +6,12 @@ namespace ControllerUT.Models
 {
     public class BedrijfUT
     {
-        private Bedrijf b = new Bedrijf("naam", "BE 0123.321.123", "adres", "0487878787", "school@hotmail.com");
+        private Bedrijf b = new Bedrijf("naam", "BE0427250554", "adres", "0487878787", "school@hotmail.com");
 
         [Fact]
         public void Bedrijf_Valid()
         {
-            Bedrijf bedrijf = new Bedrijf("naam", "BE 0123.321.123", "adres", "0487878787", "school@hotmail.com");
+            Bedrijf bedrijf = new Bedrijf("naam", "BE0427250554", "adres", "0487878787", "school@hotmail.com");
         }
 
         [Theory]

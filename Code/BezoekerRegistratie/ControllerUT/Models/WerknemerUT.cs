@@ -10,7 +10,8 @@ namespace ControllerUT.Models
 {
     public class WerknemerUT
     {
-        private Bedrijf b = new Bedrijf("naam", "BE 0123.321.123", "adres", "0487878787", "school@hotmail.com");
+        //BTW nummer vdk: BE0427250554
+        private Bedrijf b = new Bedrijf("naam", "BE0427250554", "adres", "0487878787", "school@hotmail.com");
 
         [Fact]
         public void Werknemer_Valid()

@@ -34,7 +34,7 @@ namespace ControllerUT.Managers
         [InlineData("BE 0123.321.123", "0487878787", "@hotmail.com")]
         public void ControleVoegNieuwBedrijfToe_Invalid(string btw, string telefoon, string email)
         {
-            Assert.Throws<BedrijfException>(() => manager.VoegNieuwBedrijfToe("naam", btw, "adres", telefoon, email));
+            Assert.Throws<ControleerException>(() => manager.VoegNieuwBedrijfToe("naam", btw, "adres", telefoon, email));
         }
 
         [Fact]
