@@ -61,11 +61,14 @@ namespace Controller.Managers
             else
             {
                 Controleer.BezoekerIsAlAangemeld(bezoekerMetId);
+                bezoekerMetId.MeldAan();
+                _bezoekerRepository.UpdateBezoeker(bezoekerMetId);
             }
             
 
-            bezoekerMetId.MeldAan();
+            
             Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon); // TODO: controle bestaat werknemer
+            //Afspraak afspraak = new Afspraak(bezoekerMetId, werknemer, DateTime.Now, null);
             Afspraak afspraak = new Afspraak(bezoekerMetId.Voornaam, bezoekerMetId.Achternaam, bezoekerMetId.Email,
                 werknemer.Voornaam, werknemer.Achternaam, werknemer.Email, werknemer.Bedrijf.ToString(), DateTime.Now, null); ;
             _afspraakRepository.VoegAfspraakToe(afspraak);

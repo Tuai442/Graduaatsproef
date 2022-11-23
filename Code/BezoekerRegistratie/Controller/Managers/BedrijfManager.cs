@@ -48,7 +48,7 @@ namespace Controller.Managers
 
         public IReadOnlyList<Bedrijf> ZoekOp(string zoekText)
         {
-            // if (string.IsNullOrWhiteSpace(zoekText)) throw new BedrijfException("BM - ZoekOp");
+            if (string.IsNullOrWhiteSpace(zoekText)) throw new BedrijfException("BM - ZoekOp");
             return _bedrijfRepository.ZoekBedrijfOp(zoekText).AsReadOnly();
             
         }

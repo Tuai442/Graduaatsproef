@@ -13,6 +13,7 @@ namespace Controller
         //public Werknemer Werknemer { get; set; }
         public DateTime StartTijd { get; set; }
         public DateTime? EindTijd { get; set; }
+        public bool IsAanwezig = false;
         //public bool IsAanwezig { get; internal set; }
 
         public string BezoekerVoornaam { get; set; }
@@ -47,8 +48,18 @@ namespace Controller
             WerknemerEmail = wEmail;
             Bedrijf = bedrijf;
 
+        }
+
+        public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd, DateTime? eindTijd) 
+        {
+            //Bezoeker = bezoeker;
+            //Werknemer = werknemer;
+            //StartTijd = startTijd;
             EindTijd = eindTijd;
-            StartTijd = startTijd;
+            if (eindTijd is null)
+            {
+                IsAanwezig = true;
+            }
         }
 
         public Afspraak(int id, string bVoornaam, string bAchternaam, string bEmail, string wVoornaam, string wAchternaam, string wEmail, string bedrijf,
@@ -60,12 +71,24 @@ namespace Controller
 
 
 
-        //Afspraak (string) , (DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"],(int)dataReader["werknemerId"],(int)dataReader["bezoekerId"];
+        ////Afspraak (string) , (DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"],(int)dataReader["werknemerId"],(int)dataReader["bezoekerId"];
 
 
-        // Als een afspraak geen eindtijd heeft betekend dit dat de bezoeker nog aan wezig is.
-        // 2 constructors voor als we uit de db afspraken willen halen die toch al een eindtijd hebben.
+        //// Als een afspraak geen eindtijd heeft betekend dit dat de bezoeker nog aan wezig is.
+        //// 2 constructors voor als we uit de db afspraken willen halen die toch al een eindtijd hebben.
 
+        //--------------------
+        ////public Afspraak(int id, Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
+        ////{
+        ////    Id = id;
+        ////    Bezoeker = bezoeker;
+        ////    Werknemer = werknemer;
+        ////    StartTijd = startTijd;
+        ////    //TODO: eindtijd kan  iet null zijn want een datetime is een non nullable value type!
+        ////    EindTijd = null;
+        ////    IsAanwezig = true;
+        ////}
+       //----------------------------
         //public Afspraak(int id, Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
         //{
         //    Id = id;
@@ -76,6 +99,7 @@ namespace Controller
         //    EindTijd = null;
         //    IsAanwezig = true;
         //}
+        //_---------------------
         //public Afspraak(Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd)
         //{
         //    Bezoeker = bezoeker;
@@ -84,6 +108,8 @@ namespace Controller
         //    EindTijd = null;
         //    IsAanwezig = true;
         //}
+
+
         //public Afspraak(int id, Bezoeker bezoeker, Werknemer werknemer, DateTime startTijd, DateTime? eindTijd)
         //{
         //    Id = id;
