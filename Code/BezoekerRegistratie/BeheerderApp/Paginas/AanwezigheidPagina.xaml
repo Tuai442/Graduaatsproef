@@ -10,39 +10,23 @@
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="AanwezigheidPagina">
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black"/>
-                <GradientStop Color="#FF2F2253" Offset="0.734"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-
-        <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <StackPanel.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="#FF2F2253" Offset="1"
-                                  />
-                </LinearGradientBrush>
-            </StackPanel.Background>
+    <Grid Background="#FF1F1F1F">
+       
+            <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center" Background="#FF19191A">
+            <Border BorderBrush="#AF752F" BorderThickness="3">
+                <StackPanel>
             <Border CornerRadius="5"
                     BorderThickness="2"
-                    BorderBrush="Black"
+                    BorderBrush="Transparent"
                     Width="510"
                     HorizontalAlignment="Center"
                     Margin="0 50 0 0">
-                <Label Content="Totaal aantal aanwezige bezoekers: "
+                <Label Content="Totaal aantal aanwezige bezoekers : "
                        x:Name="aantalAanwLabel"
                        FontSize="30"
-                       Margin="0 0 0 0 " Foreground="#FF6A2A94">
-                    <Label.BorderBrush>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="Black"/>
-                            <GradientStop Color="#FFE1D9E8" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Label.BorderBrush>
+                       Margin="0 0 0 0 " Foreground="#FFCFCFCF">
+                    
                 </Label>
             </Border>
 
@@ -52,19 +36,22 @@
                        >
                 <UIC:ZoekbaarDataGrid Margin="60 5 60 60"
                                       x:Name="dataGrid"
-                                      Width="500"
-                                      Height="400"
+                                      Width="587"
+                                      Height="371"
                                       
                 />
-              
-               
+
+
 
             </DockPanel>
 
 
 
-
+                </StackPanel>
+        </Border>
         </StackPanel>
+       
+
         <UIC:TerugKnop VerticalAlignment="Bottom"
                        Margin="245,0,10,210"
                        x:Name="terugKnop"/>

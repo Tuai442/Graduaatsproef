@@ -26,7 +26,7 @@ namespace Components.ViewModels
         {
             get => _naam;
             set
-            {
+            { 
                 _naam = value;
                 Bedrijf.Naam = value;
                 OnPropertyChanged(Naam);

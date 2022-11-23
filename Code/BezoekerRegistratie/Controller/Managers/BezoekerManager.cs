@@ -68,6 +68,7 @@ namespace Controller.Managers
 
             
             Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon); // TODO: controle bestaat werknemer
+            //Afspraak afspraak = new Afspraak(bezoekerMetId, werknemer, DateTime.Now, null);
             Afspraak afspraak = new Afspraak(bezoekerMetId.Voornaam, bezoekerMetId.Achternaam, bezoekerMetId.Email,
                 werknemer.Voornaam, werknemer.Achternaam, werknemer.Email, werknemer.Bedrijf.ToString(), DateTime.Now, null); ;
             _afspraakRepository.VoegAfspraakToe(afspraak);

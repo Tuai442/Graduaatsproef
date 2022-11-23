@@ -37,9 +37,18 @@ namespace Components.ViewModels
             get => _voornaam;
             set
             {
-                _voornaam = value;
-                Werknemer.Voornaam = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    _voornaam = value;
+                    Werknemer.Voornaam = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
 
@@ -49,9 +58,18 @@ namespace Components.ViewModels
             get => _achternaam;
             set
             {
-                _achternaam = value;
-                Werknemer.Achternaam = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    _achternaam = value;
+                    Werknemer.Achternaam = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
 
@@ -84,9 +102,18 @@ namespace Components.ViewModels
             get => _functie;
             set
             {
-                _functie = value;
-                Werknemer.Functie = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    _functie = value;
+                    Werknemer.Functie = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
 

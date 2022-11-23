@@ -45,7 +45,7 @@ namespace BeheerderApp.Paginas
             dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
             dataGrid.OpDataFiltering += ZoekBezoekerOp;
 
-            aantalAanwLabel.Content = $"Totaal aantal aanwezige bezoekers: {alleAanwezigeBezoekers.Count}";
+            aantalAanwLabel.Content = $"Totaal aanwezige bezoekers : {alleAanwezigeBezoekers.Count}";
 
             //dataGrid.OpDataVerandering += UpdateObject;
         }

@@ -30,6 +30,7 @@ namespace BeheerderApp.Paginas
             InitializeComponent();
             lijstMetAanwKnop.ButtonClick += ToonLijsMetAanwezigenPagina;
             gegevensBeherenKnop.ButtonClick += ToonBeherdersPagina;
+            //StackpanelWelkomBeheerder
         }
 
         private void ToonBeherdersPagina(object? sender, EventArgs e)

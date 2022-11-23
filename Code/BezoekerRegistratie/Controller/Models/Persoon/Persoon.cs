@@ -11,10 +11,11 @@ namespace Controller.Models
     {
         private string voornaam;
         private string achternaam;
+        private string email;
 
         public string Voornaam { get => voornaam; set => voornaam = Controleer.SetStringParameters(value); }
         public string Achternaam { get => achternaam; set => achternaam = Controleer.SetStringParameters(value); }
-        public string Email { get; set; }
+        public string Email { get => email; set => email = Controleer.ControleEmail(value); }
 
         public Persoon(string voornaam, string achternaam, string email)
         {
@@ -27,7 +28,6 @@ namespace Controller.Models
         {
             return Voornaam + " " + Achternaam;
         }
-
 
     }
 }

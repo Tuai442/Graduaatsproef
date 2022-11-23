@@ -10,26 +10,34 @@ namespace Controller.Models
 {
     public class Bezoeker : Persoon
     {
+        //public int Id;
+        //private string nummerplaat;
+        private string bedrijf;
+
+        //public string Nummerplaat { get => nummerplaat; set => nummerplaat = Controleer.ControleNummerplaat(value); }
         public int Id { get; set; }
         public string Nummerplaat { get; set; }
+
         public bool Aanwezig { get; set; }
-        public string Bedrijf { get; set; }
+        public string Bedrijf { get => bedrijf; set => bedrijf = Controleer.SetStringParameters(value); }
         //(voornaam,achternaam,email,bedrijfId,nummerplaat,aanwezig)
-        public Bezoeker(int id, string voornaam, string achternaam, string email, string bedrijf, bool aanwezig = true, string nummerplaat = "") :
+        public Bezoeker(int id, string voornaam, string achternaam, string email, string bedrijf, bool aanwezig, string nummerplaat = "") :
             base(voornaam, achternaam, email)
         {
             Id = id;
-            Nummerplaat = nummerplaat;
+            Nummerplaat = Controleer.ControleNummerplaat(nummerplaat);
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
         }
 
-        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig, string nummerplaat=null) :
+        //TODO: kan dit ook met this?
+        //TODO: kan dit niet met 1 constructor
+        public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig, string nummerplaat = null) :
             base(voornaam, achternaam, email)
         {
-            Nummerplaat = nummerplaat;
-            Aanwezig = aanwezig;
+            Nummerplaat = Controleer.ControleNummerplaat(nummerplaat);
             Bedrijf = bedrijf;
+            Aanwezig = aanwezig;
         }
 
 
