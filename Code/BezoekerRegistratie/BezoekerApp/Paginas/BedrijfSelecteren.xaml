@@ -12,95 +12,97 @@
       d:DesignHeight="450" 
       d:DesignWidth="800">
 
-    <Grid >
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="#FF2F2253" Offset="0.734"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid Background="#FF1F1F1F" >
 
         <StackPanel HorizontalAlignment="Center" 
                     VerticalAlignment="Center"
-                    Background="Transparent"
+                    Background="#FF19191A"
                     >
-            <Grid>
+            <Border BorderBrush="#AF752F" BorderThickness="2">
+                <Grid>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="123*" />
-                    <ColumnDefinition Width="211*" />
-                    <ColumnDefinition Width="14*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition MinHeight="100"></RowDefinition>
-                    <RowDefinition ></RowDefinition>
-                </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="123*"/>
+                        <ColumnDefinition Width="211*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="200*"></RowDefinition>
+                        <RowDefinition Height="70"></RowDefinition>
+                    </Grid.RowDefinitions>
 
-                <Label Content="Bedrijf"
-                       FontFamily="Consolas"
+                    <Label Content="Bedrijf"
+                       FontFamily="Verdana"
                        FontSize="25"
                        Grid.Column="0"
                        Grid.Row="0"
                        HorizontalContentAlignment="Center"
                        VerticalContentAlignment="Center"
                        Padding="10"
-                       FontWeight="ExtraBold" 
-                       Foreground="#FF6A2A94"/>
+                       
+                       Foreground="#FFCFCFCF"
+                           Margin="19,25,11,195" 
+                           Grid.RowSpan="2"
+                          />
 
 
-                <Label Content="Contactpersoon"
-                       FontFamily="Consolas"
+                    <Label Content="Contactpersoon"
+                       FontFamily="Verdana"
                        FontSize="25"
-                       Grid.Column="1"
                        Grid.Row="0"
                        HorizontalContentAlignment="Center"
                        VerticalContentAlignment="Center"
                        Padding="10"
-                       FontWeight="ExtraBold" 
-                       Foreground="#FF6A2A94" Grid.ColumnSpan="2"/>
+                       Foreground="#FFCFCFCF" 
+                           Grid.ColumnSpan="2"
+                           Margin="177,10,3,190" 
+                           Grid.RowSpan="2"/>
 
 
-                <UIC:ZoekbareComboBox Width="100" Height="20"
-                                          Margin="9,35,14,145"
+                    <UIC:ZoekbareComboBox
+                                          Margin="58,26,28,140"
                                           x:Name="bedrijfComboBox"
                                           Grid.Column="0"
                                           Grid.Row="1"
+                        BorderBrush="#AF752F"
+                        BorderThickness="3"
                 />
 
-                <UIC:ZoekbareComboBox Width="100" Height="20"
-                                      Margin="90,35,21,145"
+                    <UIC:ZoekbareComboBox
+                                      Margin="33,26,45,140"
                                       x:Name="contactComboBox"
                                       Grid.Column="1"
                                       Grid.Row="1"
+                         BorderBrush="#AF752F"
+                        BorderThickness="3"
                 />
 
-                <UIC:Knop Name="AanmeldKnop"
+                    <UIC:Knop Name="AanmeldKnop"
                         Text="Aanmelden"
-                        FontFamily="Cascadia code"
-                        HorizontalAlignment="Right"
+                        FontFamily="Verdana"
+                        HorizontalAlignment="Left"
                         Grid.Column="1"
                         Grid.Row="2"
                         Height="30"
                         Width="100"
-                        Margin="0,0,21,10"
+                        Margin="66,5,0,35" 
                           
                       />
 
 
-                <UIC:Knop Name="TerugKnopAanmeldScherm"
+                    <UIC:Knop Name="TerugKnopAanmeldScherm"
                         Text="terug"
-                        FontFamily="Cascadia code"
+                        FontFamily="Verdana"
                         Grid.Column="0"
                         Grid.Row="2"
                         Width="100"
                         Height="30"
-                        Margin="6,0,17,10"
+                        Margin="51,5,29,35"
                           
                           
                           />
-            </Grid>
-
+                </Grid>
+            </Border>
         </StackPanel>
 
         <Grid VerticalAlignment="Bottom"

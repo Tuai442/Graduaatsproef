@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    
+
+
     <StackPanel x:Name="stackPanel">
-        
-        <Border BorderBrush="Black"
+
+        <Border BorderBrush="#AF752F"
                 BorderThickness="3"
                 CornerRadius="15"
                 Margin="10"
@@ -30,17 +30,19 @@
                            Margin="0 0 10 0"/>
 
                 </Grid>
-                
-               
+
+
             </Border>
-            
+
         </Border>
 
 
 
         <DataGrid x:Name="dataGrid"
                   IsReadOnly="False"
-                  Height="600" Width="1000"
+                  Height="400" Width="797"
+                  BorderBrush="#AF752F"
+                  BorderThickness="3"
                   
                   >
             <!--SelectionChanged="dataGrid_SelectionChanged"
@@ -48,6 +50,6 @@
 
         </DataGrid>
     </StackPanel>
-    
-    
+
+
 </UserControl>

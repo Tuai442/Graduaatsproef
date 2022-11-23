@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:BeheerderApp.Windows"
         mc:Ignorable="d"
         Title="VoegBedrijfToe" Height="auto" Width="300">
-    
-    <Grid Background="#FF1B1628">
+
+    <Border  BorderBrush="#AF752F" BorderThickness="3"> 
+        <Grid Background="#FF19191A">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
@@ -29,38 +30,35 @@
                />
         <TextBox  Grid.Row="0" Grid.Column="1"
                   Margin="10"
-                  Name="naamTxtbox"/>
+                  Name="naamTxtbox" BorderBrush="#FFA55129" BorderThickness="1"/>
 
         <Label Content="Email"
                Grid.Row="1" Grid.Column="0"
                Margin="10" Foreground="white"/>
         <TextBox  Grid.Row="1" Grid.Column="1"
                   Margin="10"
-                  Name="emailTxtbox"/>
+                  Name="emailTxtbox" BorderBrush="#FFA55129" BorderThickness="1"/>
 
         <Label Content="BTW-nummer"
                Grid.Row="2" Grid.Column="0"
                Margin="10" Foreground="white"/>
         <TextBox  Grid.Row="2" Grid.Column="1"
                   Margin="10"
-                  Name="btwTxtbox"/>
+                  Name="btwTxtbox" BorderBrush="#FFA55129" BorderThickness="1"/>
 
         <Label Content="adress"
                Grid.Row="3" Grid.Column="0"
                Margin="10" Foreground="white"/>
         <TextBox  Grid.Row="3" Grid.Column="1"
                   Margin="10"
-                  Name="adressTextbox"/>
+                  Name="adressTextbox" BorderBrush="#FFA55129" BorderThickness="1"/>
         
         <Label Content="telefoon"
                Grid.Row="4" Grid.Column="0"
                Margin="10" Foreground="white"/>
         <TextBox  Grid.Row="4" Grid.Column="1"
                   Margin="10"
-                  Name="telefoonTxtbox"/>
-
-
-
+                  Name="telefoonTxtbox" BorderBrush="#FFA55129" BorderThickness="1"/>
 
 
 
@@ -69,9 +67,10 @@
                 Height="30" 
                 Width="100"
                 Grid.ColumnSpan="2"
-                Margin="20" Content="Voeg Toe"
+                Margin="20" Content="Toevoegen"
                 Click="Button_Click"
-                
+                BorderBrush="#AF752F"
+                BorderThickness="3"
                 >
             <Button.Resources>
                 <Style TargetType="Border">
@@ -81,4 +80,5 @@
         </Button>
 
     </Grid>
+    </Border>
 </Window>

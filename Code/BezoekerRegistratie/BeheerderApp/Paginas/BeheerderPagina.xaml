@@ -10,29 +10,20 @@
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="BeheerderPagina">
 
-    <Grid >
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black"/>
-                <GradientStop Color="#FF2F2253" Offset="0.734"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid Background="#FF1F1F1F" >
 
 
-        <StackPanel VerticalAlignment="Top"
-                    Background="Transparent"
-                    HorizontalAlignment="Center"
-                    Width="1100"
-                    Height="800"
-                    Margin="10">
+        <StackPanel VerticalAlignment="Center"
+                    Background="#FF19191A"
+                    HorizontalAlignment="Center" Height="699" Width="974">
 
 
             <StackPanel HorizontalAlignment="Left">
-                <Label Content="Filter op"
+                <Label Content="Filter op : "
                    Margin="100 10 0 0"
                    Width="100"
                    HorizontalContentAlignment="Left"
-                   FontSize="20" Foreground="#FF6A2A94"/>
+                   FontSize="20" Foreground="#FFCFCFCF"/>
             </StackPanel>
 
             <Border BorderBrush="Black"
@@ -40,10 +31,9 @@
                 <Grid x:Name="toolbar">
                     <WrapPanel Background="Transparent"
                                Height="80" 
-                               VerticalAlignment="Center"
-                               Width="900">
+                               VerticalAlignment="Center" Margin="37,0,69,0">
                         <UIC:CheckBox TText="Bezoeker"
-                                  Margin="0 10 0 0"
+                                  Margin="50 10 0 0"
                                   x:Name="bezoekerCheckBox"
                                   FontSize="20"
                                   Value="bezoeker"
@@ -63,14 +53,15 @@
                         <UIC:CheckBox TText="Afspraak"
                                   Margin="0 10 0 0"
                                       FontSize="20"
-                                  x:Name="afspraakCheckBox"/>
+                                  x:Name="afspraakCheckBox"
+                                   />
                     </WrapPanel>
 
 
 
                     <StackPanel HorizontalAlignment="Left"
-                                Orientation="Horizontal" Margin="720,0,0,0" Width="380">
-                        <Button Content="Voeg toe"
+                                Orientation="Horizontal" Margin="638,0,0,0" Width="334">
+                        <Button Content="Toevoegen"
                                 Margin="10"
                                 FontSize="20"
                                 Padding="8"
@@ -79,7 +70,8 @@
                                 Name="voegToeBtns"
                                 Click="voegToeBtns_Click" 
                                 HorizontalAlignment="Center" 
-                                BorderThickness="3" Background="#FF8C7AC3" BorderBrush="#FF47245D"
+                                Foreground="#FFCFCFCF"
+                                BorderThickness="3" Background="Gray" BorderBrush="#FFAF752F"
                                 >
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -93,13 +85,14 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             Content="Herlaad"
-                            Margin="10 10 50 10" Padding="10"
+                            Margin="10 10 0 10" Padding="10"
                             FontSize="20"
                             Click="herlaadBtn_Click"
                                 Width="120"
+                                Foreground="#FFCFCFCF"
                                 BorderThickness="3" 
-                                Background="#FF8C7AC3" 
-                                BorderBrush="#FF47245D"
+                                Background="Gray" 
+                                BorderBrush="#FFAF752F" RenderTransformOrigin="-0.278,0.502"
                                 
                                 >
                             <Button.Resources>
@@ -125,19 +118,28 @@
                 <!--<FORMS:WerknemerZoekForm/>-->
             </StackPanel>
 
-            <StackPanel x:Name="dataGridPanel">
+            <StackPanel x:Name="dataGridPanel" Height="491">
                 <UIC:ZoekbaarDataGrid Name="dataGrid" 
                                       Margin=" 40 0 40 0" 
-                                      Height="500"
-                                      Width="900"/>
+                                      Height="453"
+                                      Width="806"/>
+                <UIC:TerugKnop x:Name="terugKnop" Width="904" Height="36" RenderTransformOrigin="0.5,0.5"
+                           >
+                    <UIC:TerugKnop.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </UIC:TerugKnop.RenderTransform>
+                </UIC:TerugKnop>
                 <!--<DG:WerknemerDataGrid Name="werknemerDataGrid" Visibility="Hidden"/>-->
 
                 <!--<UIC:ZoekbaarDataGrid x:Name="_dataGrid"/>-->
 
 
             </StackPanel>
-            <UIC:TerugKnop x:Name="terugKnop" Width="904"
-                           Margin="0 20 0 0"/>
 
 
         </StackPanel>

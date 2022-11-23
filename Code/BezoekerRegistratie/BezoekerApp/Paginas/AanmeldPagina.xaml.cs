@@ -121,7 +121,7 @@ namespace BezoekerApp.Paginas
             }
             else if (emailInvulveld.Text == "")
             {
-                emailInvulveld.Text = " E-mail";
+                emailInvulveld.Text = "E-mail";
             }
         }
 
@@ -150,7 +150,7 @@ namespace BezoekerApp.Paginas
         {
             if (achternaamInvulveld.Text == "")
             {
-                achternaamInvulveld.Text = " Achternaam";
+                achternaamInvulveld.Text = "Achternaam";
             }
         }
 
@@ -158,7 +158,7 @@ namespace BezoekerApp.Paginas
         {
             if (voornaamInvulveld.Text == "")
             {
-                voornaamInvulveld.Text = " Voornaam";
+                voornaamInvulveld.Text = "Voornaam";
             }
         }
 
@@ -166,9 +166,10 @@ namespace BezoekerApp.Paginas
         {
             if (bedrijfInvulveld.Text == "")
             {
-                bedrijfInvulveld.Text = " Bedrijf";
+                bedrijfInvulveld.Text = "Bedrijf";
             }
 
         }
+
     }
 }

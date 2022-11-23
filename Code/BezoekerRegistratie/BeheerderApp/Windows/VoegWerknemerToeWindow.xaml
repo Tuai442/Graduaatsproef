@@ -8,7 +8,8 @@
 
         mc:Ignorable="d"
         Title="VoegWerknemerToeWindow" Height="auto" Width="400">
-    <Grid Background="Beige">
+    <Border  BorderBrush="#AF752F" BorderThickness="3">
+        <Grid Background="#FF19191A">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
@@ -26,44 +27,59 @@
 
         <Label Content="Voornaam"
                Grid.Row="0" Grid.Column="0"
-               Margin="10"/>
+               Margin="10"
+               Foreground="#FFCFCFCF"/>
         <TextBox  Grid.Row="0" Grid.Column="1"
                   Margin="10"
                   Name="voornaamTxtbox"/>
 
         <Label Content="Achternaam"
                Grid.Row="1" Grid.Column="0"
-               Margin="10"/>
+               Margin="10"
+                Foreground="#FFCFCFCF"/>
         <TextBox  Grid.Row="1" Grid.Column="1"
                   Margin="10"
                   Name="achternaamTxtbox"/>
 
         <Label Content="Email"
                Grid.Row="2" Grid.Column="0"
-               Margin="10"/>
+               Margin="10"
+                Foreground="#FFCFCFCF"/>
         <TextBox  Grid.Row="2" Grid.Column="1"
                   Margin="10"
                   Name="emailTxtbox"/>
 
         <Label Content="Functie"
                Grid.Row="3" Grid.Column="0"
-               Margin="10"/>
+               Margin="10"
+                Foreground="#FFCFCFCF"/>
         <TextBox  Grid.Row="3" Grid.Column="1"
                   Margin="10"
                   Name="functieTxtbox"/>
 
         <Label Content="Bedrijf"
                Grid.Row="4" Grid.Column="0"
-               Margin="10"/>
+               Margin="10"
+                Foreground="#FFCFCFCF"/>
 
         <UIC:ZoekbareComboBox Grid.Row="4" Grid.Column="1"
                               Name="bedrijfCombobox" Margin="10"/>
-       
 
-        <Button Grid.Row="5" Grid.Column="0"
-                Height="50" Grid.ColumnSpan="2"
-                Margin="20" Content="Voeg Toe"
-                Click="Button_Click"/>
+
+            <Button Grid.Row="5" Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                Margin="60 20 60 20" Content="Toevoegen"
+                Click="Button_Click" BorderBrush="#AF752F"
+                BorderThickness="3"
+                    Height="30" 
+                Width="100">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
     </Grid>
+    </Border>
 </Window>

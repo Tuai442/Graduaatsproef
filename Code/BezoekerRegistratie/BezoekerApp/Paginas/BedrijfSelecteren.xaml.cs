@@ -91,5 +91,7 @@ namespace BezoekerApp.Paginas
         {
             NavigationService.GoBack();
         }
+
+     
     }
 }
