@@ -1,7 +1,10 @@
 ﻿using Accessibility;
 using Components.Interfaces;
 using Components.ViewModels.overige;
+using Controller.Interfaces;
+using Controller.Managers;
 using Controller.Models;
+using Persistence.Datalaag;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +23,7 @@ namespace Components.ViewModels
         private string _functie;
         private string _bedrijf;
         private Bedrijf _bedrijfModel;
+        private BedrijfManager _bedrijfManager;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -78,8 +82,8 @@ namespace Components.ViewModels
             get => _bedrijf;
             set
             {
+                Werknemer.Bedrijf = _bedrijfManager.GeefBedrijfViaNaam(value);
                 _bedrijf = value;
-                // Werknemer.Bedrijf = value;
                 OnPropertyChanged();
             }
         }
@@ -103,7 +107,7 @@ namespace Components.ViewModels
             _functie = werkn.Functie;
             _bedrijf = werkn.Bedrijf.ToString();
             _bedrijfModel = werkn.Bedrijf;
-           
+            _bedrijfManager = new BedrijfManager(new BedrijfRepository());
         }
 
         private void OnPropertyChanged(string name = null)

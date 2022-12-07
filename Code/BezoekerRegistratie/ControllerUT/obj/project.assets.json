@@ -6626,11 +6626,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Hogent\\22-23\\Graduaatsproef_Finaal\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj",
+      "projectUniqueName": "D:\\Hogent\\22-23\\Graduaatsproef_Finaal - refactoring\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj",
       "projectName": "ControllerUT",
-      "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef_Finaal\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj",
+      "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef_Finaal - refactoring\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\ControllerUT.csproj",
       "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
-      "outputPath": "D:\\Hogent\\22-23\\Graduaatsproef_Finaal\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\obj\\",
+      "outputPath": "D:\\Hogent\\22-23\\Graduaatsproef_Finaal - refactoring\\Graduaatsproef\\Code\\BezoekerRegistratie\\ControllerUT\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6647,11 +6647,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Hogent\\22-23\\Graduaatsproef_Finaal\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
-              "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef_Finaal\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+            "D:\\Hogent\\22-23\\Graduaatsproef_Finaal - refactoring\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+              "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef_Finaal - refactoring\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
             },
-            "D:\\Hogent\\22-23\\Graduaatsproef_Finaal\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
-              "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef_Finaal\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
+            "D:\\Hogent\\22-23\\Graduaatsproef_Finaal - refactoring\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
+              "projectPath": "D:\\Hogent\\22-23\\Graduaatsproef_Finaal - refactoring\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
             }
           }
         }

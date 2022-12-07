@@ -15,7 +15,7 @@
                          Margin="4 4 30 4"
                          TextChanged="zoekBar_TextChanged"
                          x:Name="zoekBar"
-                         HorizontalAlignment="Stretch"
+                         HorizontalAlignment="Stretch" BorderBrush="#AF752F"
                          />
                 <!--<Image Source="Iconen/search.png"
                            Width="20"

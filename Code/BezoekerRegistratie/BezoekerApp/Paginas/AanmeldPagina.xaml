@@ -12,12 +12,12 @@
     >
     <Page.Resources>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="Transparent"/>
-        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="Purple"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="Transparent"/>
         <SolidColorBrush x:Key="TextBox.Focus.Border" Color="Red"/>
         <Style x:Key="TextBoxStyle123" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
             <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Foreground" Value="#FFA55129"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -28,18 +28,27 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                          Focusable="false" 
+                                          HorizontalScrollBarVisibility="Hidden" 
+                                          VerticalScrollBarVisibility="Hidden"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                                <Setter Property="BorderBrush" 
+                                        TargetName="border" 
+                                        Value="{StaticResource TextBox.MouseOver.Border}"/>
                             </Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="black"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -57,175 +66,259 @@
         </Style>
     </Page.Resources>
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black"/>
-                <GradientStop Color="#FF2F2253" Offset="0.734"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid Background="#FF1F1F1F">
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center">
 
-        <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center" 
-                    
-                    >
+            <Border BorderBrush="#AF752F" BorderThickness="3">
 
-            <Label Content="Welkom"
-                   FontFamily="Consolas"
+                <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center" Background="#FF19191A" >
+                  
+                    <Label 
+                        Content="Welkom"
+                   BorderThickness="1"
+                   FontFamily="Verdana"
                    HorizontalAlignment="Center"
-                   Margin="30"
-                   FontSize="50"
-                   FontWeight="ExtraBold" 
-                   Foreground="#FF6A2A94"
+                   Margin="30 30 30 0"
+                   FontSize="60" 
+                   Padding="25" Foreground="#FFCFCFCF"
                    >
-                <Label.BorderBrush>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#FF8E4A4A" Offset="1"/>
-                    </LinearGradientBrush>
-                </Label.BorderBrush>
-            </Label>
-
-            <Grid Height="170" Width="300">
-               
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-
-                </Grid.RowDefinitions>
-
-
-                <Border
-                    CornerRadius="10"
-                    BorderThickness="3"
-                    
-                    Height="30"
-                    Width="280"
-                    BorderBrush="#FF47245D"
-                    Background="#FF8C7AC3"
-                    Grid.Row="0"
-                    >
-                    
-                    <TextBox Style="{DynamicResource TextBoxStyle123}" 
-                       Text=" E-mail"
-                       
-                       Grid.Row="0"
-                       Background="Transparent"
-                       BorderBrush="Transparent"
-                       x:Name="emailInvulveld" 
-                       GotFocus="emailInvulveld_GotFocus"
-                       LostFocus="emailInvulveld_LostFocus"
-                       FontFamily="Consolas"
-                    
-                       FontSize="17"  
-                       >
+                        <!--<Label.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF3A1D0C" Offset="0"/>
+                                <GradientStop Color="#FFCB5E20" Offset="0.824"/>
+                            </LinearGradientBrush>
+                        </Label.Foreground>-->
+                        <!--<Label.BorderBrush>
+                            <LinearGradientBrush 
+                        EndPoint="0.5,1" 
+                        StartPoint="0.5,0">
+                                <GradientStop Color="Black"/>
+                                <GradientStop Color="#FF8E4A4A" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Label.BorderBrush>-->
+                    </Label>
+                    <TextBox 
+                        Text="Gelieve uw gevenens in te vullen."
+                        Background="Transparent"
+                         FontFamily="Verdana"
+                         FontSize="12" 
+                        Foreground="#FFB3B3B3"
+                        Margin="40 0 40 0" BorderBrush="{x:Null}"
+                        >
 
                     </TextBox>
-                </Border>
+                    <Grid Height="170" Width="300">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+
+                        </Grid.RowDefinitions>
 
 
-                <Border
-                    CornerRadius="10"
-                    BorderThickness="3"
+                        <Border
+                            CornerRadius="10"
+                            BorderThickness="2"
                     
-                    BorderBrush="#FF47245D"
-                    Background="#FF8C7AC3"
+                            Height="30"
+                            Width="280"
+                            Grid.Row="0" Grid.ColumnSpan="2" Margin="10,5,10,5">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush 
+                                   EndPoint="0.5,1" 
+                                    StartPoint="0.5,0">
+                                    <GradientStop Color="Black"/>
+                                    <GradientStop Color="#AF752F" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+
+                            <TextBox Style="{DynamicResource TextBoxStyle123}" 
+                                Text=" E-mail"
+                                Grid.Row="0"
+                                Background="Gray"
+                                BorderBrush="#FFAF752F"
+                                x:Name="emailInvulveld" 
+                                GotFocus="emailInvulveld_GotFocus"
+                                LostFocus="emailInvulveld_LostFocus"
+                                FontFamily="Verdana"
+                                FontSize="16" Foreground="White"  
+                                >
+                                <TextBox.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                        <Setter Property="Padding" Value="8 0 0 0 "/>
+                                    </Style>
+                                </TextBox.Resources>
+
+                            </TextBox>
+                        </Border>
+
+
+                        <Border
+                    CornerRadius="10"
+                    BorderThickness="2"
+                    
+                   
                     Height="30"
                     Width="280"
                     Grid.Row="1"
-                    Margin="0 0 0 0"
+                    Margin="10,5,10,5" Grid.ColumnSpan="2"
                     >
-                
-                <TextBox 
-                    Text=" Achternaam"
-                    FontFamily="Consolas"
-                    FontSize="17" 
-                    Background="Transparent" 
+                            <Border.BorderBrush>
+                                <LinearGradientBrush 
+                                   EndPoint="0.5,1" 
+                                    StartPoint="0.5,0">
+                                    <GradientStop Color="Black"/>
+                                    <GradientStop Color="#FFAF752F" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+
+
+
+
+
+                            <TextBox Style="{DynamicResource TextBoxStyle123}" 
+                                Text=" Achternaam"
+                    FontFamily="Verdana"
+                    FontSize="16" 
+                    Background="Gray" 
                     BorderBrush="Transparent"
                     x:Name="achternaamInvulveld" 
                     GotFocus="achternaamInvulveld_GotFocus"
-                    LostFocus="achternaamInvulveld_LostFocus"
-                    />
-                </Border>
+                    LostFocus="achternaamInvulveld_LostFocus" Foreground="#FFFFFF">
 
-                <Border
+
+
+
+                                <TextBox.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                        <Setter Property="Padding" Value="8 0 0 0 "/>
+
+                                    </Style>
+                                </TextBox.Resources>
+
+                            </TextBox>
+                        </Border>
+
+                        <Border
                     CornerRadius="10"
-                    BorderBrush="#FF47245D"
-                    BorderThickness="3"
-                    Background="#FF8C7AC3"
+                    
+                    BorderThickness="2"
+                    
                     Height="30"
                     Width="280"
-                    Grid.Row="2"
+                    Grid.Row="2" Grid.ColumnSpan="2" Margin="10,5,10,5"
                     >
-                    <TextBox 
+                            <Border.BorderBrush>
+                                <LinearGradientBrush 
+                                   EndPoint="0.5,1" 
+                                    StartPoint="0.5,0">
+                                    <GradientStop Color="Black"/>
+                                    <GradientStop Color="#FFAF752F" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            <TextBox Style="{DynamicResource TextBoxStyle123}" 
                     Text=" Voornaam"
-                    FontFamily="Consolas"
-                    FontSize="17" 
-                    Background="Transparent" 
+                    FontFamily="Verdana"
+                    FontSize="16" 
+                    Background="Gray" 
                     BorderBrush="Transparent"
 
                     GotFocus="voornaamInvulveld_GotFocus"
                     LostFocus="voornaamInvulveld_LostFocus"
-                    x:Name="voornaamInvulveld" 
+                    x:Name="voornaamInvulveld" Foreground="#FFFFFF" 
+                       >
+                                <TextBox.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                        <Setter Property="Padding" Value="8 0 0 0 "/>
+
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
                        
-                       />
-                </Border>
-                <Border
+                            
+                        </Border>
+                        <Border
                     CornerRadius="10"
-                    BorderBrush="#FF47245D"
-                    BorderThickness="3"
-                    Background="#FF8C7AC3"
+                  
+                    BorderThickness="2"
+                 
                     Height="30"
                     Width="280"
-                    Grid.Row="3"
+                    Grid.Row="3" Grid.ColumnSpan="2" Margin="10,5,10,5"
                     >
-                <TextBox 
+                            <Border.BorderBrush>
+                                <LinearGradientBrush 
+                                   EndPoint="0.5,1" 
+                                    StartPoint="0.5,0">
+                                    <GradientStop Color="Black"/>
+                                    <GradientStop Color="#FFAF752F" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            <TextBox Style="{DynamicResource TextBoxStyle123}" 
                     Text=" Bedrijf"
-                    FontFamily="Consolas"
-                    FontSize="17"
-                    Background="Transparent" 
+                    FontFamily="Verdana"
+                    FontSize="16"
+                    Background="Gray" 
                     BorderBrush="Transparent"
                     GotFocus="bedrijfInvulveld_GotFocus"
                     LostFocus="bedrijfInvulveld_LostFocus"
-                    x:Name="bedrijfInvulveld" 
-                       />
-                </Border>
-            </Grid>
-            <Grid Margin="0 10 0 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <UIC:Knop
+                    x:Name="bedrijfInvulveld" Foreground="#FFFFFF" 
+                       >
+                                <TextBox.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                        <Setter Property="Padding" Value="8 0 0 0 "/>
+
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                        </Border>
+                    </Grid>
+                    <Grid Margin="0 10 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <UIC:Knop
                     Grid.Column="0"
                     Text="Log In"
-                    FontFamily="Consolas"
-                    FontSize="17"
+                    FontFamily="Verdana"
+                    FontSize="16"
                     
                     x:Name="logInBtn" 
                     Width="115" 
-                    Margin="33,0,14,0"
+                    Margin="33,0,14,23"
+                    Height="35" Foreground="#FFA55129"
+                 
                     />
-                <UIC:Knop 
+                        <UIC:Knop 
                     Grid.Column="1"
-                    FontFamily="Consolas"
-                    FontSize="17"
+                    FontFamily="Verdana"
+                    FontSize="16"
                     
+                   
                     Text="Log Uit"
                     x:Name="logUitBtn"
-                    Margin="41,0,40,3"
+                    Margin="41,0,40,23"
                     Width="115"
+                    Height="35"
                    />
 
-            </Grid>
-
-
+                    </Grid>
+                </StackPanel>
+            </Border>
         </StackPanel>
-    </StackPanel>
     </Grid>
 
 </Page>

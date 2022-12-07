@@ -9,61 +9,54 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StartSchermBeheerder">
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black"/>
-                <GradientStop Color="#FF2F2253" Offset="0.734"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-
-        <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <Label Content="Welkom"
-                   FontFamily="Consolas"
+    <Grid Background="#FF1F1F1F">
+       
+            <StackPanel  Name="StackpanelWelkomBeheerder" HorizontalAlignment="Center"
+                    VerticalAlignment="Center" Background="#FF19191A" Height="350" Width="350">
+            <Border BorderBrush="#AF752F" BorderThickness="3" Height="347">
+                <StackPanel>
+                <Label Content="Welkom"
+                   FontFamily="Verdana"
                    HorizontalAlignment="Center"
-                   Margin="30"
+                   Margin="30 50 30 60"
                    FontSize="50"
-                   FontWeight="ExtraBold" 
-                   Foreground="#FF6A2A94"
+                   Foreground="#FFCFCFCF"
                    >
-                <Label.BorderBrush>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#FF8E4A4A" Offset="1"/>
-                    </LinearGradientBrush>
-                </Label.BorderBrush>
+                
+            
             </Label>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
 
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                    <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition/>
 
-                </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                <UIC:Knop Width="200" Height="40"
+                        <UIC:Knop Width="170" Height="35"
                       Text="Lijst met aanwezigen"
                       Margin="10"
                       x:Name="lijstMetAanwKnop"
                           Grid.Row="0"
                           Grid.Column="0"/>
 
-                <UIC:Knop Width="200" Height="40"
+                        <UIC:Knop Width="170" Height="35"
                       Text="Gegevens beheren"
                       Margin="10"
                       x:Name="gegevensBeherenKnop"
                            Grid.Row="1"
                           Grid.Column="1"/>
-            </Grid>
+                    </Grid>
+                </StackPanel>
+            </Border>
         </StackPanel>
+        
 
 
 
-       
     </Grid>
 </Page>

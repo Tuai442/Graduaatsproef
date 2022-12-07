@@ -332,9 +332,44 @@ namespace Persistence.Datalaag
                 {
                     conn.Close();
                 }
-                
+
             }
             return null;
+        }
+
+        public Bedrijf GeefBedrijfViaNaam(string value)
+        {
+            SqlConnection conn = GetConnection();
+            Bedrijf _bedrijf = null;
+            try
+            {
+                conn.Open();
+
+                string query = $"SELECT * FROM {_tableName} WHERE naam = '{value}' ";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+
+                dataReader.Read();
+                int id = (int)dataReader["bedrijfId"];
+                string naam = (string)dataReader["naam"];
+                string btw = (string)dataReader["btwNummer"];
+                string email = (string)dataReader["email"];
+                string adres = (string)dataReader["adres"];
+                string tel = (string)dataReader["telefoon"];
+                _bedrijf = new Bedrijf(id, naam, btw, adres, tel, email);
+                dataReader.Close();
+
+                return _bedrijf;
+            }
+            catch (Exception e)
+            {
+                throw new WerknemerException(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }
