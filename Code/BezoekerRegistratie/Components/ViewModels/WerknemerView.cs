@@ -1,7 +1,10 @@
 ﻿using Accessibility;
 using Components.Interfaces;
 using Components.ViewModels.overige;
+using Controller.Interfaces;
+using Controller.Managers;
 using Controller.Models;
+using Persistence.Datalaag;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +26,7 @@ namespace Components.ViewModels
         private string _functie;
         private string _bedrijf;
         private Bedrijf _bedrijfModel;
+        private BedrijfManager _bedrijfManager;
 
 
 
@@ -121,18 +125,9 @@ namespace Components.ViewModels
             get => _bedrijf;
             set
             {
-                try
-                {
-                    //Werknemer.Bedrijf = value;
-                    _bedrijf = value;
-                    OnPropertyChanged();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
-                      MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                
+                Werknemer.Bedrijf = _bedrijfManager.GeefBedrijfViaNaam(value);
+                _bedrijf = value;
+                OnPropertyChanged();
             }
         }
 
@@ -166,7 +161,7 @@ namespace Components.ViewModels
             _functie = werkn.Functie;
             _bedrijf = werkn.Bedrijf.ToString();
             _bedrijfModel = werkn.Bedrijf;
-           
+            _bedrijfManager = new BedrijfManager(new BedrijfRepository());
         }
 
         private void OnPropertyChanged(string name = null)

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Persistence.Datalaag
 {
-    public class WerknemerRepository: BaseRepository, IWerknemerRepository
+    public class WerknemerRepository : BaseRepository, IWerknemerRepository
     {
         private string _tableName = "Werknemer";
         public WerknemerRepository()
@@ -60,7 +60,7 @@ namespace Persistence.Datalaag
         public void VoegWerknemerToe(Werknemer werknemer)
         {
             string query = $"INSERT INTO dbo.Werknemer (voornaam, achternaam, email, functie, bedrijfId) " +
-                $"VALUES(@voornaam, @achternaam, @email, @functie, @bedrijfId);"; 
+                $"VALUES(@voornaam, @achternaam, @email, @functie, @bedrijfId);";
 
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
@@ -68,7 +68,7 @@ namespace Persistence.Datalaag
                 try
                 {
                     conn.Open();
-                    
+
                     command.Parameters.Add(new SqlParameter("@voornaam", SqlDbType.VarChar));
                     command.Parameters["@voornaam"].Value = werknemer.Voornaam;
 
@@ -81,7 +81,7 @@ namespace Persistence.Datalaag
                     command.Parameters.Add(new SqlParameter("@functie", SqlDbType.VarChar));
                     command.Parameters["@functie"].Value = werknemer.Functie;
 
-                    
+
                     // TODO: contorle of bedrijf in db is.
                     command.Parameters.Add(new SqlParameter("@bedrijfId", SqlDbType.VarChar));
                     command.Parameters["@bedrijfId"].Value = werknemer.Bedrijf.Id;
@@ -384,7 +384,6 @@ namespace Persistence.Datalaag
             throw new NotImplementedException();
         }
 
-      
     }
 }
 

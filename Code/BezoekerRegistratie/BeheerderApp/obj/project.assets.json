@@ -213,7 +213,8 @@
         "dependencies": {
           "AutoMapper": "12.0.0",
           "Controller": "1.0.0",
-          "Newtonsoft.Json": "13.0.1"
+          "Newtonsoft.Json": "13.0.1",
+          "Persistence": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Components.dll": {}

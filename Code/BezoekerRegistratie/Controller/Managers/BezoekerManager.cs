@@ -71,11 +71,10 @@ namespace Controller.Managers
 
         public void MeldBezoekerUit(string email)
         {
-            // TODO: Unit test
             Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpEmail(email);
             Controleer.ControleIsBezoekerAlAanwezig(bezoeker);
 
-            Afspraak afspraak = _afspraakRepository.GeefAfspraakOpBezoekerEmail(email);
+            Afspraak afspraak = _afspraakRepository.GeefOpenstaandeAfspraakOpBezoekerEmail(email);
             Controleer.ControleIsAfspraakAlAfgesloten(afspraak);
 
             afspraak.EindeAfspraak();

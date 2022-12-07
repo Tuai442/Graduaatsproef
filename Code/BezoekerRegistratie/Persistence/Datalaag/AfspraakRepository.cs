@@ -285,7 +285,7 @@ namespace Persistence.Datalaag
                 return (DateTime)obj;
             }
         }
-        public Afspraak GeefAfspraakOpBezoekerEmail(string email)
+        public Afspraak GeefOpenstaandeAfspraakOpBezoekerEmail(string email)
         {
             string query = "SELECT a.*, b.*, bedrijf.*, w.*, " +
                 "w.voornaam as w_voornaam, w.achternaam as w_achternaam, w.email as w_email, " +
@@ -293,7 +293,7 @@ namespace Persistence.Datalaag
                 "join bezoeker b on b.bezoekerId = a.bezoekerId " +
                 "join werknemer w on w.werknemerId = a.werknemerId " +
                 "join bedrijf bedrijf on bedrijf.bedrijfId = w.bedrijfId " +
-                "where b.email=@email";
+                "where b.email=@email and a.eindTijd is null";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {

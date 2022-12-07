@@ -79,5 +79,10 @@ namespace Controller.Managers
         {
             return _bedrijfRepository.GeefBedrijfOpEmail(email);
         }
+
+        public Bedrijf GeefBedrijfViaNaam(string value)
+        {
+            return _bedrijfRepository.GeefBedrijfViaNaam(value);
+        }
     }
 }

@@ -19,32 +19,37 @@ namespace Controller.Models
             if (!bezoeker.Aanwezig) throw new ControleerException("ControleBezoekerAlAanwezig");
         }
 
-        //TODO: mss extra controle op effectief bestaan van het btw nummer
         public static string BtwNummerControle(string btw)
         {
-            //if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
-            //string btwControle = btw.Replace(" ", "").Replace(".","").ToUpper();
-
-            //// uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
-            //CountryValidator validator = new CountryValidator();
-            //ValidationResult validationResult = validator.ValidateVAT(btwControle, Country.BE); // Kan momenteel alleen controle in Belgie uitvoren.
-            //if (!validationResult.IsValid) throw new ControleerException("BTW nummer niet correct");
-            //return btwControle;
-
-
             if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
-            btw = btw.Replace(" ", "").ToLower();
-            string regexString = @"^(be0([0-9]{3}.){2}[0-9]{3})$";
-            Regex regex = new Regex(regexString);
+            string btwControle = btw.Replace(" ", "").Replace(".", "").ToUpper();
 
-            //voor dummy data
-            string regexString2 = @"([0-9]{2}-[0-9]{3}-[0-9]{4})$";
-            Regex regex2 = new Regex(regexString2);
+            // uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
+            CountryValidator validator = new CountryValidator();
+            var Landen = Enum.GetValues(typeof(Country)).Cast<Country>();
+            var EUlanden = Enum.GetValues(typeof(Europa)).Cast<Europa>();
+            string BTWletters = btwControle.Substring(0, 2);
+            
+            foreach (var land in Landen)
+            {
+                foreach(var EUland in EUlanden)
+                {
+                    string landWoord = land.ToString();
+                    string euLandWoord = EUland.ToString();
 
-            if (!regex.IsMatch(btw) && !regex2.IsMatch(btw)) throw new ControleerException("Controle BTW - geen geldige regex");
-            return btw;
+                    if(landWoord == euLandWoord && landWoord == BTWletters)
+                    {
+                        Country country = (Country)land;
+                        ValidationResult validationResult = validator.ValidateVAT(btwControle, country);
+                        if (validationResult.IsValid)
+                        {
+                            return btwControle;
+                        }
+                    }
+                }
+            }
+            throw new ControleerException("BTW nummer niet correct");
         }
-
         public static string ControleEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email)) throw new ControleerException("ControleEmail");
@@ -53,10 +58,9 @@ namespace Controller.Models
             if (!regex.IsMatch(email)) throw new ControleerException("ControleEmail - geen geldige regex");
             return email;
         }
-
-        
         public static string ControleTelefoon(string telefoon)
         {
+            //enkel Belgisch nummer
             if (string.IsNullOrWhiteSpace(telefoon)) throw new ControleerException("ControleTelefoon");
             telefoon = telefoon.Replace(" ", "");
             string regexString = @"^(((\+32|0|0032)4){1}[1-9]{1}[0-9]{7})$";
@@ -66,7 +70,7 @@ namespace Controller.Models
             string regexString2 = @"^(([0-9]{3}-){2}[0-9]{4})$";
             Regex regex2 = new Regex(regexString2);
 
-            if (!regex.IsMatch(telefoon)&& !regex2.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
+            if (!regex.IsMatch(telefoon) && !regex2.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
             return telefoon;
         }
 

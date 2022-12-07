@@ -1,3 +1,12 @@
+D:\Hogent\22-23\Graduaatsproef_Finaal - refactoring\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1.mdf
+D:\Hogent\22-23\Graduaatsproef_Finaal - refactoring\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1_log.ldf
+D:\Hogent\22-23\Graduaatsproef_Finaal - refactoring\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll.config
+D:\Hogent\22-23\Graduaatsproef_Finaal - refactoring\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll
+D:\Hogent\22-23\Graduaatsproef_Finaal - refactoring\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.pdb
+D:\Hogent\22-23\Graduaatsproef_Finaal - refactoring\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.csproj.AssemblyReference.cache
+D:\Hogent\22-23\Graduaatsproef_Finaal - refactoring\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.csproj.CoreCompileInputs.cache
+D:\Hogent\22-23\Graduaatsproef_Finaal - refactoring\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.dll
+D:\Hogent\22-23\Graduaatsproef_Finaal - refactoring\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.pdb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1.mdf
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1_log.ldf
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll.config
