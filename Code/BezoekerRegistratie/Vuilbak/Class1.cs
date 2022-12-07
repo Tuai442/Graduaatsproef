@@ -1,53 +1,36 @@
-﻿using AutoMapper;
-using Controller.Models;
-using Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Vuilbak;
 
-namespace Vuilbak
+ViewPersoon viewPersoon = new ViewPersoon();
+viewPersoon.Naam = "Tuur";
+
+
+
+public class Test
 {
-
-
-
-    class MyAttribute : Attribute
+    public static Dictionary<string, string> GetNaam()
     {
-        public string Description { get; set; }
+        Dictionary<string, string> _dict = new Dictionary<string, string>();
 
-    }
-
-    public class SomeClass
-    {
-        [MyAttribute]
-        public string GetValue()
+        PropertyInfo[] props = typeof(ViewPersoon).GetProperties();
+        foreach (PropertyInfo prop in props)
         {
-            return "Hello World";
-        }
-    }
-
-   
-
-    public class Program
-    {
-        static void Main(string[] args)
-        {
-            object[] attributes = typeof(SomeClass).
-                         GetMethod("GetValue").
-                         ReturnTypeCustomAttributes.
-                         GetCustomAttributes(false);
-
-            foreach (object attribute in attributes)
+            object[] attrs = prop.GetCustomAttributes(true);
+            foreach (object attr in attrs)
             {
-                Console.WriteLine(attribute);
-            }
+                ColumnNaamAttribute authAttr = attr as ColumnNaamAttribute;
+                if (authAttr != null)
+                {
+                    string propName = prop.Name;
+                    string auth = authAttr.ColumnNaam;
 
+                    _dict.Add(propName, auth);
+                }
+            }
         }
 
-
-       
-        
+        return _dict;
     }
 }
+

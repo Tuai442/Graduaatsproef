@@ -6,11 +6,14 @@ using Controller.Managers;
 using Controller.Models;
 using Persistence.Datalaag;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
+using System.Windows;
 
 namespace Components.ViewModels
 {
@@ -25,7 +28,12 @@ namespace Components.ViewModels
         private Bedrijf _bedrijfModel;
         private BedrijfManager _bedrijfManager;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        private List<Bedrijf> test =  new List<Bedrijf>
+        {
+            new Bedrijf("test", "", "", "", "")
+        };
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
         [Hoofding("Voornaam")]
         public string Voornaam
@@ -33,9 +41,18 @@ namespace Components.ViewModels
             get => _voornaam;
             set
             {
-                _voornaam = value;
-                Werknemer.Voornaam = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    _voornaam = value;
+                    Werknemer.Voornaam = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
 
@@ -45,9 +62,18 @@ namespace Components.ViewModels
             get => _achternaam;
             set
             {
-                _achternaam = value;
-                Werknemer.Achternaam = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    _achternaam = value;
+                    Werknemer.Achternaam = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
 
@@ -57,9 +83,20 @@ namespace Components.ViewModels
             get => _email;
             set
             {
-                _email = value;
-                Werknemer.Email = value;
-                OnPropertyChanged(value);
+                // TODO: noah kun jij alle properties zo maken?
+                try
+                {
+                    Werknemer.Email = value;
+                    _email = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
+                
             }
         }
 
@@ -69,9 +106,18 @@ namespace Components.ViewModels
             get => _functie;
             set
             {
-                _functie = value;
-                Werknemer.Functie = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    _functie = value;
+                    Werknemer.Functie = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
 
@@ -88,11 +134,22 @@ namespace Components.ViewModels
             }
         }
 
+
+        //[Hoofding("Bedrijf-TEST")]
+        //[CellType(CellType.ComboBox)]
+        //public List<Bedrijf> Test
+        //{
+        //    get => test;
+        //    set
+        //    {
+
+        //    }
+        //}
+
         public List<string> Bedrijven = new List<string>()
         {
             "A", "B", "C", "D", "E", "F",
         };
-
 
         // Lijst items
         public string Id { get => Email; }

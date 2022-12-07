@@ -27,6 +27,7 @@ using Components.ViewModels;
 using System.Collections.ObjectModel;
 using BeheerderApp.Windows;
 using Components.Interfaces;
+using DebounceThrottle;
 
 namespace BeheerderApp.Paginas
 {
@@ -47,6 +48,8 @@ namespace BeheerderApp.Paginas
         private List<BezoekerView> _bezoekerViews = new List<BezoekerView>();
         private List<AfspraakView> _afspraakViews = new List<AfspraakView>();
         private List<BedrijfView> _bedrijfViews = new List<BedrijfView>();
+
+        private DebounceDispatcher _debounceDispatcher;
         public BeheerderPagina(DomeinController domeinController)
         {
             InitializeComponent();
@@ -64,7 +67,7 @@ namespace BeheerderApp.Paginas
             bedrijfCheckBox.Checked += CheckBoxe_Bedrijven_Toggle;
 
             terugKnop.ButtonClick += GaPaginaTerug;
-            voegToeBtns.Visibility=Visibility.Hidden;
+            voegToeBtns.Visibility = Visibility.Hidden;
             dataGrid.OpDataFiltering += FilterData;
 
             IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
@@ -74,72 +77,95 @@ namespace BeheerderApp.Paginas
                 bedrijfView.PropertyChanged += UpdateBedrijf;
                 _bedrijfViews.Add(bedrijfView);
             }
+
+            _debounceDispatcher = new DebounceDispatcher(1000);
         }
 
         private void FilterData(object? sender, string zoekText)
         {
-            if (bezoekerCheckBox.IsActief)
+
+            if (!string.IsNullOrEmpty(zoekText))
             {
-                //werknemerDataGrid.Visibility = Visibility.Hidden;
-                //dataGrid.Visibility = Visibility.Visible;
-                IReadOnlyList<Bezoeker> bezoekers = _bezoekerManger.ZoekOp(zoekText);
-                _bezoekerViews = new List<BezoekerView>();
-                foreach (Bezoeker bezoeker in bezoekers)
+                _debounceDispatcher.Debounce(() =>
                 {
-                    BezoekerView bezoekerView = new BezoekerView(bezoeker);
-                    bezoekerView.PropertyChanged += UpdateBezoeker;
-                    _bezoekerViews.Add(bezoekerView);
-                }
-                dataGrid.StelDataIn<BezoekerView>(_bezoekerViews);
-            }
-            else if (werknemerCheckBox.IsActief)
-            {
-                //werknemerDataGrid.Visibility = Visibility.Visible;
-                //dataGrid.Visibility = Visibility.Hidden;
-                IReadOnlyList<Werknemer> werknemers = _werknemerManger.ZoekOp(zoekText);
-                _werknemerViews = new List<WerknemerView>();
-                foreach (Werknemer werknemer in werknemers)
-                {
-                    WerknemerView werknemerView = new WerknemerView(werknemer);
-                    werknemerView.PropertyChanged += UpdateWerknemer;
-                    _werknemerViews.Add(werknemerView);
-                }
-                //werknemerDataGrid.StelDataIn(_werknemerViews);
-                List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
-                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijbString);
-            }
-            else if (afspraakCheckBox.IsActief)
-            {
-                //werknemerDataGrid.Visibility = Visibility.Hidden;
-                //dataGrid.Visibility = Visibility.Visible;
-                IReadOnlyList<Afspraak> afspraken = _afspraakManager.ZoekOp(zoekText);
-                _afspraakViews = new List<AfspraakView>();
-                foreach (Afspraak afspraak in afspraken)
-                {
-                    AfspraakView afspraakView = new AfspraakView(afspraak);
-                    afspraakView.PropertyChanged += UpdateAfspraak;
-                    _afspraakViews.Add(afspraakView);
-                }
-                dataGrid.StelDataIn<AfspraakView>(_afspraakViews);
+                    bool dataVerander = false;
+                    if (bezoekerCheckBox.IsActief)
+                    {
+                        //werknemerDataGrid.Visibility = Visibility.Hidden;
+                        //dataGrid.Visibility = Visibility.Visible;
+                        IReadOnlyList<Bezoeker> bezoekers = _bezoekerManger.ZoekOp(zoekText);
+                        _bezoekerViews = new List<BezoekerView>();
+                        foreach (Bezoeker bezoeker in bezoekers)
+                        {
+                            BezoekerView bezoekerView = new BezoekerView(bezoeker);
+                            bezoekerView.PropertyChanged += UpdateBezoeker;
+                            _bezoekerViews.Add(bezoekerView);
+                        }
+                        
+                        Dispatcher.Invoke(() =>
+                        {
+                            dataGrid.StelDataIn<BezoekerView>(_bezoekerViews);
+                        });
+                    }
+                    else if (werknemerCheckBox.IsActief)
+                    {
+                        //werknemerDataGrid.Visibility = Visibility.Visible;
+                        //dataGrid.Visibility = Visibility.Hidden;
+
+                        IReadOnlyList<Werknemer> werknemers = _werknemerManger.ZoekOp(zoekText);
+                        _werknemerViews = new List<WerknemerView>();
+                        foreach (Werknemer werknemer in werknemers)
+                        {
+                            WerknemerView werknemerView = new WerknemerView(werknemer);
+                            werknemerView.PropertyChanged += UpdateWerknemer;
+                            _werknemerViews.Add(werknemerView);
+                        }
+                        Dispatcher.Invoke(() =>
+                        {
+                            List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
+                            dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijbString);
+                        });
+                    }
+                    else if (afspraakCheckBox.IsActief)
+                    {
+                        //werknemerDataGrid.Visibility = Visibility.Hidden;
+                        //dataGrid.Visibility = Visibility.Visible;
+                        IReadOnlyList<Afspraak> afspraken = _afspraakManager.ZoekOp(zoekText);
+                        _afspraakViews = new List<AfspraakView>();
+                        foreach (Afspraak afspraak in afspraken)
+                        {
+                            AfspraakView afspraakView = new AfspraakView(afspraak);
+                            afspraakView.PropertyChanged += UpdateAfspraak;
+                            _afspraakViews.Add(afspraakView);
+                        }
+                        Dispatcher.Invoke(() =>
+                        {
+                            dataGrid.StelDataIn<AfspraakView>(_afspraakViews);
+                        });
 
 
 
-            }
-            else if (bedrijfCheckBox.IsActief)
-            {
-                //werknemerDataGrid.Visibility = Visibility.Hidden;
-                //dataGrid.Visibility = Visibility.Visible;
-                IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.ZoekOp(zoekText);
-                _bedrijfViews = new List<BedrijfView>();
-                foreach (Bedrijf bedrijf in bedrijven)
-                {
-                    BedrijfView bedrijfView = new BedrijfView(bedrijf);
-                    bedrijfView.PropertyChanged += UpdateBedrijf;
-                    _bedrijfViews.Add(bedrijfView);
-                }
-                dataGrid.StelDataIn<BedrijfView>(_bedrijfViews);
-            }
+                    }
+                    else if (bedrijfCheckBox.IsActief)
+                    {
+                        //werknemerDataGrid.Visibility = Visibility.Hidden;
+                        //dataGrid.Visibility = Visibility.Visible;
+                        IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.ZoekOp(zoekText);
+                        _bedrijfViews = new List<BedrijfView>();
+                        foreach (Bedrijf bedrijf in bedrijven)
+                        {
+                            BedrijfView bedrijfView = new BedrijfView(bedrijf);
+                            bedrijfView.PropertyChanged += UpdateBedrijf;
+                            _bedrijfViews.Add(bedrijfView);
+                        }
+                        Dispatcher.Invoke(() =>
+                        {
+                            dataGrid.StelDataIn<BedrijfView>(_bedrijfViews);
 
+                        });
+                    }
+                });
+            }
         }
 
         // Checkbox Events
@@ -172,11 +198,12 @@ namespace BeheerderApp.Paginas
 
                 //werknemerDataGrid.StelDataIn(_werknemerViews);
                 List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
-                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijbString);
+                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, _bedrijfViews);
             }
         }
         private void CheckBoxe_Bezoeker_Toggle(object sender, bool actief)
         {
+
             if (actief)
             {
                 //werknemerDataGrid.Visibility = Visibility.Hidden;
@@ -203,7 +230,6 @@ namespace BeheerderApp.Paginas
             }
 
         }
-
         private void CheckBoxe_Afspraak_Toggle(object sender, bool actief)
         {
 
@@ -232,7 +258,6 @@ namespace BeheerderApp.Paginas
             }
 
         }
-
         private void CheckBoxe_Bedrijven_Toggle(object sender, bool actief)
         {
 
@@ -261,8 +286,6 @@ namespace BeheerderApp.Paginas
             }
 
         }
-
-        // -------------------------------------------------
 
         // Updates - Mogen we dit niet rechtstreeks naar de managers leggen ?
         private void UpdateWerknemer(object? sender, PropertyChangedEventArgs e)

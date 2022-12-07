@@ -74,7 +74,7 @@
 
                 <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center" Background="#FF19191A" >
-                  
+
                     <Label 
                         Content="Welkom"
                    BorderThickness="1"
@@ -245,8 +245,8 @@
                                     </Style>
                                 </TextBox.Resources>
                             </TextBox>
-                       
-                            
+
+
                         </Border>
                         <Border
                     CornerRadius="10"

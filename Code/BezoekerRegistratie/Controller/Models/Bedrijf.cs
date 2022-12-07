@@ -15,6 +15,15 @@ namespace Controller.Models
         private string telefoon;
         private string email;
 
+
+        private string SetStringParameters(string p)
+        {
+            //if (string.IsNullOrWhiteSpace(p)) throw new BedrijfException("Ingave niet correct");
+            return p;
+
+        }
+
+
         public int Id { get; set; }
         public string Naam { get => naam; set => naam = Controleer.SetStringParameters(value); }
         public string Btw { get => btw; set => btw = Controleer.BtwNummerControle(value); }

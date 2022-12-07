@@ -51,13 +51,9 @@ namespace Components
 
         }
 
-        
-
         public EventHandler<object> OpDataVerandering;
 
         public EventHandler<string> OpDataFiltering;
-
-        private object _aanHetVeranderen;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -78,27 +74,13 @@ namespace Components
             {
                 if (cellTypes.ContainsKey(key))
                 {
-                    //DataGridTemplateColumn dataGridTemplateColumn = new DataGridTemplateColumn();
-                    //DataTemplate dataTemplate = new DataTemplate();
-                    //FrameworkElementFactory comboBox = new FrameworkElementFactory(typeof(ComboBox)); ;
-
-                    //comboBox.SetValue(NameProperty, new Binding("cc" + dataGridTemplateColumn.Header));
-                    //comboBox.SetValue(ComboBox.ItemsSourceProperty, viewModel);
-                    //comboBox.SetValue(ComboBox.SelectedIndexProperty, defaulIndex);
-                    //comboBox.SetValue(ComboBox.DisplayMemberPathProperty, key);
-                    //comboBox.SetValue(ComboBox.SelectedEvent, )
-
-                    //dataTemplate.VisualTree = comboBox;
-                    //dataGridTemplateColumn.CellTemplate = dataTemplate;
-                    //dataGridTemplateColumn.Header = key;
-                    //dataGrid.Columns.Add(dataGridTemplateColumn);
-
-
                     DataGridComboBoxColumn dataGridComboBoxColumn = new DataGridComboBoxColumn();
-                    dataGridComboBoxColumn.Header = key;
+                    dataGridComboBoxColumn.Header = hoofding[key];
 
                     dataGridComboBoxColumn.ItemsSource = extraInfo;
-                    dataGridComboBoxColumn.TextBinding = new Binding("Bedrijf");
+                    dataGridComboBoxColumn.TextBinding = new Binding(key);
+                    dataGridComboBoxColumn.DisplayMemberPath = "Naam";
+                    dataGridComboBoxColumn.SelectedValuePath = "Naam";
                     dataGrid.Columns.Add(dataGridComboBoxColumn);
 
                 }
@@ -115,37 +97,12 @@ namespace Components
             dataGrid.AutoGenerateColumns = false;
         }
 
-        private void FilterOp(string zoekWoord)
-        {
-           
-        }
-
-        // Als er een aanpassing wordt gedaan worden deze 2 events opgeroepen.
-        //private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    _aanHetVeranderen = e.AddedItems[0];
-        //}
-
-        //private void dataGrid_CurrentCellChanged(object sender, EventArgs e)
-        //{
-        //    if (_aanHetVeranderen != null)
-        //    {
-        //        OpDataVerandering.Invoke(this, _aanHetVeranderen);
-        //    }
-        //    _aanHetVeranderen = null;
-        //}
-        // -------------------------------------------------------------------
 
         // Dit wordt opgeroepen vanaf er een verandering in de zoekbalk gebeurt.
         private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-
             // Hier kunnen we ons datagrid filter op het huidige zoekwoord.
             string zoekText = zoekBar.Text;
-
-            // Eerst wordt er intern gefiltder met de data die we al hebben.
-            // FilterOp(zoekText);
-
             OpDataFiltering.Invoke(sender, zoekText);
 
         }
@@ -154,59 +111,3 @@ namespace Components
     }
 }
 
-
-//DataGridRow dataGridRij;
-//List<object> temp = new List<object>();
-//if (string.IsNullOrEmpty(zoekWoord))
-//{
-//    //temp = _data;
-//}
-//else
-//{
-//    // TODO: totaal niet effecient juist maar voor de demo gebruiken.
-//    foreach (var row in dataGrid.ItemsSource)
-//    {
-//        var json = JsonConvert.SerializeObject(row);
-//        var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-
-//        bool gevonden = false;
-//        foreach (string value in dictionary.Values)
-//        {
-//            if (!string.IsNullOrEmpty(value) && zoekWoord.Length <= value.Length)
-//            {
-//                bool komtVoorInString = false;
-//                for (int i = 0; i < zoekWoord.Length; i++)
-//                {
-//                    if (Char.ToLower(zoekWoord[i]) == Char.ToLower(value[i]))
-//                    {
-//                        komtVoorInString = true;
-//                    }
-//                    else
-//                    {
-//                        komtVoorInString = false;
-//                        break;
-//                    }
-//                }
-//                if (komtVoorInString)
-//                {
-//                    gevonden = true;
-//                }
-
-//            }
-
-//        }
-
-//        //dataGridRij = dataGrid.ItemContainerGenerator.ContainerFromItem(row) as DataGridRow;
-//        if (!gevonden)
-//        {
-//            //dataGridRij.Visibility = System.Windows.Visibility.Collapsed;
-//        }
-
-//        else
-//        {
-//            //dataGridRij.Visibility = System.Windows.Visibility.Visible;
-//            temp.Add(row);
-
-//        }
-//    }
-//}
