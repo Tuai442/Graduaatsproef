@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -184,6 +185,7 @@ namespace Persistence.Datalaag
                         int id = (int)dataReader["werknemerId"];
                         string voornaam = (string)dataReader["voornaam"];
                         string achternaam = (string)dataReader["achternaam"];
+                        Trace.WriteLine(id);
                         string email = (string)dataReader["email"];
                         string functie = (string)dataReader["functie"];
                         int bedrijfId = (int)dataReader["bedrijfId"];

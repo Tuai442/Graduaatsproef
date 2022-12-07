@@ -12,7 +12,6 @@ namespace Components.ViewModels
 {
     public class AfspraakView: INotifyPropertyChanged
     {
-
         public int Id { get; set; }
 
         [Hoofding("Start Tijd")]
@@ -27,14 +26,14 @@ namespace Components.ViewModels
         [Hoofding("Bezoekers Naam")]
         public string BezoekerNaam
         {
-            get { return $"{Afspraak.BezoekerVoornaam} {Afspraak.BezoekerAchternaam}"; }
+            get { return $"{Afspraak.Bezoeker.Voornaam} {Afspraak.Bezoeker.Achternaam}"; }
             set { }
         }
 
         [Hoofding("Werknemer Naam")]
         public string WerknemerNaam
         {
-            get { return $"{Afspraak.WerknemerVoornaam} {Afspraak.WerknemerAchternaam}"; }
+            get { return $"{Afspraak.Werknemer.Voornaam} {Afspraak.Werknemer.Achternaam}"; }
             set { }
         }
 
@@ -42,11 +41,9 @@ namespace Components.ViewModels
         public AfspraakView(Afspraak afspraak)
         {
             Afspraak = afspraak;
-            Bedrijf = afspraak.Bedrijf.ToString();
+            Bedrijf = afspraak.Werknemer.Bedrijf.ToString();
             StartTijd = Afspraak.StartTijd;
             EindTijd = Afspraak.EindTijd;
-            
-           
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

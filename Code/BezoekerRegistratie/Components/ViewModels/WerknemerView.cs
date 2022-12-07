@@ -24,10 +24,7 @@ namespace Components.ViewModels
         private string _bedrijf;
         private Bedrijf _bedrijfModel;
 
-        private List<Bedrijf> test =  new List<Bedrijf>
-        {
-            new Bedrijf("test", "", "", "", "")
-        };
+
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -39,8 +36,8 @@ namespace Components.ViewModels
             {
                 try
                 {
-                    _voornaam = value;
                     Werknemer.Voornaam = value;
+                    _voornaam = value;
                     OnPropertyChanged(value);
                 }
                 catch(Exception ex)
@@ -140,16 +137,16 @@ namespace Components.ViewModels
         }
 
 
-        [Hoofding("Bedrijf-TEST")]
-        [CellType(CellType.ComboBox)]
-        public List<Bedrijf> Test
-        {
-            get => test;
-            set
-            {
+        //[Hoofding("Bedrijf-TEST")]
+        //[CellType(CellType.ComboBox)]
+        //public List<Bedrijf> Test
+        //{
+        //    get => test;
+        //    set
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
         public List<string> Bedrijven = new List<string>()
         {

@@ -84,8 +84,8 @@ namespace BeheerderApp.Paginas
         private void FilterData(object? sender, string zoekText)
         {
 
-            if (!string.IsNullOrEmpty(zoekText))
-            {
+            //if (!string.IsNullOrEmpty(zoekText))
+            //{
                 _debounceDispatcher.Debounce(() =>
                 {
                     bool dataVerander = false;
@@ -165,7 +165,7 @@ namespace BeheerderApp.Paginas
                         });
                     }
                 });
-            }
+            //}
         }
 
         // Checkbox Events

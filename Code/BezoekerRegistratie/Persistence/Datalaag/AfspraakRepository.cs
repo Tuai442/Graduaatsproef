@@ -13,13 +13,12 @@ using Persistence.Exceptions;
 using System.Globalization;
 using System.Data.SqlTypes;
 using System.Reflection.PortableExecutable;
+using System.Transactions;
 
 namespace Persistence.Datalaag
 {
-    public class AfspraakRepository : BaseRepository,  IAfspraakRepository
+    public class AfspraakRepository : BaseRepository, IAfspraakRepository
     {
-
-
         public AfspraakRepository()
         {
         }
@@ -31,47 +30,56 @@ namespace Persistence.Datalaag
         public void VoegAfspraakToe(Afspraak afspraak)
         {
 
-            string query = "INSERT INTO dbo.Afspraak (startTijd, eindTijd, bezoeker_voornaam, bezoeker_achternaam, bezoeker_email, " +
-                "werknemer_voornaam, werknemer_achternaam, werknemer_email, bedrijf) " +
-                "VALUES(@startTijd, @eindTijd, @bezoeker_voornaam, @bezoeker_achternaam, @bezoeker_email, " +
-                "@werknemer_voornaam, @werknemer_achternaam, @werknemer_email, @bedrijf)";
-            SqlConnection conn = GetConnection();
-            using (SqlCommand command = new SqlCommand(query, conn))
+            string bezoekerQuery = "UPDATE Bezoeker SET aanwezig=@aanwezig " +
+                "where bezoekerId=@id; ";
+
+            string afspraakQuery = "INSERT INTO dbo.Afspraak (startTijd,eindTijd,werknemerId,bezoekerId) " +
+                "VALUES(@startTijd,@eindTijd,@werknemerId,@bezoekerId)";
+
+            //SqlConnection conn = GetConnection();
+            SqlTransaction trans = null;
+            using (SqlConnection conn = GetConnection())
             {
                 try
                 {
                     conn.Open();
-                    command.Parameters.Add(new SqlParameter("@startTijd", SqlDbType.DateTime));
-                    command.Parameters.Add(new SqlParameter("@eindTijd", SqlDbType.DateTime));
-                    command.Parameters.Add(new SqlParameter("@bezoeker_voornaam", SqlDbType.VarChar));
-                    command.Parameters.Add(new SqlParameter("@bezoeker_achternaam", SqlDbType.VarChar));
-                    command.Parameters.Add(new SqlParameter("@bezoeker_email", SqlDbType.VarChar));
-                    command.Parameters.Add(new SqlParameter("@werknemer_voornaam", SqlDbType.VarChar));
-                    command.Parameters.Add(new SqlParameter("@werknemer_achternaam", SqlDbType.VarChar));
-                    command.Parameters.Add(new SqlParameter("@werknemer_email", SqlDbType.VarChar));
-                    command.Parameters.Add(new SqlParameter("@bedrijf", SqlDbType.VarChar));
+                    trans = conn.BeginTransaction();
 
-                    command.Parameters["@startTijd"].Value = afspraak.StartTijd;
-                    if(afspraak.EindTijd == null)
+                    SqlCommand afspraakCmd = new SqlCommand(afspraakQuery, conn, trans);
+                    afspraakCmd.Parameters.Add(new SqlParameter("@startTijd", SqlDbType.DateTime));
+                    afspraakCmd.Parameters.Add(new SqlParameter("@eindTijd", SqlDbType.DateTime));
+                    afspraakCmd.Parameters.Add(new SqlParameter("@werknemerId", SqlDbType.Int));
+                    afspraakCmd.Parameters.Add(new SqlParameter("@bezoekerId", SqlDbType.Int));
+
+                    afspraakCmd.Parameters["@startTijd"].Value = afspraak.StartTijd;
+                    if (afspraak.EindTijd == null)
                     {
-                        command.Parameters["@eindTijd"].Value = DBNull.Value;
+                        afspraakCmd.Parameters["@eindTijd"].Value = DBNull.Value;
                     }
                     else
                     {
-                        command.Parameters["@eindTijd"].Value = afspraak.EindTijd; // TODO: moet mogelijk zijn om null in te steken
+                        afspraakCmd.Parameters["@eindTijd"].Value = afspraak.EindTijd;
 
                     }
-                    command.Parameters["@bezoeker_voornaam"].Value = afspraak.BezoekerVoornaam;
-                    command.Parameters["@bezoeker_achternaam"].Value = afspraak.BezoekerAchternaam;
-                    command.Parameters["@bezoeker_email"].Value = afspraak.BezoekerEmail;
-                    command.Parameters["@werknemer_voornaam"].Value = afspraak.WerknemerVoornaam;
-                    command.Parameters["@werknemer_achternaam"].Value = afspraak.WerknemerAchternaam;
-                    command.Parameters["@werknemer_email"].Value = afspraak.WerknemerEmail;
-                    command.Parameters["@bedrijf"].Value = afspraak.Bedrijf;
-                    command.ExecuteNonQuery();
+                    afspraakCmd.Parameters["@werknemerId"].Value = afspraak.Werknemer.Id;
+                    afspraakCmd.Parameters["@bezoekerId"].Value = afspraak.Bezoeker.Id;
+                    afspraakCmd.ExecuteNonQuery();
+
+                    // Bezoeker Updaten
+                    SqlCommand bezoekerCmd = new SqlCommand(bezoekerQuery, conn, trans);
+                    bezoekerCmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    bezoekerCmd.Parameters.Add(new SqlParameter("@aanwezig", SqlDbType.Bit));
+
+
+                    bezoekerCmd.Parameters["@id"].Value = afspraak.Bezoeker.Id;
+                    bezoekerCmd.Parameters["@aanwezig"].Value = afspraak.Bezoeker.Aanwezig;
+                    bezoekerCmd.ExecuteNonQuery();
+
+                    trans.Commit();
                 }
                 catch (Exception e)
                 {
+                    trans.Rollback();
                     AfspraakException ae = new AfspraakException("Afspraak toevoegen is niet gelukt", e);
                     ae.Data.Add("Afspraak:", afspraak);
                     throw ae;
@@ -83,19 +91,61 @@ namespace Persistence.Datalaag
             }
 
         }
-        
+        public void VerwijderBezoeker(Bezoeker bezoeker)
+        {
+            string query = "DELETE FROM dbo.Bezoeker WHERE id=@id";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    command.Parameters["@id"].Value = bezoeker.Id;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    BezoekerException be = new BezoekerException("Bezoeker verwijderen is niet gelukt", e);
+                    be.Data.Add("Bezoeker:", bezoeker);
+                    throw be;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        public Afspraak GeefAfspraakOpDatum(DateTime datum)
+        {
+            string query = "SELECT * from dbo.Afspraak where datum=@datum";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@datum", datum);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+                    Afspraak afspraak = new Afspraak((int)dataReader["afspraakId"], (Bezoeker)dataReader["bezoekerId"], (Werknemer)dataReader["werknemerId"], (DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"]);
+                    dataReader.Close();
+                    Console.WriteLine(afspraak);
+                    return afspraak;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef afspraak is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
         public List<Afspraak> GeefAlleAfspraken()
         {
-            //string query = "SELECT * from dbo.Afspraak;";
-            string query = "select Afspraak.afspraakId, Afspraak.startTijd, Afspraak.eindTijd, " +
-                "Bezoeker.voornaam as bezoeker_voornaam, " +
-                "Bezoeker.achternaam as bezoeker_achternaam, Bezoeker.email as bezoeker_email, " +
-                "Bezoeker.bedrijf, Werknemer.voornaam as werknemer_voornaam, " +
-                "Werknemer.achternaam as werknemer_achternaam, Werknemer.email as werknemer_email " +
-                "from Afspraak " +
-                "inner join Bezoeker on Afspraak.bezoekerId = Bezoeker.bezoekerId " +
-                "inner join Werknemer on Afspraak.werknemerId = Werknemer.werknemerId;";
-
+            string query = "SELECT startTijd, eindTijd, bezoekerId, werknemerId from dbo.Afspraak;";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -106,20 +156,13 @@ namespace Persistence.Datalaag
                     IDataReader dataReader = command.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        int afspraakId = (int)dataReader["afspraakId"];
-                        string bVoornaam = (string)dataReader["bezoeker_voornaam"];
-                        string bAchternaam = (string)dataReader["bezoeker_achternaam"];
-                        string bEmail = (string)dataReader["bezoeker_email"];
-                        string wVoornaam = (string)dataReader["werknemer_voornaam"];
-                        string wAchternaam = (string)dataReader["werknemer_achternaam"];
-                        string wEmail = (string)dataReader["werknemer_email"];
-                        string bedrijf = (string)dataReader["bedrijf"];
-
-
+                        int bezoekerId = (int)dataReader["bezoekerId"];
+                        Bezoeker bezoeker = GeefBezoekerOpId(bezoekerId);
+                        int werknemerId = (int)dataReader["werknemerId"];
+                        Werknemer werknemer = GeefWerknemerOpId(werknemerId);
                         DateTime startTijd = (DateTime)dataReader["startTijd"];
                         DateTime? eindTijd = GeefDateTime(dataReader["eindTijd"]);
-                        Afspraak afspraak = new Afspraak(afspraakId, bVoornaam, bAchternaam, bEmail, wVoornaam, wAchternaam, wEmail, bedrijf,
-                            startTijd, eindTijd);
+                        Afspraak afspraak = new Afspraak(bezoeker, werknemer, startTijd, eindTijd);
 
                         afspraken.Add(afspraak);
                     }
@@ -142,21 +185,40 @@ namespace Persistence.Datalaag
         }
         public void UpdateAfspraak(Afspraak afspraak)
         {
-            string query = "update dbo.Afspraak set eindTijd=@eindtijd where afspraakId=@afspraakId";
-            SqlConnection conn = GetConnection();
-            using (SqlCommand command = new SqlCommand(query, conn))
+            string bezoekerQuery = "UPDATE Bezoeker SET aanwezig=@aanwezig " +
+                "where bezoekerId=@id; ";
+            string afspraakQuery = "update dbo.Afspraak set eindtijd=@eindtijd where afspraakId=@afspraakId";
+            SqlTransaction trans = null;
+            using (SqlConnection conn = GetConnection())
             {
                 try
                 {
                     conn.Open();
-                    command.Parameters.Add(new SqlParameter("@afspraakId", SqlDbType.Int));
-                    command.Parameters.Add(new SqlParameter("@eindtijd", SqlDbType.DateTime));
-                    command.Parameters["@afspraakId"].Value = afspraak.Id;
-                    command.Parameters["@eindtijd"].Value = afspraak.EindTijd;
-                    command.ExecuteNonQuery();
+                    trans = conn.BeginTransaction();
+
+                    // Afspraak
+                    SqlCommand afspraakCmd = new SqlCommand(afspraakQuery, conn, trans);
+                    afspraakCmd.Parameters.Add(new SqlParameter("@afspraakId", SqlDbType.Int));
+                    afspraakCmd.Parameters.Add(new SqlParameter("@eindtijd", SqlDbType.DateTime));
+                    afspraakCmd.Parameters["@afspraakId"].Value = afspraak.Id;
+                    afspraakCmd.Parameters["@eindtijd"].Value = afspraak.EindTijd;
+                    afspraakCmd.ExecuteNonQuery();
+
+                    // Bezoeker
+                    SqlCommand bezoekerCmd = new SqlCommand(bezoekerQuery, conn, trans);
+                    bezoekerCmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    bezoekerCmd.Parameters.Add(new SqlParameter("@aanwezig", SqlDbType.Bit));
+
+
+                    bezoekerCmd.Parameters["@id"].Value = afspraak.Bezoeker.Id;
+                    bezoekerCmd.Parameters["@aanwezig"].Value = afspraak.Bezoeker.Aanwezig;
+                    bezoekerCmd.ExecuteNonQuery();
+
+                    trans.Commit();
                 }
                 catch (Exception e)
                 {
+                    trans.Rollback();
                     AfspraakException ae = new AfspraakException("Update is niet gelukt", e);
                     ae.Data.Add("Afspraak", afspraak);
                     throw ae;
@@ -168,70 +230,13 @@ namespace Persistence.Datalaag
 
             }
         }
-
-        //TODO: methode uitwerken
         public List<Afspraak> ZoekAfspraakOp(string zoekText)
         {
             return null;
         }
-
         public Afspraak GeefAfspraakOpBezoekerId(int id)
         {
-            //string query = "SELECT * from dbo.Afspraak where bezoekerId=@id";
-            //SqlConnection conn = GetConnection();
-            //Afspraak afspraak = null;
-
-            //using (SqlCommand command = new SqlCommand(query, conn))
-            //{
-            //    try
-            //    {
-            //        conn.Open();
-            //        command.Parameters.AddWithValue("@id", id);
-            //        IDataReader dataReader = command.ExecuteReader();
-
-            //        if (dataReader.Read())
-            //        {
-            //            int bezoekerId = (int)dataReader["bezoekerId"];
-            //            Bezoeker bezoeker = GeefBezoekerOpId(bezoekerId);
-            //            int werknemerId = (int)dataReader["werknemerId"];
-            //            Werknemer werknemer = GeefWerknemerOpId(werknemerId);
-            //            DateTime startTijd = (DateTime)dataReader["startTijd"];
-            //            DateTime? eindTijd = GeefDateTime(dataReader["eindTijd"]); ;
-            //            afspraak = new Afspraak(bezoeker, werknemer, startTijd, eindTijd);
-            //        }
-
-
-            //        dataReader.Close();
-            //        return afspraak;
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        throw new AfspraakException("Geef afspraak is niet gelukt", e);
-            //    }
-            //    finally
-            //    {
-            //        conn.Close();
-            //    }
-            //    return null;
-            //}
-            return null;
-        }
-
-        public static DateTime? GeefDateTime(object obj)
-        {
-            if (obj == null || obj == DBNull.Value)
-            {
-                return null; 
-            }
-            else
-            {
-                return (DateTime)obj;
-            }
-        }
-
-        public Afspraak GeefAfspraakOpBezoekerEmail(string email)
-        {
-            string query = $"SELECT * from dbo.Afspraak where bezoeker_email='{email}' and eindTijd is null; ";
+            string query = "SELECT * from dbo.Afspraak where bezoekerId=@id";
             SqlConnection conn = GetConnection();
             Afspraak afspraak = null;
 
@@ -240,24 +245,18 @@ namespace Persistence.Datalaag
                 try
                 {
                     conn.Open();
+                    command.Parameters.AddWithValue("@id", id);
                     IDataReader dataReader = command.ExecuteReader();
 
                     if (dataReader.Read())
                     {
-                        int afspraakId = (int)dataReader["afspraakId"];
-                        string bVoornaam = (string)dataReader["bezoeker_voornaam"];
-                        string bAchternaam = (string)dataReader["bezoeker_achternaam"];
-                        string bEmail = (string)dataReader["bezoeker_email"];
-                        string wVoornaam = (string)dataReader["werknemer_voornaam"];
-                        string wAchternaam = (string)dataReader["werknemer_achternaam"];
-                        string wEmail = (string)dataReader["werknemer_email"];
-                        string bedrijf = (string)dataReader["bedrijf"];
-
-
+                        int bezoekerId = (int)dataReader["bezoekerId"];
+                        Bezoeker bezoeker = GeefBezoekerOpId(bezoekerId);
+                        int werknemerId = (int)dataReader["werknemerId"];
+                        Werknemer werknemer = GeefWerknemerOpId(werknemerId);
                         DateTime startTijd = (DateTime)dataReader["startTijd"];
-                        DateTime? eindTijd = GeefDateTime(dataReader["eindTijd"]);
-                        afspraak = new Afspraak(afspraakId, bVoornaam, bAchternaam, bEmail, wVoornaam, wAchternaam, wEmail, bedrijf,
-                            startTijd, eindTijd);
+                        DateTime? eindTijd = GeefDateTime(dataReader["eindTijd"]); ;
+                        afspraak = new Afspraak(bezoeker, werknemer, startTijd, eindTijd);
                     }
 
 
@@ -275,20 +274,90 @@ namespace Persistence.Datalaag
                 return null;
             }
         }
-
-        public int GeefAfspraakOpDatum(DateTime datum)
+        public static DateTime? GeefDateTime(object obj)
         {
-            throw new NotImplementedException();
+            if (obj == null || obj == DBNull.Value)
+            {
+                return null;
+            }
+            else
+            {
+                return (DateTime)obj;
+            }
         }
-
-        public Afspraak GeefAfspraakOpEmail(string email)
+        public Afspraak GeefAfspraakOpBezoekerEmail(string email)
         {
-            throw new NotImplementedException();
-        }
+            string query = "SELECT a.*, b.*, bedrijf.*, w.*, " +
+                "w.voornaam as w_voornaam, w.achternaam as w_achternaam, w.email as w_email, " +
+                "b.email as b_email from dbo.Afspraak a " +
+                "join bezoeker b on b.bezoekerId = a.bezoekerId " +
+                "join werknemer w on w.werknemerId = a.werknemerId " +
+                "join bedrijf bedrijf on bedrijf.bedrijfId = w.bedrijfId " +
+                "where b.email=@email";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@email", email);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
 
-        public List<Afspraak> GeefAlleAanwezigeAfspraken()
-        {
-            throw new NotImplementedException();
+                    // Bezoeker
+                    int bezoekerId = (int)dataReader["bezoekerId"];
+                    string vNaam = (string)dataReader["voornaam"];
+                    string aNaam = (string)dataReader["achternaam"];
+                    string emailB = (string)dataReader["b_email"];
+                    string bedrijf = (string)dataReader["bedrijf"];
+                    bool aanwezig = (bool)dataReader["aanwezig"];
+                    Bezoeker bezoeker = new Bezoeker(bezoekerId, vNaam, aNaam, emailB, bedrijf, aanwezig);
+
+                    // Bedrijf
+                    int bedrijfId = (int)dataReader["bedrijfId"];
+                    string naam = (string)dataReader["naam"];
+                    string btw = (string)dataReader["btwNummer"];
+                    string emailb = (string)dataReader["email"];
+                    string adres = (string)dataReader["adres"];
+                    string tel = (string)dataReader["telefoon"];
+                    Bedrijf bedrijf1 = new Bedrijf(naam, btw, adres, tel, email);
+
+
+                    // Werknemer
+                    int werknemerId = (int)dataReader["werknemerId"];
+                    string vNaamW = (string)dataReader["w_voornaam"];
+                    string aNaamW = (string)dataReader["w_achternaam"];
+                    string emailW = (string)dataReader["w_email"];
+                    string functie = (string)dataReader["functie"];
+                    Werknemer werknemer = new Werknemer(werknemerId, vNaamW, aNaamW, emailW, functie, bedrijf1);
+
+                    DateTime startTijd = (DateTime)dataReader["startTijd"];
+                    DateTime? eindTijd = null;
+                    if (dataReader["eindTijd"] != DBNull.Value) // Controle of null is
+                    {
+                        eindTijd = (DateTime)dataReader["eindTijd"];
+                    }
+                    
+
+                    Afspraak afspraak = new Afspraak((int)dataReader["afspraakId"],
+                        bezoeker,
+                        werknemer,
+                        startTijd,
+                        eindTijd);
+
+                    dataReader.Close();
+                    Console.WriteLine(afspraak);
+                    return afspraak;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfException("Geef afspraak is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
     }
 }
