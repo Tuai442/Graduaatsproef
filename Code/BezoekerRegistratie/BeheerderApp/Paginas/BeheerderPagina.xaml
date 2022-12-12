@@ -71,7 +71,7 @@
                                 Click="voegToeBtns_Click" 
                                 HorizontalAlignment="Center" 
                                 Foreground="#FFCFCFCF"
-                                BorderThickness="3" Background="Gray" BorderBrush="#FFAF752F"
+                                BorderThickness="3" Background="#484747" BorderBrush="#FFAF752F"
                                 >
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -91,7 +91,7 @@
                                 Width="120"
                                 Foreground="#FFCFCFCF"
                                 BorderThickness="3" 
-                                Background="Gray" 
+                                Background="#484747" 
                                 BorderBrush="#FFAF752F" RenderTransformOrigin="-0.278,0.502"
                                 
                                 >
@@ -123,7 +123,7 @@
                                       Margin=" 40 0 40 0" 
                                       Height="453"
                                       Width="806"/>
-                <UIC:TerugKnop x:Name="terugKnop" Width="904" Height="36" RenderTransformOrigin="0.5,0.5"
+                <!--<UIC:TerugKnop x:Name="terugKnop" Width="904" Height="36" RenderTransformOrigin="0.5,0.5"
                            >
                     <UIC:TerugKnop.RenderTransform>
                         <TransformGroup>
@@ -133,15 +133,23 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </UIC:TerugKnop.RenderTransform>
-                </UIC:TerugKnop>
+                </UIC:TerugKnop>-->
                 <!--<DG:WerknemerDataGrid Name="werknemerDataGrid" Visibility="Hidden"/>-->
 
                 <!--<UIC:ZoekbaarDataGrid x:Name="_dataGrid"/>-->
 
-
+                
             </StackPanel>
-
-
+            <UIC:Knop
+                    FontFamily="Verdana"
+                    FontSize="16"
+                    Text="Terug"
+                    x:Name="terugKnop"
+                    Margin="85 0 0 0"
+                    Width="100"
+                    Height="50"
+                            HorizontalAlignment="Left">
+            </UIC:Knop>
         </StackPanel>
 
         <StackPanel VerticalAlignment="Bottom"

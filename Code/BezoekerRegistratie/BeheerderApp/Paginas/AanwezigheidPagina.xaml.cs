@@ -65,10 +65,21 @@ namespace BeheerderApp.Paginas
             //    _bezoekerManger.UpdateBezoeker(obj);
             //}
         }
+        private void VerstuurEmail()
+        {
+            // data opvragen uit database
+            // omzetten naar tekst voor email
+            // email structuur opstellen
+
+            _domeinController.SendEmail();
+
+        }
 
         private void GaPaginaTerug(object? sender, EventArgs e)
         {
             NavigationService.GoBack();
         }
+
+        
     }
 }

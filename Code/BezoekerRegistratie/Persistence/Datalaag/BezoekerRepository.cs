@@ -134,7 +134,9 @@ namespace Persistence
                         // string nummerplaat = (string)dataReader["nummerplaat"]; // Kan niet gedaan worden omdat we geen data in dit veld hebben.
                         string nummerplaat = "";
                         bool aanwezig = Convert.ToBoolean(dataReader["aanwezig"]);
-                        Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["bedrijf"], aanwezig, nummerplaat);
+                        Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], 
+                            (string)dataReader["voornaam"], (string)dataReader["achternaam"], 
+                            (string)dataReader["email"], (string)dataReader["bedrijf"], aanwezig, nummerplaat);
                         dataReader.Close();
                         return bezoeker;
                     }

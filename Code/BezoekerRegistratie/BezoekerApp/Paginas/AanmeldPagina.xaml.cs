@@ -29,7 +29,6 @@ namespace BezoekerApp.Paginas
     {
         DomeinController _domeinController;
         private BezoekerManager _bezoekerManger;
-
         public EventHandler<Page> NavigeerHandler;
         public AanmeldPagina(DomeinController bezoekerController)
         {
@@ -48,7 +47,23 @@ namespace BezoekerApp.Paginas
             bs.AanmeldHandler += MeldBezoekerAan;
             NavigeerHandler.Invoke(this, bs);
         }
+        private void LogUit(object? sender, EventArgs e)
+        {
+            string email = emailInvulveld.Text;
 
+            try
+            {
+                _bezoekerManger.MeldBezoekerUit(email);
+                MessageBox.Show("Prettige dag nog");
+                LeegAlleVelden();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
         private void MeldBezoekerAan(object? sender, Dictionary<string, Dictionary<string, string>> dict)
         {
             string email = emailInvulveld.Text;
@@ -77,25 +92,6 @@ namespace BezoekerApp.Paginas
             }
 
         }
-
-        private void LogUit(object? sender, EventArgs e)
-        {
-            string email = emailInvulveld.Text;
-
-            try
-            {
-                _bezoekerManger.MeldBezoekerUit(email);
-                MessageBox.Show("Prettige dag nog");
-                LeegAlleVelden();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-
-        }
-
         private void LeegAlleVelden()
         {
             emailInvulveld.Text = "E-mail";
@@ -103,7 +99,6 @@ namespace BezoekerApp.Paginas
             achternaamInvulveld.Text = "Achternaam";
             bedrijfInvulveld.Text = "Bdrijf";
         }
-
         private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             string email = emailInvulveld.Text;
@@ -124,7 +119,6 @@ namespace BezoekerApp.Paginas
                 emailInvulveld.Text = "E-mail";
             }
         }
-
         private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
         {
             if (emailInvulveld.Text.Trim() == "E-mail")
@@ -145,7 +139,6 @@ namespace BezoekerApp.Paginas
             if (achternaamInvulveld.Text.Trim() == "Achternaam")
                 achternaamInvulveld.Clear();
         }
-
         private void achternaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             if (achternaamInvulveld.Text == "")
@@ -153,7 +146,6 @@ namespace BezoekerApp.Paginas
                 achternaamInvulveld.Text = "Achternaam";
             }
         }
-
         private void voornaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             if (voornaamInvulveld.Text == "")
@@ -161,7 +153,6 @@ namespace BezoekerApp.Paginas
                 voornaamInvulveld.Text = "Voornaam";
             }
         }
-
         private void bedrijfInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             if (bedrijfInvulveld.Text == "")

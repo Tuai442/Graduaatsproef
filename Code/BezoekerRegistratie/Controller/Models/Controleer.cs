@@ -57,8 +57,8 @@ namespace Controller.Models
         
         public static string ControleTelefoon(string telefoon)
         {
-            if (string.IsNullOrWhiteSpace(telefoon)) throw new ControleerException("ControleTelefoon");
-            telefoon = telefoon.Replace(" ", "");
+            if (string.IsNullOrWhiteSpace(telefoon)) throw new ControleerException("ControleTelefoon - IsNullOrWhiteSpace");
+            telefoon = telefoon.Replace(" ", "");// zelfde als trim()?
             string regexString = @"^(((\+32|0|0032)4){1}[1-9]{1}[0-9]{7})$";
             Regex regex = new Regex(regexString);
 

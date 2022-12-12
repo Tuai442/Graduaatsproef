@@ -74,7 +74,7 @@
 
                 <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center" Background="#FF19191A" >
-                  
+
                     <Label 
                         Content="Welkom"
                    BorderThickness="1"
@@ -82,7 +82,8 @@
                    HorizontalAlignment="Center"
                    Margin="30 30 30 0"
                    FontSize="60" 
-                   Padding="25" Foreground="#FFCFCFCF"
+                   Padding="25 25 25 15" 
+                   Foreground="#FFCFCFCF"
                    >
                         <!--<Label.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -99,20 +100,19 @@
                             </LinearGradientBrush>
                         </Label.BorderBrush>-->
                     </Label>
-                    <TextBox 
-                        Text="Gelieve uw gevenens in te vullen."
-                        Background="Transparent"
-                         FontFamily="Verdana"
-                         FontSize="12" 
-                        Foreground="#FFB3B3B3"
-                        Margin="40 0 40 0" BorderBrush="{x:Null}"
-                        >
-
-                    </TextBox>
+                    
+                    <Label Content="Gelieve uw gevenens in te vullen."
+                            Foreground="#FFB3B3B3"
+                           Margin="48 0 40 0"
+                           FontFamily="Verdana"
+                           >
+                        
+                    </Label>
                     <Grid Height="170" Width="300">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="7*"/>
-                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="128*"/>
+                            <ColumnDefinition Width="47*"/>
+                            <ColumnDefinition Width="125*"/>
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
@@ -130,7 +130,7 @@
                     
                             Height="30"
                             Width="280"
-                            Grid.Row="0" Grid.ColumnSpan="2" Margin="10,5,10,5">
+                            Grid.Row="0" Grid.ColumnSpan="3" Margin="10,5,10,5">
                             <Border.BorderBrush>
                                 <LinearGradientBrush 
                                    EndPoint="0.5,1" 
@@ -170,7 +170,7 @@
                     Height="30"
                     Width="280"
                     Grid.Row="1"
-                    Margin="10,5,10,5" Grid.ColumnSpan="2"
+                    Margin="10,5,10,5" Grid.ColumnSpan="3"
                     >
                             <Border.BorderBrush>
                                 <LinearGradientBrush 
@@ -216,7 +216,7 @@
                     
                     Height="30"
                     Width="280"
-                    Grid.Row="2" Grid.ColumnSpan="2" Margin="10,5,10,5"
+                    Grid.Row="2" Grid.ColumnSpan="3" Margin="10,5,10,5"
                     >
                             <Border.BorderBrush>
                                 <LinearGradientBrush 
@@ -245,8 +245,8 @@
                                     </Style>
                                 </TextBox.Resources>
                             </TextBox>
-                       
-                            
+
+
                         </Border>
                         <Border
                     CornerRadius="10"
@@ -255,7 +255,7 @@
                  
                     Height="30"
                     Width="280"
-                    Grid.Row="3" Grid.ColumnSpan="2" Margin="10,5,10,5"
+                    Grid.Row="3" Grid.ColumnSpan="3" Margin="10,5,10,5"
                     >
                             <Border.BorderBrush>
                                 <LinearGradientBrush 
@@ -298,7 +298,7 @@
                     
                     x:Name="logInBtn" 
                     Width="115" 
-                    Margin="33,0,14,23"
+                    Margin="40,0,14,23"
                     Height="35" Foreground="#FFA55129"
                  
                     />
@@ -307,10 +307,9 @@
                     FontFamily="Verdana"
                     FontSize="16"
                     
-                   
                     Text="Log Uit"
                     x:Name="logUitBtn"
-                    Margin="41,0,40,23"
+                    Margin="41,0,45,23"
                     Width="115"
                     Height="35"
                    />
