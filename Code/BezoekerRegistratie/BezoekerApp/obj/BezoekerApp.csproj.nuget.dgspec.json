@@ -112,6 +112,9 @@
             "projectReferences": {
               "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
                 "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+              },
+              "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
+                "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
               }
             }
           }

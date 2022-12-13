@@ -25,7 +25,6 @@ namespace Controller.Models
             base(voornaam, achternaam, email)
         {
             Id = id;
-           // Nummerplaat = Controleer.ControleNummerplaat(nummerplaat);
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
         }

@@ -77,7 +77,7 @@ namespace BezoekerApp.Paginas
             {
                 _bezoekerManger.MeldBezoekerAan(voornaam, achternaam,
                     email, bedrijfB, contactPersoonEmail);
-                MessageBox.Show("U bent ingelogd.");
+                MessageBox.Show("U bent succesvol ingelogd.");
                 LeegAlleVelden();
 
             }
@@ -92,6 +92,8 @@ namespace BezoekerApp.Paginas
             }
 
         }
+
+
         private void LeegAlleVelden()
         {
             emailInvulveld.Text = "E-mail";

@@ -59,7 +59,7 @@
                 x:Name="VerstuurEmail"
                 Margin="187 0 0 50"
                 Width="300"
-                Height="50" Loaded="gaTerug_Loaded">
+                Height="50" >
               </UIC:Knop>
             </StackPanel>
 

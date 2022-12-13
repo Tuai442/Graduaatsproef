@@ -16,6 +16,6 @@ namespace Controller.Interfaces
         List<Afspraak> ZoekAfspraakOp(string zoekText);
       
         Afspraak GeefAfspraakOpBezoekerId(int id);
-        Afspraak GeefAfspraakOpBezoekerEmail(string email);
+        Afspraak GeefOpenstaandeAfspraakOpBezoekerEmail(string email);
     }
 }

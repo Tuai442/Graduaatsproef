@@ -49,7 +49,6 @@ namespace Controller.Managers
             Controleer.LegeVelden(vnBezoeker, anBezoeker, email, bedrijfBezoeker, emailContactPersoon);
             Controleer.ControleEmail(email);
 
-            // TODO: Dit moet via een transactie gebeuren in de db.
             Bezoeker bezoekerMetId = _bezoekerRepository.GeefBezoekerOpEmail(email);
             if(bezoekerMetId == null)
             {
@@ -62,30 +61,23 @@ namespace Controller.Managers
             {
                 Controleer.BezoekerIsAlAangemeld(bezoekerMetId);
                 bezoekerMetId.MeldAan();
-                _bezoekerRepository.UpdateBezoeker(bezoekerMetId);
+                //_bezoekerRepository.UpdateBezoeker(bezoekerMetId);
             }
-            
 
-            
             Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon); // TODO: controle bestaat werknemer
-            //Afspraak afspraak = new Afspraak(bezoekerMetId, werknemer, DateTime.Now, null);
-            Afspraak afspraak = new Afspraak(bezoekerMetId.Voornaam, bezoekerMetId.Achternaam, bezoekerMetId.Email,
-                werknemer.Voornaam, werknemer.Achternaam, werknemer.Email, werknemer.Bedrijf.ToString(), DateTime.Now, null); ;
+            Afspraak afspraak = new Afspraak(bezoekerMetId, werknemer, DateTime.Now); 
             _afspraakRepository.VoegAfspraakToe(afspraak);
         }
 
         public void MeldBezoekerUit(string email)
         {
-            // TODO: Unit test
             Bezoeker bezoeker = _bezoekerRepository.GeefBezoekerOpEmail(email);
             Controleer.ControleIsBezoekerAlAanwezig(bezoeker);
 
-            Afspraak afspraak = _afspraakRepository.GeefAfspraakOpBezoekerEmail(bezoeker.Email);
+            Afspraak afspraak = _afspraakRepository.GeefOpenstaandeAfspraakOpBezoekerEmail(email);
             Controleer.ControleIsAfspraakAlAfgesloten(afspraak);
 
-            bezoeker.MeldAf();
             afspraak.EindeAfspraak();
-            _bezoekerRepository.UpdateBezoeker(bezoeker);
             _afspraakRepository.UpdateAfspraak(afspraak);
         }
 

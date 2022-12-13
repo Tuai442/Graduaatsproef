@@ -1,13 +1,19 @@
 ﻿using Accessibility;
 using Components.Interfaces;
 using Components.ViewModels.overige;
+using Controller.Interfaces;
+using Controller.Managers;
 using Controller.Models;
+using Persistence.Datalaag;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
+using System.Windows;
 
 namespace Components.ViewModels
 {
@@ -20,8 +26,11 @@ namespace Components.ViewModels
         private string _functie;
         private string _bedrijf;
         private Bedrijf _bedrijfModel;
+        private BedrijfManager _bedrijfManager;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
         [Hoofding("Voornaam")]
         public string Voornaam
@@ -29,9 +38,18 @@ namespace Components.ViewModels
             get => _voornaam;
             set
             {
-                _voornaam = value;
-                Werknemer.Voornaam = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    Werknemer.Voornaam = value;
+                    _voornaam = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
 
@@ -41,9 +59,18 @@ namespace Components.ViewModels
             get => _achternaam;
             set
             {
-                _achternaam = value;
-                Werknemer.Achternaam = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    _achternaam = value;
+                    Werknemer.Achternaam = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
 
@@ -53,9 +80,20 @@ namespace Components.ViewModels
             get => _email;
             set
             {
-                _email = value;
-                Werknemer.Email = value;
-                OnPropertyChanged(value);
+                // TODO: noah kun jij alle properties zo maken?
+                try
+                {
+                    Werknemer.Email = value;
+                    _email = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
+                
             }
         }
 
@@ -65,9 +103,18 @@ namespace Components.ViewModels
             get => _functie;
             set
             {
-                _functie = value;
-                Werknemer.Functie = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    _functie = value;
+                    Werknemer.Functie = value;
+                    OnPropertyChanged(value);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
 
@@ -78,17 +125,28 @@ namespace Components.ViewModels
             get => _bedrijf;
             set
             {
+                Werknemer.Bedrijf = _bedrijfManager.GeefBedrijfViaNaam(value);
                 _bedrijf = value;
-                // Werknemer.Bedrijf = value;
                 OnPropertyChanged();
             }
         }
+
+
+        //[Hoofding("Bedrijf-TEST")]
+        //[CellType(CellType.ComboBox)]
+        //public List<Bedrijf> Test
+        //{
+        //    get => test;
+        //    set
+        //    {
+
+        //    }
+        //}
 
         public List<string> Bedrijven = new List<string>()
         {
             "A", "B", "C", "D", "E", "F",
         };
-
 
         // Lijst items
         public string Id { get => Email; }
@@ -103,7 +161,7 @@ namespace Components.ViewModels
             _functie = werkn.Functie;
             _bedrijf = werkn.Bedrijf.ToString();
             _bedrijfModel = werkn.Bedrijf;
-           
+            _bedrijfManager = new BedrijfManager(new BedrijfRepository());
         }
 
         private void OnPropertyChanged(string name = null)

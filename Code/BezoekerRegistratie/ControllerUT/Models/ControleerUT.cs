@@ -42,6 +42,7 @@ namespace ControllerUT.Models
         [InlineData("be0427250554")]
         [InlineData("be 0427 250 554")]
         [InlineData("be 0427.250.554")]
+        [InlineData("BE0403199702")]
         public void ControleBTW_Valid(string btw)
         {
             Controleer.BtwNummerControle(btw);

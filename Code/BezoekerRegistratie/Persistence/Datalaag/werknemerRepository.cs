@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Persistence.Datalaag
 {
-    public class WerknemerRepository: BaseRepository, IWerknemerRepository
+    public class WerknemerRepository : BaseRepository, IWerknemerRepository
     {
         private string _tableName = "Werknemer";
         public WerknemerRepository()
@@ -59,7 +60,7 @@ namespace Persistence.Datalaag
         public void VoegWerknemerToe(Werknemer werknemer)
         {
             string query = $"INSERT INTO dbo.Werknemer (voornaam, achternaam, email, functie, bedrijfId) " +
-                $"VALUES(@voornaam, @achternaam, @email, @functie, @bedrijfId);"; 
+                $"VALUES(@voornaam, @achternaam, @email, @functie, @bedrijfId);";
 
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
@@ -67,7 +68,7 @@ namespace Persistence.Datalaag
                 try
                 {
                     conn.Open();
-                    
+
                     command.Parameters.Add(new SqlParameter("@voornaam", SqlDbType.VarChar));
                     command.Parameters["@voornaam"].Value = werknemer.Voornaam;
 
@@ -80,7 +81,7 @@ namespace Persistence.Datalaag
                     command.Parameters.Add(new SqlParameter("@functie", SqlDbType.VarChar));
                     command.Parameters["@functie"].Value = werknemer.Functie;
 
-                    
+
                     // TODO: contorle of bedrijf in db is.
                     command.Parameters.Add(new SqlParameter("@bedrijfId", SqlDbType.VarChar));
                     command.Parameters["@bedrijfId"].Value = werknemer.Bedrijf.Id;
@@ -173,7 +174,6 @@ namespace Persistence.Datalaag
             try
             {
                 conn.Open();
-
                 string query = $"SELECT * FROM {_tableName};";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
@@ -184,6 +184,7 @@ namespace Persistence.Datalaag
                         int id = (int)dataReader["werknemerId"];
                         string voornaam = (string)dataReader["voornaam"];
                         string achternaam = (string)dataReader["achternaam"];
+                        Trace.WriteLine(id);
                         string email = (string)dataReader["email"];
                         string functie = (string)dataReader["functie"];
                         int bedrijfId = (int)dataReader["bedrijfId"];
@@ -192,8 +193,6 @@ namespace Persistence.Datalaag
                         Werknemer werknemer = new Werknemer(id, voornaam, achternaam, email, functie, bedrijf);
                         werknemers.Add(werknemer);
                     }
-
-
                 }
             }
             catch (Exception e)
@@ -382,7 +381,6 @@ namespace Persistence.Datalaag
             throw new NotImplementedException();
         }
 
-      
     }
 }
 
