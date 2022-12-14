@@ -132,22 +132,6 @@ namespace Components.ViewModels
         }
 
 
-        //[Hoofding("Bedrijf-TEST")]
-        //[CellType(CellType.ComboBox)]
-        //public List<Bedrijf> Test
-        //{
-        //    get => test;
-        //    set
-        //    {
-
-        //    }
-        //}
-
-        public List<string> Bedrijven = new List<string>()
-        {
-            "A", "B", "C", "D", "E", "F",
-        };
-
         // Lijst items
         public string Id { get => Email; }
         public string ItemNaam { get => $"{Voornaam} {Achternaam}"; }

@@ -232,6 +232,7 @@ namespace Persistence.Datalaag
         }
         public List<Afspraak> ZoekAfspraakOp(string zoekText)
         {
+            // TODO: Zoek Afspraken op zoektext
             return null;
         }
         public Afspraak GeefAfspraakOpBezoekerId(int id)

@@ -158,11 +158,12 @@ namespace Persistence.Datalaag
                 conn.Open();
 
                 string query = $"SELECT * FROM {_tableName} WHERE " +
-                    $"naam like '{zoekText}%' or " +
+                    $"( naam like '{zoekText}%' or " +
                     $"btwNummer like '{zoekText}%' or " +
                     $"email like '{zoekText}%' or " +
                     $"adres like '{zoekText}%' or " +
-                    $"telefoon like '{zoekText}%';";
+                    $"telefoon like '{zoekText}%' ) and " +
+                    $"actief = 1;";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -265,8 +266,8 @@ namespace Persistence.Datalaag
         public void UpdateBedrijf(Bedrijf bedrijf)
         {
             string query = "UPDATE dbo.Bedrijf " +
-                 "SET naam=@naam, btwNummer=@btwNummer, email=@email, telefoon=@telefoon, adres=@adres " +
-                 "WHERE bedrijfId = @id;";
+                 "SET actief=@actief " +
+                 "WHERE bedrijfId = @id;"; //naam=@naam, btwNummer=@btwNummer, email=@email, telefoon=@telefoon, adres=@adres 
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -274,20 +275,21 @@ namespace Persistence.Datalaag
                 {
                     conn.Open();
                     command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
-                    command.Parameters.Add(new SqlParameter("@naam", SqlDbType.NVarChar));
-                    command.Parameters.Add(new SqlParameter("@btwNummer", SqlDbType.NVarChar));
-                    command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
-                    command.Parameters.Add(new SqlParameter("@telefoon", SqlDbType.NVarChar));
-                    command.Parameters.Add(new SqlParameter("@adres", SqlDbType.NVarChar));
+                    //command.Parameters.Add(new SqlParameter("@naam", SqlDbType.NVarChar));
+                    //command.Parameters.Add(new SqlParameter("@btwNummer", SqlDbType.NVarChar));
+                    //command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
+                    //command.Parameters.Add(new SqlParameter("@telefoon", SqlDbType.NVarChar));
+                    //command.Parameters.Add(new SqlParameter("@adres", SqlDbType.NVarChar));
 
                     command.Parameters["@id"].Value = bedrijf.Id;
-                    command.Parameters["@naam"].Value = bedrijf.Naam;
-                    command.Parameters["@btwNummer"].Value = bedrijf.Btw;
-                    command.Parameters["@email"].Value = bedrijf.Email;
-                    command.Parameters["@telefoon"].Value = bedrijf.Telefoon;
-                    command.Parameters["@adres"].Value = bedrijf.Adres;
+                    //command.Parameters["@naam"].Value = bedrijf.Naam;
+                    //command.Parameters["@btwNummer"].Value = bedrijf.Btw;
+                    //command.Parameters["@email"].Value = bedrijf.Email;
+                    //command.Parameters["@telefoon"].Value = bedrijf.Telefoon;
+                    //command.Parameters["@adres"].Value = bedrijf.Adres;
 
                     command.ExecuteNonQuery();
+                    VoegNieuwBedrijfToe(bedrijf);
                 }
                 catch (Exception e)
                 {

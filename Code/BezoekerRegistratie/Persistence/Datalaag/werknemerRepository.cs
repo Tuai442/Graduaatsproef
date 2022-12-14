@@ -73,7 +73,7 @@ namespace Persistence.Datalaag
                     command.Parameters["@voornaam"].Value = werknemer.Voornaam;
 
                     command.Parameters.Add(new SqlParameter("@achternaam", SqlDbType.VarChar));
-                    command.Parameters["@achternaam"].Value = werknemer.Voornaam;
+                    command.Parameters["@achternaam"].Value = werknemer.Achternaam;
 
                     command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar));
                     command.Parameters["@email"].Value = werknemer.Email;
@@ -175,7 +175,8 @@ namespace Persistence.Datalaag
             {
                 conn.Open();
 
-                string query = $"SELECT * FROM {_tableName};";
+                string query = $"SELECT * FROM {_tableName} " +
+                    $"WHERE actief = 1;";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -218,10 +219,11 @@ namespace Persistence.Datalaag
                 conn.Open();
 
                 string query = $"SELECT * FROM {_tableName} WHERE " +
-                    $"Voornaam like '{zoekText}%' or " +
+                    $"( Voornaam like '{zoekText}%' or " +
                     $"Achternaam like '{zoekText}%' or " +
                     $"Email like '{zoekText}%' or " +
-                    $"Functie like '{zoekText}%'; ";
+                    $"Functie like '{zoekText}%' ) and " +
+                    $"actief = 1; ";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
@@ -344,32 +346,37 @@ namespace Persistence.Datalaag
         public void UpdateWerknemer(Werknemer werknemer)
         {
             string query = "UPDATE dbo.Werknemer " +
-                "SET voornaam=@voornaam, achternaam=@achternaam, email=@email, bedrijfId=@bedrijfId, functie=@functie " +
+                "SET actief=@actief " + //voornaam=@voornaam, achternaam=@achternaam, email=@email, bedrijfId=@bedrijfId, functie=@functie,
                 "WHERE werknemerId = @id;";
             SqlConnection conn = GetConnection();
+            // TODO: met transactie 
             using (SqlCommand command = new SqlCommand(query, conn))
             {
                 try
                 {
                     conn.Open();
                     command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
-                    command.Parameters.Add(new SqlParameter("@voornaam", SqlDbType.NVarChar));
-                    command.Parameters.Add(new SqlParameter("@achternaam", SqlDbType.NVarChar));
-                    command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
-                    command.Parameters.Add(new SqlParameter("@bedrijfId", SqlDbType.Int));
-                    command.Parameters.Add(new SqlParameter("@functie", SqlDbType.NVarChar));
+                    //command.Parameters.Add(new SqlParameter("@voornaam", SqlDbType.NVarChar));
+                    //command.Parameters.Add(new SqlParameter("@achternaam", SqlDbType.NVarChar));
+                    //command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
+                    //command.Parameters.Add(new SqlParameter("@bedrijfId", SqlDbType.Int));
+                    //command.Parameters.Add(new SqlParameter("@functie", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@actief", SqlDbType.Bit));
 
                     command.Parameters["@id"].Value = werknemer.Id;
-                    command.Parameters["@voornaam"].Value = werknemer.Voornaam;
-                    command.Parameters["@achternaam"].Value = werknemer.Achternaam;
-                    command.Parameters["@email"].Value = werknemer.Email;
-                    command.Parameters["@bedrijfId"].Value = werknemer.Bedrijf.Id;
-                    command.Parameters["@functie"].Value = werknemer.Functie;
+                    //command.Parameters["@voornaam"].Value = werknemer.Voornaam;
+                    //command.Parameters["@achternaam"].Value = werknemer.Achternaam;
+                    //command.Parameters["@email"].Value = werknemer.Email;
+                    //command.Parameters["@bedrijfId"].Value = werknemer.Bedrijf.Id;
+                    //command.Parameters["@functie"].Value = werknemer.Functie;
+                    command.Parameters["@actief"].Value = false;
+
                     command.ExecuteNonQuery();
+                    VoegWerknemerToe(werknemer);
                 }
                 catch (Exception e)
                 {
-                    BezoekerException be = new BezoekerException("Bezoeker updaten is niet gelukt", e);
+                    WerknemerException be = new WerknemerException("Werknemer updaten is niet gelukt", e);
                     throw be;
                 }
                 finally
