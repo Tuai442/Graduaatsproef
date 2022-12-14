@@ -60,16 +60,19 @@ namespace Controller
 
         public void EindeAfspraak()
         {
-            Bezoeker.MeldAf();
-            EindTijd = DateTime.Now;
-            IsAanwezig = false;
+            
+                Bezoeker.MeldAf();
+                EindTijd = DateTime.Now;
+                IsAanwezig = false;
+            
 
         }
 
         public override string? ToString()
         {
 
-            return $"{Bezoeker} - {Werknemer}";  
+            return $"{Bezoeker} - {Werknemer} - {Werknemer.Bedrijf}";  
         }
+       
     }
 }

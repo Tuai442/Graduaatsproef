@@ -78,7 +78,7 @@ namespace BeheerderApp.Paginas {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BeheerderApp;V1.0.0.0;component/paginas/startschermbeheerder.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BeheerderApp;component/paginas/startschermbeheerder.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Paginas\StartSchermBeheerder.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

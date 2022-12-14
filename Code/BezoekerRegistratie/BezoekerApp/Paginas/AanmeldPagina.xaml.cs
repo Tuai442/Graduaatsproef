@@ -99,7 +99,7 @@ namespace BezoekerApp.Paginas
             emailInvulveld.Text = "E-mail";
             voornaamInvulveld.Text = "Voornaam";
             achternaamInvulveld.Text = "Achternaam";
-            bedrijfInvulveld.Text = "Bdrijf";
+            bedrijfInvulveld.Text = "Bedrijf";
         }
         private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {

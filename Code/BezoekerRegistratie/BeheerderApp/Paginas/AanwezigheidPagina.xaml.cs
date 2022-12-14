@@ -74,17 +74,17 @@ namespace BeheerderApp.Paginas
         }
         private void VerstuurEmail(object? sender, EventArgs e)
         {
-            _domeinController.SendEmail();
+            try
+            {
+                _domeinController.SendEmail();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("niet gelukt om de  lijst met aanwzige bezoekers te verzenden");
+            }
         }
 
-        //private void VerstuurEmail()
-        //{
-        //    // data opvragen uit database
-        //    // omzetten naar tekst voor email
-        //    // email structuur opstellen
-
-        //    _domeinController.SendEmail();
-
-        //}
+        
     }
 }

@@ -88,7 +88,6 @@ namespace BeheerderApp.Paginas
             //{
                 _debounceDispatcher.Debounce(() =>
                 {
-                    bool dataVerander = false;
                     if (bezoekerCheckBox.IsActief)
                     {
                         //werknemerDataGrid.Visibility = Visibility.Hidden;
@@ -109,9 +108,6 @@ namespace BeheerderApp.Paginas
                     }
                     else if (werknemerCheckBox.IsActief)
                     {
-                        //werknemerDataGrid.Visibility = Visibility.Visible;
-                        //dataGrid.Visibility = Visibility.Hidden;
-
                         IReadOnlyList<Werknemer> werknemers = _werknemerManger.ZoekOp(zoekText);
                         _werknemerViews = new List<WerknemerView>();
                         foreach (Werknemer werknemer in werknemers)
@@ -122,8 +118,7 @@ namespace BeheerderApp.Paginas
                         }
                         Dispatcher.Invoke(() =>
                         {
-                            List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
-                            dataGrid.StelDataIn<WerknemerView>(_werknemerViews, bedrijbString);
+                            dataGrid.StelDataIn<WerknemerView>(_werknemerViews, false, _bedrijfViews);
                         });
                     }
                     else if (afspraakCheckBox.IsActief)
@@ -184,10 +179,6 @@ namespace BeheerderApp.Paginas
                         werknemerView.PropertyChanged += UpdateWerknemer;
                         _werknemerViews.Add(werknemerView);
                     }
-                    
-
-                    IReadOnlyList<Bedrijf> bedrijfModels = _bedrijfManager.GeefAlleBedrijven();
-                    //bedrijven = bedrijfModels.Select(x => x).ToList();
 
                 }
                 voegToeBtns.Visibility = Visibility.Visible;
@@ -196,9 +187,19 @@ namespace BeheerderApp.Paginas
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
 
-                //werknemerDataGrid.StelDataIn(_werknemerViews);
-                List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
-                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, _bedrijfViews);
+                if (_bedrijfViews.Count == 0)
+                {
+                    IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+                    foreach (Bedrijf bedrijf in bedrijven)
+                    {
+                        BedrijfView bedrijfView = new BedrijfView(bedrijf);
+                        bedrijfView.PropertyChanged += UpdateBedrijf;
+                        _bedrijfViews.Add(bedrijfView);
+                    }
+                }
+
+                //List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
+                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, false, _bedrijfViews);
             }
         }
         private void CheckBoxe_Bezoeker_Toggle(object sender, bool actief)
@@ -253,7 +254,7 @@ namespace BeheerderApp.Paginas
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
 
-                dataGrid.StelDataIn<AfspraakView>(_afspraakViews);
+                dataGrid.StelDataIn<AfspraakView>(_afspraakViews, true);
 
             }
 
@@ -263,8 +264,7 @@ namespace BeheerderApp.Paginas
 
             if (actief)
             {
-                //werknemerDataGrid.Visibility = Visibility.Hidden;
-                //dataGrid.Visibility = Visibility.Visible;
+                
                 if (_bedrijfViews.Count == 0)
                 {
                     IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
@@ -343,7 +343,6 @@ namespace BeheerderApp.Paginas
             _werknemerViews = new List<WerknemerView>();
             dataGrid.StelDataIn<object>(null);
         }
-
         private void voegToeBtns_Click(object sender, RoutedEventArgs e)
         {
             

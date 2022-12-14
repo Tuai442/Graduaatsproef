@@ -3,6 +3,7 @@ using CountryValidation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
@@ -56,6 +57,7 @@ namespace Controller.Models
             string regexString = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
             Regex regex = new Regex(regexString);
             if (!regex.IsMatch(email)) throw new ControleerException("ControleEmail - geen geldige regex");
+            
             return email;
         }
         public static string ControleTelefoon(string telefoon)
@@ -99,7 +101,7 @@ namespace Controller.Models
         }
         public static string SetStringParameters(string p)
         {
-            if (string.IsNullOrWhiteSpace(p)) throw new ControleerException("SetStringParamerters -  Ingave niet correct");
+            if (string.IsNullOrWhiteSpace(p)) throw new ControleerException("SetStringParamerters -  Ingave niet correct - null or whitespace");
             return p;
         }
 

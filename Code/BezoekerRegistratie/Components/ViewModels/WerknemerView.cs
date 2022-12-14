@@ -143,10 +143,6 @@ namespace Components.ViewModels
                 }
             }
         }
-        public List<string> Bedrijven = new List<string>()
-        {
-            "A", "B", "C", "D", "E", "F",
-        };
 
         // Lijst items
         public string Id { get => Email; }

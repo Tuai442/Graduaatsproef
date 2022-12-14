@@ -45,17 +45,14 @@ namespace Controller.Managers
         {
             if (afspraak == null) throw new AfspraakException("AfspraakManager - UpdateAfspraak");
             _afspraakRepository.UpdateAfspraak(afspraak);
-        }    
+        }
 
-        public void sendEmail()
+        public List<Afspraak> GeefaAlleopenstaandeAfsprakenVoorSendEmail()
         {
-
-            throw null;
-
-
+           return _afspraakRepository.GeefOpenstaandeAfspraak();
 
         }
 
-        
+
     }
 }

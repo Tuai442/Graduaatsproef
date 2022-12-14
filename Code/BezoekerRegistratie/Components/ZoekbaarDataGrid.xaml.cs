@@ -57,12 +57,14 @@ namespace Components
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public void StelDataIn<T>(IEnumerable viewModel, IEnumerable extraInfo = null)
+        public void StelDataIn<T>(IEnumerable viewModel, bool readOnly= false, IEnumerable extraInfo = null)
         {
             _data = viewModel;
             dataGrid.ItemsSource = null;
             MaakHoofding<T>(viewModel, extraInfo);
             dataGrid.ItemsSource = viewModel;
+            dataGrid.IsReadOnly = readOnly;
+           
         }
 
         private void MaakHoofding<T>(IEnumerable viewModel, IEnumerable extraInfo = null)
