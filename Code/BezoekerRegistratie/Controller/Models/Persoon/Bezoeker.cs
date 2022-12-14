@@ -62,6 +62,11 @@ namespace Controller.Models
             Aanwezig = false;
         }
 
+        public override string? ToString()
+        {
+            return GeefVolledigeNaam();
+        }
+
         //public Bezoeker DeepCopy()
         //{
         //    Bezoeker bezoekerCopy = (Bezoeker)this.MemberwiseClone();

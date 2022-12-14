@@ -156,7 +156,6 @@ namespace Persistence.Datalaag
             try
             {
                 conn.Open();
-
                 string query = $"SELECT * FROM {_tableName} WHERE " +
                     $"naam like '{zoekText}%' or " +
                     $"btwNummer like '{zoekText}%' or " +
@@ -227,7 +226,6 @@ namespace Persistence.Datalaag
             try
             {
                 conn.Open();
-
                 string query = $"SELECT * FROM {_tableName} b " +
                     $"join werknemer w on w.bedrijfId = b.bedrijfId " +
                     $"WHERE w.email = '{email}';";
@@ -247,13 +245,11 @@ namespace Persistence.Datalaag
 
                         bedrijven.Add(bedrijf);
                     }
-
-
                 }
             }
             catch (Exception e)
             {
-                throw new WerknemerException(e.Message);
+                throw new WerknemerException("GeefBedrijvenOpWerknemerEmail - Fout bij het ophalen van data uit de database.");
             }
             finally
             {
@@ -291,8 +287,8 @@ namespace Persistence.Datalaag
                 }
                 catch (Exception e)
                 {
-                    BedrijfException be = new BedrijfException("Bedrijf kon niet geupdate worden", e);
-                    throw be;
+                    throw new BedrijfException($"Bedrijf kon niet geupdate worden, door een probleem met de database \n { e.Message }");
+                    
                 }
                 finally
                 {
@@ -326,7 +322,7 @@ namespace Persistence.Datalaag
                 }
                 catch (Exception e)
                 {
-                    throw new BedrijfException("Geef bedrijf is niet gelukt", e);
+                    throw new BedrijfException("Geef bedrijf is niet gelukt door een probleem met de database.", e);
                 }
                 finally
                 {
@@ -334,7 +330,7 @@ namespace Persistence.Datalaag
                 }
 
             }
-            return null;
+            
         }
 
         public Bedrijf GeefBedrijfViaNaam(string value)

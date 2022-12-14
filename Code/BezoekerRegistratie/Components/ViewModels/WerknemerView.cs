@@ -28,6 +28,17 @@ namespace Components.ViewModels
         private Bedrijf _bedrijfModel;
         private BedrijfManager _bedrijfManager;
 
+        public WerknemerView(Werknemer werkn)
+        {
+            Werknemer = werkn;
+            _voornaam = werkn.Voornaam;
+            _achternaam = werkn.Achternaam;
+            _email = werkn.Email;
+            _functie = werkn.Functie;
+            _bedrijf = werkn.Bedrijf.ToString();
+            _bedrijfModel = werkn.Bedrijf;
+            _bedrijfManager = new BedrijfManager(new BedrijfRepository());
+        }
 
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -49,7 +60,6 @@ namespace Components.ViewModels
                     MessageBox.Show(ex.Message, "Kan update niet uivoeren",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
             }
         }
 
@@ -61,8 +71,8 @@ namespace Components.ViewModels
             {
                 try
                 {
-                    _achternaam = value;
                     Werknemer.Achternaam = value;
+                    _achternaam = value;
                     OnPropertyChanged(value);
                 }
                 catch(Exception ex)
@@ -70,7 +80,6 @@ namespace Components.ViewModels
                     MessageBox.Show(ex.Message, "Kan update niet uivoeren",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
             }
         }
 
@@ -92,8 +101,6 @@ namespace Components.ViewModels
                     MessageBox.Show(ex.Message, "Kan update niet uivoeren",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
-                
             }
         }
 
@@ -105,8 +112,8 @@ namespace Components.ViewModels
             {
                 try
                 {
-                    _functie = value;
                     Werknemer.Functie = value;
+                    _functie = value;
                     OnPropertyChanged(value);
                 }
                 catch(Exception ex)
@@ -114,7 +121,6 @@ namespace Components.ViewModels
                     MessageBox.Show(ex.Message, "Kan update niet uivoeren",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
             }
         }
 
@@ -125,24 +131,18 @@ namespace Components.ViewModels
             get => _bedrijf;
             set
             {
-                Werknemer.Bedrijf = _bedrijfManager.GeefBedrijfViaNaam(value);
-                _bedrijf = value;
-                OnPropertyChanged();
+                try
+                {
+                    Werknemer.Bedrijf = _bedrijfManager.GeefBedrijfViaNaam(value);
+                    _bedrijf = value;
+                    OnPropertyChanged();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Niet gelukt om bedrijf te veranderen. {ex.Message}");
+                }
             }
         }
-
-
-        //[Hoofding("Bedrijf-TEST")]
-        //[CellType(CellType.ComboBox)]
-        //public List<Bedrijf> Test
-        //{
-        //    get => test;
-        //    set
-        //    {
-
-        //    }
-        //}
-
         public List<string> Bedrijven = new List<string>()
         {
             "A", "B", "C", "D", "E", "F",
@@ -152,21 +152,9 @@ namespace Components.ViewModels
         public string Id { get => Email; }
         public string ItemNaam { get => $"{Voornaam} {Achternaam}"; }
 
-        public WerknemerView(Werknemer werkn)
-        {
-            Werknemer = werkn;
-            _voornaam = werkn.Voornaam;
-            _achternaam = werkn.Achternaam;
-            _email = werkn.Email;
-            _functie = werkn.Functie;
-            _bedrijf = werkn.Bedrijf.ToString();
-            _bedrijfModel = werkn.Bedrijf;
-            _bedrijfManager = new BedrijfManager(new BedrijfRepository());
-        }
 
         private void OnPropertyChanged(string name = null)
         {
-
             if (PropertyChanged != null)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

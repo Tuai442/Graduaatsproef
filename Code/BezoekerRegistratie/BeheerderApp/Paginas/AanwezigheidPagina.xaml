@@ -56,10 +56,11 @@
                 FontFamily="Verdana"
                 FontSize="16"
                 Text="Verstuur aanwezigheidlijst via email"
-                x:Name="VerstuurEmail"
+                x:Name="verstuurEmail"
                 Margin="187 0 0 50"
                 Width="300"
-                Height="50" >
+                Height="50"
+                >
               </UIC:Knop>
             </StackPanel>
 

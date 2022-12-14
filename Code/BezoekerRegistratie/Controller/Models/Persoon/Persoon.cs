@@ -26,7 +26,7 @@ namespace Controller.Models
 
         public string GeefVolledigeNaam()
         {
-            return Voornaam + " " + Achternaam;
+            return $"{voornaam} {achternaam}";
         }
 
     }

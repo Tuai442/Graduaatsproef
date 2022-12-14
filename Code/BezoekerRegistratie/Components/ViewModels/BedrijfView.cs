@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Components.ViewModels
 {
@@ -26,11 +27,21 @@ namespace Components.ViewModels
         {
             get => _naam;
             set
-            { 
-                _naam = value;
-                Bedrijf.Naam = value;
-                OnPropertyChanged(Naam);
+            {
+                try
+                {
+                    Bedrijf.Naam = value;
+                    _naam = value;
+                    OnPropertyChanged(Naam);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show($"Niet gelukt om naam te veranderen. {ex.Message}");
+                }
+
             }
+            
         }
         [Hoofding("BTW-Nummer")]
         public string Btw
@@ -38,9 +49,18 @@ namespace Components.ViewModels
             get => _btw;
             set
             {
-                _btw = value;
-                Bedrijf.Btw = value;
-                OnPropertyChanged(_btw);
+                try
+                {
+                    Bedrijf.Btw = value;
+                    _btw = value;
+                    OnPropertyChanged(_btw);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show($"Niet gelukt om BTW-nummer te veranderen. {ex.Message}");
+
+                }
             }
 
         }
@@ -50,9 +70,18 @@ namespace Components.ViewModels
             get => _adres;
             set
             {
-                _adres = value;
-                Bedrijf.Adres = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    Bedrijf.Adres = value;
+                    _adres = value;
+                    OnPropertyChanged(value);
+                }
+                catch (Exception ex )
+                {
+
+                    MessageBox.Show($"Niet gelukt om adres te veranderen. {ex.Message}");
+
+                }
             }
         }
         [Hoofding("Telefoon Nummer")]
@@ -61,9 +90,18 @@ namespace Components.ViewModels
             get => _telefoon;
             set
             {
-                _telefoon = value;
-                Bedrijf.Telefoon = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    Bedrijf.Telefoon = value;
+                    _telefoon = value;
+                    OnPropertyChanged(value);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show($"Niet gelukt om telefoon nummer te veranderen. {ex.Message}");
+
+                }
             }
         }
         [Hoofding("Email")]
@@ -71,9 +109,18 @@ namespace Components.ViewModels
             get => _email;
             set 
             {
-                _email = value;
-                Bedrijf.Email = value;
-                OnPropertyChanged(value);
+                try
+                {
+                    Bedrijf.Email = value;
+                    _email = value;
+                    OnPropertyChanged(value);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show($"Niet gelukt om email te veranderen. {ex.Message}");
+                }
+
             }
         }
 

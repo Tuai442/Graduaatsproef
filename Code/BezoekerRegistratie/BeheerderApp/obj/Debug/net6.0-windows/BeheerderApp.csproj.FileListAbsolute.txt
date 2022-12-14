@@ -51,3 +51,6 @@ D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Behee
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\BeheerderApp.pdb
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\BeheerderApp.genruntimeconfig.cache
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\ref\BeheerderApp.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\MailKit.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\MimeKit.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BeheerderApp\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll

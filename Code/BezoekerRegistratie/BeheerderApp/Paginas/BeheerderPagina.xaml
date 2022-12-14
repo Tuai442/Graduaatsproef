@@ -122,7 +122,8 @@
                 <UIC:ZoekbaarDataGrid Name="dataGrid" 
                                       Margin=" 40 0 40 0" 
                                       Height="453"
-                                      Width="806"/>
+                                      Width="806"
+                                      />
                 <!--<UIC:TerugKnop x:Name="terugKnop" Width="904" Height="36" RenderTransformOrigin="0.5,0.5"
                            >
                     <UIC:TerugKnop.RenderTransform>

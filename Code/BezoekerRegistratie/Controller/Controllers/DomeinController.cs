@@ -23,6 +23,8 @@ namespace Controllers
         private AfspraakManager _afspraakManager;
         private WerknemerManager _werknemerManager;
         private BezoekerManager _bezoekerManger;
+        private EmailManager _emailManager;
+
         public DomeinController(IWerknemerRepository werknemerRepository, IBezoekerRepository bezoekerRepository,
             IBedrijfRepository bedrijfRepository, IAfspraakRepository afspraakRepository)
         {
@@ -30,6 +32,7 @@ namespace Controllers
             _afspraakManager = new AfspraakManager(afspraakRepository);
             _werknemerManager = new WerknemerManager(werknemerRepository);
             _bezoekerManger = new BezoekerManager(bezoekerRepository, afspraakRepository, werknemerRepository, bedrijfRepository);
+            _emailManager = new EmailManager();
         }
 
         public AfspraakManager GeefAfspraakManager()
@@ -54,6 +57,7 @@ namespace Controllers
         public void SendEmail()
         {
 
+           
         }
 
     }
