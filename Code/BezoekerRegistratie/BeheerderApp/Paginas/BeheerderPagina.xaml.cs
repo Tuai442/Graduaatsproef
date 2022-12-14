@@ -118,7 +118,7 @@ namespace BeheerderApp.Paginas
                         }
                         Dispatcher.Invoke(() =>
                         {
-                            dataGrid.StelDataIn<WerknemerView>(_werknemerViews, _bedrijfViews);
+                            dataGrid.StelDataIn<WerknemerView>(_werknemerViews, false, _bedrijfViews);
                         });
                     }
                     else if (afspraakCheckBox.IsActief)
@@ -199,7 +199,7 @@ namespace BeheerderApp.Paginas
                 }
 
                 //List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
-                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, _bedrijfViews);
+                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, false, _bedrijfViews);
             }
         }
         private void CheckBoxe_Bezoeker_Toggle(object sender, bool actief)
@@ -254,7 +254,7 @@ namespace BeheerderApp.Paginas
                 Components.CheckBox check = (Components.CheckBox)sender;
                 VinkAllesUitBehalve(check);
 
-                dataGrid.StelDataIn<AfspraakView>(_afspraakViews);
+                dataGrid.StelDataIn<AfspraakView>(_afspraakViews, true);
 
             }
 
