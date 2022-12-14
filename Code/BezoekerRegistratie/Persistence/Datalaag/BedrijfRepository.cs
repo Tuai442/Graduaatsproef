@@ -92,7 +92,8 @@ namespace Persistence.Datalaag
         public void VoegNieuwBedrijfToe(Bedrijf bedrijf)
         {
             // public Bedrijf(int id, string naam, string btw, string adres, string telefoon, string email)
-            string query = "INSERT INTO dbo.Bedrijf (naam,btwNummer,adres,telefoon,email) VALUES(@naam,@btwNummer,@adres,@telefoon,@email)";
+            string query = "INSERT INTO dbo.Bedrijf (naam,btwNummer,adres,telefoon,email) output INSERTED.bedrijfId " +
+                "VALUES(@naam,@btwNummer,@adres,@telefoon,@email)";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -109,7 +110,8 @@ namespace Persistence.Datalaag
                     command.Parameters["@adres"].Value = bedrijf.Adres;
                     command.Parameters["@telefoon"].Value = bedrijf.Telefoon;
                     command.Parameters["@email"].Value = bedrijf.Email;
-                    command.ExecuteNonQuery();
+
+                    bedrijf.Id = (int)command.ExecuteScalar();
                 }
                 catch (Exception e)
                 {
