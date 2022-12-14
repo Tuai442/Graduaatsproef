@@ -360,5 +360,46 @@ namespace Persistence.Datalaag
                 }
             }
         }
+
+        public List<Afspraak> GeefOpenstaandeAfspraak()
+        {
+            string query = "SELECT * from dbo.Afspraak where eindTijd is null;";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    List<Afspraak> afspraken = new List<Afspraak>();
+                    conn.Open();
+                    IDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        int bezoekerId = (int)dataReader["bezoekerId"];
+                        Bezoeker bezoeker = GeefBezoekerOpId(bezoekerId);
+                        int werknemerId = (int)dataReader["werknemerId"];
+                        Werknemer werknemer = GeefWerknemerOpId(werknemerId);
+                        DateTime startTijd = (DateTime)dataReader["startTijd"];
+                        DateTime? eindTijd = GeefDateTime(dataReader["eindTijd"]);
+                        Afspraak afspraak = new Afspraak(bezoeker, werknemer, startTijd, eindTijd);
+
+                        afspraken.Add(afspraak);
+                    }
+                    dataReader.Close();
+                    foreach (Afspraak afspraak in afspraken)
+                    {
+                        Console.WriteLine(afspraak);
+                    }
+                    return afspraken;
+                }
+                catch (Exception ex)
+                {
+                    throw new AfspraakException("Geef afspraken is niet gelukt.", ex);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
     }
 }
