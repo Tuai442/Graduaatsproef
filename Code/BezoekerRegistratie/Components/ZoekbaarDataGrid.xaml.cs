@@ -63,7 +63,7 @@ namespace Components
             dataGrid.ItemsSource = null;
             MaakHoofding<T>(viewModel, extraInfo);
             dataGrid.ItemsSource = viewModel;
-            dataGrid.IsReadOnly = true;
+            dataGrid.IsReadOnly = readOnly;
            
         }
 
