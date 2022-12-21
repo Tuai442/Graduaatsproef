@@ -93,7 +93,7 @@ namespace BeheerderApp.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BeheerderApp;V1.0.0.0;component/windows/voegbedrijftoe.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BeheerderApp;component/windows/voegbedrijftoe.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\VoegBedrijfToe.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

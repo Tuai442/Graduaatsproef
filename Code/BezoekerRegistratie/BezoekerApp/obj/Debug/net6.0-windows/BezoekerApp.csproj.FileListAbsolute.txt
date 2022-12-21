@@ -8,7 +8,10 @@ D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Bezoe
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\AutoMapper.dll
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\CountryValidator.dll
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\FontAwesome.WPF.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\MailKit.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\MimeKit.dll
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
@@ -45,6 +48,3 @@ D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Bezoe
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.pdb
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\BezoekerApp.genruntimeconfig.cache
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\obj\Debug\net6.0-windows\ref\BezoekerApp.dll
-D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\MailKit.dll
-D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\MimeKit.dll
-D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\BezoekerApp\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll

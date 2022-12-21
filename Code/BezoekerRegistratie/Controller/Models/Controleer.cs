@@ -22,34 +22,35 @@ namespace Controller.Models
 
         public static string BtwNummerControle(string btw)
         {
-            if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
-            string btwControle = btw.Replace(" ", "").Replace(".", "").ToUpper();
+            //if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
+            //string btwControle = btw.Replace(" ", "").Replace(".", "").ToUpper();
 
-            // uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
-            CountryValidator validator = new CountryValidator();
-            var Landen = Enum.GetValues(typeof(Country)).Cast<Country>();
-            var EUlanden = Enum.GetValues(typeof(Europa)).Cast<Europa>();
-            string BTWletters = btwControle.Substring(0, 2);
-            
-            foreach (var land in Landen)
-            {
-                foreach(var EUland in EUlanden)
-                {
-                    string landWoord = land.ToString();
-                    string euLandWoord = EUland.ToString();
+            //// uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
+            //CountryValidator validator = new CountryValidator();
+            //var Landen = Enum.GetValues(typeof(Country)).Cast<Country>();
+            //var EUlanden = Enum.GetValues(typeof(Europa)).Cast<Europa>();
+            //string BTWletters = btwControle.Substring(0, 2);
 
-                    if(landWoord == euLandWoord && landWoord == BTWletters)
-                    {
-                        Country country = (Country)land;
-                        ValidationResult validationResult = validator.ValidateVAT(btwControle, country);
-                        if (validationResult.IsValid)
-                        {
-                            return btwControle;
-                        }
-                    }
-                }
-            }
-            throw new ControleerException("BTW nummer niet correct");
+            //foreach (var land in Landen)
+            //{
+            //    foreach(var EUland in EUlanden)
+            //    {
+            //        string landWoord = land.ToString();
+            //        string euLandWoord = EUland.ToString();
+
+            //        if(landWoord == euLandWoord && landWoord == BTWletters)
+            //        {
+            //            Country country = (Country)land;
+            //            ValidationResult validationResult = validator.ValidateVAT(btwControle, country);
+            //            if (validationResult.IsValid)
+            //            {
+            //                return btwControle;
+            //            }
+            //        }
+            //    }
+            //}
+            //throw new ControleerException("BTW nummer niet correct");
+            return btw;
         }
         public static string ControleEmail(string email)
         {
