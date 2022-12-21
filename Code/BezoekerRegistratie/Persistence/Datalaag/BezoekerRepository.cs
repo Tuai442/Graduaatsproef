@@ -308,14 +308,7 @@ namespace Persistence
                     conn.Close();
                 }
             }
-        }
-
-        public Persoon GeefPersoonOpVolledigeNaam(string naam, string achternaam)
-        {
-            throw new NotImplementedException();
-        }
-
-      
+        }      
     }
    
 }

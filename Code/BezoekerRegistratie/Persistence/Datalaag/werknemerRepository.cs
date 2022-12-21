@@ -251,10 +251,6 @@ namespace Persistence.Datalaag
             return werknemers;
         }
 
-        public Persoon GeefPersoonOpVolledigeNaam(string naam, string achternaam)
-        {
-            throw new NotImplementedException();
-        }
 
         public Werknemer GeefWerknemerOpEmail(string email)
         {

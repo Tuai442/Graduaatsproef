@@ -1028,24 +1028,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\noahg\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\soren\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
+      "projectUniqueName": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\15deversie\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
       "projectName": "Components",
-      "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
-      "packagesPath": "C:\\Users\\noahg\\.nuget\\packages\\",
-      "outputPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Components\\obj\\",
+      "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\15deversie\\Code\\BezoekerRegistratie\\Components\\Components.csproj",
+      "packagesPath": "C:\\Users\\soren\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\15deversie\\Code\\BezoekerRegistratie\\Components\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\noahg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\soren\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1059,11 +1058,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
-              "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+            "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\15deversie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+              "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\15deversie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
             },
-            "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
-              "projectPath": "D:\\AA.SCORRO2022\\graduaat proef\\clone werkt 3 nov\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
+            "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\15deversie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj": {
+              "projectPath": "C:\\Users\\soren\\Documents\\Academiejaar 2022-2023\\projectwerk\\15deversie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj"
             }
           }
         }

@@ -373,4 +373,4 @@ namespace Persistence.Datalaag
         }
     }
 }
-//Bedrijf bedrijf = new Bedrijf((string)dataReader["naam"], (string)dataReader["btw"], (string)dataReader["adres"], (string)dataReader["telefoon"], (string)dataReader["email"]);   
+  
