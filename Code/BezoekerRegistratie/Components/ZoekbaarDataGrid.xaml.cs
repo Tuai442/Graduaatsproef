@@ -62,6 +62,7 @@ namespace Components
             _data = viewModel;
             dataGrid.ItemsSource = null;
             MaakHoofding<T>(viewModel, extraInfo);
+
             dataGrid.ItemsSource = viewModel;
             dataGrid.IsReadOnly = readOnly;
            
@@ -78,7 +79,7 @@ namespace Components
                 {
                     DataGridComboBoxColumn dataGridComboBoxColumn = new DataGridComboBoxColumn();
                     dataGridComboBoxColumn.Header = hoofding[key];
-
+                    dataGridComboBoxColumn.MinWidth = 100;
                     dataGridComboBoxColumn.ItemsSource = extraInfo;
                     dataGridComboBoxColumn.TextBinding = new Binding(key);
                     dataGridComboBoxColumn.DisplayMemberPath = "Naam";
@@ -92,6 +93,9 @@ namespace Components
                     c.Header = hoofding[key];
                     c.Binding = new Binding(key);
                     dataGrid.Columns.Add(c);
+                    //dataGrid.MinWidth= 150;
+                    c.MinWidth = 150;
+                    
                 }
                 
         

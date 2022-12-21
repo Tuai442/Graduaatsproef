@@ -6,6 +6,7 @@ namespace Components.ViewModels.overige
 {
     public class HoofdingAttribute : Attribute
     {
+        public int width = 100;
         public string Hoofding { get; set; }
 
         public HoofdingAttribute(string hoofding)
@@ -32,7 +33,7 @@ namespace Components.ViewModels.overige
                     {
                         string propName = prop.Name;
                         string auth = authAttr.Hoofding;
-
+                        
                         _dict.Add(propName, auth);
                     }
                 }
