@@ -23,14 +23,16 @@ namespace Controllers
         private AfspraakManager _afspraakManager;
         private WerknemerManager _werknemerManager;
         private BezoekerManager _bezoekerManger;
-        public DomeinController(IWerknemerRepository werknemerRepository, IBezoekerRepository bezoekerRepository, 
+        private EmailManager _emailManager;
+
+        public DomeinController(IWerknemerRepository werknemerRepository, IBezoekerRepository bezoekerRepository,
             IBedrijfRepository bedrijfRepository, IAfspraakRepository afspraakRepository)
         {
             _bedrijfManager = new BedrijfManager(bedrijfRepository);
             _afspraakManager = new AfspraakManager(afspraakRepository);
             _werknemerManager = new WerknemerManager(werknemerRepository);
-            _bezoekerManger = new BezoekerManager(bezoekerRepository, afspraakRepository,
-                werknemerRepository, bedrijfRepository);
+            _bezoekerManger = new BezoekerManager(bezoekerRepository, afspraakRepository, werknemerRepository, bedrijfRepository);
+            _emailManager = new EmailManager();
         }
 
         public AfspraakManager GeefAfspraakManager()
@@ -52,7 +54,11 @@ namespace Controllers
         {
             return _werknemerManager;
         }
+        public void SendEmail()
+        {
+            _emailManager.SendEmail(_afspraakManager.GeefaAlleopenstaandeAfsprakenVoorSendEmail());
+           
+        }
 
-       
     }
 }

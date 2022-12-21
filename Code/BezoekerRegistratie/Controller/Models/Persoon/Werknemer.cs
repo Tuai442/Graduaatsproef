@@ -36,7 +36,7 @@ namespace Controller.Models
 
         public override string? ToString()
         {
-            return GeefVolledigeNaam();
+            return GeefVolledigeNaam() ;
         }
     }
 }

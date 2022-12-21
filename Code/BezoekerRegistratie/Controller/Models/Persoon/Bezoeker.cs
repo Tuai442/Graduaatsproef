@@ -25,8 +25,6 @@ namespace Controller.Models
             base(voornaam, achternaam, email)
         {
             Id = id;
-            //Nummerplaat = Controleer.ControleNummerplaat(nummerplaat);
-            Nummerplaat = nummerplaat;
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
         }
@@ -37,7 +35,6 @@ namespace Controller.Models
             base(voornaam, achternaam, email)
         {
             //Nummerplaat = Controleer.ControleNummerplaat(nummerplaat);
-            Nummerplaat = nummerplaat;
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
         }
@@ -65,10 +62,15 @@ namespace Controller.Models
             Aanwezig = false;
         }
 
-        public Bezoeker DeepCopy()
+        public override string? ToString()
         {
-            Bezoeker bezoekerCopy = (Bezoeker)this.MemberwiseClone();
-            return bezoekerCopy;
+            return GeefVolledigeNaam();
         }
+
+        //public Bezoeker DeepCopy()
+        //{
+        //    Bezoeker bezoekerCopy = (Bezoeker)this.MemberwiseClone();
+        //    return bezoekerCopy;
+        //}
     }
 }

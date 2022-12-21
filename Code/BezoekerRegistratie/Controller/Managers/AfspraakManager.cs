@@ -21,8 +21,8 @@ namespace Controller.Managers
 
         public IReadOnlyList<Afspraak> GeefAlleAfspraken()
         {
-            List<Afspraak> afspraaks = _afspraakRepository.GeefAlleAfspraken();
-            return afspraaks.AsReadOnly();
+            List<Afspraak> afspraken = _afspraakRepository.GeefAlleAfspraken();
+            return afspraken.AsReadOnly();
         }
 
 
@@ -37,14 +37,22 @@ namespace Controller.Managers
         public IReadOnlyList<Afspraak> ZoekOp(string zoekText)
         {
 
-            if (string.IsNullOrWhiteSpace(zoekText)) throw new AfspraakException("AM - ZoekOp");
+            if (string.IsNullOrWhiteSpace(zoekText)) throw new AfspraakException("AfspraakManager - ZoekOp");
             return _afspraakRepository.ZoekAfspraakOp(zoekText).AsReadOnly();
         }
 
         public void UpdateAfspraak(Afspraak afspraak)
         {
-            if (afspraak == null) throw new AfspraakException("AM - UpdateAfspraak");
+            if (afspraak == null) throw new AfspraakException("AfspraakManager - UpdateAfspraak");
             _afspraakRepository.UpdateAfspraak(afspraak);
-        }    
+        }
+
+        public List<Afspraak> GeefaAlleopenstaandeAfsprakenVoorSendEmail()
+        {
+           return _afspraakRepository.GeefOpenstaandeAfspraak();
+
+        }
+
+
     }
 }

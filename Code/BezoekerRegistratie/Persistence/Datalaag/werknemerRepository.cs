@@ -193,8 +193,6 @@ namespace Persistence.Datalaag
                         Werknemer werknemer = new Werknemer(id, voornaam, achternaam, email, functie, bedrijf);
                         werknemers.Add(werknemer);
                     }
-
-
                 }
             }
             catch (Exception e)
@@ -344,10 +342,11 @@ namespace Persistence.Datalaag
         public void UpdateWerknemer(Werknemer werknemer)
         {
             string query = "UPDATE dbo.Werknemer " +
-                "SET actief=@actief " + 
+                "SET actief=@actief " +
                 "WHERE werknemerId = @id;";
-            SqlConnection conn = GetConnection();
             // TODO: met transactie 
+
+                    SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
                 try

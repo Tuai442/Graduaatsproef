@@ -39,6 +39,7 @@ namespace BeheerderApp.Paginas
             _bezoekerManger = _domeinController.GeefBezoekerManager();
             InitializeComponent();
             terugKnop.ButtonClick += GaPaginaTerug;
+            verstuurEmail.ButtonClick += VerstuurEmail;
 
             IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
             List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
@@ -65,10 +66,25 @@ namespace BeheerderApp.Paginas
             //    _bezoekerManger.UpdateBezoeker(obj);
             //}
         }
+        
 
         private void GaPaginaTerug(object? sender, EventArgs e)
         {
             NavigationService.GoBack();
         }
+        private void VerstuurEmail(object? sender, EventArgs e)
+        {
+            try
+            {
+                _domeinController.SendEmail();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("niet gelukt om de  lijst met aanwzige bezoekers te verzenden");
+            }
+        }
+
+        
     }
 }

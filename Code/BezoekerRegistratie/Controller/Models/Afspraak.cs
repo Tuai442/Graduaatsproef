@@ -9,7 +9,6 @@ namespace Controller
     public class Afspraak
     {
         public int Id { get; set; }
-
         public Bezoeker Bezoeker { get; set; }
         public Werknemer Werknemer { get; set; }
         public DateTime StartTijd { get; set; }
@@ -61,12 +60,19 @@ namespace Controller
 
         public void EindeAfspraak()
         {
-            Bezoeker.MeldAf();
-            EindTijd = DateTime.Now;
-            IsAanwezig = false;
+            
+                Bezoeker.MeldAf();
+                EindTijd = DateTime.Now;
+                IsAanwezig = false;
+            
 
         }
 
+        public override string? ToString()
+        {
 
+            return $"{Bezoeker} - {Werknemer} - {Werknemer.Bedrijf}";  
+        }
+       
     }
 }

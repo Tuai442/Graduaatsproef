@@ -61,17 +61,17 @@ namespace Components.ViewModels
             }
         }
 
-        [Hoofding("Is Aanwezig")]
-        public bool Aanwezig
-        {
-            get => _aanwezig;
-            set
-            {
-                _aanwezig = value;
-                _bezoeker.Aanwezig = value;
-                OnPropertyChanged();
-            }
-        }
+        //[Hoofding("Is Aanwezig")]
+        //public bool Aanwezig
+        //{
+        //    get => _aanwezig;
+        //    set
+        //    {
+        //        _aanwezig = value;
+        //        _bezoeker.Aanwezig = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         [Hoofding("Bedrijf")]
         public string Bedrijf

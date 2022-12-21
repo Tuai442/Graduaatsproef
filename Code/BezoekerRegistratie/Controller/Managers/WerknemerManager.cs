@@ -1,4 +1,5 @@
-﻿using Controller.Interfaces;
+﻿using Controller.Exceptions;
+using Controller.Interfaces;
 using Controller.Interfaces.Models;
 using Controller.Models;
 using DebounceThrottle;
@@ -33,17 +34,38 @@ namespace Controller.Managers
             _werknemerRepository.UpdateWerknemer(werknemer);
         }
 
-        public void VoegWerknemerToe(string voornaam, string achternaam, string email, string funttie,
+        public void VoegWerknemerToe(string voornaam, string achternaam, string email, string functie,
             Bedrijf bedrijf)
         {
             //TODO - controle gegevens
-            Werknemer werknemer = new Werknemer(voornaam, achternaam, email, funttie, bedrijf);
-            _werknemerRepository.VoegWerknemerToe(werknemer);
+            try
+            {
+                Controleer.ControleEmail(bedrijf.Email);
+                Controleer.SetStringParameters(bedrijf.Naam);
+                Controleer.BtwNummerControle(bedrijf.Btw);
+                Controleer.SetStringParameters(bedrijf.Adres);
+                Controleer.ControleTelefoon(bedrijf.Telefoon);
+
+                Controleer.ControleEmail(email);
+                Controleer.SetStringParameters(voornaam);
+                Controleer.SetStringParameters(achternaam);
+                Controleer.SetStringParameters(functie);
+
+                Werknemer werknemer = new Werknemer(voornaam, achternaam, email, functie, bedrijf);
+                _werknemerRepository.VoegWerknemerToe(werknemer);
+            }
+            catch (Exception ex)
+            {
+
+                throw new ControleerException(ex.Message);
+            }
+
+
         }
 
         public IReadOnlyList<Werknemer> ZoekOp(string zoekText)
         {
-           return _werknemerRepository.ZoekOpWerknemers(zoekText);
+            return _werknemerRepository.ZoekOpWerknemers(zoekText);
         }
     }
 }
