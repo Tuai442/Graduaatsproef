@@ -64,8 +64,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "MimeKit/3.4.3": {
         "dependencies": {
           "Portable.BouncyCastle": "1.9.0",
@@ -80,7 +78,6 @@
           }
         }
       },
->>>>>>> 55f35b1e5c2e322ca8542fb96d38ad01ddaac592
       "Newtonsoft.Json/13.0.1": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -89,8 +86,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "Portable.BouncyCastle/1.9.0": {
         "runtime": {
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
@@ -99,7 +94,6 @@
           }
         }
       },
->>>>>>> 55f35b1e5c2e322ca8542fb96d38ad01ddaac592
       "runtime.native.System.Data.SqlClient.sni/4.7.0": {
         "dependencies": {
           "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni": "4.4.0",
@@ -161,8 +155,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "System.Formats.Asn1/6.0.0": {
         "runtime": {
           "lib/net6.0/System.Formats.Asn1.dll": {
@@ -179,7 +171,6 @@
           }
         }
       },
->>>>>>> 55f35b1e5c2e322ca8542fb96d38ad01ddaac592
       "System.Security.AccessControl/4.7.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -200,8 +191,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "System.Security.Cryptography.Pkcs/6.0.0": {
         "dependencies": {
           "System.Formats.Asn1": "6.0.0"
@@ -221,7 +210,6 @@
           }
         }
       },
->>>>>>> 55f35b1e5c2e322ca8542fb96d38ad01ddaac592
       "System.Security.Principal.Windows/4.7.0": {
         "runtime": {
           "lib/netstandard2.0/System.Security.Principal.Windows.dll": {
@@ -243,8 +231,6 @@
             "fileVersion": "4.700.19.56404"
           }
         }
-<<<<<<< HEAD
-=======
       },
       "System.Text.Encoding.CodePages/6.0.0": {
         "dependencies": {
@@ -264,7 +250,6 @@
             "fileVersion": "6.0.21.52210"
           }
         }
->>>>>>> 55f35b1e5c2e322ca8542fb96d38ad01ddaac592
       }
     }
   },
@@ -311,8 +296,6 @@
       "path": "microsoft.win32.registry/4.7.0",
       "hashPath": "microsoft.win32.registry.4.7.0.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "MimeKit/3.4.3": {
       "type": "package",
       "serviceable": true,
@@ -320,7 +303,6 @@
       "path": "mimekit/3.4.3",
       "hashPath": "mimekit.3.4.3.nupkg.sha512"
     },
->>>>>>> 55f35b1e5c2e322ca8542fb96d38ad01ddaac592
     "Newtonsoft.Json/13.0.1": {
       "type": "package",
       "serviceable": true,
@@ -328,8 +310,6 @@
       "path": "newtonsoft.json/13.0.1",
       "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "Portable.BouncyCastle/1.9.0": {
       "type": "package",
       "serviceable": true,
@@ -337,7 +317,6 @@
       "path": "portable.bouncycastle/1.9.0",
       "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
     },
->>>>>>> 55f35b1e5c2e322ca8542fb96d38ad01ddaac592
     "runtime.native.System.Data.SqlClient.sni/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -373,8 +352,6 @@
       "path": "system.data.sqlclient/4.8.4",
       "hashPath": "system.data.sqlclient.4.8.4.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "System.Formats.Asn1/6.0.0": {
       "type": "package",
       "serviceable": true,
@@ -389,7 +366,6 @@
       "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
     },
->>>>>>> 55f35b1e5c2e322ca8542fb96d38ad01ddaac592
     "System.Security.AccessControl/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -397,8 +373,6 @@
       "path": "system.security.accesscontrol/4.7.0",
       "hashPath": "system.security.accesscontrol.4.7.0.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "System.Security.Cryptography.Pkcs/6.0.0": {
       "type": "package",
       "serviceable": true,
@@ -406,15 +380,12 @@
       "path": "system.security.cryptography.pkcs/6.0.0",
       "hashPath": "system.security.cryptography.pkcs.6.0.0.nupkg.sha512"
     },
->>>>>>> 55f35b1e5c2e322ca8542fb96d38ad01ddaac592
     "System.Security.Principal.Windows/4.7.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-ojD0PX0XhneCsUbAZVKdb7h/70vyYMDYs85lwEI+LngEONe/17A0cFaRFqZU+sOEidcVswYWikYOQ9PPfjlbtQ==",
       "path": "system.security.principal.windows/4.7.0",
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
-<<<<<<< HEAD
-=======
     },
     "System.Text.Encoding.CodePages/6.0.0": {
       "type": "package",
@@ -422,7 +393,6 @@
       "sha512": "sha512-ZFCILZuOvtKPauZ/j/swhvw68ZRi9ATCfvGbk1QfydmcXBkIWecWKn/250UH7rahZ5OoDBaiAudJtPvLwzw85A==",
       "path": "system.text.encoding.codepages/6.0.0",
       "hashPath": "system.text.encoding.codepages.6.0.0.nupkg.sha512"
->>>>>>> 55f35b1e5c2e322ca8542fb96d38ad01ddaac592
     }
   }
 }
