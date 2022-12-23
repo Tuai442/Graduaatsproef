@@ -57,51 +57,27 @@
                                    />
                     </WrapPanel>
 
-
-
-                    <StackPanel HorizontalAlignment="Left"
-                                Orientation="Horizontal" Margin="638,0,0,0" Width="334">
-                        <Button Content="Toevoegen"
-                                Margin="10"
+                    <Button Content="Toevoegen"
+                                Margin=" 10 10 90 10"
                                 FontSize="20"
                                 Padding="8"
                                 Width="auto"
                                 Height="56"
                                 Name="voegToeBtns"
                                 Click="voegToeBtns_Click" 
-                                HorizontalAlignment="Center" 
+                                HorizontalAlignment="Right" 
                                 Foreground="#FFCFCFCF"
                                 BorderThickness="3" Background="#484747" BorderBrush="#FFAF752F"
                                 >
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                                </Style>
-                            </Button.Resources>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
 
-                        </Button>
+                    </Button>
 
-                        <Button Name="herlaadBtn"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Content="Herlaad"
-                            Margin="10 10 0 10" Padding="10"
-                            FontSize="20"
-                            Click="herlaadBtn_Click"
-                                Width="120"
-                                Foreground="#FFCFCFCF"
-                                BorderThickness="3" 
-                                Background="#484747" 
-                                BorderBrush="#FFAF752F" RenderTransformOrigin="-0.278,0.502"
-                                
-                                >
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                                </Style>
-                            </Button.Resources>
-                        </Button>
-                    </StackPanel>
+                   
 
 
 
@@ -149,7 +125,7 @@
                     Margin="85 0 0 0"
                     Width="100"
                     Height="50"
-                            HorizontalAlignment="Left">
+                    HorizontalAlignment="Left">
             </UIC:Knop>
         </StackPanel>
 

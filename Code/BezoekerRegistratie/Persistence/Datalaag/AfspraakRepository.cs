@@ -232,8 +232,43 @@ namespace Persistence.Datalaag
         }
         public List<Afspraak> ZoekAfspraakOp(string zoekText)
         {
-            // TODO: Zoek Afspraken op zoektext
-            return null;
+            {
+                SqlConnection conn = GetConnection();
+                List<Afspraak> afspraken = new List<Afspraak>();
+                try
+                {
+                    conn.Open();
+                    string query = $"SELECT * FROM Afspraak WHERE " +
+                        $"( starttijd like '{zoekText}%' or " +
+                        $"eindtijd like '{zoekText}%' or ";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataReader dataReader = cmd.ExecuteReader();
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            int afspraakId = (int)dataReader["bedrijfId"];
+                            DateTime startTijd = (DateTime)dataReader["startTijd"];
+                            DateTime eindTijd = (DateTime)dataReader["eindTijd"];
+                            int werknemerId = (int)dataReader["werknemerId"];
+                            int bezoekerId = (int)dataReader["bezoekerId"];
+                      
+
+                            Afspraak afspraak = new Afspraak(afspraakId,bezoekerId,werknemerId,startTijd,eindTijd);
+                            afspraken.Add(afspraak);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new AfspraakException(e.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+                return afspraken;
+            }
         }
         public Afspraak GeefAfspraakOpBezoekerId(int id)
         {
