@@ -12,7 +12,7 @@ namespace Persistence.Datalaag
     public class BaseRepository
     {
 
-        protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
+        protected string connectionString = @"Data Source=DESKTOP-NDTRPE9;Initial Catalog=BezoekerRegistratie;Integrated Security=True";
         //link Sören
         //protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\10deversie\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
         //link Tuur

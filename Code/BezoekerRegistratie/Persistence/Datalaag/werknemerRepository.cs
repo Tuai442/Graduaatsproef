@@ -368,16 +368,6 @@ namespace Persistence.Datalaag
                 }
             }
         }
-
-        public Werknemer GeefWerknemerOpNaam(string contactPersoon)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Persoon GeefPersoonOpVolledigeNaam(string naam, string achternaam)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\BeheerderApp\obj\Debug\net6.0-windows\
 BeheerderApp
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\BeheerderApp\App.xaml
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\BeheerderApp\App.xaml
 6-1846739561
 
 10-228630615
-206-380277679
+206-1343644493
 MainWindow.xaml;Paginas\AanwezigheidPagina.xaml;Paginas\BeheerderPagina.xaml;Paginas\StartSchermBeheerder.xaml;Windows\VoegBedrijfToe.xaml;Windows\VoegWerknemerToeWindow.xaml;
 
 True

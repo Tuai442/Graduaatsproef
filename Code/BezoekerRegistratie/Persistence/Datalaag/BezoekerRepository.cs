@@ -309,11 +309,6 @@ namespace Persistence
                 }
             }
         }
-
-        public Persoon GeefPersoonOpVolledigeNaam(string naam, string achternaam)
-        {
-            throw new NotImplementedException();
-        }
     }
    
 }
