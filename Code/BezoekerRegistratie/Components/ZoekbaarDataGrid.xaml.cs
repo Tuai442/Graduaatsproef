@@ -1,4 +1,5 @@
-﻿using Components.ViewModels;
+﻿using Components.Interfaces;
+using Components.ViewModels;
 using Components.ViewModels.overige;
 using Controller;
 using Controller.Interfaces.Models;
@@ -18,6 +19,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -29,7 +31,7 @@ namespace Components
     /// <summary>
     /// Interaction logic for ZoekbaarDataGrid.xaml
     /// </summary>
-    public partial class ZoekbaarDataGrid : UserControl, INotifyPropertyChanged
+    public partial class ZoekbaarDataGrid : UserControl
     {
         public int GridHeight
         {
@@ -55,20 +57,22 @@ namespace Components
 
         public EventHandler<string> OpDataFiltering;
 
+        public EventHandler<int> OpDataVerwijdering;
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public void StelDataIn<T>(IEnumerable viewModel, bool readOnly= false, IEnumerable extraInfo = null)
         {
             _data = viewModel;
             dataGrid.ItemsSource = null;
-            MaakHoofding<T>(viewModel, extraInfo);
+            MaakHoofding<T>(extraInfo);
 
             dataGrid.ItemsSource = viewModel;
             dataGrid.IsReadOnly = readOnly;
            
         }
 
-        private void MaakHoofding<T>(IEnumerable viewModel, IEnumerable extraInfo = null)
+        private void MaakHoofding<T>(IEnumerable extraInfo = null)
         {
             dataGrid.Columns.Clear();
             Dictionary<string, string> hoofding = HoofdingManager.GeefHoofding<T>();
@@ -113,7 +117,35 @@ namespace Components
 
         }
 
-       
+        private void Verwijder_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = (MenuItem)sender;
+            var contextMenu = (ContextMenu)menuItem.Parent;
+            var dataGrid = (DataGrid)contextMenu.PlacementTarget;
+
+            if(dataGrid.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Je kan geen meerdere rij in één keer verwijderen");
+            }
+            else
+            {
+                int rijIndex = dataGrid.SelectedIndex;
+
+                var rij = ((DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(rijIndex)).DataContext;
+                IDataGridRij datagridRij = (IDataGridRij)rij;
+
+                string bericht = $"Weet u zeker dat u de volgende rij wilt verwijderen: '{datagridRij.Content}' ?";
+                var dialogResult = MessageBox.Show(bericht, "MyProgram", MessageBoxButton.YesNo);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    OpDataVerwijdering.Invoke(this, datagridRij.GeefDataGridIndex);
+                }
+                
+            }
+           
+
+
+        }
     }
 }
 

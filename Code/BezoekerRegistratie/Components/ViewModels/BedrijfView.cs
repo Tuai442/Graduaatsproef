@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace Components.ViewModels
 {
-    public class BedrijfView : ILijstItems, INotifyPropertyChanged
+    public class BedrijfView : ILijstItems, INotifyPropertyChanged, IDataGridRij
     {
         public Bedrijf Bedrijf;
         private string _naam;
@@ -131,15 +131,20 @@ namespace Components.ViewModels
         public string Id { get => Email; }
         public string ItemNaam { get => Naam; }
 
+        // Datagrid rij
+        public int GeefDataGridIndex { get ; set ; }
+        public string Content { get; set; }
 
         public BedrijfView(Bedrijf bedrijf)
         {
+            GeefDataGridIndex = bedrijf.Id;
             Bedrijf = bedrijf;
             Naam = bedrijf.Naam;
             Btw = bedrijf.Btw;
             Adres = bedrijf.Adres;
             Telefoon = bedrijf.Telefoon;
             Email = bedrijf.Email;
+            Content = bedrijf.ToString();
 
         }
 

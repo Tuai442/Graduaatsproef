@@ -104,6 +104,14 @@ namespace Controller.Managers
 
         }
 
-        
+        public void VerwijderBezoeker(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VerwijderBedrijf(int index)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

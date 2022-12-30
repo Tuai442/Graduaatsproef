@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Components.ViewModels
 {
-    public class BezoekerView : INotifyPropertyChanged
+    public class BezoekerView : INotifyPropertyChanged, IDataGridRij
     {
         private Bezoeker _bezoeker;
         private string _voornaam;
@@ -86,14 +86,17 @@ namespace Components.ViewModels
         }
 
         public Bezoeker Bezoeker { get => _bezoeker; set => _bezoeker = value; }
+       
         public BezoekerView(Bezoeker bezoeker)
         {
+            GeefDataGridIndex = bezoeker.Id;
             _bezoeker = bezoeker;
             _voornaam = bezoeker.Voornaam;
             _achternaam = bezoeker.Achternaam;
             _email = bezoeker.Email;
             _aanwezig = bezoeker.Aanwezig;
             _bedrijf = bezoeker.Bedrijf;
+            Content = bezoeker.ToString();
             // contactpersoon en zijn bedrijf 
         }
 
@@ -106,5 +109,9 @@ namespace Components.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
+
+        // DataGrid rij
+        public int GeefDataGridIndex { get; set; }
+        public string Content { get; set; }
     }
 }
