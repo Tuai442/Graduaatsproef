@@ -94,7 +94,7 @@ namespace BeheerderApp.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BeheerderApp;component/windows/voegwerknemertoewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BeheerderApp;V1.0.0.0;component/windows/voegwerknemertoewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\VoegWerknemerToeWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
