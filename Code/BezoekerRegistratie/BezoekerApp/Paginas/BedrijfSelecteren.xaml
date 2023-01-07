@@ -59,14 +59,12 @@
                            Grid.RowSpan="2"/>
 
 
-                    <UIC:ZoekbareComboBox
-                                          Margin="58,26,28,140"
+                    <UIC:ZoekbareComboBox Margin="58,26,28,140"
                                           x:Name="bedrijfComboBox"
                                           Grid.Column="0"
                                           Grid.Row="1"
-                        BorderBrush="#AF752F"
-                        BorderThickness="3"
-                />
+                                          BorderBrush="#AF752F"
+                                          BorderThickness="3"/>               
 
                     <UIC:ZoekbareComboBox
                                       Margin="33,26,45,140"

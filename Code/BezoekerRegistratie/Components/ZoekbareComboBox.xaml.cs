@@ -29,41 +29,6 @@ namespace Components
     public partial class ZoekbareComboBox : UserControl
     {
 
-       
-        //private static void OnItemsSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        //{
-        //    var control = sender as ZoekbareComboBox;
-        //    if (control != null)
-        //        control.OnItemsSourceChanged((IEnumerable)e.OldValue, (IEnumerable)e.NewValue);
-        //}
-
-        //private void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
-        //{
-        //    // Remove handler for oldValue.CollectionChanged
-        //    var oldValueINotifyCollectionChanged = oldValue as INotifyCollectionChanged;
-
-        //    if (null != oldValueINotifyCollectionChanged)
-        //    {
-        //        oldValueINotifyCollectionChanged.CollectionChanged -= new NotifyCollectionChangedEventHandler(newValueINotifyCollectionChanged_CollectionChanged);
-        //    }
-        //    // Add handler for newValue.CollectionChanged (if possible)
-        //    var newValueINotifyCollectionChanged = newValue as INotifyCollectionChanged;
-        //    if (null != newValueINotifyCollectionChanged)
-        //    {
-        //        newValueINotifyCollectionChanged.CollectionChanged += new NotifyCollectionChangedEventHandler(newValueINotifyCollectionChanged_CollectionChanged);
-        //    }
-
-        //}
-
-        //void newValueINotifyCollectionChanged_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        //{
-        //    //Do your stuff here.
-        //}
-
-
-
-
-        // Using a DependencyProperty as the backing store for Height.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HeightProperty =
             DependencyProperty.Register("Height", typeof(int), typeof(ZoekbareComboBox), new PropertyMetadata(null));
 

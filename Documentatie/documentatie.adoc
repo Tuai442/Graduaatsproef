@@ -13,6 +13,127 @@
 
 === ILijstItem Interface (Leg uit waarom we een ILijstInterface hebben)
 
+==== Doel
+De interface ILijstItem wordt gebruikt wanneer je een object wilt presenteren in een combobox (lijst).
+
+==== Werking
+*Voorbeeld*
+Stel dat we het object Bedrijf in een combobox willen tonen. We beginnen met de interface te implimenteren.
+ILijstItem Heeft 2 properties:
+
+
+----
+ public class BedrijfView : ILijstItems
+    {
+        public Bedrijf Bedrijf;
+        private string _naam;
+        private string _btw;
+
+        ...
+
+        // Lijst items
+        public string Id { get => Email; }
+        public string ItemNaam { get => Naam; }
+----
+
+
+Vervolgens kunnen we nu een combobox maken met de bedrijven als data.
+----
+<UIC:ZoekbareComboBox x:Name="bedrijfComboBox"/> 
+----
+----
+List<ILijstItems> bedrijfItems = bedrijven.Select(x => (ILijstItems)new BedrijfView(x)).ToList();
+bedrijfComboBox.VoegLijstToe(bedrijfItems);
+----
+
+Hier wordt de combobox ingesteld.
+----
+
+public partial class ZoekbareComboBox : UserControl
+    {
+        ...
+
+        public void VoegLijstToe(List<ILijstItems> items)
+                {
+                    comboBox.Items.Clear();
+                    _alleItems = items;
+                    foreach (ILijstItems item in items)
+                    {
+                        comboBox.Items.Add(item.ItemNaam);
+                    }
+                }
+
+        ...
+----
+Door deze interface te gebruiken kunnen we nu bij het klikken van een bedrijf een id mee krijgen.
+----
+        ...
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+                {
+                    if ((e.AddedItems.Count > 0))
+                    {
+                        int SelectedIndex = comboBox.SelectedIndex;
+                        SelectedValue = _alleItems[SelectedIndex].Id;  <-- Hier wordt de Id gegeven
+                        SelectedLabel = _alleItems[SelectedIndex].ItemNaam;
+                        if (GeSelecteerd != null)
+                        {
+                            GeSelecteerd.Invoke(this, SelectedValue);
+                        }
+                    }
+                }
+
+        ...
+----
+
+We kunnen ook een filter methode toepassen.
+----
+        ...
+
+        List<ILijstItems> result = new List<ILijstItems>();
+                    foreach (ILijstItems w in _alleItems)
+                    {
+                        string woord = w.ItemNaam;
+                        bool gevonden = true;
+                        if (zoekwoord.Length <= woord.Length)
+                        {
+                            for (int i = 0; i < zoekwoord.Length; i++)
+                            {
+                                if (Char.ToLower(zoekwoord[i]) == Char.ToLower(woord[i]))
+                                {
+                                    gevonden = true;
+                                }
+                                else
+                                {
+                                    gevonden = false;
+                                    break;
+                                }
+                            }
+                            if (gevonden)
+                            {
+                                result.Add(w);
+                            }
+                        }
+                    }
+                    return result;
+
+        ...
+
+----
+
+
+----
+ public interface ILijstItems
+    {
+        public string Id { get; }
+        public string ItemNaam { get; }
+    }
+----
+
+Stel 
+
+
+
 === Herbruikbaar Datagrid
 
 ==== Doel
