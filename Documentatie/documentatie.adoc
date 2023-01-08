@@ -12,7 +12,7 @@ Wij hebben tijdens het project vaak veranderd van idee hoe we ons diagram in elk
 
 === Het Updaten van gegevens (Leg uit waarom we eigenlijk geen update doen maar met een isActief colom werken)
 
-We hebben in de tabellen bedrijf en werknemmer een kolom van het datatype bit/bool gemaakt om zo gemakkelijk te gaan te weten komen welke bedrijven er nog actief zijn en welke werkenemers er nog actief zijn bij een bedrijf die in onze database zit. Dus we gaan geen bedrijven en werknemers gaan updaten maar we gaan rechtstreeks een nieuwe bedrijf of werknemer gaan aanmaken. Wanneer we er een bedrijf niet actief/ niet meer bestaat gaan we deze kolom dus op niet actief gaan zetten, hetzelfde geld voor werknemer wanneer die niet meer actief is bij het bedrijf. Ons leek het gemakkelijk om op die manier te gaan werken omdat zo alle afspraken bewaard blijven en daar de kollomen niet van worden aangepast.
+We hebben in de tabellen bedrijf en werknemmer een kolom van het datatype bit/bool gemaakt om zo gemakkelijk te gaan te weten komen welke bedrijven er nog actief zijn en welke werkenemers er nog actief zijn bij een bedrijf die in onze database zit. Dus we gaan geen bedrijven en werknemers gaan updaten maar we gaan rechtstreeks een nieuwe bedrijf of werknemer gaan aanmaken. Wanneer er een bedrijf niet actief/ niet meer bestaat gaan we deze kolom dus op niet actief gaan zetten, hetzelfde geld voor werknemer wanneer die niet meer actief is bij het bedrijf. Ons leek het gemakkelijk om op die manier te gaan werken omdat zo alle afspraken bewaard blijven en daar de kollomen niet van worden aangepast.
 
 == Presentatie (Noah, Tuur)
 
