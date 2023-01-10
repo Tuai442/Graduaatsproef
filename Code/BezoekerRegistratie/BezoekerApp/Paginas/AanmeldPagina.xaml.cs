@@ -1,5 +1,4 @@
 ﻿using Controller;
-using Controller.Interfaces.Models;
 using Controller.Managers;
 using Controller.Models;
 using Controllers;
@@ -41,11 +40,28 @@ namespace BezoekerApp.Paginas
             logUitBtn.ButtonClick += LogUit;
 
         }
+
+
         private void LogIn(object? sender, EventArgs e)
         {
-            BedrijfSelecteren bs = new BedrijfSelecteren(_domeinController); // Zouden we dit nie beter op één pagina zetten?
-            bs.AanmeldHandler += MeldBezoekerAan;
-            NavigeerHandler.Invoke(this, bs);
+            try
+            {
+                //contoles op velden alvorens naar het volgend scherm te gaan + controle op email(regex)
+                if(emailInvulveld.Text.Trim() == "E-mail" || achternaamInvulveld.Text.Trim() == "Achternaam" 
+                    || voornaamInvulveld.Text.Trim() == "Voornaam" || bedrijfInvulveld.Text.Trim() == "Bedrijf")
+                {
+                    throw (new Exception("Gelieve alle velden correct in te vullen"));
+                }
+                Controleer.ControleEmail(emailInvulveld.Text);
+
+                BedrijfSelecteren bs = new BedrijfSelecteren(_domeinController);
+                bs.AanmeldHandler += MeldBezoekerAan;
+                NavigeerHandler.Invoke(this, bs);
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void LogUit(object? sender, EventArgs e)
         {
@@ -94,6 +110,7 @@ namespace BezoekerApp.Paginas
         }
 
 
+        //velden text initialisatie
         private void LeegAlleVelden()
         {
             emailInvulveld.Text = "E-mail";
@@ -101,31 +118,8 @@ namespace BezoekerApp.Paginas
             achternaamInvulveld.Text = "Achternaam";
             bedrijfInvulveld.Text = "Bedrijf";
         }
-        private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
-        {
-            string email = emailInvulveld.Text;
 
-            if (!string.IsNullOrEmpty(email))
-            {
-                Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
-                if (bezoeker != null)
-                {
-                    achternaamInvulveld.Text = bezoeker.Achternaam;
-                    voornaamInvulveld.Text = bezoeker.Voornaam;
-                    bedrijfInvulveld.Text = bezoeker.Bedrijf;
-                }
-
-            }
-            else if (emailInvulveld.Text == "")
-            {
-                emailInvulveld.Text = "E-mail";
-            }
-        }
-        private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (emailInvulveld.Text.Trim() == "E-mail")
-                emailInvulveld.Clear();
-        }
+        //GotFocus
         private void bedrijfInvulveld_GotFocus(object sender, RoutedEventArgs e)
         {
             if (bedrijfInvulveld.Text.Trim() == "Bedrijf")
@@ -141,6 +135,13 @@ namespace BezoekerApp.Paginas
             if (achternaamInvulveld.Text.Trim() == "Achternaam")
                 achternaamInvulveld.Clear();
         }
+        private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (emailInvulveld.Text.Trim() == "E-mail")
+                emailInvulveld.Clear();
+        }
+
+        //lostFocus
         private void achternaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             if (achternaamInvulveld.Text == "")
@@ -162,6 +163,27 @@ namespace BezoekerApp.Paginas
                 bedrijfInvulveld.Text = "Bedrijf";
             }
 
+        }
+        private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string email = emailInvulveld.Text;
+
+            //voor het automatisch invullen van alle velden
+            if (!string.IsNullOrEmpty(email))
+            {
+                Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
+                if (bezoeker != null)
+                {
+                    achternaamInvulveld.Text = bezoeker.Achternaam;
+                    voornaamInvulveld.Text = bezoeker.Voornaam;
+                    bedrijfInvulveld.Text = bezoeker.Bedrijf;
+                }
+
+            }
+            else if (emailInvulveld.Text == "")
+            {
+                emailInvulveld.Text = "E-mail";
+            }
         }
 
     }

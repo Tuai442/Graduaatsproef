@@ -1,5 +1,4 @@
 ﻿using Controller.Interfaces;
-using Controller.Interfaces.Models;
 using Controller.Managers;
 using Controller.Models;
 using System;

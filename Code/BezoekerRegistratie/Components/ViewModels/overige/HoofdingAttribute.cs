@@ -16,6 +16,7 @@ namespace Components.ViewModels.overige
     }
 
 
+    //TODO: hoe werkt dit?
     public static class HoofdingManager
     {
         public static Dictionary<string, string> GeefHoofding<T>()

@@ -11,7 +11,6 @@ namespace Controller.Interfaces
     {
         public List<Bedrijf> GeefAlleBedrijven();
         public void VoegNieuwBedrijfToe(Bedrijf bedrijf);
-        public Bedrijf GeefBedrijfOpId(int id);
         public List<Bedrijf> ZoekBedrijfOp(string zoekText);
         List<Bedrijf> GeefBedrijvenOpWerknemerEmail(string email);
         void UpdateBedrijf(Bedrijf bedrijf);

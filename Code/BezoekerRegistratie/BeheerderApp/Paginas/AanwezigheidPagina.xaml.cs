@@ -2,7 +2,6 @@
 
 using Components.ViewModels;
 using Controller;
-using Controller.Interfaces.Models;
 using Controller.Managers;
 using Controller.Models;
 using Controllers;
@@ -19,7 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Shapes;  
 
 namespace BeheerderApp.Paginas
 {
@@ -35,29 +34,44 @@ namespace BeheerderApp.Paginas
 
         public AanwezigheidPagina(DomeinController beheerController)
         {
-            _domeinController = beheerController;
-            _bezoekerManger = _domeinController.GeefBezoekerManager();
-            InitializeComponent();
-            terugKnop.ButtonClick += GaPaginaTerug;
-            verstuurEmail.ButtonClick += VerstuurEmail;
+            try
+            {
+                _domeinController = beheerController;
+                _bezoekerManger = _domeinController.GeefBezoekerManager();
+                InitializeComponent();
+                terugKnop.ButtonClick += GaPaginaTerug;
+                verstuurEmail.ButtonClick += VerstuurEmail;
 
-            IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
-            List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
-            dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
-            dataGrid.OpDataFiltering += ZoekBezoekerOp;
+                IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
+                List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
+                dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
+                dataGrid.OpDataFiltering += ZoekBezoekerOp;
 
-            aantalAanwLabel.Content = $"Totaal aanwezige bezoekers : {alleAanwezigeBezoekers.Count}";
+                aantalAanwLabel.Content = $"Totaal aanwezige bezoekers : {alleAanwezigeBezoekers.Count}";
 
-            //dataGrid.OpDataVerandering += UpdateObject;
+                //dataGrid.OpDataVerandering += UpdateObject;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ZoekBezoekerOp(object? sender, string e)
         {
-            IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.ZoekOp(e);
-            List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
-            dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
+            try
+            {
+                IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.ZoekOp(e);
+                List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
+                dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
+        //TODO: gebruik
         private void UpdateObject(object? sender, object obj)
         {
             string type = obj.GetType().Name;
@@ -66,25 +80,27 @@ namespace BeheerderApp.Paginas
             //    _bezoekerManger.UpdateBezoeker(obj);
             //}
         }
-        
+
 
         private void GaPaginaTerug(object? sender, EventArgs e)
         {
             NavigationService.GoBack();
         }
+
+        //TODO: werkt dit?
         private void VerstuurEmail(object? sender, EventArgs e)
         {
             try
             {
                 _domeinController.SendEmail();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                MessageBox.Show("niet gelukt om de  lijst met aanwzige bezoekers te verzenden");
+                MessageBox.Show("niet gelukt om de  lijst met aanwzige bezoekers te verzenden: " + ex.Message);
             }
         }
 
-        
+
     }
 }

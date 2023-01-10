@@ -1,6 +1,5 @@
 ﻿using Controller;
 using Controller.Interfaces;
-using Controller.Interfaces.Models;
 using Controller.Models;
 using Persistence.Exceptions;
 using System;
@@ -23,44 +22,10 @@ namespace Persistence.Datalaag
 
         }
 
-        public List<Werknemer> GeefAlleWerknemer()
-        {
-            string query = "SELECT * FROM dbo.Werknemer INNER JOIN Bedrijf ON dbo.Werknemer_bedrijfId = dbo.Bedrijf_bedrijfId";
-            SqlConnection conn = GetConnection();
-            using (SqlCommand command = new SqlCommand(query, conn))
-            {
-                try
-                {
-                    List<Werknemer> werknemers = new List<Werknemer>();
-                    conn.Open();
-                    IDataReader dataReader = command.ExecuteReader();
-                    while (dataReader.Read())
-                    {
-                        /*Werknemer werknemer = new Werknemer(/*(int)dataReader["WerknemerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["functie"], (string)dataReader["bedrijfNaam"]);
-                        werknemers.Add(werknemer);*/
-                    }
-                    dataReader.Close();
-                    foreach (Werknemer werknemer in werknemers)
-                    {
-                        Console.WriteLine(werknemer);
-                    }
-                    return werknemers;
-                }
-                catch (Exception ex)
-                {
-                    throw new WerknemerException("Geef werknemers is niet gelukt.", ex);
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-        }
-
         public void VoegWerknemerToe(Werknemer werknemer)
         {
-            string query = $"INSERT INTO dbo.Werknemer (voornaam, achternaam, email, functie, bedrijfId) output INSERTED.werknemerId " +
-                $"VALUES(@voornaam, @achternaam, @email, @functie, @bedrijfId);";
+            string query = $"INSERT INTO dbo.Werknemer (voornaam, achternaam, email, functie, bedrijfId, actief) output INSERTED.werknemerId " +
+                $"VALUES(@voornaam, @achternaam, @email, @functie, @bedrijfId, 1);";
 
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
@@ -91,7 +56,7 @@ namespace Persistence.Datalaag
                 catch (Exception e)
                 {
 
-                    throw new WerknemerException("Werknemer toevoegen niet gelukt", e);
+                    throw new WerknemerRepoException("Werknemer toevoegen niet gelukt", e);
 
                 }
                 finally
@@ -100,43 +65,11 @@ namespace Persistence.Datalaag
                 }
             }
 
-        }
-
-        public Werknemer GeefWerknemerOpNaam(string voornaam, string achternaam)
-        {
-            string query = "SELECT * from dbo.Bedrijf where voornaam=@voornaam and achternaam=@achternaam";
-            SqlConnection conn = GetConnection();
-            using (SqlCommand command = new SqlCommand(query, conn))
-            {
-                try
-                {
-                    conn.Open();
-                    command.Parameters.AddWithValue("@voornaam", voornaam);
-                    command.Parameters.AddWithValue("@achternaam", achternaam);
-                    IDataReader dataReader = command.ExecuteReader();
-                    dataReader.Read();
-
-                    int bedrijfId = (int)dataReader["bedrijfId"];
-                    Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
-                    Werknemer werknemer = new Werknemer((int)dataReader["id"], (string)dataReader["Voornaam"], (string)dataReader["Achternaam"], (string)dataReader["email"], (string)dataReader["functie"], bedrijf);
-                    dataReader.Close();
-                    Console.WriteLine(werknemer);
-                    return werknemer;
-                }
-                catch (Exception e)
-                {
-                    throw new BedrijfException("Geef werknemer is niet gelukt", e);
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
         }
 
         public Werknemer GeefWerknemerOpId(int id)
         {
-            string query = "SELECT * from dbo.Bedrijf where id=@id";
+            string query = "SELECT * from dbo.Werknemer where werknemerId =@id and actief = 1";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -147,16 +80,22 @@ namespace Persistence.Datalaag
                     IDataReader dataReader = command.ExecuteReader();
                     dataReader.Read();
 
+                    string voornaam = (string)dataReader["voornaam"];
+                    string achternaam = (string)dataReader["achternaam"];
+                    string email = (string)dataReader["email"];
+                    string functie = (string)dataReader["functie"];
                     int bedrijfId = (int)dataReader["bedrijfId"];
-                    Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
-                    Werknemer werknemer = new Werknemer((int)dataReader["id"], (string)dataReader["Voornaam"], (string)dataReader["Achternaam"], (string)dataReader["email"], (string)dataReader["functie"], bedrijf);
+
                     dataReader.Close();
-                    Console.WriteLine(werknemer);
+
+                    Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
+                    Werknemer werknemer = new Werknemer(voornaam, achternaam, email, functie, bedrijf);
+
                     return werknemer;
                 }
                 catch (Exception e)
                 {
-                    throw new BedrijfException("Geef werknemer is niet gelukt", e);
+                    throw new BedrijfRepoException("Geef werknemer is niet gelukt", e);
                 }
                 finally
                 {
@@ -197,7 +136,7 @@ namespace Persistence.Datalaag
             }
             catch (Exception e)
             {
-                throw new WerknemerException(e.Message);
+                throw new WerknemerRepoException(e.Message);
             }
             finally
             {
@@ -242,7 +181,7 @@ namespace Persistence.Datalaag
             }
             catch (Exception e)
             {
-                throw new WerknemerException(e.Message);
+                throw new WerknemerRepoException(e.Message);
             }
             finally
             {
@@ -260,7 +199,7 @@ namespace Persistence.Datalaag
             {
                 conn.Open();
 
-                string query = $"SELECT * FROM {_tableName} WHERE Email = '{email}';";
+                string query = $"SELECT * FROM {_tableName} WHERE Email = '{email}' and actief = 1;";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -283,7 +222,7 @@ namespace Persistence.Datalaag
             }
             catch (Exception e)
             {
-                throw new WerknemerException(e.Message);
+                throw new WerknemerRepoException(e.Message);
             }
             finally
             {
@@ -302,7 +241,7 @@ namespace Persistence.Datalaag
 
                 string query = $"SELECT * FROM {_tableName} w " +
                     $"join Bedrijf b on w.bedrijfId = b.bedrijfId " +
-                    $"WHERE b.email = '{email}';";
+                    $"WHERE b.email = '{email}' and w.actief = 1;";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -326,7 +265,7 @@ namespace Persistence.Datalaag
             }
             catch (Exception e)
             {
-                throw new WerknemerException(e.Message);
+                throw new WerknemerRepoException(e.Message);
             }
             finally
             {
@@ -335,6 +274,7 @@ namespace Persistence.Datalaag
             return werknemers;
         }
 
+        //TODO: update anders schrijven
         public void UpdateWerknemer(Werknemer werknemer)
         {
             string query = "UPDATE dbo.Werknemer " +
@@ -359,7 +299,7 @@ namespace Persistence.Datalaag
                 }
                 catch (Exception e)
                 {
-                    WerknemerException be = new WerknemerException("Werknemer updaten is niet gelukt", e);
+                    WerknemerRepoException be = new WerknemerRepoException("Werknemer updaten is niet gelukt", e);
                     throw be;
                 }
                 finally
@@ -367,16 +307,6 @@ namespace Persistence.Datalaag
                     conn.Close();
                 }
             }
-        }
-
-        public Werknemer GeefWerknemerOpNaam(string contactPersoon)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Persoon GeefPersoonOpVolledigeNaam(string naam, string achternaam)
-        {
-            throw new NotImplementedException();
         }
     }
 }

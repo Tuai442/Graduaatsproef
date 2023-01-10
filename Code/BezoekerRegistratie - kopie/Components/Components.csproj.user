@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="CheckBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Datagrids\BezoekersDataGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Datagrids\WerknemerDataGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Datagrids\Zoekbalk.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Knop.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TerugKnop.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ZoekbaarDataGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ZoekbareComboBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="CheckBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Datagrids\BezoekersDataGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Datagrids\WerknemerDataGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Datagrids\Zoekbalk.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Knop.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TerugKnop.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ZoekbaarDataGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ZoekbareComboBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

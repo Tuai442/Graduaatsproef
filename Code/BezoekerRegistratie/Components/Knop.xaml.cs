@@ -21,7 +21,8 @@ namespace Components
     public partial class Knop : UserControl
     {
 
-
+        //TODO: hoe werkt dit?
+        #region Opmaak
         public int Breedte
         {
             get { return (int)GetValue(BreedteProperty); }
@@ -55,7 +56,7 @@ namespace Components
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(Knop), new PropertyMetadata(null));
-
+#endregion
 
         public EventHandler<EventArgs> ButtonClick;
 

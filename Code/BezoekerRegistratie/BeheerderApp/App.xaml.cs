@@ -19,8 +19,8 @@ namespace BeheerderApp
     public partial class App : Application
     {
 
-        IBedrijfRepository bedrijfRepository = new BedrijfRepository();
-        IWerknemerRepository werknemerRepository = new WerknemerRepository();
+        IBedrijfRepository bedrijfRepository;
+        IWerknemerRepository werknemerRepository;
         IBezoekerRepository bezoekerRepository;
         IAfspraakRepository afspraakRepository;
 
@@ -31,6 +31,9 @@ namespace BeheerderApp
         {
             bezoekerRepository = new BezoekerRepository();
             afspraakRepository = new AfspraakRepository();
+            bedrijfRepository = new BedrijfRepository();
+            werknemerRepository = new WerknemerRepository();
+
             _domeinController = new DomeinController(werknemerRepository, bezoekerRepository,
             bedrijfRepository, afspraakRepository);
 

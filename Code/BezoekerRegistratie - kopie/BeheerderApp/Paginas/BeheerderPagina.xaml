@@ -1,0 +1,136 @@
+﻿<Page x:Class="BeheerderApp.Paginas.BeheerderPagina"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BeheerderApp.Paginas"
+      xmlns:UIC="clr-namespace:Components;assembly=Components"
+      xmlns:DG="clr-namespace:Components.Datagrids;assembly=Components"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200"
+      Title="BeheerderPagina">
+
+    <Grid Background="#FF1F1F1F" >
+
+
+        <StackPanel VerticalAlignment="Center"
+                    Background="#FF19191A"
+                    HorizontalAlignment="Center" Height="699" Width="974">
+
+
+            <StackPanel HorizontalAlignment="Left">
+                <Label Content="Filter op : "
+                   Margin="100 10 0 0"
+                   Width="100"
+                   HorizontalContentAlignment="Left"
+                   FontSize="20" Foreground="#FFCFCFCF"/>
+            </StackPanel>
+
+            <Border BorderBrush="Black"
+                    BorderThickness="0 0 0 2">
+                <Grid x:Name="toolbar">
+                    <WrapPanel Background="Transparent"
+                               Height="80" 
+                               VerticalAlignment="Center" Margin="37,0,69,0">
+                        <UIC:CheckBox TText="Bezoeker"
+                                  Margin="50 10 0 0"
+                                  x:Name="bezoekerCheckBox"
+                                  FontSize="20"
+                                  Value="bezoeker"
+                                  
+                                  />
+
+                        <UIC:CheckBox TText="Werknemer"
+                                      FontSize="20"
+                                  Margin="0 10 0 0"
+                                  x:Name="werknemerCheckBox"/>
+
+                        <UIC:CheckBox TText="Bedrijf"
+                                      FontSize="20"
+                                  Margin="0 10 0 0" 
+                                  x:Name="bedrijfCheckBox"/>
+
+                        <UIC:CheckBox TText="Afspraak"
+                                  Margin="0 10 0 0"
+                                      FontSize="20"
+                                  x:Name="afspraakCheckBox"
+                                   />
+                    </WrapPanel>
+
+                    <Button Content="Toevoegen"
+                                Margin=" 10 10 90 10"
+                                FontSize="20"
+                                Padding="8"
+                                Width="auto"
+                                Height="56"
+                                Name="voegToeBtns"
+                                Click="voegToeBtns_Click" 
+                                HorizontalAlignment="Right" 
+                                Foreground="#FFCFCFCF"
+                                BorderThickness="3" Background="#484747" BorderBrush="#FFAF752F"
+                                >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+
+                    </Button>
+
+                   
+
+
+
+                </Grid>
+
+
+
+            </Border>
+
+
+
+
+            <StackPanel x:Name="formPanel">
+                <!--<FORMS:WerknemerZoekForm/>-->
+            </StackPanel>
+
+            <StackPanel x:Name="dataGridPanel" Height="491">
+                <UIC:ZoekbaarDataGrid Name="dataGrid" 
+                                      Margin=" 40 0 40 0" 
+                                      Height="453"
+                                      Width="806"
+                                      />
+                <!--<UIC:TerugKnop x:Name="terugKnop" Width="904" Height="36" RenderTransformOrigin="0.5,0.5"
+                           >
+                    <UIC:TerugKnop.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </UIC:TerugKnop.RenderTransform>
+                </UIC:TerugKnop>-->
+                <!--<DG:WerknemerDataGrid Name="werknemerDataGrid" Visibility="Hidden"/>-->
+
+                <!--<UIC:ZoekbaarDataGrid x:Name="_dataGrid"/>-->
+
+                
+            </StackPanel>
+            <UIC:Knop
+                    FontFamily="Verdana"
+                    FontSize="16"
+                    Text="Terug"
+                    x:Name="terugKnop"
+                    Margin="85 0 0 0"
+                    Width="100"
+                    Height="50"
+                    HorizontalAlignment="Left">
+            </UIC:Knop>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Bottom"
+                    Margin="40"/>
+
+    </Grid>
+</Page>
