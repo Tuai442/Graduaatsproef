@@ -38,12 +38,6 @@ namespace ControllerUT.Managers
         }
 
         [Fact]
-        public void GeefAlleBedrijvenInLijstItems()
-        {
-            IReadOnlyList<Bedrijf> lijst = manager.GeefAlleBedrijvenInLijstItems();
-        }
-
-        [Fact]
         public void GeefAlleBedrijven()
         {
             IReadOnlyList<Bedrijf> lijst = manager.GeefAlleBedrijven();
