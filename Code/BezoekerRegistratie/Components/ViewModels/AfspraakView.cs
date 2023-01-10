@@ -1,4 +1,5 @@
-﻿using Components.ViewModels.overige;
+﻿using Components.Interfaces;
+using Components.ViewModels.overige;
 using Controller;
 using Controller.Models;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Components.ViewModels
 {
-    public class AfspraakView: INotifyPropertyChanged
+    public class AfspraakView: INotifyPropertyChanged, IDataGridRij
     {
         public int Id { get; set; }
 
@@ -38,12 +39,16 @@ namespace Components.ViewModels
         }
 
         public Afspraak Afspraak { get; set; }
+        
+
         public AfspraakView(Afspraak afspraak)
         {
+            GeefDataGridIndex = afspraak.Id;
             Afspraak = afspraak;
             Bedrijf = afspraak.Werknemer.Bedrijf.ToString();
             StartTijd = Afspraak.StartTijd;
             EindTijd = Afspraak.EindTijd;
+            Content = afspraak.ToString();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -56,6 +61,10 @@ namespace Components.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
+
+
+        public int GeefDataGridIndex { get; set; }
+        public string Content { get; set; }
 
     }
 }

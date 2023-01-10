@@ -43,26 +43,31 @@ namespace BezoekerApp.Paginas
         }
         private void LogIn(object? sender, EventArgs e)
         {
-            BedrijfSelecteren bs = new BedrijfSelecteren(_domeinController); // Zouden we dit nie beter op één pagina zetten?
-            bs.AanmeldHandler += MeldBezoekerAan;
-            NavigeerHandler.Invoke(this, bs);
+
+            if (emailInvulveld.Text == " E-mail" || emailInvulveld.Text == "") { MessageBox.Show("Gelieve je e-mail adres in te vullen."); } // spaties laten staan.
+            else if (achternaamInvulveld.Text == " Achternaam" || achternaamInvulveld.Text == "") { MessageBox.Show("Gelieve je achternaam in te vullen."); }
+            else if (voornaamInvulveld.Text == " Voornaam" || voornaamInvulveld.Text == "") { MessageBox.Show("Gelieve je voornaam in te vullen."); }
+            else if(bedrijfInvulveld.Text == " Bedrijf" || voornaamInvulveld.Text == "") { MessageBox.Show("Gelieve je bedrijf in te vullen."); }
+            else
+            {
+                BedrijfSelecteren bs = new BedrijfSelecteren(_domeinController); // Zouden we dit nie beter op één pagina zetten?
+                bs.AanmeldHandler += MeldBezoekerAan;
+                NavigeerHandler.Invoke(this, bs);
+            }
         }
         private void LogUit(object? sender, EventArgs e)
         {
             string email = emailInvulveld.Text;
-
             try
             {
                 _bezoekerManger.MeldBezoekerUit(email);
-                MessageBox.Show("Prettige dag nog");
+                MessageBox.Show("U bent succesvol afgemeld. Prettige dag nog.");
                 LeegAlleVelden();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
         private void MeldBezoekerAan(object? sender, Dictionary<string, Dictionary<string, string>> dict)
         {
@@ -79,47 +84,22 @@ namespace BezoekerApp.Paginas
                     email, bedrijfB, contactPersoonEmail);
                 MessageBox.Show("U bent succesvol ingelogd.");
                 LeegAlleVelden();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Foute ingave", MessageBoxButton.OK, MessageBoxImage.Error);
-
             }
             finally
             {
                 NavigeerHandler.Invoke(this, this);
             }
-
         }
-
-
         private void LeegAlleVelden()
         {
-            emailInvulveld.Text = "E-mail";
-            voornaamInvulveld.Text = "Voornaam";
-            achternaamInvulveld.Text = "Achternaam";
-            bedrijfInvulveld.Text = "Bedrijf";
-        }
-        private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
-        {
-            string email = emailInvulveld.Text;
-
-            if (!string.IsNullOrEmpty(email))
-            {
-                Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
-                if (bezoeker != null)
-                {
-                    achternaamInvulveld.Text = bezoeker.Achternaam;
-                    voornaamInvulveld.Text = bezoeker.Voornaam;
-                    bedrijfInvulveld.Text = bezoeker.Bedrijf;
-                }
-
-            }
-            else if (emailInvulveld.Text == "")
-            {
-                emailInvulveld.Text = "E-mail";
-            }
+            emailInvulveld.Text = " E-mail"; // spaties laten staan.
+            voornaamInvulveld.Text = " Voornaam";
+            achternaamInvulveld.Text = " Achternaam";
+            bedrijfInvulveld.Text = " Bedrijf";
         }
         private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -141,28 +121,45 @@ namespace BezoekerApp.Paginas
             if (achternaamInvulveld.Text.Trim() == "Achternaam")
                 achternaamInvulveld.Clear();
         }
+        private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string email = emailInvulveld.Text;
+            if (!string.IsNullOrEmpty(email))
+            {
+                Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
+                if (bezoeker != null)
+                {
+                    achternaamInvulveld.Text = bezoeker.Achternaam;
+                    voornaamInvulveld.Text = bezoeker.Voornaam;
+                    bedrijfInvulveld.Text = bezoeker.Bedrijf;
+                }
+            }
+            else if (emailInvulveld.Text == "")
+            {
+                emailInvulveld.Text = " E-mail";
+            }
+        }
         private void achternaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             if (achternaamInvulveld.Text == "")
             {
-                achternaamInvulveld.Text = "Achternaam";
+                achternaamInvulveld.Text = " Achternaam";
             }
         }
         private void voornaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             if (voornaamInvulveld.Text == "")
             {
-                voornaamInvulveld.Text = "Voornaam";
+                voornaamInvulveld.Text = " Voornaam";
             }
         }
         private void bedrijfInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             if (bedrijfInvulveld.Text == "")
             {
-                bedrijfInvulveld.Text = "Bedrijf";
+                bedrijfInvulveld.Text = " Bedrijf";
             }
 
         }
-
     }
 }

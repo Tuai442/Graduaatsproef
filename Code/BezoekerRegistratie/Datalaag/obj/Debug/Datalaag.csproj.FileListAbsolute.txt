@@ -16,3 +16,12 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Deb
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.csproj.CoreCompileInputs.cache
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.dll
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.pdb
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1.mdf
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\Datalaag\bin\Debug\Database1_log.ldf
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll.config
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\Datalaag\bin\Debug\Datalaag.pdb
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.csproj.AssemblyReference.cache
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.csproj.CoreCompileInputs.cache
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\projectwerk\16deversie\Code\BezoekerRegistratie\Datalaag\obj\Debug\Datalaag.pdb

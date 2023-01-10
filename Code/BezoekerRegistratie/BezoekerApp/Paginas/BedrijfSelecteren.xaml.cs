@@ -29,7 +29,7 @@ namespace BezoekerApp.Paginas
     /// </summary>
     public partial class BedrijfSelecteren : Page
     {
-        
+
         BedrijfManager _bedrijfManager;
         WerknemerManager _werknemerManager;
 
@@ -52,7 +52,6 @@ namespace BezoekerApp.Paginas
 
             bedrijfComboBox.GeSelecteerd += BedrijfGeselecteerd;
             //contactComboBox.GeSelecteerd += ContactPersoonGeselecteerd;
-
             AanmeldKnop.ButtonClick += PersoonAanmelden;
         }
 
@@ -68,7 +67,7 @@ namespace BezoekerApp.Paginas
                 {"naam", contactComboBox.SelectedLabel},
                 {"value", contactComboBox.SelectedValue }
             });
-              
+
 
             // TODO: checken of dit wel geldige gegevens zijn ? Of moet dit niet?
             // We zouden hier beter terug keren naar de Aanmeldpagina met de juist ingevulde gegevens en daar de bezoeker verder aanmelden
@@ -91,7 +90,5 @@ namespace BezoekerApp.Paginas
         {
             NavigationService.GoBack();
         }
-
-     
     }
 }

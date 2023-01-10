@@ -34,6 +34,11 @@ namespace Controller.Managers
             _werknemerRepository.UpdateWerknemer(werknemer);
         }
 
+        public void VerwijderWerknemer(int index)
+        {
+            throw new NotImplementedException();
+        }
+
         public void VoegWerknemerToe(string voornaam, string achternaam, string email, string functie,
             Bedrijf bedrijf)
         {

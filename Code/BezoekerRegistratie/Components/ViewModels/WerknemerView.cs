@@ -17,7 +17,7 @@ using System.Windows;
 
 namespace Components.ViewModels
 {
-    public class WerknemerView : ILijstItems, INotifyPropertyChanged
+    public class WerknemerView : ILijstItems, INotifyPropertyChanged, IDataGridRij
     {
         public Werknemer Werknemer;
         private string _voornaam;
@@ -37,11 +37,14 @@ namespace Components.ViewModels
             _functie = werkn.Functie;
             _bedrijf = werkn.Bedrijf.ToString();
             _bedrijfModel = werkn.Bedrijf;
+            GeefDataGridIndex = werkn.Id;
             _bedrijfManager = new BedrijfManager(new BedrijfRepository());
+            Content = werkn.ToString();
         }
 
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
+
 
         [Hoofding("Voornaam")]
         public string Voornaam
@@ -144,10 +147,12 @@ namespace Components.ViewModels
             }
         }
 
+       
         // Lijst items
         public string Id { get => Email; }
         public string ItemNaam { get => $"{Voornaam} {Achternaam}"; }
-
+        public int GeefDataGridIndex { get; set ; }
+        public string Content { get; set; }
 
         private void OnPropertyChanged(string name = null)
         {

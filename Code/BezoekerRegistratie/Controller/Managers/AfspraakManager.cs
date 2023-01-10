@@ -53,6 +53,9 @@ namespace Controller.Managers
 
         }
 
-
+        public void VerwijderAfspraak(int index)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

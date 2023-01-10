@@ -44,11 +44,17 @@
                   BorderBrush="#AF752F"
                   BorderThickness="3"
                   
-                  >
+            >
             <!--SelectionChanged="dataGrid_SelectionChanged"
                   CurrentCellChanged="dataGrid_CurrentCellChanged"-->
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Verwijder rij" Click="Verwijder_Click" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
 
         </DataGrid>
+       
     </StackPanel>
 
 

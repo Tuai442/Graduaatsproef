@@ -69,6 +69,7 @@ namespace BeheerderApp.Paginas
             terugKnop.ButtonClick += GaPaginaTerug;
             voegToeBtns.Visibility = Visibility.Hidden;
             dataGrid.OpDataFiltering += FilterData;
+            dataGrid.OpDataVerwijdering += VerwijderData;
 
             IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
             foreach (Bedrijf bedrijf in bedrijven)
@@ -81,17 +82,40 @@ namespace BeheerderApp.Paginas
             _debounceDispatcher = new DebounceDispatcher(1000);
         }
 
+        private void VerwijderData(object? sender, int index)
+        {
+            try
+            {
+                if (bezoekerCheckBox.IsActief)
+                {
+                    _bezoekerManger.VerwijderBezoeker(index);
+                }
+                else if (werknemerCheckBox.IsActief)
+                {
+                    _werknemerManger.VerwijderWerknemer(index);
+                }
+                else if (bedrijfCheckBox.IsActief)
+                {
+                    _bedrijfManager.VerwijderBedrijf(index);
+                }
+                else if (afspraakCheckBox.IsActief)
+                {
+                    _afspraakManager.VerwijderAfspraak(index);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
         private void FilterData(object? sender, string zoekText)
         {
-
-            //if (!string.IsNullOrEmpty(zoekText))
-            //{
                 _debounceDispatcher.Debounce(() =>
                 {
                     if (bezoekerCheckBox.IsActief)
                     {
-                        //werknemerDataGrid.Visibility = Visibility.Hidden;
-                        //dataGrid.Visibility = Visibility.Visible;
                         IReadOnlyList<Bezoeker> bezoekers = _bezoekerManger.ZoekOp(zoekText);
                         _bezoekerViews = new List<BezoekerView>();
                         foreach (Bezoeker bezoeker in bezoekers)
@@ -137,9 +161,6 @@ namespace BeheerderApp.Paginas
                         {
                             dataGrid.StelDataIn<AfspraakView>(_afspraakViews);
                         });
-
-
-
                     }
                     else if (bedrijfCheckBox.IsActief)
                     {
@@ -160,7 +181,7 @@ namespace BeheerderApp.Paginas
                         });
                     }
                 });
-            //}
+           
         }
 
         // Checkbox Events

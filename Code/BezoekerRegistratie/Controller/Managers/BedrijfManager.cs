@@ -84,5 +84,10 @@ namespace Controller.Managers
         {
             return _bedrijfRepository.GeefBedrijfViaNaam(value);
         }
+
+        public void VerwijderBedrijf(int index)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

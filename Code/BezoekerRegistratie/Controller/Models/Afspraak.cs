@@ -56,7 +56,20 @@ namespace Controller
             }
 
         }
+        public Afspraak(int id, int bezoekerId, int werknemerId, DateTime startTijd, DateTime? eindTijd)
+        {
+            Id = id;
+            Bezoeker.Id = bezoekerId;
+            Werknemer.Id = werknemerId;
+            StartTijd = startTijd;
+            EindTijd = eindTijd;
+            IsAanwezig = false;
+            if (eindTijd is null)
+            {
+                IsAanwezig = true;
+            }
 
+        }
 
         public void EindeAfspraak()
         {

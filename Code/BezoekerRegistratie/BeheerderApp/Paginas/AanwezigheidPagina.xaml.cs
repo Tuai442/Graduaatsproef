@@ -33,9 +33,9 @@ namespace BeheerderApp.Paginas
 
         public EventHandler<Page> NavigeerHandler;
 
-        public AanwezigheidPagina(DomeinController beheerController)
+        public AanwezigheidPagina(DomeinController domeinController)
         {
-            _domeinController = beheerController;
+            _domeinController = domeinController;
             _bezoekerManger = _domeinController.GeefBezoekerManager();
             InitializeComponent();
             terugKnop.ButtonClick += GaPaginaTerug;
@@ -50,15 +50,13 @@ namespace BeheerderApp.Paginas
 
             //dataGrid.OpDataVerandering += UpdateObject;
         }
-
         private void ZoekBezoekerOp(object? sender, string e)
         {
             IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.ZoekOp(e);
             List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
             dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
         }
-
-        private void UpdateObject(object? sender, object obj)
+        private void UpdateObject(object? sender, object obj) // TODO mag weg?
         {
             string type = obj.GetType().Name;
             //if (type == "Bezoeker")
@@ -66,8 +64,6 @@ namespace BeheerderApp.Paginas
             //    _bezoekerManger.UpdateBezoeker(obj);
             //}
         }
-        
-
         private void GaPaginaTerug(object? sender, EventArgs e)
         {
             NavigationService.GoBack();
@@ -80,11 +76,8 @@ namespace BeheerderApp.Paginas
             }
             catch (Exception)
             {
-
-                MessageBox.Show("niet gelukt om de  lijst met aanwzige bezoekers te verzenden");
+                MessageBox.Show("Niet gelukt om de lijst met aanwezige bezoekers te verzenden.");
             }
         }
-
-        
     }
 }

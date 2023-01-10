@@ -31,14 +31,12 @@ namespace BezoekerApp
             InitializeComponent();
             ToonHoofdMenu();
         }
-
         public void ToonHoofdMenu()
         {
             AanmeldPagina meldBezoekerAan = new AanmeldPagina(_domeinController);
             meldBezoekerAan.NavigeerHandler += NavigeerNaarPagina;
             mainFrame.Navigate(meldBezoekerAan);
         }
-
         // Alle navigatie worden via deze methode gedaan.
         private void NavigeerNaarPagina(object? sender, Page? page)
         {

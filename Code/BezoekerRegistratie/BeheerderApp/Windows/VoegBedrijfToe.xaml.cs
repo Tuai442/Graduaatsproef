@@ -1,4 +1,5 @@
-﻿using Controller.Managers;
+﻿using Controller.Exceptions;
+using Controller.Managers;
 using Controller.Models;
 using Controllers;
 using System;
@@ -28,7 +29,6 @@ namespace BeheerderApp.Windows
             _bedrijfManager = controller.GeefBedrijfManager();
             InitializeComponent();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string naam = naamTxtbox.Text;
@@ -39,15 +39,14 @@ namespace BeheerderApp.Windows
 
             try
             {
-
                 _bedrijfManager.VoegNieuwBedrijfToe(naam, btw, adres, telefoon, email);
                 Close();
             }
-            catch (Exception ex)
+            catch (ControleerException) { throw; }
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Niet gelukt om bedrijf toe te voegen.");
             }
-
         }
     }
 }

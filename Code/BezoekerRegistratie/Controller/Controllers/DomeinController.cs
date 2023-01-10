@@ -57,7 +57,6 @@ namespace Controllers
         public void SendEmail()
         {
             _emailManager.SendEmail(_afspraakManager.GeefaAlleopenstaandeAfsprakenVoorSendEmail());
-           
         }
 
     }
