@@ -1,15 +1,18 @@
-= Graduaatsproef
+= Graduaatsproef 
 
-== Persistance (Sören)
+
+== Percistence (Sören)
 
 === Databank diagram
-Ons diagram is als volgens opgebouwd een bedrijf heeft een relatie met 1 of meerdere werknemers en de tabel werknemer bevat een foreign key bedrijfId, zo kunnen we makkelijk alle werknemers per bedrijf gaan opvragen. Onze werknemer heeft een relatie met tabel afspraak en die heeft een foreign key werknemerId, hiermee kunnen we alle afspraken per werknemer van een bepaald bedrijf opvragen. Onze tabel afspraken heeft zowel een relatie met bezoeker als met werknemer, afspraken heeft een foreign key van bezoeker. Via deze relatie kunnen we makkelijk de gegevens van de werknemer per afspraak opvragen en is het ook mogelijk om de nummerplaat van de bezoeker te gaan traceren. Onze datalaag is al volgens opgebouwd, onze repositorys bevatten een baseRepository die onze connectiestring bevat. Onze andere repositorys verwijzen naar een interface die zo naar onze controllers gaat.
+Ons diagram is als volgens opgebouwd een bedrijf heeft een relatie met 1 of meerdere werknemers en de tabel werknemer bevat een foreign key bedrijfId, zo kunnen we makkelijk alle werknemers per bedrijf gaan opvragen. Onze werknemer heeft een relatie met tabel afspraak en die heeft een foreign key werknemerId, hiermee kunnen we alle afspraken per werknemer van een bepaald bedrijf opvragen. Onze tabel afspraken heeft zowel een relatie met bezoeker als met werknemer, afspraken heeft een foreign key van bezoeker. Via deze relatie kunnen we makkelijk de gegevens van de werknemer per afspraak opvragen en is het ook mogelijk om de nummerplaat van de bezoeker te gaan traceren. Onze datalaag is al volgens opgebouwd, onze repositorys bevatten een baseRepository die onze connectiestring bevat. Onze andere repositorys veerwijzen naar een interface die zo naar onze controllers gaat. 
+
 
 === Aanmelden van bezoeker (Leg uit waarom we transacties gebruiken)
 
+
 === Het Updaten van gegevens (Leg uit waarom we eigenlijk geen update doen maar met een isActief colom werken)
 
-We hebben in de tabellen bedrijf en werknemer een kolom van het datatype bit/bool gemaakt om zo gemakkelijk te gaan te weten komen welke bedrijven er nog actief zijn en welke werknemers er nog actief zijn bij een bedrijf die in onze database zit. Dus we gaan geen bedrijven en werknemers gaan updaten maar we gaan rechtstreeks een nieuwe bedrijf of werknemer gaan aanmaken. Wanneer er een bedrijf niet actief/ niet meer bestaat gaan we deze kolom dus op niet actief gaan zetten, hetzelfde geld voor werknemer wanneer die niet meer actief is bij het bedrijf. Ons leek het gemakkelijk om op die manier te gaan werken omdat zo alle afspraken bewaard blijven en daar de kolommen niet van worden aangepast.
+We hebben in de tabellen bedrijf en werknemmer een kolom van het datatype bit/bool gemaakt om zo gemakkelijk te gaan te weten komen welke bedrijven er nog actief zijn en welke werkenemers er nog actief zijn bij een bedrijf die in onze database zit. Dus we gaan geen bedrijven en werknemers gaan updaten maar we gaan rechtstreeks een nieuwe bedrijf of werknemer gaan aanmaken. Wanneer er een bedrijf niet actief/ niet meer bestaat gaan we deze kolom dus op niet actief gaan zetten, hetzelfde geld voor werknemer wanneer die niet meer actief is bij het bedrijf. Ons leek het gemakkelijk om op die manier te gaan werken omdat zo alle afspraken bewaard blijven en daar de kollomen niet van worden aangepast.
 
 == Presentatie (Noah, Tuur)
 
@@ -20,29 +23,31 @@ De interface ILijstItem wordt gebruikt wanneer je een object wilt presenteren in
 
 ==== Werking
 *Voorbeeld*
-Stel dat we het object Bedrijf in een combobox willen tonen. We beginnen met de interface te implementeren.
+Stel dat we het object Bedrijf in een combobox willen tonen. We beginnen met de interface te implimenteren.
 ILijstItem Heeft 2 properties:
 
-----
-public class BedrijfView : ILijstItems
-{
-public Bedrijf Bedrijf;
-private string _naam;
-private string _btw;
 
-...
-
-// Lijst items
-public string Id { get =&gt; Email; }
-public string ItemNaam { get =&gt; Naam; }
 ----
+ public class BedrijfView : ILijstItems
+    {
+        public Bedrijf Bedrijf;
+        private string _naam;
+        private string _btw;
+
+        ...
+
+        // Lijst items
+        public string Id { get => Email; }
+        public string ItemNaam { get => Naam; }
+----
+
 
 Vervolgens kunnen we nu een combobox maken met de bedrijven als data.
 ----
-<UIC:ZoekbareComboBox x:Name="bedrijfComboBox"/&gt;
+<UIC:ZoekbareComboBox x:Name="bedrijfComboBox"/> 
 ----
 ----
-List<ILijstItems&gt; bedrijfItems = bedrijven.Select(x =&gt; (ILijstItems)new BedrijfView(x)).ToList();
+List<ILijstItems> bedrijfItems = bedrijven.Select(x => (ILijstItems)new BedrijfView(x)).ToList();
 bedrijfComboBox.VoegLijstToe(bedrijfItems);
 ----
 
@@ -50,86 +55,89 @@ Hier wordt de combobox ingesteld.
 ----
 
 public partial class ZoekbareComboBox : UserControl
-{
-...
+    {
+        ...
 
-public void VoegLijstToe(List<ILijstItems&gt; items)
-{
-comboBox.Items.Clear();
-_alleItems = items;
-foreach (ILijstItems item in items)
-{
-comboBox.Items.Add(item.ItemNaam);
-}
-}
+        public void VoegLijstToe(List<ILijstItems> items)
+                {
+                    comboBox.Items.Clear();
+                    _alleItems = items;
+                    foreach (ILijstItems item in items)
+                    {
+                        comboBox.Items.Add(item.ItemNaam);
+                    }
+                }
 
-...
+        ...
 ----
 Door deze interface te gebruiken kunnen we nu bij het klikken van een bedrijf een id mee krijgen.
 ----
-...
+        ...
 
-private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-{
-if ((e.AddedItems.Count &gt; 0))
-{
-int SelectedIndex = comboBox.SelectedIndex;
-SelectedValue = _alleItems[SelectedIndex].Id; Id gegeven
-SelectedLabel = _alleItems[SelectedIndex].ItemNaam;
-if (GeSelecteerd != null)
-{
-GeSelecteerd.Invoke(this, SelectedValue);
-}
-}
-}
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+                {
+                    if ((e.AddedItems.Count > 0))
+                    {
+                        int SelectedIndex = comboBox.SelectedIndex;
+                        SelectedValue = _alleItems[SelectedIndex].Id;  <-- Hier wordt de Id gegeven
+                        SelectedLabel = _alleItems[SelectedIndex].ItemNaam;
+                        if (GeSelecteerd != null)
+                        {
+                            GeSelecteerd.Invoke(this, SelectedValue);
+                        }
+                    }
+                }
 
-...
+        ...
 ----
 
 We kunnen ook een filter methode toepassen.
 ----
-...
+        ...
 
-List<ILijstItems&gt; result = new List<ILijstItems&gt;();
-foreach (ILijstItems w in _alleItems)
-{
-string woord = w.ItemNaam;
-bool gevonden = true;
-if (zoekwoord.Length <= woord.Length)
-{
-for (int i = 0; i < zoekwoord.Length; i++)
-{
-if (Char.ToLower(zoekwoord[i]) == Char.ToLower(woord[i]))
-{
-gevonden = true;
-}
-else
-{
-gevonden = false;
-break;
-}
-}
-if (gevonden)
-{
-result.Add(w);
-}
-}
-}
-return result;
+        List<ILijstItems> result = new List<ILijstItems>();
+                    foreach (ILijstItems w in _alleItems)
+                    {
+                        string woord = w.ItemNaam;
+                        bool gevonden = true;
+                        if (zoekwoord.Length <= woord.Length)
+                        {
+                            for (int i = 0; i < zoekwoord.Length; i++)
+                            {
+                                if (Char.ToLower(zoekwoord[i]) == Char.ToLower(woord[i]))
+                                {
+                                    gevonden = true;
+                                }
+                                else
+                                {
+                                    gevonden = false;
+                                    break;
+                                }
+                            }
+                            if (gevonden)
+                            {
+                                result.Add(w);
+                            }
+                        }
+                    }
+                    return result;
 
-...
-
-----
+        ...
 
 ----
-public interface ILijstItems
-{
-public string Id { get; }
-public string ItemNaam { get; }
-}
+
+
+----
+ public interface ILijstItems
+    {
+        public string Id { get; }
+        public string ItemNaam { get; }
+    }
 ----
 
-Stel
+Stel 
+
+
 
 === Herbruikbaar Datagrid
 
@@ -142,194 +150,196 @@ Als we data willen tonen via een datagrid halen we eerst de data van de BL-Laag 
 een ViewModel Class die dan in het datagrid ingelezen kan worden.
 
 *Voorbeeld* +
-_Let op: De code is geformatteerd er zijn grote delen uit de code gelaten voor de complexiteit te verminderen._ +
+_Let op: De code is geformateerd er zijn grote delen uit de code gelaten voor de complexiteit te verminderen._ +
 Hier is onze BL Bedrijf Class
 [source, c#]
 ----
 public class Bedrijf
-{
-public int Id { get; set; }
-public string Naam { get; set ; }
-public string Btw { get ; set ; }
-public string Adres { get ; set ; }
-public string Telefoon { get; set; }
-public string Email { get; set; }
+    {
+        public int Id { get; set; }
+        public string Naam { get; set ; }
+        public string Btw { get ; set ; }
+        public string Adres { get ; set ; }
+        public string Telefoon { get; set; }
+        public string Email { get; set; }
 
-public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
-{
-Naam = naam;
-Adres = adres;
-Btw = btw;
-Telefoon = telefoon;
-Email = email;
-}
-}
+        public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
+        {
+            Naam = naam;
+            Adres = adres;
+            Btw = btw;
+            Telefoon = telefoon;
+            Email = email;
+        }
+    }
 ----
 
 In de presentatie laag halen deze op via de bedrijfManger. En zetten deze om naar onze bedrijfView Models.
 [source, c#]
 ----
-ReadOnlyList<Bedrijf&gt; bedrijven = _bedrijfManager.GeefAlleBedrijven();
+ReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
 foreach (Bedrijf bedrijf in bedrijven)
 {
-BedrijfView bedrijfView = new BedrijfView(bedrijf);
-bedrijfView.PropertyChanged += UpdateBedrijf;
-_bedrijfViews.Add(bedrijfView);
+    BedrijfView bedrijfView = new BedrijfView(bedrijf);
+    bedrijfView.PropertyChanged += UpdateBedrijf;
+    _bedrijfViews.Add(bedrijfView);
 }
 ----
 
 ----
 public class BedrijfView : INotifyPropertyChanged
-{
-public Bedrijf Bedrijf;
-private string _naam;
-private string _btw;
-private string _adres;
-private string _telefoon;
-private string _email;
+    {
+        public Bedrijf Bedrijf;
+        private string _naam;
+        private string _btw;
+        private string _adres;
+        private string _telefoon;
+        private string _email;
 
-public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-[Hoofding("Naam")]
-public string Naam { get; set; }
+        [Hoofding("Naam")]
+        public string Naam { get; set; }
 
-[Hoofding("Btw-nummer")]
-public string Btw { get; set; }
+        [Hoofding("BTW-Nummer")]
+        public string Btw { get; set; }
 
-[Hoofding("Adres")]
-public string Adres { get; set; }
+        [Hoofding("Adres")]
+        public string Adres { get; set; }
 
-[Hoofding("Telefoon Nummer")]
-public string Telefoon { get; set; }
+        [Hoofding("Telefoon Nummer")]
+        public string Telefoon { get; set; }
 
-[Hoofding("Email")]
-public string Email { get ; set;}
+        [Hoofding("Email")]
+        public string Email { get ; set;}
 
-public BedrijfView(Bedrijf bedrijf)
-{
-Bedrijf = bedrijf;
-Naam = bedrijf.Naam;
-Btw = bedrijf.Btw;
-Adres = bedrijf.Adres;
-Telefoon = bedrijf.Telefoon;
-Email = bedrijf.Email;
+        public BedrijfView(Bedrijf bedrijf)
+        {
+            Bedrijf = bedrijf;
+            Naam = bedrijf.Naam;
+            Btw = bedrijf.Btw;
+            Adres = bedrijf.Adres;
+            Telefoon = bedrijf.Telefoon;
+            Email = bedrijf.Email;
 
-}
+        }
 
-private void OnPropertyChanged(string name = null)
-{
-if (PropertyChanged != null)
-{
-PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-}
-}
+        private void OnPropertyChanged(string name = null)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
 
 ----
-Zoals je kan zien kunnen we bij de ViewModels ook de Hoofding instellen. Hierdoor kan het datagrid de hoofding instellen
+Zoals je kan zien kunnen we bij de ViewModels ook de Hoofdging instellen. Hierdoor kan het datagrid de hoogding instellen
 door gebruik te maken van *reflection*.
 
 Nu alles klaar staat kunnen we dit model doorgeven aan het datagrid.
 ----
-dataGrid.StelDataIn<BedrijfView&gt;(_bedrijfViews);
+dataGrid.StelDataIn<BedrijfView>(_bedrijfViews);
 ----
 
 Dit gebeurt er in het DataGrid.
 
 ----
-public void StelDataIn<T&gt;(IEnumerable viewModel, bool readOnly= false, IEnumerable extraInfo = null)
-{
-_data = viewModel;
-dataGrid.ItemsSource = null;
-MaakHoofding<T&gt;(viewModel, extraInfo);
-dataGrid.ItemsSource = viewModel;
-dataGrid.IsReadOnly = readOnly;
+public void StelDataIn<T>(IEnumerable viewModel, bool readOnly= false, IEnumerable extraInfo = null)
+        {
+            _data = viewModel;
+            dataGrid.ItemsSource = null;
+            MaakHoofding<T>(viewModel, extraInfo);
+            dataGrid.ItemsSource = viewModel;
+            dataGrid.IsReadOnly = readOnly;
 
-}
+        }
 
-private void MaakHoofding<T&gt;(IEnumerable viewModel, IEnumerable extraInfo = null)
-{
-dataGrid.Columns.Clear();
-Dictionary<string, string&gt; hoofding = HoofdingManager.GeefHoofding<T&gt;();
-Dictionary<string, CellType&gt; cellTypes = CellManager.GeefCellType<T&gt;();
-foreach (string key in hoofding.Keys)
-{
-if (cellTypes.ContainsKey(key))
-{
-DataGridComboBoxColumn dataGridComboBoxColumn = new DataGridComboBoxColumn();
-dataGridComboBoxColumn.Header = hoofding[key];
+        private void MaakHoofding<T>(IEnumerable viewModel, IEnumerable extraInfo = null)
+        {
+            dataGrid.Columns.Clear();
+            Dictionary<string, string> hoofding = HoofdingManager.GeefHoofding<T>();
+            Dictionary<string, CellType> cellTypes = CellManager.GeefCellType<T>();
+            foreach (string key in hoofding.Keys)
+            {
+                if (cellTypes.ContainsKey(key))
+                {
+                    DataGridComboBoxColumn dataGridComboBoxColumn = new DataGridComboBoxColumn();
+                    dataGridComboBoxColumn.Header = hoofding[key];
 
-dataGridComboBoxColumn.ItemsSource = extraInfo;
-dataGridComboBoxColumn.TextBinding = new Binding(key);
-dataGridComboBoxColumn.DisplayMemberPath = "Naam";
-dataGridComboBoxColumn.SelectedValuePath = "Naam";
-dataGrid.Columns.Add(dataGridComboBoxColumn);
+                    dataGridComboBoxColumn.ItemsSource = extraInfo;
+                    dataGridComboBoxColumn.TextBinding = new Binding(key);
+                    dataGridComboBoxColumn.DisplayMemberPath = "Naam";
+                    dataGridComboBoxColumn.SelectedValuePath = "Naam";
+                    dataGrid.Columns.Add(dataGridComboBoxColumn);
 
-}
-else
-{
-DataGridTextColumn c = new DataGridTextColumn();
-c.Header = hoofding[key];
-c.Binding = new Binding(key);
-dataGrid.Columns.Add(c);
-}
+                }
+                else
+                {
+                    DataGridTextColumn c = new DataGridTextColumn();
+                    c.Header = hoofding[key];
+                    c.Binding = new Binding(key);
+                    dataGrid.Columns.Add(c);
+                }
 
-}
-dataGrid.AutoGenerateColumns = false;
-}
+
+            }
+            dataGrid.AutoGenerateColumns = false;
+        }
 
 ----
 
-Vervolgens kan er aan de hand van een EventHandler een zoek method aan toegevoegd worden die automatisch wordt opgeroepen
+Vervolgens kan er aan de hand van een EventHandler een zoek method aan toegevoed worden die automatisch wordt opgeroepen
 bij een verandering in de zoekbalk.
 ----
-private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
+ private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
 {
-// Hier kunnen we ons datagrid filter op het huidige zoekwoord.
-string zoekText = zoekBar.Text;
-OpDataFiltering.Invoke(sender, zoekText);
+    // Hier kunnen we ons datagrid filter op het huidige zoekwoord.
+    string zoekText = zoekBar.Text;
+    OpDataFiltering.Invoke(sender, zoekText);
 
 }
 ----
+
 
 == Business (Diego, Tuur)
 
 === Class diagram
 
-=== controles (welke controles, waarom hebben we een statische klas?)
+=== controle's (welke controle's, waarom hebben we een statishe class?)
 
 === DeBouncer
 ==== Doel
 Het doel van de DeBouncer is om onnodige verkeer tussen de applicatie en de databank te voorkomen.
-Stel we willen een naam zoeken zonder een zoek knop te gebruiken. Er zal automatisch gezocht worden via de zoekbalk.
+Stel we we willen een naam zoeken zonder een zoek knop te gebruiken. Er zal automatich gezocht worden via de zoekbalk.
 Zonder de DeBouncer zou er bij elke verandering in de zoekbalk een request naar de databank gemaakt worden dat in principe
 onnodig is. Door de DeBouncer te gebruiken kunnen we een interval instellen, het doel van dit interval is dat de zoekmethode pas
-wordt uitgevoerd van zodra er geen nieuwe input meer binnen komt gedurende het interval.
+wordt uitgevoerd van zodra er geen nieuwe input meer binnen komt geduurende het interval.
 
 ==== Werking
 Voor de DeBouncergebruikt kan worden moeten we eerst een instantie van het object maken, waarbij we het interval meegeven
-als parameter. Dit interval zorgt er voor dat de De Bouncer wordt opgeroepen, van zodra er gedurende dit interval geen nieuwe input binnen komt.
+als parameter. Dit interval zorgt er voor dat de De Bouncer wordt opgroepen, van zodra er geduurende dit intervaal geen nieuwe input binnen komt.
 ----
 var debounceDispatcher = new DebounceDispatcher(1000);
 ----
 
 ----
-debounceDispatcher.Debounce(() =&gt;
+ debounceDispatcher.Debounce(() =>
 {
-ZoekMethode(zoekWoord);
+    ZoekMethode(zoekWoord);
 });
 ----
-Dit gebeurt er in de DeBouncer.
+Dit gebreurt er in de DeBouncer.
 Hier wordt er een Task gemaakt waar onze zoek methode wordt ingestoken. Vervolgens geven we die taak door aan de DeBounceAsync().
 ----
 public void Debounce(Action action)
 {
-Func<Task<bool&gt;&gt; actionAsync = () =&gt; Task.Run(() =&gt;
-{
-action.Invoke();
-return true;
-});
+    Func<Task<bool>> actionAsync = () => Task.Run(() =>
+    {
+        action.Invoke();
+        return true;
+    });
 
-DebounceAsync(actionAsync);
+    DebounceAsync(actionAsync);
 }
 
 ----
