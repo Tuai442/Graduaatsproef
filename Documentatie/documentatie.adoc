@@ -33,8 +33,8 @@ private string _btw;
 ...
 
 // Lijst items
-public string Id { get =&gt; Email; }
-public string ItemNaam { get =&gt; Naam; }
+public string Id { get => Email; }
+public string ItemNaam { get => Naam; }
 ----
 
 Vervolgens kunnen we nu een combobox maken met de bedrijven als data.
