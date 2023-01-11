@@ -1,19 +1,19 @@
 = Graduaatsproef
 
-== Persistance (Sören)
+== Persistance 
 
 === Databank diagram
 Ons diagram is als volgens opgebouwd een bedrijf heeft een relatie met 1 of meerdere werknemers en de tabel werknemer bevat een foreign key bedrijfId, zo kunnen we makkelijk alle werknemers per bedrijf gaan opvragen. Onze werknemer heeft een relatie met tabel afspraak en die heeft een foreign key werknemerId, hiermee kunnen we alle afspraken per werknemer van een bepaald bedrijf opvragen. Onze tabel afspraken heeft zowel een relatie met bezoeker als met werknemer, afspraken heeft een foreign key van bezoeker. Via deze relatie kunnen we makkelijk de gegevens van de werknemer per afspraak opvragen en is het ook mogelijk om de nummerplaat van de bezoeker te gaan traceren. Onze datalaag is al volgens opgebouwd, onze repositorys bevatten een baseRepository die onze connectiestring bevat. Onze andere repositorys verwijzen naar een interface die zo naar onze controllers gaat.
 
-=== Aanmelden van bezoeker (Leg uit waarom we transacties gebruiken)
+=== Aanmelden van bezoeker 
 
-=== Het Updaten van gegevens (Leg uit waarom we eigenlijk geen update doen maar met een isActief colom werken)
+=== Het Updaten van gegevens 
 
 We hebben in de tabellen bedrijf en werknemer een kolom van het datatype bit/bool gemaakt om zo gemakkelijk te gaan te weten komen welke bedrijven er nog actief zijn en welke werknemers er nog actief zijn bij een bedrijf die in onze database zit. Dus we gaan geen bedrijven en werknemers gaan updaten maar we gaan rechtstreeks een nieuwe bedrijf of werknemer gaan aanmaken. Wanneer er een bedrijf niet actief/ niet meer bestaat gaan we deze kolom dus op niet actief gaan zetten, hetzelfde geld voor werknemer wanneer die niet meer actief is bij het bedrijf. Ons leek het gemakkelijk om op die manier te gaan werken omdat zo alle afspraken bewaard blijven en daar de kolommen niet van worden aangepast.
 
-== Presentatie (Noah, Tuur)
+== Presentatie 
 
-=== ILijstItem Interface (Leg uit waarom we een ILijstInterface hebben)
+=== ILijstItem Interface 
 
 ==== Doel
 De interface ILijstItem wordt gebruikt wanneer je een object wilt presenteren in een combobox (lijst).
@@ -22,7 +22,7 @@ De interface ILijstItem wordt gebruikt wanneer je een object wilt presenteren in
 *Voorbeeld*
 Stel dat we het object Bedrijf in een combobox willen tonen. We beginnen met de interface te implementeren.
 ILijstItem Heeft 2 properties:
-
+[source, c#]
 ----
 public class BedrijfView : ILijstItems
 {
@@ -55,9 +55,9 @@ public partial class ZoekbareComboBox : UserControl
 
 public void VoegLijstToe(List<ILijstItems&gt; items)
 {
-comboBox.Items.Clear();
-_alleItems = items;
-foreach (ILijstItems item in items)
+    comboBox.Items.Clear();
+    _alleItems = items;
+    foreach (ILijstItems item in items)
 {
 comboBox.Items.Add(item.ItemNaam);
 }
@@ -73,12 +73,12 @@ private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs 
 {
 if ((e.AddedItems.Count &gt; 0))
 {
-int SelectedIndex = comboBox.SelectedIndex;
-SelectedValue = _alleItems[SelectedIndex].Id; Id gegeven
-SelectedLabel = _alleItems[SelectedIndex].ItemNaam;
+    int SelectedIndex = comboBox.SelectedIndex;
+    SelectedValue = _alleItems[SelectedIndex].Id; Id gegeven
+    SelectedLabel = _alleItems[SelectedIndex].ItemNaam;
 if (GeSelecteerd != null)
 {
-GeSelecteerd.Invoke(this, SelectedValue);
+    GeSelecteerd.Invoke(this, SelectedValue);
 }
 }
 }
@@ -93,26 +93,26 @@ We kunnen ook een filter methode toepassen.
 List<ILijstItems&gt; result = new List<ILijstItems&gt;();
 foreach (ILijstItems w in _alleItems)
 {
-string woord = w.ItemNaam;
-bool gevonden = true;
-if (zoekwoord.Length <= woord.Length)
-{
-for (int i = 0; i < zoekwoord.Length; i++)
-{
-if (Char.ToLower(zoekwoord[i]) == Char.ToLower(woord[i]))
-{
-gevonden = true;
-}
-else
-{
-gevonden = false;
-break;
-}
-}
-if (gevonden)
-{
-result.Add(w);
-}
+    string woord = w.ItemNaam;
+    bool gevonden = true;
+    if (zoekwoord.Length <= woord.Length)
+    {
+    for (int i = 0; i < zoekwoord.Length; i++)
+    {
+        if (Char.ToLower(zoekwoord[i]) == Char.ToLower(woord[i]))
+        {
+            gevonden = true;
+        }
+        else
+        {
+            gevonden = false;
+             break;
+        }
+    }
+    if (gevonden)
+    {
+        result.Add(w);
+    }
 }
 }
 return result;
@@ -157,71 +157,71 @@ public string Email { get; set; }
 
 public Bedrijf(string naam, string btw, string adres, string telefoon, string email)
 {
-Naam = naam;
-Adres = adres;
-Btw = btw;
-Telefoon = telefoon;
-Email = email;
+    Naam = naam;
+    Adres = adres;
+    Btw = btw;
+    Telefoon = telefoon;
+    Email = email;
 }
 }
 ----
 
 In de presentatie laag halen deze op via de bedrijfManger. En zetten deze om naar onze bedrijfView Models.
-[source, c#]
+
 ----
 ReadOnlyList<Bedrijf&gt; bedrijven = _bedrijfManager.GeefAlleBedrijven();
 foreach (Bedrijf bedrijf in bedrijven)
 {
-BedrijfView bedrijfView = new BedrijfView(bedrijf);
-bedrijfView.PropertyChanged += UpdateBedrijf;
-_bedrijfViews.Add(bedrijfView);
+    BedrijfView bedrijfView = new BedrijfView(bedrijf);
+    bedrijfView.PropertyChanged += UpdateBedrijf;
+    _bedrijfViews.Add(bedrijfView);
 }
 ----
 
 ----
 public class BedrijfView : INotifyPropertyChanged
 {
-public Bedrijf Bedrijf;
-private string _naam;
-private string _btw;
-private string _adres;
-private string _telefoon;
-private string _email;
+    public Bedrijf Bedrijf;
+    private string _naam;
+    private string _btw;
+    private string _adres;
+    private string _telefoon;
+    private string _email;
 
-public event PropertyChangedEventHandler? PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
-[Hoofding("Naam")]
-public string Naam { get; set; }
+    [Hoofding("Naam")]
+    public string Naam { get; set; }
 
-[Hoofding("Btw-nummer")]
-public string Btw { get; set; }
+    [Hoofding("Btw-nummer")]
+    public string Btw { get; set; }
 
-[Hoofding("Adres")]
-public string Adres { get; set; }
+    [Hoofding("Adres")]
+    public string Adres { get; set; }
 
-[Hoofding("Telefoon Nummer")]
-public string Telefoon { get; set; }
+    [Hoofding("Telefoon Nummer")]
+    public string Telefoon { get; set; }
 
-[Hoofding("Email")]
-public string Email { get ; set;}
+    [Hoofding("Email")]
+    public string Email { get ; set;}
 
-public BedrijfView(Bedrijf bedrijf)
-{
-Bedrijf = bedrijf;
-Naam = bedrijf.Naam;
-Btw = bedrijf.Btw;
-Adres = bedrijf.Adres;
-Telefoon = bedrijf.Telefoon;
-Email = bedrijf.Email;
+    public BedrijfView(Bedrijf bedrijf)
+    {
+        Bedrijf = bedrijf;
+        Naam = bedrijf.Naam;
+        Btw = bedrijf.Btw;
+        Adres = bedrijf.Adres;
+        Telefoon = bedrijf.Telefoon;
+        Email = bedrijf.Email;
 
-}
+    }
 
-private void OnPropertyChanged(string name = null)
-{
-if (PropertyChanged != null)
-{
-PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-}
+    private void OnPropertyChanged(string name = null)
+    {
+        if (PropertyChanged != null)
+        {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
 }
 
 ----
@@ -238,44 +238,44 @@ Dit gebeurt er in het DataGrid.
 ----
 public void StelDataIn<T&gt;(IEnumerable viewModel, bool readOnly= false, IEnumerable extraInfo = null)
 {
-_data = viewModel;
-dataGrid.ItemsSource = null;
-MaakHoofding<T&gt;(viewModel, extraInfo);
-dataGrid.ItemsSource = viewModel;
-dataGrid.IsReadOnly = readOnly;
+    _data = viewModel;
+    dataGrid.ItemsSource = null;
+    MaakHoofding<T&gt;(viewModel, extraInfo);
+    dataGrid.ItemsSource = viewModel;
+    dataGrid.IsReadOnly = readOnly;
 
 }
 
 private void MaakHoofding<T&gt;(IEnumerable viewModel, IEnumerable extraInfo = null)
 {
-dataGrid.Columns.Clear();
-Dictionary<string, string&gt; hoofding = HoofdingManager.GeefHoofding<T&gt;();
-Dictionary<string, CellType&gt; cellTypes = CellManager.GeefCellType<T&gt;();
-foreach (string key in hoofding.Keys)
-{
-if (cellTypes.ContainsKey(key))
-{
-DataGridComboBoxColumn dataGridComboBoxColumn = new DataGridComboBoxColumn();
-dataGridComboBoxColumn.Header = hoofding[key];
+    dataGrid.Columns.Clear();
+    Dictionary<string, string&gt; hoofding = HoofdingManager.GeefHoofding<T&gt;();
+    Dictionary<string, CellType&gt; cellTypes = CellManager.GeefCellType<T&gt;();
+    foreach (string key in hoofding.Keys)
+    {
+    if (cellTypes.ContainsKey(key))
+    {
+        DataGridComboBoxColumn dataGridComboBoxColumn = new DataGridComboBoxColumn();
+        dataGridComboBoxColumn.Header = hoofding[key];
 
-dataGridComboBoxColumn.ItemsSource = extraInfo;
-dataGridComboBoxColumn.TextBinding = new Binding(key);
-dataGridComboBoxColumn.DisplayMemberPath = "Naam";
-dataGridComboBoxColumn.SelectedValuePath = "Naam";
-dataGrid.Columns.Add(dataGridComboBoxColumn);
+        dataGridComboBoxColumn.ItemsSource = extraInfo;
+        dataGridComboBoxColumn.TextBinding = new Binding(key);
+        dataGridComboBoxColumn.DisplayMemberPath = "Naam";
+        dataGridComboBoxColumn.SelectedValuePath = "Naam";
+        dataGrid.Columns.Add(dataGridComboBoxColumn);
 
-}
-else
-{
-DataGridTextColumn c = new DataGridTextColumn();
-c.Header = hoofding[key];
-c.Binding = new Binding(key);
-dataGrid.Columns.Add(c);
-}
+    }
+    else
+    {
+        DataGridTextColumn c = new DataGridTextColumn();
+        c.Header = hoofding[key];
+        c.Binding = new Binding(key);
+        dataGrid.Columns.Add(c);
+    }
 
-}
-dataGrid.AutoGenerateColumns = false;
-}
+    }
+        dataGrid.AutoGenerateColumns = false;
+    }
 
 ----
 
@@ -284,18 +284,18 @@ bij een verandering in de zoekbalk.
 ----
 private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
 {
-// Hier kunnen we ons datagrid filter op het huidige zoekwoord.
-string zoekText = zoekBar.Text;
-OpDataFiltering.Invoke(sender, zoekText);
+        // Hier kunnen we ons datagrid filter op het huidige zoekwoord.
+        string zoekText = zoekBar.Text;
+        OpDataFiltering.Invoke(sender, zoekText);
 
 }
 ----
 
-== Business (Diego, Tuur)
+== Business 
 
 === Class diagram
 
-=== controles (welke controles, waarom hebben we een statische klas?)
+=== controles 
 
 === DeBouncer
 ==== Doel
@@ -315,21 +315,7 @@ var debounceDispatcher = new DebounceDispatcher(1000);
 ----
 debounceDispatcher.Debounce(() =&gt;
 {
-ZoekMethode(zoekWoord);
+    ZoekMethode(zoekWoord);
 });
 ----
-Dit gebeurt er in de DeBouncer.
-Hier wordt er een Task gemaakt waar onze zoek methode wordt ingestoken. Vervolgens geven we die taak door aan de DeBounceAsync().
-----
-public void Debounce(Action action)
-{
-Func<Task<bool&gt;&gt; actionAsync = () =&gt; Task.Run(() =&gt;
-{
-action.Invoke();
-return true;
-});
 
-DebounceAsync(actionAsync);
-}
-
-----
