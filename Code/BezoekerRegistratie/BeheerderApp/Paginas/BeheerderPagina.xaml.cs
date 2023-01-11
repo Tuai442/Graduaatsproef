@@ -19,7 +19,6 @@ using System.ComponentModel;
 
 using Controller.Models;
 using Controller.Managers;
-using Controller.Interfaces.Models;
 
 using Controllers;
 using Components.Datagrids;
@@ -52,66 +51,106 @@ namespace BeheerderApp.Paginas
         private DebounceDispatcher _debounceDispatcher;
         public BeheerderPagina(DomeinController domeinController)
         {
-            InitializeComponent();
-            _domeinController = domeinController;
-            // Managers
-            _werknemerManger = _domeinController.GeefWerknemerManager();
-            _bezoekerManger = _domeinController.GeefBezoekerManager();
-            _afspraakManager = _domeinController.GeefAfspraakManager();
-            _bedrijfManager = _domeinController.GeefBedrijfManager();
-
-            // Events
-            bezoekerCheckBox.Checked += CheckBoxe_Bezoeker_Toggle;
-            werknemerCheckBox.Checked += CheckBoxe_Werknemer_Toggle;
-            afspraakCheckBox.Checked += CheckBoxe_Afspraak_Toggle;
-            bedrijfCheckBox.Checked += CheckBoxe_Bedrijven_Toggle;
-
-            terugKnop.ButtonClick += GaPaginaTerug;
-            voegToeBtns.Visibility = Visibility.Hidden;
-            dataGrid.OpDataFiltering += FilterData;
-            dataGrid.OpDataVerwijdering += VerwijderData;
-
-            IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
-            foreach (Bedrijf bedrijf in bedrijven)
+            try
             {
-                BedrijfView bedrijfView = new BedrijfView(bedrijf);
-                bedrijfView.PropertyChanged += UpdateBedrijf;
-                _bedrijfViews.Add(bedrijfView);
-            }
+                InitializeComponent();
+                _domeinController = domeinController;
+                // Managers
+                _werknemerManger = _domeinController.GeefWerknemerManager();
+                _bezoekerManger = _domeinController.GeefBezoekerManager();
+                _afspraakManager = _domeinController.GeefAfspraakManager();
+                _bedrijfManager = _domeinController.GeefBedrijfManager();
 
-            _debounceDispatcher = new DebounceDispatcher(1000);
+                // Events
+                bezoekerCheckBox.Checked += CheckBoxe_Bezoeker_Toggle;
+                werknemerCheckBox.Checked += CheckBoxe_Werknemer_Toggle;
+                afspraakCheckBox.Checked += CheckBoxe_Afspraak_Toggle;
+                bedrijfCheckBox.Checked += CheckBoxe_Bedrijven_Toggle;
+
+                terugKnop.ButtonClick += GaPaginaTerug;
+                voegToeBtns.Visibility = Visibility.Hidden;
+                dataGrid.OpDataFiltering += FilterData;
+                dataGrid.OpDataVerwijdering += VerwijderData;
+
+                IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+                foreach (Bedrijf bedrijf in bedrijven)
+                {
+                    BedrijfView bedrijfView = new BedrijfView(bedrijf);
+                    bedrijfView.PropertyChanged += UpdateBedrijf;
+                    _bedrijfViews.Add(bedrijfView);
+                }
+
+                _debounceDispatcher = new DebounceDispatcher(1000);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void VerwijderData(object? sender, int index)
+
+        //TODO: alle verwijder zijn niet uitgeschreven
+        private void VerwijderData(object? sender, int id)
         {
             try
             {
                 if (bezoekerCheckBox.IsActief)
                 {
-                    _bezoekerManger.VerwijderBezoeker(index);
+                    _bezoekerManger.VerwijderBezoeker(id);
+                    
                 }
                 else if (werknemerCheckBox.IsActief)
                 {
-                    _werknemerManger.VerwijderWerknemer(index);
+                    _werknemerManger.VerwijderWerknemer(id);
+                    foreach(var i in _werknemerViews)
+                    {
+                        var rij = (IDataGridRij)i;
+                        if(rij.GeefDataGridIndex == id)
+                        {
+                            _werknemerViews.Remove(i);
+                            break;
+                        }
+                    }
                 }
                 else if (bedrijfCheckBox.IsActief)
                 {
-                    _bedrijfManager.VerwijderBedrijf(index);
+                    _bedrijfManager.VerwijderBedrijf(id);
+                    foreach (var i in _bedrijfViews)
+                    {
+                        var rij = (IDataGridRij)i;
+                        if (rij.GeefDataGridIndex == id)
+                        {
+                            _bedrijfViews.Remove(i);
+                            break;
+                        }
+                    }
                 }
                 else if (afspraakCheckBox.IsActief)
                 {
-                    _afspraakManager.VerwijderAfspraak(index);
+                    _afspraakManager.VerwijderAfspraak(id);
+                    foreach (var i in _afspraakViews)
+                    {
+                        var rij = (IDataGridRij)i;
+                        if (rij.GeefDataGridIndex == id)
+                        {
+                            _afspraakViews.Remove(i);
+                            break;
+                        }
+                    }
                 }
+                dataGrid.Refresh();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void FilterData(object? sender, string zoekText)
         {
+            try
+            {
                 _debounceDispatcher.Debounce(() =>
                 {
                     if (bezoekerCheckBox.IsActief)
@@ -124,7 +163,6 @@ namespace BeheerderApp.Paginas
                             bezoekerView.PropertyChanged += UpdateBezoeker;
                             _bezoekerViews.Add(bezoekerView);
                         }
-                        
                         Dispatcher.Invoke(() =>
                         {
                             dataGrid.StelDataIn<BezoekerView>(_bezoekerViews);
@@ -147,8 +185,6 @@ namespace BeheerderApp.Paginas
                     }
                     else if (afspraakCheckBox.IsActief)
                     {
-                        //werknemerDataGrid.Visibility = Visibility.Hidden;
-                        //dataGrid.Visibility = Visibility.Visible;
                         IReadOnlyList<Afspraak> afspraken = _afspraakManager.ZoekOp(zoekText);
                         _afspraakViews = new List<AfspraakView>();
                         foreach (Afspraak afspraak in afspraken)
@@ -161,14 +197,9 @@ namespace BeheerderApp.Paginas
                         {
                             dataGrid.StelDataIn<AfspraakView>(_afspraakViews);
                         });
-
-
-
                     }
                     else if (bedrijfCheckBox.IsActief)
                     {
-                        //werknemerDataGrid.Visibility = Visibility.Hidden;
-                        //dataGrid.Visibility = Visibility.Visible;
                         IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.ZoekOp(zoekText);
                         _bedrijfViews = new List<BedrijfView>();
                         foreach (Bedrijf bedrijf in bedrijven)
@@ -184,126 +215,154 @@ namespace BeheerderApp.Paginas
                         });
                     }
                 });
-           
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         // Checkbox Events
         private void CheckBoxe_Werknemer_Toggle(object sender, bool actief)
         {
-            if (actief)
+            try
             {
-                if (_werknemerViews.Count == 0)
+
+                if (actief)
                 {
-                    IReadOnlyList<Werknemer> werknemers = _werknemerManger.GeefAlleWerknemers();
-                    foreach (Werknemer werknemer in werknemers)
+                    
+                    if (_werknemerViews.Count == 0)
                     {
-                        WerknemerView werknemerView = new WerknemerView(werknemer);
-                        werknemerView.PropertyChanged += UpdateWerknemer;
-                        _werknemerViews.Add(werknemerView);
+                        IReadOnlyList<Werknemer> werknemers = _werknemerManger.GeefAlleWerknemers();
+                        foreach (Werknemer werknemer in werknemers)
+                        {
+                            WerknemerView werknemerView = new WerknemerView(werknemer);
+                            werknemerView.PropertyChanged += UpdateWerknemer;
+                            _werknemerViews.Add(werknemerView);
+                        }
+
+                    }
+                    voegToeBtns.Visibility = Visibility.Visible;
+                    voegToeBtns.Content = "Voeg werknemer toe";
+
+                    Components.CheckBox check = (Components.CheckBox)sender;
+                    VinkAllesUitBehalve(check);
+
+                    //TODO: wrm ook bedrijvenView?
+                    if (_bedrijfViews.Count == 0)
+                    {
+                        IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+                        foreach (Bedrijf bedrijf in bedrijven)
+                        {
+                            BedrijfView bedrijfView = new BedrijfView(bedrijf);
+                            bedrijfView.PropertyChanged += UpdateBedrijf;
+                            _bedrijfViews.Add(bedrijfView);
+                        }
                     }
 
+
+                    dataGrid.StelDataIn<WerknemerView>(_werknemerViews, false, _bedrijfViews);
                 }
-                voegToeBtns.Visibility = Visibility.Visible;
-                voegToeBtns.Content = "Voeg werknemer toe";
-
-                Components.CheckBox check = (Components.CheckBox)sender;
-                VinkAllesUitBehalve(check);
-
-                if (_bedrijfViews.Count == 0)
-                {
-                    IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
-                    foreach (Bedrijf bedrijf in bedrijven)
-                    {
-                        BedrijfView bedrijfView = new BedrijfView(bedrijf);
-                        bedrijfView.PropertyChanged += UpdateBedrijf;
-                        _bedrijfViews.Add(bedrijfView);
-                    }
-                }
-
-                dataGrid.StelDataIn<WerknemerView>(_werknemerViews, false, _bedrijfViews);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void CheckBoxe_Bezoeker_Toggle(object sender, bool actief)
         {
-
-            if (actief)
+            try
             {
-                //werknemerDataGrid.Visibility = Visibility.Hidden;
-                //dataGrid.Visibility = Visibility.Visible;
-
-                if (_bezoekerViews.Count == 0)
+                if (actief)
                 {
-                    IReadOnlyList<Bezoeker> bezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
-                    foreach (Bezoeker bezoeker in bezoekers)
+                    //werknemerDataGrid.Visibility = Visibility.Hidden;
+                    //dataGrid.Visibility = Visibility.Visible;
+
+                    if (_bezoekerViews.Count == 0)
                     {
-                        BezoekerView bezoekerView = new BezoekerView(bezoeker);
-                        bezoekerView.PropertyChanged += UpdateBezoeker;
-                        _bezoekerViews.Add(bezoekerView);
+                        IReadOnlyList<Bezoeker> bezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
+                        foreach (Bezoeker bezoeker in bezoekers)
+                        {
+                            BezoekerView bezoekerView = new BezoekerView(bezoeker);
+                            bezoekerView.PropertyChanged += UpdateBezoeker;
+                            _bezoekerViews.Add(bezoekerView);
+                        }
                     }
+                    voegToeBtns.Visibility = Visibility.Hidden;
+                    // voegToeBtns.Content = "Voeg bezoeker toe"; // gaat normaal niet nodig zijn
+
+                    Components.CheckBox check = (Components.CheckBox)sender;
+                    VinkAllesUitBehalve(check);
+
+                    dataGrid.StelDataIn<BezoekerView>(_bezoekerViews);
+
                 }
-                voegToeBtns.Visibility = Visibility.Hidden;
-               // voegToeBtns.Content = "Voeg bezoeker toe"; // gaat normaal niet nodig zijn
-
-                Components.CheckBox check = (Components.CheckBox)sender;
-                VinkAllesUitBehalve(check);
-
-                dataGrid.StelDataIn<BezoekerView>(_bezoekerViews);
-
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }
         private void CheckBoxe_Afspraak_Toggle(object sender, bool actief)
         {
-
-            if (actief)
+            try
             {
-                //werknemerDataGrid.Visibility = Visibility.Hidden;
-                //dataGrid.Visibility = Visibility.Visible;
 
-                if (_afspraakViews.Count == 0)
+                if (actief)
                 {
-                    IReadOnlyList<Afspraak> afspraken = _afspraakManager.GeefAlleAfspraken();
-                    foreach (Afspraak afspraak in afspraken)
+                    if (_afspraakViews.Count == 0)
                     {
-                        AfspraakView afspraakView = new AfspraakView(afspraak);
-                        afspraakView.PropertyChanged += UpdateAfspraak;
-                        _afspraakViews.Add(afspraakView);
+                        IReadOnlyList<Afspraak> afspraken = _afspraakManager.GeefAlleAfspraken();
+                        foreach (Afspraak afspraak in afspraken)
+                        {
+                            AfspraakView afspraakView = new AfspraakView(afspraak);
+                            afspraakView.PropertyChanged += UpdateAfspraak;
+                            _afspraakViews.Add(afspraakView);
+                        }
                     }
+                    voegToeBtns.Visibility = Visibility.Hidden;
+
+                    Components.CheckBox check = (Components.CheckBox)sender;
+                    VinkAllesUitBehalve(check);
+
+                    dataGrid.StelDataIn<AfspraakView>(_afspraakViews, true);
+
                 }
-                voegToeBtns.Visibility = Visibility.Hidden;
-
-                Components.CheckBox check = (Components.CheckBox)sender;
-                VinkAllesUitBehalve(check);
-
-                dataGrid.StelDataIn<AfspraakView>(_afspraakViews, true);
-
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
-
         }
         private void CheckBoxe_Bedrijven_Toggle(object sender, bool actief)
         {
-
-            if (actief)
+            try
             {
-                
-                if (_bedrijfViews.Count == 0)
+                if (actief)
                 {
-                    IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
-                    foreach (Bedrijf bedrijf in bedrijven)
+
+                    if (_bedrijfViews.Count == 0)
                     {
-                        BedrijfView bedrijfView = new BedrijfView(bedrijf);
-                        bedrijfView.PropertyChanged += UpdateBedrijf;
-                        _bedrijfViews.Add(bedrijfView);
+                        IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+                        foreach (Bedrijf bedrijf in bedrijven)
+                        {
+                            BedrijfView bedrijfView = new BedrijfView(bedrijf);
+                            bedrijfView.PropertyChanged += UpdateBedrijf;
+                            _bedrijfViews.Add(bedrijfView);
+                        }
                     }
+                    voegToeBtns.Visibility = Visibility.Visible;
+                    voegToeBtns.Content = "Voeg bedrijf toe";
+
+                    Components.CheckBox check = (Components.CheckBox)sender;
+                    VinkAllesUitBehalve(check);
+
+                    dataGrid.StelDataIn<BedrijfView>(_bedrijfViews);
+
                 }
-                voegToeBtns.Visibility = Visibility.Visible;
-                voegToeBtns.Content = "Voeg bedrijf toe";
-
-                Components.CheckBox check = (Components.CheckBox)sender;
-                VinkAllesUitBehalve(check);
-
-                dataGrid.StelDataIn<BedrijfView>(_bedrijfViews);
-
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -311,23 +370,52 @@ namespace BeheerderApp.Paginas
         // Updates - Mogen we dit niet rechtstreeks naar de managers leggen ?
         private void UpdateWerknemer(object? sender, PropertyChangedEventArgs e)
         {
-            WerknemerView werknemerView = (WerknemerView)sender;
-            _werknemerManger.UpdateWerknemer(werknemerView.Werknemer);
+            try
+            {
+                WerknemerView werknemerView = (WerknemerView)sender;
+                _werknemerManger.UpdateWerknemer(werknemerView.Werknemer);
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void UpdateBezoeker(object? sender, PropertyChangedEventArgs e)
         {
-            BezoekerView bezoekerView = (BezoekerView)sender;
-            _bezoekerManger.UpdateBezoeker(bezoekerView.Bezoeker);
+            try
+            {
+                BezoekerView bezoekerView = (BezoekerView)sender;
+                _bezoekerManger.UpdateBezoeker(bezoekerView.Bezoeker);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
+        //TODO: Afspraak kunnen updaten
         private void UpdateAfspraak(object? sender, PropertyChangedEventArgs e)
         {
-            //TODO: Vraag - Zou het wel mogelijk moeten zijn om dit aantepassen ??
-            throw new NotImplementedException();
+            //TODO: juist gedaan ??
+            try
+            {
+                AfspraakView afspraakView = (AfspraakView)sender;
+                _afspraakManager.UpdateAfspraak(afspraakView.Afspraak);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void UpdateBedrijf(object? sender, PropertyChangedEventArgs e)
         {
-            BedrijfView bedrijfView = (BedrijfView)sender;
-            _bedrijfManager.UpdateBedrijf(bedrijfView.Bedrijf);
+            try
+            {
+                BedrijfView bedrijfView = (BedrijfView)sender;
+                _bedrijfManager.UpdateBedrijf(bedrijfView.Bedrijf);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         // -------------------------------------------------
@@ -355,28 +443,35 @@ namespace BeheerderApp.Paginas
         {
             NavigationService.GoBack();
         }
-        private void herlaadBtn_Click(object sender, RoutedEventArgs e)
-        {
 
-            _bezoekerViews = new List<BezoekerView>();
-            _bedrijfViews = new List<BedrijfView>();
-            _afspraakViews = new List<AfspraakView>();
-            _werknemerViews = new List<WerknemerView>();
-            dataGrid.StelDataIn<object>(null);
-        }
+        //TODO: wordt niet gebruikt
+        //private void herlaadBtn_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //    _bezoekerViews = new List<BezoekerView>();
+        //    _bedrijfViews = new List<BedrijfView>();
+        //    _afspraakViews = new List<AfspraakView>();
+        //    _werknemerViews = new List<WerknemerView>();
+        //    dataGrid.StelDataIn<object>(null);
+        //}
         private void voegToeBtns_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (werknemerCheckBox.IsActief)
+            try
             {
-                List<ILijstItems> bedrijfItems = _bedrijfViews.Select(x => (ILijstItems)x).ToList();
-                VoegWerknemerToeWindow v = new VoegWerknemerToeWindow(_domeinController, bedrijfItems);
-                v.Show();
-            }
-            else if (bedrijfCheckBox.IsActief)
+                if (werknemerCheckBox.IsActief)
+                {
+                    List<ILijstItems> bedrijfItems = _bedrijfViews.Select(x => (ILijstItems)x).ToList();
+                    VoegWerknemerToeWindow v = new VoegWerknemerToeWindow(_domeinController, bedrijfItems);
+                    v.Show();
+                }
+                else if (bedrijfCheckBox.IsActief)
+                {
+                    VoegBedrijfToe bedrijfWindow = new VoegBedrijfToe(_domeinController);
+                    bedrijfWindow.Show();
+                }
+            }catch(Exception ex)
             {
-                VoegBedrijfToe bedrijfWindow = new VoegBedrijfToe(_domeinController);
-                bedrijfWindow.Show();
+                MessageBox.Show(ex.Message);
             }
         }
     }

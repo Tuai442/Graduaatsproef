@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Controller;
-using Controller.Interfaces.Models;
 using Persistence.Exceptions;
 using System.Globalization;
 using System.Data.SqlTypes;
@@ -19,8 +18,12 @@ namespace Persistence.Datalaag
 {
     public class AfspraakRepository : BaseRepository, IAfspraakRepository
     {
+        BezoekerRepository bezoekerRepo;
+        WerknemerRepository werknemerRepo;
         public AfspraakRepository()
         {
+            bezoekerRepo = new BezoekerRepository();
+            werknemerRepo = new WerknemerRepository();
         }
         private SqlConnection GetConnection()
         {
@@ -33,8 +36,8 @@ namespace Persistence.Datalaag
             string bezoekerQuery = "UPDATE Bezoeker SET aanwezig=@aanwezig " +
                 "where bezoekerId=@id; ";
 
-            string afspraakQuery = "INSERT INTO dbo.Afspraak (startTijd,eindTijd,werknemerId,bezoekerId) " +
-                "VALUES(@startTijd,@eindTijd,@werknemerId,@bezoekerId)";
+            string afspraakQuery = "INSERT INTO dbo.Afspraak (startTijd,eindTijd,werknemerId,bezoekerId, actief) " +
+                "VALUES(@startTijd,@eindTijd,@werknemerId,@bezoekerId, 1)";
 
             //SqlConnection conn = GetConnection();
             SqlTransaction trans = null;
@@ -80,7 +83,7 @@ namespace Persistence.Datalaag
                 catch (Exception e)
                 {
                     trans.Rollback();
-                    AfspraakException ae = new AfspraakException("Afspraak toevoegen is niet gelukt", e);
+                    AfspraakRepoException ae = new AfspraakRepoException("Afspraak toevoegen is niet gelukt", e);
                     ae.Data.Add("Afspraak:", afspraak);
                     throw ae;
                 }
@@ -91,6 +94,7 @@ namespace Persistence.Datalaag
             }
 
         }
+        //TODO: uitwerken met actief = 0, niet verwijderen
         public void VerwijderBezoeker(Bezoeker bezoeker)
         {
             string query = "DELETE FROM dbo.Bezoeker WHERE id=@id";
@@ -106,7 +110,7 @@ namespace Persistence.Datalaag
                 }
                 catch (Exception e)
                 {
-                    BezoekerException be = new BezoekerException("Bezoeker verwijderen is niet gelukt", e);
+                    BezoekerRepoException be = new BezoekerRepoException("Bezoeker verwijderen is niet gelukt", e);
                     be.Data.Add("Bezoeker:", bezoeker);
                     throw be;
                 }
@@ -116,36 +120,9 @@ namespace Persistence.Datalaag
                 }
             }
         }
-        public Afspraak GeefAfspraakOpDatum(DateTime datum)
-        {
-            string query = "SELECT * from dbo.Afspraak where datum=@datum";
-            SqlConnection conn = GetConnection();
-            using (SqlCommand command = new SqlCommand(query, conn))
-            {
-                try
-                {
-                    conn.Open();
-                    command.Parameters.AddWithValue("@datum", datum);
-                    IDataReader dataReader = command.ExecuteReader();
-                    dataReader.Read();
-                    Afspraak afspraak = new Afspraak((int)dataReader["afspraakId"], (Bezoeker)dataReader["bezoekerId"], (Werknemer)dataReader["werknemerId"], (DateTime)dataReader["startTijd"], (DateTime)dataReader["eindTijd"]);
-                    dataReader.Close();
-                    Console.WriteLine(afspraak);
-                    return afspraak;
-                }
-                catch (Exception e)
-                {
-                    throw new BedrijfException("Geef afspraak is niet gelukt", e);
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-        }
         public List<Afspraak> GeefAlleAfspraken()
         {
-            string query = "SELECT startTijd, eindTijd, bezoekerId, werknemerId from dbo.Afspraak;";
+            string query = "SELECT startTijd, eindTijd, bezoekerId, werknemerId from dbo.Afspraak where actief = 1;";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -154,6 +131,7 @@ namespace Persistence.Datalaag
                     List<Afspraak> afspraken = new List<Afspraak>();
                     conn.Open();
                     IDataReader dataReader = command.ExecuteReader();
+
                     while (dataReader.Read())
                     {
                         int bezoekerId = (int)dataReader["bezoekerId"];
@@ -167,15 +145,12 @@ namespace Persistence.Datalaag
                         afspraken.Add(afspraak);
                     }
                     dataReader.Close();
-                    foreach (Afspraak afspraak in afspraken)
-                    {
-                        Console.WriteLine(afspraak);
-                    }
+
                     return afspraken;
                 }
                 catch (Exception ex)
                 {
-                    throw new AfspraakException("Geef afspraken is niet gelukt.", ex);
+                    throw new AfspraakRepoException("Afspraken geven is niet gelukt.", ex);
                 }
                 finally
                 {
@@ -183,11 +158,13 @@ namespace Persistence.Datalaag
                 }
             }
         }
+        //TODO: moet update niet nieuw element aanmaken
         public void UpdateAfspraak(Afspraak afspraak)
         {
             string bezoekerQuery = "UPDATE Bezoeker SET aanwezig=@aanwezig " +
                 "where bezoekerId=@id; ";
             string afspraakQuery = "update dbo.Afspraak set eindtijd=@eindtijd where afspraakId=@afspraakId";
+
             SqlTransaction trans = null;
             using (SqlConnection conn = GetConnection())
             {
@@ -219,7 +196,7 @@ namespace Persistence.Datalaag
                 catch (Exception e)
                 {
                     trans.Rollback();
-                    AfspraakException ae = new AfspraakException("Update is niet gelukt", e);
+                    AfspraakRepoException ae = new AfspraakRepoException("Update is niet gelukt", e);
                     ae.Data.Add("Afspraak", afspraak);
                     throw ae;
                 }
@@ -238,30 +215,51 @@ namespace Persistence.Datalaag
                 try
                 {
                     conn.Open();
-                    string query = $"SELECT * FROM Afspraak WHERE " +
-                        $"( starttijd like '{zoekText}%' or " +
-                        $"eindtijd like '{zoekText}%' or ";
+                    string query =
+                        $"select f.*, bed.naam, " +
+                        $"b.voornaam as 'bezVN', b.achternaam as 'bezAN',b.email, " +
+                        $"w.voornaam as 'wnVN', w.achternaam as 'wnAN' " +
+
+                        $"from Afspraak f " +
+                        $"inner join Werknemer w on f.werknemerId = w.werknemerId " +
+                        $"inner join Bezoeker b on f.bezoekerId = b.bezoekerId " +
+                        $"inner join Bedrijf bed on w.bedrijfId = bed.bedrijfId " +
+
+                        $"where actief = 1 and" +
+
+                        $"f.startTijd like '{zoekText}%' or " +
+                        $"f.eindTijd like '{zoekText}%' or " +
+                        $"bed.naam like '{zoekText}%' or " +
+                        $"b.voornaam like '{zoekText}%' or " +
+                        $"b.achternaam like '{zoekText}%' or " +
+                        $"w.voornaam like '{zoekText}%' or " +
+                        $"w.achternaam like '{zoekText}%'"; 
+
                     SqlCommand cmd = new SqlCommand(query, conn);
                     SqlDataReader dataReader = cmd.ExecuteReader();
                     if (dataReader.HasRows)
                     {
                         while (dataReader.Read())
                         {
-                            int afspraakId = (int)dataReader["bedrijfId"];
+                            int afspraakId = (int)dataReader["afspraakId"];
                             DateTime startTijd = (DateTime)dataReader["startTijd"];
                             DateTime eindTijd = (DateTime)dataReader["eindTijd"];
+                            string bezoekerEmail = (string)dataReader["email"];
                             int werknemerId = (int)dataReader["werknemerId"];
-                            int bezoekerId = (int)dataReader["bezoekerId"];
-                      
 
-                            Afspraak afspraak = new Afspraak(afspraakId,bezoekerId,werknemerId,startTijd,eindTijd);
-                            afspraken.Add(afspraak);
+                            if (afspraakId != null)
+                            {
+                                Bezoeker bezoeker = bezoekerRepo.GeefBezoekerOpEmail(bezoekerEmail);
+                                Werknemer werknemer = werknemerRepo.GeefWerknemerOpId(werknemerId);
+                                Afspraak afspraak = new Afspraak(afspraakId,bezoeker, werknemer, startTijd, eindTijd);
+                                afspraken.Add(afspraak);
+                            }
                         }
                     }
                 }
                 catch (Exception e)
                 {
-                    throw new AfspraakException(e.Message);
+                    throw new AfspraakRepoException("Kan afspraak niet opzoeken", e);
                 }
                 finally
                 {
@@ -272,7 +270,7 @@ namespace Persistence.Datalaag
         }
         public Afspraak GeefAfspraakOpBezoekerId(int id)
         {
-            string query = "SELECT * from dbo.Afspraak where bezoekerId=@id";
+            string query = "SELECT * from dbo.Afspraak where actief = 1 and bezoekerId=@id";
             SqlConnection conn = GetConnection();
             Afspraak afspraak = null;
 
@@ -301,7 +299,7 @@ namespace Persistence.Datalaag
                 }
                 catch (Exception e)
                 {
-                    throw new AfspraakException("Geef afspraak is niet gelukt", e);
+                    throw new AfspraakRepoException("Geef afspraak is niet gelukt", e);
                 }
                 finally
                 {
@@ -387,7 +385,7 @@ namespace Persistence.Datalaag
                 }
                 catch (Exception e)
                 {
-                    throw new BedrijfException("Geef afspraak is niet gelukt", e);
+                    throw new BedrijfRepoException("Geef afspraak is niet gelukt", e);
                 }
                 finally
                 {
@@ -395,10 +393,9 @@ namespace Persistence.Datalaag
                 }
             }
         }
-
         public List<Afspraak> GeefOpenstaandeAfspraak()
         {
-            string query = "SELECT * from dbo.Afspraak where eindTijd is null;";
+            string query = "SELECT * from dbo.Afspraak where actief = 1 and eindTijd is null;";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
@@ -428,7 +425,7 @@ namespace Persistence.Datalaag
                 }
                 catch (Exception ex)
                 {
-                    throw new AfspraakException("Geef afspraken is niet gelukt.", ex);
+                    throw new AfspraakRepoException("Geef afspraken is niet gelukt.", ex);
                 }
                 finally
                 {

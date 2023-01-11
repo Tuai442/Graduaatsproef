@@ -1,6 +1,6 @@
 ﻿namespace Components.Interfaces
 {
-    internal interface IDataGridRij
+    public interface IDataGridRij
     {
 
         public int GeefDataGridIndex { get; set; }

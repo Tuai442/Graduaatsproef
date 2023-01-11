@@ -1,6 +1,6 @@
 ﻿using Controller.Exceptions;
+using Controller.Exceptions.Manager;
 using Controller.Interfaces;
-using Controller.Interfaces.Models;
 using Controller.Models;
 using System;
 using System.Collections.Generic;
@@ -19,38 +19,52 @@ namespace Controller.Managers
             _bedrijfRepository = bedrijfRepository;
         }
 
-        public void VoegNieuwBedrijfToe(string naam, string btw, string adress, string telefoon, string email)
+        public void VoegNieuwBedrijfToe(string naam, string btw, string adres, string telefoon, string email)
         {
-            //try
-            //{
+            try
+            {
+                Controleer.SetStringParameters(naam);
+                Controleer.SetStringParameters(adres);
                 Controleer.BtwNummerControle(btw);
                 Controleer.ControleTelefoon(telefoon);
                 Controleer.ControleEmail(email);
-            //}
-            //catch(Exception ex)
-            //{
-            //    throw new BedrijfException("Kan bedrijf niet toevoegen. Ingevulde gegevens waren nie", ex);
-            //}
 
-            Bedrijf bedrijf = new Bedrijf(naam, btw, adress, telefoon, email);
-            _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
-        }
-
-        public IReadOnlyList<Bedrijf> GeefAlleBedrijvenInLijstItems()
-        {
-            return _bedrijfRepository.GeefAlleBedrijven().AsReadOnly();   
+                Bedrijf bedrijf = new Bedrijf(naam, btw, adres, telefoon, email);
+                _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
+            }
+            catch (Exception ex)
+            {
+                throw new BedrijfManagerException("Kan bedrijf niet toevoegen.", ex);
+            }
         }
 
         public IReadOnlyList<Bedrijf> GeefAlleBedrijven()
         {
-            return _bedrijfRepository.GeefAlleBedrijven().AsReadOnly();
+            try
+            {
+                return _bedrijfRepository.GeefAlleBedrijven().AsReadOnly();
+            }
+            catch (Exception ex)
+            {
+                throw new BedrijfManagerException("Kan bedrijven niet ophalen", ex);
+            }
+
         }
 
         public IReadOnlyList<Bedrijf> ZoekOp(string zoekText)
         {
-            if (string.IsNullOrWhiteSpace(zoekText)) throw new BedrijfException("BM - ZoekOp");
-            return _bedrijfRepository.ZoekBedrijfOp(zoekText).AsReadOnly();
-            
+            try
+            {
+                if (string.IsNullOrWhiteSpace(zoekText)) throw new BedrijfException("BM - ZoekOp");
+                return _bedrijfRepository.ZoekBedrijfOp(zoekText).AsReadOnly();
+            }
+            catch (BedrijfException) { throw; }
+            catch (Exception ex)
+            {
+                throw new BedrijfManagerException("Kan bedrijf niet opzoeken", ex);
+            }
+
+
         }
 
         //TODO: dubbele methode
@@ -65,29 +79,70 @@ namespace Controller.Managers
 
         public IReadOnlyList<Bedrijf> GeefBedrijvenOpEmailWerknemer(string email)
         {
-            Controleer.ControleEmail(email);
-            return _bedrijfRepository.GeefBedrijvenOpWerknemerEmail(email).AsReadOnly();
+            try
+            {
+                Controleer.ControleEmail(email);
+                return _bedrijfRepository.GeefBedrijvenOpWerknemerEmail(email).AsReadOnly();
+            }
+            catch (Exception ex)
+            {
+                throw new BedrijfManagerException("Kan bedrijf op email van werknemer niet vinden", ex);
+            }
+
         }
 
+        //TODO: dubbel opslaan en niet updaten
         public void UpdateBedrijf(Bedrijf bedrijf)
         {
-            if (bedrijf == null) throw new BedrijfException("BM - UpdateBedrijf");
-            _bedrijfRepository.UpdateBedrijf(bedrijf);
+            try
+            {
+                if (bedrijf == null) throw new BedrijfException("BM - UpdateBedrijf");
+                _bedrijfRepository.UpdateBedrijf(bedrijf);
+            }
+            catch (BedrijfException) { throw; }
+            catch (Exception ex)
+            {
+                throw new BedrijfManagerException("Kan bedrijf niet updaten", ex);
+            }
+
         }
 
         public Bedrijf GeefBedrijfOpEmail(string email)
         {
-            return _bedrijfRepository.GeefBedrijfOpEmail(email);
+            try
+            {
+                return _bedrijfRepository.GeefBedrijfOpEmail(email);
+            }
+            catch (Exception ex)
+            {
+                throw new BedrijfManagerException("Kan bedrijf niet op email geven", ex);
+            }
+
         }
 
         public Bedrijf GeefBedrijfViaNaam(string value)
         {
-            return _bedrijfRepository.GeefBedrijfViaNaam(value);
+            try
+            {
+                return _bedrijfRepository.GeefBedrijfViaNaam(value);
+            }
+            catch (Exception ex)
+            {
+                throw new BedrijfManagerException("Kan bedrijf niet via naam geven", ex);
+            }
         }
 
+        //TODO: wordt niet gebruikt
         public void VerwijderBedrijf(int index)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //return _bedrijfRepository.VerwijderBedrijf(index);
+            }
+            catch (Exception ex)
+            {
+                throw new BedrijfManagerException("Kan bedrijf niet verwijderen", ex);
+            }
         }
     }
 }

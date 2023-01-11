@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Xps;
 
 namespace Components
 {
@@ -28,18 +29,17 @@ namespace Components
     /// </summary>
     public partial class ZoekbareComboBox : UserControl
     {
-
+        //TODO: wat doet dit?
         public static readonly DependencyProperty HeightProperty =
             DependencyProperty.Register("Height", typeof(int), typeof(ZoekbareComboBox), new PropertyMetadata(null));
 
 
         public EventHandler<string> GeSelecteerd;
-
         public string SelectedValue { get; private set; }
-
         public string SelectedLabel { get; private set; }
-
         private List<ILijstItems> _alleItems;
+
+        private bool skipTextChanged = false;
 
         public ZoekbareComboBox()
         {
@@ -58,10 +58,10 @@ namespace Components
             }
         }
 
-        private void listItemSelected(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //private void listItemSelected(object sender, RoutedEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         private void FilterLijst(List<ILijstItems> items)
         {
@@ -73,27 +73,30 @@ namespace Components
             }
         }
 
+        //filteren op text in box
         private void comboBox_TextChanged(object sender, TextChangedEventArgs e){
-            if (string.IsNullOrWhiteSpace(comboBox.Text))
+            if (!skipTextChanged)
             {
-                FilterLijst(_alleItems);
+                if (string.IsNullOrWhiteSpace(comboBox.Text))
+                {
+                    FilterLijst(_alleItems);
+                }
+                else
+                {
+                    comboBox.IsDropDownOpen = true;
+                    string text = comboBox.Text;
+                    FilterLijst(FilterOp(text));
+                }
             }
-            else
-            {
-                comboBox.IsDropDownOpen = true;
-                string text = comboBox.Text;
-                FilterLijst(FilterOp(text));
-            }
-
+            skipTextChanged = false;
         }
-
         private List<ILijstItems> FilterOp(string zoekwoord)
         {
             List<ILijstItems> result = new List<ILijstItems>();
             foreach (ILijstItems w in _alleItems)
             {
                 string woord = w.ItemNaam;
-                bool gevonden = true;
+                bool gevonden = false;
                 if (zoekwoord.Length <= woord.Length)
                 {
                     for (int i = 0; i < zoekwoord.Length; i++)
@@ -117,8 +120,10 @@ namespace Components
             return result;
         }
 
+
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if ((e.AddedItems.Count > 0))
             {
                 int SelectedIndex = comboBox.SelectedIndex;
@@ -129,6 +134,7 @@ namespace Components
                     GeSelecteerd.Invoke(this, SelectedValue);
                 }
             }
+            skipTextChanged = true;
         }
     }
 

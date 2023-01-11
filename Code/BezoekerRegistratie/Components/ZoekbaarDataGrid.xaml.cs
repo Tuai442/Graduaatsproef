@@ -2,7 +2,6 @@
 using Components.ViewModels;
 using Components.ViewModels.overige;
 using Controller;
-using Controller.Interfaces.Models;
 using Controller.Models;
 using Newtonsoft.Json;
 using System;
@@ -33,6 +32,8 @@ namespace Components
     /// </summary>
     public partial class ZoekbaarDataGrid : UserControl
     {
+        //TODO: hoe werkt dit?
+        #region
         public int GridHeight
         {
             get { return (int)GetValue(GridHeightProperty); }
@@ -42,6 +43,7 @@ namespace Components
         // Using a DependencyProperty as the backing store for GridHeight.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty GridHeightProperty =
             DependencyProperty.Register("GridHeight", typeof(int), typeof(ZoekbaarDataGrid), new PropertyMetadata(null));
+        #endregion
 
         private IEnumerable _data;
         public ZoekbaarDataGrid()
@@ -49,8 +51,6 @@ namespace Components
             InitializeComponent();
             _data = new List<object>();
             dataGrid.ItemsSource = _data;
-            
-
         }
 
         public EventHandler<object> OpDataVerandering;
@@ -60,6 +60,8 @@ namespace Components
         public EventHandler<int> OpDataVerwijdering;
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+       
 
         public void StelDataIn<T>(IEnumerable viewModel, bool readOnly= false, IEnumerable extraInfo = null)
         {
@@ -72,6 +74,8 @@ namespace Components
            
         }
 
+
+        //TODO: hoe werkt dit?
         private void MaakHoofding<T>(IEnumerable extraInfo = null)
         {
             dataGrid.Columns.Clear();
@@ -104,7 +108,7 @@ namespace Components
             dataGrid.AutoGenerateColumns = false;
         }
 
-
+        //TODO: waar wordt dit gedefigneerd
         // Dit wordt opgeroepen vanaf er een verandering in de zoekbalk gebeurt.
         private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -114,34 +118,48 @@ namespace Components
 
         }
 
+
         private void Verwijder_Click(object sender, RoutedEventArgs e)
         {
-            var menuItem = (MenuItem)sender;
-            var contextMenu = (ContextMenu)menuItem.Parent;
-            var dataGrid = (DataGrid)contextMenu.PlacementTarget;
-
-            if(dataGrid.SelectedItems.Count > 1)
+            try
             {
-                MessageBox.Show("Je kan geen meerdere rij in één keer verwijderen");
-            }
-            else
-            {
-                int rijIndex = dataGrid.SelectedIndex;
+                var menuItem = (MenuItem)sender;
+                var contextMenu = (ContextMenu)menuItem.Parent;
+                var dataGrid = (DataGrid)contextMenu.PlacementTarget;
 
-                var rij = ((DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(rijIndex)).DataContext;
-                IDataGridRij datagridRij = (IDataGridRij)rij;
-
-                string bericht = $"Weet u zeker dat u de volgende rij wilt verwijderen: '{datagridRij.Content}' ?";
-                var dialogResult = MessageBox.Show(bericht, "MyProgram", MessageBoxButton.YesNo);
-                if (dialogResult == MessageBoxResult.Yes)
+                if (dataGrid.SelectedItems.Count > 1)
                 {
-                    OpDataVerwijdering.Invoke(this, datagridRij.GeefDataGridIndex);
+                    MessageBox.Show("Je kan geen meerdere rij in één keer verwijderen");
                 }
-                
+                else
+                {
+                    int rijIndex = dataGrid.SelectedIndex;
+
+                    var rij = ((DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(rijIndex)).DataContext;
+                    IDataGridRij datagridRij = (IDataGridRij)rij;
+
+                    string bericht = $"Weet u zeker dat u de volgende rij wilt verwijderen: '{datagridRij.Content}' ?";
+                    var dialogResult = MessageBox.Show(bericht, "MyProgram", MessageBoxButton.YesNo);
+                    if (dialogResult == MessageBoxResult.Yes)
+                    {
+                        OpDataVerwijdering.Invoke(this, datagridRij.GeefDataGridIndex);
+                    }
+
+                }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Kan data nie verwijder heeft je vieuw model een IDtaGridRij interface geimplementeerd?");
+            }
+           
            
 
 
+        }
+
+        public void Refresh()
+        {
+            dataGrid.Items.Refresh();
         }
     }
 }

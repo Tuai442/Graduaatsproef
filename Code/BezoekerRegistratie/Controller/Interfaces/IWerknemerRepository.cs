@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace Controller.Interfaces
 {
-    public interface IWerknemerRepository: IPersoonRepository
+    public interface IWerknemerRepository
     {
-        Werknemer GeefWerknemerOpNaam(string contactPersoon);
         Werknemer GeefWerknemerOpId(int id);
         List<Werknemer> GeefAlleWerknemers();
         List<Werknemer> ZoekOpWerknemers(string zoekText);
         Werknemer GeefWerknemerOpEmail(string email);
         List<Werknemer> GeefWerknemersOpEmailBedrijf(string value);
-        void UpdateWerknemer(Werknemer werknemer);
+        void ZetNonActief(int id);
         void VoegWerknemerToe(Werknemer werknemer);
+        bool HeeftWerknemer(int id);
+        void UpdateWerknemer(Werknemer werknemer);
     }
 }

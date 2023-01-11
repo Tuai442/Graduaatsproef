@@ -1,5 +1,4 @@
 ﻿using Controller.Interfaces;
-using Controller.Interfaces.Models;
 using Controller.Models;
 using System.ComponentModel;
 using System.Security.Cryptography;
@@ -47,20 +46,6 @@ namespace Controller
             Id = id;
             Bezoeker = bezoeker;
             Werknemer = werknemer;
-            StartTijd = startTijd;
-            EindTijd = eindTijd;
-            IsAanwezig = false;
-            if (eindTijd is null)
-            {
-                IsAanwezig = true;
-            }
-
-        }
-        public Afspraak(int id, int bezoekerId, int werknemerId, DateTime startTijd, DateTime? eindTijd)
-        {
-            Id = id;
-            Bezoeker.Id = bezoekerId;
-            Werknemer.Id = werknemerId;
             StartTijd = startTijd;
             EindTijd = eindTijd;
             IsAanwezig = false;

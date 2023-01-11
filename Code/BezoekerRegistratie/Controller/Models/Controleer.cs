@@ -17,103 +17,158 @@ namespace Controller.Models
     {
         public static void ControleIsBezoekerAlAanwezig(Bezoeker bezoeker)
         {
-            if (!bezoeker.Aanwezig) throw new ControleerException("ControleBezoekerAlAanwezig");
+            try
+            {
+                if (!bezoeker.Aanwezig) throw new ControleerException("ControleBezoekerAlAanwezig");
+            }
+            catch(Exception ex)
+            {
+                throw new ControleerException("ControleIsBezoekerAlAanwezig:" + ex.Message);
+            }
         }
 
         public static string BtwNummerControle(string btw)
         {
-            if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
-            string btwControle = btw.Replace(" ", "").Replace(".", "").ToUpper();
 
-            // uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
-            CountryValidator validator = new CountryValidator();
-            var Landen = Enum.GetValues(typeof(Country)).Cast<Country>();
-            var EUlanden = Enum.GetValues(typeof(Europa)).Cast<Europa>();
-            string BTWletters = btwControle.Substring(0, 2);
-
-            foreach (var land in Landen)
+            try
             {
-                foreach (var EUland in EUlanden)
-                {
-                    string landWoord = land.ToString();
-                    string euLandWoord = EUland.ToString();
+                if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
+                string btwControle = btw.Replace(" ", "").Replace(".", "").ToUpper();
 
-                    if (landWoord == euLandWoord && landWoord == BTWletters)
+                // uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
+                CountryValidator validator = new CountryValidator();
+                var Landen = Enum.GetValues(typeof(Country)).Cast<Country>();
+                var EUlanden = Enum.GetValues(typeof(Europa)).Cast<Europa>();
+                string BTWletters = btwControle.Substring(0, 2);
+
+                foreach (var land in Landen)
+                {
+                    foreach (var EUland in EUlanden)
                     {
-                        Country country = (Country)land;
-                        ValidationResult validationResult = validator.ValidateVAT(btwControle, country);
-                        if (validationResult.IsValid)
+                        string landWoord = land.ToString();
+                        string euLandWoord = EUland.ToString();
+
+                        if (landWoord == euLandWoord && landWoord == BTWletters)
                         {
-                            return btwControle;
+                            Country country = (Country)land;
+                            ValidationResult validationResult = validator.ValidateVAT(btwControle, country);
+                            if (validationResult.IsValid)
+                            {
+                                return btwControle;
+                            }
                         }
                     }
                 }
+                throw new ControleerException("BTW nummer niet correct");
+                return btw;
+            }catch(Exception ex)
+            {
+                throw new ControleerException("BtwControle:" + ex.Message);
             }
-            throw new ControleerException("BTW nummer niet correct");
-            //return btw;
         }
         public static string ControleEmail(string email)
         {
-            if (string.IsNullOrWhiteSpace(email)) throw new ControleerException("ControleEmail");
-            string regexString = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-            Regex regex = new Regex(regexString);
-            if (!regex.IsMatch(email)) throw new ControleerException("ControleEmail - geen geldige regex");
-            
-            return email;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(email)) throw new ControleerException("ControleEmail");
+                string regexString = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                Regex regex = new Regex(regexString);
+                if (!regex.IsMatch(email)) throw new ControleerException("ControleEmail - geen geldige regex");
+
+                return email;
+            }catch(Exception ex)
+            {
+                throw new ControleerException("ControleEmail:"+ ex.Message);
+            }
         }
         public static string ControleTelefoon(string telefoon)
         {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(telefoon)) throw new ControleerException("ControleTelefoon - IsNullOrWhiteSpace");
+                telefoon = telefoon.Replace(" ", "");// zelfde als trim()?
 
-            if (string.IsNullOrWhiteSpace(telefoon)) throw new ControleerException("ControleTelefoon - IsNullOrWhiteSpace");
-            telefoon = telefoon.Replace(" ", "");// zelfde als trim()?
+                string regexString = @"^(((\+32|0|0032)4){1}[1-9]{1}[0-9]{7})$";
+                Regex regex = new Regex(regexString);
 
-            string regexString = @"^(((\+32|0|0032)4){1}[1-9]{1}[0-9]{7})$";
-            Regex regex = new Regex(regexString);
+                //TODO: dummy data aanpassen
+                //voor dummy data
+                string regexString2 = @"^(([0-9]{3}-){2}[0-9]{4})$";
+                Regex regex2 = new Regex(regexString2);
 
-            //voor dummy data
-            string regexString2 = @"^(([0-9]{3}-){2}[0-9]{4})$";
-            Regex regex2 = new Regex(regexString2);
-
-            if (!regex.IsMatch(telefoon) && !regex2.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
-            return telefoon;
+                if (!regex.IsMatch(telefoon) && !regex2.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
+                return telefoon;
+            }catch(Exception ex)
+            {
+                throw new ControleerException("ConttroleTelefoon:"+ ex.Message);
+            }
         }
 
         public static void ControleIsAfspraakAlAfgesloten(Afspraak afspraak)
         {
-            // Een bezoeker kan niet uitloggen als hij nooit was ingelogd.
-            if (afspraak is null) throw new ControleerException("We konden je niet vinden in het systeem, was je ingelogd?");
-            if (afspraak.EindTijd != null) throw new ControleerException("Je kan niet uitloggen als je was nooit ingelogd.");
-
+            try
+            {
+                // Een bezoeker kan niet uitloggen als hij nooit was ingelogd.
+                if (afspraak is null) throw new ControleerException("We konden je niet vinden in het systeem, was je ingelogd?");
+                if (afspraak.EindTijd != null) throw new ControleerException("Je kan niet uitloggen als je was nooit ingelogd.");
+            }catch(Exception ex)
+            {
+                throw new ControleerException("ControleAfspraak:"+ ex.Message);
+            }
         }
 
         public static void LegeVelden(string vnBezoeker, string anBezoeker, string email,
             string bedrijfBezoeker, string emailContactPersoon)
         {
-            if (string.IsNullOrWhiteSpace(vnBezoeker)) throw new ControleerException("Leeg veld - Voornaam");
-            if (string.IsNullOrWhiteSpace(anBezoeker)) throw new ControleerException("Leeg veld - Achternaam");
-            ControleEmail(email);
-            if (string.IsNullOrWhiteSpace(bedrijfBezoeker)) throw new ControleerException("Leeg veld - Bedrijfbezoeker");
-            //TODO: is controle nodig?
-            ControleEmail(emailContactPersoon);
+            try
+            {
+                if (string.IsNullOrWhiteSpace(vnBezoeker)) throw new ControleerException("Leeg veld - Voornaam");
+                if (string.IsNullOrWhiteSpace(anBezoeker)) throw new ControleerException("Leeg veld - Achternaam");
+                ControleEmail(email);
+                if (string.IsNullOrWhiteSpace(bedrijfBezoeker)) throw new ControleerException("Leeg veld - Bedrijfbezoeker");
+                //TODO: is controle nodig?
+                ControleEmail(emailContactPersoon);
+            }catch(Exception ex)
+            {
+                throw new ControleerException("Legevelden:"+ ex.Message);
+            }
         }
 
         public static void BezoekerIsAlAangemeld(Bezoeker bezoekerMetId)
         {
-            if (bezoekerMetId.Aanwezig) throw new ControleerException("Je bent al aanwezig");
+            try
+            {
+                if (bezoekerMetId.Aanwezig) throw new ControleerException("Je bent al aanwezig");
+            }catch(Exception ex)
+            {
+                throw new ControleerException("BezoekerIsAlAangemeld:"+ ex.Message);
+            }
         }
         public static string SetStringParameters(string p)
         {
-            if (string.IsNullOrWhiteSpace(p)) throw new ControleerException("SetStringParamerters -  Ingave niet correct - null or whitespace");
-            return p;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(p)) throw new ControleerException("SetStringParamerters -  Ingave niet correct - null or whitespace");
+                return p;
+            }catch(Exception ex)
+            {
+                throw new ControleerException("SetStringParameters:"+ ex.Message);
+            }
         }
 
         public static string ControleNummerplaat(string nummerplaat)
         {
-            if (string.IsNullOrWhiteSpace(nummerplaat)) throw new ControleerException("Controle nummerplaat - geen geldige ingave");
-            string regexString = @"^((1|2)-)?(([A-Z]){3}-([0-9]){3}?)$";
-            Regex regex = new Regex(regexString);
-            if (!regex.IsMatch(nummerplaat)) throw new ControleerException("Controle nummerplaat - geen geldige regex");
-            return nummerplaat;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(nummerplaat)) throw new ControleerException("Controle nummerplaat - geen geldige ingave");
+                string regexString = @"^((1|2)-)?(([A-Z]){3}-([0-9]){3}?)$";
+                Regex regex = new Regex(regexString);
+                if (!regex.IsMatch(nummerplaat)) throw new ControleerException("Controle nummerplaat - geen geldige regex");
+                return nummerplaat;
+            }catch(Exception ex)
+            {
+                throw new ControleerException("ControleNummerplaat:"+ ex.Message);
+            }
         }
     }
 }

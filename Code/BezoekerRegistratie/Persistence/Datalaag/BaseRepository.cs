@@ -19,7 +19,7 @@ namespace Persistence.Datalaag
         protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
         //link Diego
         //protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
-        //protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
+        //protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
 
         public BaseRepository()
         {
@@ -33,6 +33,7 @@ namespace Persistence.Datalaag
 
         
         // Deze methode's worden alleen gebruikt voor data in te laden
+        //TODO: BedrijfRepo
         protected Bedrijf GeefBedrijfOpId(int id)
         {
             SqlConnection conn = GetConnection();
@@ -64,7 +65,7 @@ namespace Persistence.Datalaag
             }
             catch (Exception e)
             {
-                throw new BedrijfException(e.Message);
+                throw new BedrijfRepoException(e.Message);
             }
             finally
             {
@@ -72,7 +73,7 @@ namespace Persistence.Datalaag
             }
             return bedrijf;
         }
-        
+        //TODO: weknemerRepo
         protected Werknemer GeefWerknemerOpId(int id) 
         {
             SqlConnection conn = GetConnection();
@@ -106,7 +107,7 @@ namespace Persistence.Datalaag
             }
             catch (Exception e)
             {
-                throw new BedrijfException(e.Message);
+                throw new BedrijfRepoException(e.Message);
             }
             finally
             {
@@ -115,39 +116,7 @@ namespace Persistence.Datalaag
             return werknemer;
         }
 
-        protected int GeefIdVanWerknemer(string email)
-        {
-            SqlConnection conn = GetConnection();
-            int id = -1;
-            try
-            {
-                conn.Open();
-
-                string query = $"SELECT * FROM Werknemer WHERE email = '{email}';";
-
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader dataReader = cmd.ExecuteReader();
-                if (dataReader.HasRows)
-                {
-                    while (dataReader.Read())
-                    {
-                        id = (int)dataReader["WerknemerId"];
-                    }
-
-
-                }
-            }
-            catch (Exception e)
-            {
-                throw new WerknemerException(e.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return id;
-        }
-
+        //TODO: zet in bezoekerRepo
         protected Bezoeker GeefBezoekerOpId(int id)
         {
             SqlConnection conn = GetConnection();
@@ -157,7 +126,7 @@ namespace Persistence.Datalaag
 
                 conn.Open();
 
-                string query = $"SELECT * FROM Bezoeker WHERE bezoekerId = {id};";
+                string query = $"SELECT * FROM Bezoeker WHERE bezoekerId = {id} and actief = 1;";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
@@ -180,7 +149,7 @@ namespace Persistence.Datalaag
             }
             catch (Exception e)
             {
-                throw new BedrijfException(e.Message);
+                throw new BedrijfRepoException(e.Message);
             }
             finally
             {

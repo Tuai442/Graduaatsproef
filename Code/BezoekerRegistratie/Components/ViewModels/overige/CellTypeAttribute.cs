@@ -14,7 +14,7 @@ namespace Components.ViewModels
             CellType = cellType;            
         }
     }
-
+    //TODO: hoe werkt dit?
     public static class CellManager
     {
         public static Dictionary<string, CellType> GeefCellType<T>()
