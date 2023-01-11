@@ -16,10 +16,10 @@ namespace Components.ViewModels
         public int Id { get; set; }
 
         [Hoofding("Start Tijd")]
-        public DateTime StartTijd { get; set; }
+        public DateTime StartTijd { get;private set; }
 
         [Hoofding("Eind Tijd")]
-        public DateTime? EindTijd { get; set; }
+        public DateTime? EindTijd { get; private set; }
 
         [Hoofding("Bedrijf")]
         public string Bedrijf { get; set; }
