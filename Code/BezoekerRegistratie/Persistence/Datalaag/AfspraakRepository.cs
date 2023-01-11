@@ -95,7 +95,6 @@ namespace Persistence.Datalaag
             }
 
         }
-        //TODO: uitwerken met actief = 0, niet verwijderen
         public void ZetOpNonActief(int id)
         {
             string query = "update Afspraak set actief = 0 where afspraakId = @id";
@@ -160,16 +159,12 @@ namespace Persistence.Datalaag
                 }
             }
         }
-        //TODO: moet update niet nieuw element aanmaken
         public void UpdateAfspraak(Afspraak afspraak)
         {
             SqlConnection conn = GetConnection();
 
             string queryNonActief =
                 "update Afspraak set actief = 0 where afspraakId = @id";
-
-            //string bezoekerQuery =
-            //    "UPDATE Bezoeker SET aanwezig=@aanwezig where bezoekerId=@bezoekerId;";
 
             string WerknemerNonActiefQuery =
                 "update Werknemer set actief = 0 where werknemerId = @werknemerId";

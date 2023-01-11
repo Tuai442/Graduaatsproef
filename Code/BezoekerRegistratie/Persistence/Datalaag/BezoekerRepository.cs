@@ -58,33 +58,7 @@ namespace Persistence
                 }
             }
         }
-        //TODO: moet aanpassen en niet verwijderen
-       /* public void VerwijderBezoeker(int index)
-        {
-            string query = "DELETE FROM dbo.Bezoeker WHERE bezoekerId=@bezoekerId";
-            SqlConnection conn = GetConnection();
-            using (SqlCommand command = new SqlCommand(query, conn))
-            {
-                try
-                {
-                    conn.Open();
-                    command.Parameters.Add(new SqlParameter("@bezoekerId", SqlDbType.Int));
-                    //command.Parameters["@bezoekerId"].Value = bezoeker.Id;
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception e)
-                {
-                    BezoekerRepoException be = new BezoekerRepoException("Bezoeker verwijderen is niet gelukt", e);
-                    //be.Data.Add("Bezoeker:", bezoeker);
-                    throw be;
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-        }*/
-
+        
         public Bezoeker GeefBezoekerOpEmail(string email)
         {
             string query = "SELECT * from dbo.Bezoeker where email=@email";
