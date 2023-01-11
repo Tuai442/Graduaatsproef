@@ -39,7 +39,6 @@ namespace Components.ViewModels.overige
                     }
                 }
             }
-
             return _dict;
         }
     }

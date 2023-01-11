@@ -29,6 +29,7 @@ namespace Controller.Models
 
         public static string BtwNummerControle(string btw)
         {
+
             try
             {
                 if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
@@ -116,7 +117,8 @@ namespace Controller.Models
             }
         }
 
-        public static void LegeVelden(string vnBezoeker, string anBezoeker, string email, string bedrijfBezoeker, string emailContactPersoon)
+        public static void LegeVelden(string vnBezoeker, string anBezoeker, string email,
+            string bedrijfBezoeker, string emailContactPersoon)
         {
             try
             {
@@ -154,7 +156,6 @@ namespace Controller.Models
             }
         }
 
-        //TODO: regex is momenteel enkel voor belgische nummerplaten
         public static string ControleNummerplaat(string nummerplaat)
         {
             try

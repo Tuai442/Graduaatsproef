@@ -132,7 +132,7 @@ namespace Controller.Managers
             }
         }
 
-        //TODO: wordt niet gebruikt
+        //TODO: wordt niet gebruikt / wel 1 ref?
         public void VerwijderBedrijf(int index)
         {
             try

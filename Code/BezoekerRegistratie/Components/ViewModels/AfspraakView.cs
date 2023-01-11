@@ -16,7 +16,6 @@ namespace Components.ViewModels
 {
     public class AfspraakView : INotifyPropertyChanged, IDataGridRij
     {
-        private string _bedrijf;
         public Afspraak Afspraak { get; set; }
         private BedrijfManager _bedrijfManager = new BedrijfManager(new BedrijfRepository());
 
@@ -37,6 +36,7 @@ namespace Components.ViewModels
         [Hoofding("Eind Tijd")]
         public DateTime? EindTijd { get; set; }
 
+        private string _bedrijf;
         [Hoofding("Bedrijf")]
         [CellType(CellType.ComboBox)]
         public string Bedrijf

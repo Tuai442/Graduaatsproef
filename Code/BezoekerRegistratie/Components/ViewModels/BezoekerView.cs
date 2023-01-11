@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Components.ViewModels
 {
@@ -28,21 +29,36 @@ namespace Components.ViewModels
             get { return _voornaam; }
             set
             {
-                _voornaam = value;
-                _bezoeker.Voornaam = value;
-                OnPropertyChanged();
+                try
+                {
+                    _voornaam = value;
+                    _bezoeker.Voornaam = value;
+                    OnPropertyChanged();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
-
         [Hoofding("Achternaam")]
         public string Achternaam
         {
             get => _achternaam;
             set
             {
-                _achternaam = value;
-                _bezoeker.Achternaam = value;
-                OnPropertyChanged();
+                try
+                {
+                    _achternaam = value;
+                    _bezoeker.Achternaam = value;
+                    OnPropertyChanged();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -52,15 +68,19 @@ namespace Components.ViewModels
             get => _email;
             set
             {
-                _email = value;
-                _bezoeker.Email = value;
-
-                OnPropertyChanged(value);
-                
-                //OnClassChanged(bezoekerCpy);
+                try
+                {
+                    _bezoeker.Email = value;
+                    _email = value;
+                    OnPropertyChanged(value);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
-
         //[Hoofding("Is Aanwezig")]
         //public bool Aanwezig
         //{
@@ -72,16 +92,23 @@ namespace Components.ViewModels
         //        OnPropertyChanged();
         //    }
         //}
-
         [Hoofding("Bedrijf")]
         public string Bedrijf
         {
             get => _bedrijf;
             set
             {
-                _bedrijf = value;
-                _bezoeker.Bedrijf = value;
-                OnPropertyChanged();
+                try
+                {
+                    _bedrijf = value;
+                    _bezoeker.Bedrijf = value;
+                    OnPropertyChanged();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -109,7 +136,6 @@ namespace Components.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
-
         // DataGrid rij
         public int GeefDataGridIndex { get; set; }
         public string Content { get; set; }

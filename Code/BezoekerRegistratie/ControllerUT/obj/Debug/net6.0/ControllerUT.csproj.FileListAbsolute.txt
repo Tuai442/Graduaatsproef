@@ -120,14 +120,6 @@ C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.genruntimeconfig.cache
 C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ref\ControllerUT.dll
 D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\CoverletSourceRootsMapping
-D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.csproj.AssemblyReference.cache
-D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.GeneratedMSBuildEditorConfig.editorconfig
-D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.AssemblyInfoInputs.cache
-D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.AssemblyInfo.cs
-D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.csproj.CoreCompileInputs.cache
-D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.dll
-D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\refint\ControllerUT.dll
-D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.pdb
 D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\testhost.exe
 D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\testhost.dll
 D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
@@ -237,6 +229,14 @@ D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerU
 D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\Persistence.pdb
 D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\Datalaag.pdb
 D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\bin\Debug\net6.0\Datalaag.dll.config
+D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.csproj.AssemblyReference.cache
+D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.GeneratedMSBuildEditorConfig.editorconfig
+D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.AssemblyInfoInputs.cache
+D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.AssemblyInfo.cs
+D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.csproj.CoreCompileInputs.cache
 D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.csproj.CopyComplete
+D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.dll
+D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\refint\ControllerUT.dll
+D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.pdb
 D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ControllerUT.genruntimeconfig.cache
 D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\ControllerUT\obj\Debug\net6.0\ref\ControllerUT.dll

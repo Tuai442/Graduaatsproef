@@ -35,19 +35,16 @@ namespace BezoekerApp.Paginas
             _domeinController = bezoekerController;
             _bezoekerManger = _domeinController.GeefBezoekerManager();
 
-
             logInBtn.ButtonClick += LogIn;
             logUitBtn.ButtonClick += LogUit;
-
         }
-
-
         private void LogIn(object? sender, EventArgs e)
         {
+
             try
             {
                 //contoles op velden alvorens naar het volgend scherm te gaan + controle op email(regex)
-                if(emailInvulveld.Text.Trim() == "E-mail" || achternaamInvulveld.Text.Trim() == "Achternaam" 
+                if (emailInvulveld.Text.Trim() == "E-mail" || achternaamInvulveld.Text.Trim() == "Achternaam"
                     || voornaamInvulveld.Text.Trim() == "Voornaam" || bedrijfInvulveld.Text.Trim() == "Bedrijf")
                 {
                     throw (new Exception("Gelieve alle velden correct in te vullen"));
@@ -57,8 +54,8 @@ namespace BezoekerApp.Paginas
                 BedrijfSelecteren bs = new BedrijfSelecteren(_domeinController);
                 bs.AanmeldHandler += MeldBezoekerAan;
                 NavigeerHandler.Invoke(this, bs);
-
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -66,19 +63,16 @@ namespace BezoekerApp.Paginas
         private void LogUit(object? sender, EventArgs e)
         {
             string email = emailInvulveld.Text;
-
             try
             {
                 _bezoekerManger.MeldBezoekerUit(email);
-                MessageBox.Show("Prettige dag nog");
+                MessageBox.Show("U bent succesvol afgemeld. Prettige dag nog.");
                 LeegAlleVelden();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
         private void MeldBezoekerAan(object? sender, Dictionary<string, Dictionary<string, string>> dict)
         {
@@ -95,31 +89,30 @@ namespace BezoekerApp.Paginas
                     email, bedrijfB, contactPersoonEmail);
                 MessageBox.Show("U bent succesvol ingelogd.");
                 LeegAlleVelden();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Foute ingave", MessageBoxButton.OK, MessageBoxImage.Error);
-
             }
             finally
             {
                 NavigeerHandler.Invoke(this, this);
             }
-
         }
-
-
         //velden text initialisatie
         private void LeegAlleVelden()
         {
-            emailInvulveld.Text = "E-mail";
-            voornaamInvulveld.Text = "Voornaam";
-            achternaamInvulveld.Text = "Achternaam";
-            bedrijfInvulveld.Text = "Bedrijf";
+            emailInvulveld.Text = " E-mail"; // spaties laten staan.
+            voornaamInvulveld.Text = " Voornaam";
+            achternaamInvulveld.Text = " Achternaam";
+            bedrijfInvulveld.Text = " Bedrijf";
         }
-
-        //GotFocus
+        #region GotFocus
+        private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (emailInvulveld.Text.Trim() == "E-mail")
+                emailInvulveld.Clear();
+        }
         private void bedrijfInvulveld_GotFocus(object sender, RoutedEventArgs e)
         {
             if (bedrijfInvulveld.Text.Trim() == "Bedrijf")
@@ -135,56 +128,49 @@ namespace BezoekerApp.Paginas
             if (achternaamInvulveld.Text.Trim() == "Achternaam")
                 achternaamInvulveld.Clear();
         }
-        private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (emailInvulveld.Text.Trim() == "E-mail")
-                emailInvulveld.Clear();
-        }
-
-        //lostFocus
-        private void achternaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (achternaamInvulveld.Text == "")
-            {
-                achternaamInvulveld.Text = "Achternaam";
-            }
-        }
-        private void voornaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (voornaamInvulveld.Text == "")
-            {
-                voornaamInvulveld.Text = "Voornaam";
-            }
-        }
-        private void bedrijfInvulveld_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (bedrijfInvulveld.Text == "")
-            {
-                bedrijfInvulveld.Text = "Bedrijf";
-            }
-
-        }
+        #endregion
+        #region LostFocus
         private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             string email = emailInvulveld.Text;
-
-            //voor het automatisch invullen van alle velden
             if (!string.IsNullOrEmpty(email))
             {
                 Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
+                //voor het automatisch invullen van alle velden
                 if (bezoeker != null)
                 {
                     achternaamInvulveld.Text = bezoeker.Achternaam;
                     voornaamInvulveld.Text = bezoeker.Voornaam;
                     bedrijfInvulveld.Text = bezoeker.Bedrijf;
                 }
-
             }
             else if (emailInvulveld.Text == "")
             {
-                emailInvulveld.Text = "E-mail";
+                emailInvulveld.Text = " E-mail";
             }
         }
+        private void achternaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (achternaamInvulveld.Text == "")
+            {
+                achternaamInvulveld.Text = " Achternaam";
+            }
+        }
+        private void voornaamInvulveld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (voornaamInvulveld.Text == "")
+            {
+                voornaamInvulveld.Text = " Voornaam";
+            }
+        }
+        private void bedrijfInvulveld_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (bedrijfInvulveld.Text == "")
+            {
+                bedrijfInvulveld.Text = " Bedrijf";
+            }
 
+        }
+        #endregion
     }
 }

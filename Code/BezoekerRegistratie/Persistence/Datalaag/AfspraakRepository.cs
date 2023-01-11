@@ -121,7 +121,6 @@ namespace Persistence.Datalaag
                 }
             }
         }
-        
         public List<Afspraak> GeefAlleAfspraken()
         {
             string query = "SELECT afspraakId, startTijd, eindTijd, bezoekerId, werknemerId from dbo.Afspraak where actief = 1 order by startTijd;";
@@ -439,7 +438,6 @@ namespace Persistence.Datalaag
                 }
             }
         }
-
         public List<Afspraak> GeefOpenstaandeAfspraak()
         {
             string query = "SELECT * from dbo.Afspraak where actief = 1 and eindTijd is null;";

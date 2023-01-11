@@ -28,13 +28,10 @@ namespace BezoekerApp.Paginas
     /// </summary>
     public partial class BedrijfSelecteren : Page
     {
-        
+
         BedrijfManager _bedrijfManager;
         WerknemerManager _werknemerManager;
         public EventHandler<Dictionary<string, Dictionary<string, string>>> AanmeldHandler;
-        
-
-
         public BedrijfSelecteren(DomeinController domeinController)
         {
             try
@@ -54,7 +51,6 @@ namespace BezoekerApp.Paginas
                 contactComboBox.VoegLijstToe(werknemerItems);
 
                 bedrijfComboBox.GeSelecteerd += BedrijfGeselecteerd;
-
                 AanmeldKnop.ButtonClick += PersoonAanmelden;
             }
             catch (Exception ex)
@@ -62,7 +58,6 @@ namespace BezoekerApp.Paginas
                 MessageBox.Show(ex.Message);
             }
         }
-
         //dictionary 
         private void PersoonAanmelden(object? sender, EventArgs e)
         {
@@ -76,11 +71,8 @@ namespace BezoekerApp.Paginas
                 {"naam", contactComboBox.SelectedLabel},
                 {"value", contactComboBox.SelectedValue }
             });
-              
-
             AanmeldHandler.Invoke(sender, dict);
         }
-
         //combobox laden voor contactpersonen
         private void BedrijfGeselecteerd(object? sender, string value)
         {
@@ -98,7 +90,5 @@ namespace BezoekerApp.Paginas
         {
             NavigationService.GoBack();
         }
-
-     
     }
 }

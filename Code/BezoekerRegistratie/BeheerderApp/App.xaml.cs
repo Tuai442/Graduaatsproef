@@ -18,7 +18,6 @@ namespace BeheerderApp
     /// </summary>
     public partial class App : Application
     {
-
         IBedrijfRepository bedrijfRepository;
         IWerknemerRepository werknemerRepository;
         IBezoekerRepository bezoekerRepository;
@@ -26,7 +25,6 @@ namespace BeheerderApp
 
         DomeinController _domeinController;
         MainWindow mainWindow;
-
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
             bezoekerRepository = new BezoekerRepository();
@@ -39,7 +37,6 @@ namespace BeheerderApp
 
             mainWindow = new MainWindow(_domeinController);
             mainWindow.Show();
-
         }
     }
 }

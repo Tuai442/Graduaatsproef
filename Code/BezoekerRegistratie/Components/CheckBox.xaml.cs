@@ -20,7 +20,7 @@ namespace Components
     /// </summary>
     public partial class CheckBox : UserControl
     {
-        //TODO: que??
+        
         #region
         public int X
         {

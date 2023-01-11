@@ -28,35 +28,26 @@ namespace Components
             get { return (int)GetValue(BreedteProperty); }
             set { SetValue(BreedteProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for Breedte.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty BreedteProperty =
             DependencyProperty.Register("Breedte", typeof(int), typeof(Knop), new PropertyMetadata(null));
-
-
-
         public int Hoogte
         {
             get { return (int)GetValue(HoogteProperty); }
             set { SetValue(HoogteProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for Hoogte.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HoogteProperty =
             DependencyProperty.Register("Hoogte", typeof(int), typeof(Knop), new PropertyMetadata(null));
-
-
-
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(Knop), new PropertyMetadata(null));
-#endregion
+        #endregion
 
         public EventHandler<EventArgs> ButtonClick;
 
