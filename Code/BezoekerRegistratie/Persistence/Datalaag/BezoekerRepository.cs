@@ -60,7 +60,7 @@ namespace Persistence
             }
         }
         //TODO: moet aanpassen en niet verwijderen
-        public void VerwijderBezoeker(int index)
+       /* public void VerwijderBezoeker(int index)
         {
             string query = "DELETE FROM dbo.Bezoeker WHERE bezoekerId=@bezoekerId";
             SqlConnection conn = GetConnection();
@@ -84,7 +84,7 @@ namespace Persistence
                     conn.Close();
                 }
             }
-        }
+        }*/
 
         public Bezoeker GeefBezoekerOpEmail(string email)
         {
@@ -119,7 +119,7 @@ namespace Persistence
                 return null;
             }
         }
-        public void UpdateBezoeker(Bezoeker bezoeker)
+        public void ZetBezoekerNonActief(Bezoeker bezoeker)
         {
             string query = "UPDATE dbo.Bezoeker " +
                 "SET voornaam=@voornaam, achternaam=@achternaam, email=@email, bedrijf=@bedrijf, nummerplaat=@nummerplaat, " +

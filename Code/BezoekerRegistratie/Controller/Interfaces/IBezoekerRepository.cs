@@ -10,9 +10,9 @@ namespace Controller.Interfaces
     public interface IBezoekerRepository
     {
         void VoegBezoekerToe(Bezoeker bezoeker);
-        void VerwijderBezoeker(int index);
+       // void VerwijderBezoeker(int index);
         Bezoeker GeefBezoekerOpEmail(string email);
-        void UpdateBezoeker(Bezoeker bezoeker);
+        void ZetBezoekerNonActief(Bezoeker bezoeker);
         List<Bezoeker> GeefAlleAanwezigeBezoekers();
         List<Bezoeker> ZoekBezoekersOp(string zoekText);
     }

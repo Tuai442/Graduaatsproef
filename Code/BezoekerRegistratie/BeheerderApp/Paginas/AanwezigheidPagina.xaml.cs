@@ -18,7 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;  
+using System.Windows.Shapes;
 
 namespace BeheerderApp.Paginas
 {
@@ -32,21 +32,20 @@ namespace BeheerderApp.Paginas
 
         public EventHandler<Page> NavigeerHandler;
 
-        public AanwezigheidPagina(DomeinController beheerController)
+        public AanwezigheidPagina(DomeinController domeinController)
         {
+
             try
             {
-                _domeinController = beheerController;
+                _domeinController = domeinController;
                 _bezoekerManger = _domeinController.GeefBezoekerManager();
                 InitializeComponent();
                 terugKnop.ButtonClick += GaPaginaTerug;
                 verstuurEmail.ButtonClick += VerstuurEmail;
-
                 IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
                 List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
                 dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
                 dataGrid.OpDataFiltering += ZoekBezoekerOp;
-
                 aantalAanwLabel.Content = $"Totaal aanwezige bezoekers : {alleAanwezigeBezoekers.Count}";
 
                 //dataGrid.OpDataVerandering += UpdateObject;
@@ -56,7 +55,6 @@ namespace BeheerderApp.Paginas
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void ZoekBezoekerOp(object? sender, string e)
         {
             try
@@ -70,7 +68,6 @@ namespace BeheerderApp.Paginas
                 MessageBox.Show(ex.Message);
             }
         }
-
         //TODO: gebruik
         private void UpdateObject(object? sender, object obj)
         {
@@ -80,13 +77,10 @@ namespace BeheerderApp.Paginas
             //    _bezoekerManger.UpdateBezoeker(obj);
             //}
         }
-
-
         private void GaPaginaTerug(object? sender, EventArgs e)
         {
             NavigationService.GoBack();
         }
-
         //TODO: werkt dit?
         private void VerstuurEmail(object? sender, EventArgs e)
         {
@@ -96,11 +90,8 @@ namespace BeheerderApp.Paginas
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("niet gelukt om de  lijst met aanwzige bezoekers te verzenden: " + ex.Message);
             }
         }
-
-
     }
 }

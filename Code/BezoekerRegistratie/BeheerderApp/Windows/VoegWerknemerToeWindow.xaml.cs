@@ -45,7 +45,6 @@ namespace BeheerderApp.Windows
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
@@ -54,7 +53,6 @@ namespace BeheerderApp.Windows
             string functie =  functieTxtbox.Text;
             string bedrijfEmail = (string)bedrijfCombobox.SelectedValue;
             string email = emailTxtbox.Text;
-
             try
             {
                 Bedrijf bedrijf = _bedrijfManager.GeefBedrijfOpEmail(bedrijfEmail);
@@ -65,10 +63,6 @@ namespace BeheerderApp.Windows
             {
                 MessageBox.Show(ex.Message);
             }
-            
-
-
         }
-        
     }
 }

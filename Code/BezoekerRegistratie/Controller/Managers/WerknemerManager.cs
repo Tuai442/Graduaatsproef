@@ -52,7 +52,7 @@ namespace Controller.Managers
                 Werknemer werkemerDB = _werknemerRepository.GeefWerknemerOpId(werknemer.Id);
                 if (werknemer == werkemerDB) throw new WerknemerManagerException("Update Werknemer - Geen veranderingen gemaakt.");
                 _werknemerRepository.UpdateWerknemer(werknemer);
-               
+              
             }
             catch (WerknemerManagerException) { throw; }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace Controller.Managers
             try
             {
                 if (!_werknemerRepository.HeeftWerknemer(id)) throw new WerknemerManagerException("Verwijder Werknemer - kan werknemer niet vinden.");
-                _werknemerRepository.ZetNonActief(id);
+                _werknemerRepository.ZetNonActiefWerknemer(id);
             }
             catch(WerknemerManagerException) { throw; }
             catch (Exception ex)

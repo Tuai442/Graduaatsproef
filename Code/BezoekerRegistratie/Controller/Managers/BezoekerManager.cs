@@ -80,7 +80,7 @@ namespace Controller.Managers
                 {
                     Controleer.BezoekerIsAlAangemeld(bezoekerMetId);
                     bezoekerMetId.MeldAan();
-                    _bezoekerRepository.UpdateBezoeker(bezoekerMetId);
+                    _bezoekerRepository.ZetBezoekerNonActief(bezoekerMetId);
                 }
 
                 Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon); 
@@ -143,7 +143,7 @@ namespace Controller.Managers
             // wordt er een nieuwe bezoeker toegevoegd
             try
             {
-                _bezoekerRepository.UpdateBezoeker(bezoeker);
+                _bezoekerRepository.ZetBezoekerNonActief(bezoeker);
             }
             catch (Exception ex)
             {
@@ -153,7 +153,7 @@ namespace Controller.Managers
 
         }
 
-        public void VerwijderBezoeker(int index)
+       /* public void VerwijderBezoeker(int index)
         {
             try
             {
@@ -164,6 +164,6 @@ namespace Controller.Managers
             {
                 throw new BedrijfManagerException("Kan bezoeker niet verwijderen.", ex);
             }
-        }
+        }*/
     }
 }

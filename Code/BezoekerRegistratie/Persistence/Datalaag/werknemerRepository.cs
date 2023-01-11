@@ -276,7 +276,7 @@ namespace Persistence.Datalaag
             return werknemers;
         }
 
-        public void ZetNonActief(int id)
+        public void ZetNonActiefWerknemer(int id)
         {
             string query = "UPDATE dbo.Werknemer " +
                 "SET actief=@actief " +

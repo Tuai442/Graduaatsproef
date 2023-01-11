@@ -33,7 +33,6 @@ namespace Components.ViewModels
                 OnPropertyChanged();
             }
         }
-
         [Hoofding("Achternaam")]
         public string Achternaam
         {
@@ -52,11 +51,17 @@ namespace Components.ViewModels
             get => _email;
             set
             {
-                _email = value;
-                _bezoeker.Email = value;
+                try
+                {
+                    _bezoeker.Email = value;
+                    _email = value;
 
-                OnPropertyChanged(value);
-                
+                    OnPropertyChanged(value);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
                 //OnClassChanged(bezoekerCpy);
             }
         }
@@ -109,7 +114,6 @@ namespace Components.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
-
         // DataGrid rij
         public int GeefDataGridIndex { get; set; }
         public string Content { get; set; }
