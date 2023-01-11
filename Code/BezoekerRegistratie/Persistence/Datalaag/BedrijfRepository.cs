@@ -57,6 +57,7 @@ namespace Persistence.Datalaag
                 {
                     conn.Open();
 
+
                     command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
                     command.Parameters["@id"].Value = bedrijf.Id;
 
@@ -285,7 +286,7 @@ namespace Persistence.Datalaag
                     //command.Parameters["@adres"].Value = bedrijf.Adres;
 
                     command.ExecuteNonQuery();
-              
+
                 }
                 catch (Exception e)
                 {
