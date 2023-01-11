@@ -24,7 +24,6 @@ namespace Components.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
 
         [Hoofding("Naam")]
-        
         public string Naam
         {
             get => _naam;

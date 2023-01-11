@@ -22,35 +22,35 @@ namespace Controller.Models
 
         public static string BtwNummerControle(string btw)
         {
-            //if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
-            //string btwControle = btw.Replace(" ", "").Replace(".", "").ToUpper();
+            if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
+            string btwControle = btw.Replace(" ", "").Replace(".", "").ToUpper();
 
-            //// uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
-            //CountryValidator validator = new CountryValidator();
-            //var Landen = Enum.GetValues(typeof(Country)).Cast<Country>();
-            //var EUlanden = Enum.GetValues(typeof(Europa)).Cast<Europa>();
-            //string BTWletters = btwControle.Substring(0, 2);
+            // uitleg over VAT-validator class: https://github.com/anghelvalentin/CountryValidator
+            CountryValidator validator = new CountryValidator();
+            var Landen = Enum.GetValues(typeof(Country)).Cast<Country>();
+            var EUlanden = Enum.GetValues(typeof(Europa)).Cast<Europa>();
+            string BTWletters = btwControle.Substring(0, 2);
 
-            //foreach (var land in Landen)
-            //{
-            //    foreach(var EUland in EUlanden)
-            //    {
-            //        string landWoord = land.ToString();
-            //        string euLandWoord = EUland.ToString();
+            foreach (var land in Landen)
+            {
+                foreach (var EUland in EUlanden)
+                {
+                    string landWoord = land.ToString();
+                    string euLandWoord = EUland.ToString();
 
-            //        if(landWoord == euLandWoord && landWoord == BTWletters)
-            //        {
-            //            Country country = (Country)land;
-            //            ValidationResult validationResult = validator.ValidateVAT(btwControle, country);
-            //            if (validationResult.IsValid)
-            //            {
-            //                return btwControle;
-            //            }
-            //        }
-            //    }
-            //}
-            //throw new ControleerException("BTW nummer niet correct");
-            return btw;
+                    if (landWoord == euLandWoord && landWoord == BTWletters)
+                    {
+                        Country country = (Country)land;
+                        ValidationResult validationResult = validator.ValidateVAT(btwControle, country);
+                        if (validationResult.IsValid)
+                        {
+                            return btwControle;
+                        }
+                    }
+                }
+            }
+            throw new ControleerException("BTW nummer niet correct");
+            //return btw;
         }
         public static string ControleEmail(string email)
         {
@@ -86,7 +86,8 @@ namespace Controller.Models
 
         }
 
-        public static void LegeVelden(string vnBezoeker, string anBezoeker, string email, string bedrijfBezoeker, string emailContactPersoon)
+        public static void LegeVelden(string vnBezoeker, string anBezoeker, string email,
+            string bedrijfBezoeker, string emailContactPersoon)
         {
             if (string.IsNullOrWhiteSpace(vnBezoeker)) throw new ControleerException("Leeg veld - Voornaam");
             if (string.IsNullOrWhiteSpace(anBezoeker)) throw new ControleerException("Leeg veld - Achternaam");
@@ -106,7 +107,6 @@ namespace Controller.Models
             return p;
         }
 
-        //TODO: regex is momenteel enkel voor belgische nummerplaten
         public static string ControleNummerplaat(string nummerplaat)
         {
             if (string.IsNullOrWhiteSpace(nummerplaat)) throw new ControleerException("Controle nummerplaat - geen geldige ingave");

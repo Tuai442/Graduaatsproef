@@ -119,9 +119,6 @@ namespace Components
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // TODO: elke keer als het SelectionChanged event wordt aangroepen wordt het comboBox_TextChanged ook aangeroepen
-            // die dan opnieuw de SelectionChanged aaroept waarop dan een error volgt, momeneteel tijdelijk oplossing (_skipSelectionChangedEvent).
-            // zie debugger voor meer info.
             if ((e.AddedItems.Count > 0))
             {
                 int SelectedIndex = comboBox.SelectedIndex;
@@ -132,13 +129,7 @@ namespace Components
                     GeSelecteerd.Invoke(this, SelectedValue);
                 }
             }
-               
-            
-
-
         }
-
-
     }
 
     

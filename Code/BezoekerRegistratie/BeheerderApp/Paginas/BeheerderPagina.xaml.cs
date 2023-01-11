@@ -192,8 +192,6 @@ namespace BeheerderApp.Paginas
         {
             if (actief)
             {
-                //werknemerDataGrid.Visibility = Visibility.Visible;
-                //dataGrid.Visibility = Visibility.Collapsed;
                 if (_werknemerViews.Count == 0)
                 {
                     IReadOnlyList<Werknemer> werknemers = _werknemerManger.GeefAlleWerknemers();
@@ -222,7 +220,6 @@ namespace BeheerderApp.Paginas
                     }
                 }
 
-                //List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
                 dataGrid.StelDataIn<WerknemerView>(_werknemerViews, false, _bedrijfViews);
             }
         }

@@ -151,6 +151,7 @@ namespace Components.ViewModels
         // Lijst items
         public string Id { get => Email; }
         public string ItemNaam { get => $"{Voornaam} {Achternaam}"; }
+
         public int GeefDataGridIndex { get; set ; }
         public string Content { get; set; }
 

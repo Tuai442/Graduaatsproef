@@ -89,7 +89,6 @@ namespace Components
                     dataGridComboBoxColumn.DisplayMemberPath = "Naam";
                     dataGridComboBoxColumn.SelectedValuePath = "Naam";
                     dataGrid.Columns.Add(dataGridComboBoxColumn);
-
                 }
                 else
                 {
@@ -97,9 +96,7 @@ namespace Components
                     c.Header = hoofding[key];
                     c.Binding = new Binding(key);
                     dataGrid.Columns.Add(c);
-                    //dataGrid.MinWidth= 150;
                     c.MinWidth = 150;
-                    
                 }
                 
         
