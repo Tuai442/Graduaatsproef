@@ -57,6 +57,7 @@ namespace BeheerderApp.Windows
             {
                 Bedrijf bedrijf = _bedrijfManager.GeefBedrijfOpEmail(bedrijfEmail);
                 _werknemerManager.VoegWerknemerToe(voornaam, achternaam, email, functie, bedrijf);
+                MessageBox.Show("Werknemer is toegevoegd");
                 Close();
             }
             catch(Exception ex)

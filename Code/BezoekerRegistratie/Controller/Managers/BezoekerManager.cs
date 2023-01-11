@@ -61,14 +61,15 @@ namespace Controller.Managers
         public void MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email,
             string bedrijfBezoeker, string emailContactPersoon)
         {
-           
+
+            Bezoeker bezoekerMetId = null;
             try
             {
                 Controleer.LegeVelden(vnBezoeker, anBezoeker, email, bedrijfBezoeker, emailContactPersoon);
                 Controleer.ControleEmail(email);
                 Controleer.ControleEmail(emailContactPersoon);
 
-                Bezoeker bezoekerMetId = _bezoekerRepository.GeefBezoekerOpEmail(email);
+                bezoekerMetId = _bezoekerRepository.GeefBezoekerOpEmail(email);
                 if (bezoekerMetId == null)
                 {
                     // Opgelet hier maken we een nieuwe bezoeker aan ZONDER id mee te geven.
@@ -80,7 +81,7 @@ namespace Controller.Managers
                 {
                     Controleer.BezoekerIsAlAangemeld(bezoekerMetId);
                     bezoekerMetId.MeldAan();
-                    _bezoekerRepository.ZetBezoekerNonActief(bezoekerMetId);
+                    _bezoekerRepository.MeldBezoekerAan(bezoekerMetId);
                 }
 
                 Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon); 
@@ -89,6 +90,10 @@ namespace Controller.Managers
             }
             catch (Exception ex)
             {
+                if(bezoekerMetId!= null)
+                {
+                    _bezoekerRepository.MeldBezoekerAf(bezoekerMetId);
+                }
                 throw new BedrijfManagerException("Kan bezoeker niet aanmelden.", ex);
             }
         }
@@ -103,8 +108,11 @@ namespace Controller.Managers
                 Afspraak afspraak = _afspraakRepository.GeefOpenstaandeAfspraakOpBezoekerEmail(email);
                 Controleer.ControleIsAfspraakAlAfgesloten(afspraak);
 
+                afspraak.Bezoeker.MeldAf();
                 afspraak.EindeAfspraak();
-                _afspraakRepository.UpdateAfspraak(afspraak);
+
+                _afspraakRepository.EindeAfspraak(afspraak);
+
             }
             catch (ControleerException) { throw; }
             catch (Exception ex)

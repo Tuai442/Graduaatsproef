@@ -189,7 +189,7 @@ namespace Persistence.Datalaag
                     $"btwNummer like '{zoekText}%' or " +
                     $"email like '{zoekText}%' or " +
                     $"adres like '{zoekText}%' or " +
-                    $"telefoon like '{zoekText}%' ) and " +
+                    $"telefoon like '{zoekText}%' and " +
                     $"actief = 1;";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
@@ -258,7 +258,6 @@ namespace Persistence.Datalaag
             }
             return bedrijven;
         }
-
 
         public void ZetBedrijfNonActief(int id)
         {

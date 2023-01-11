@@ -46,6 +46,7 @@ namespace BeheerderApp.Windows
             try
             {
                 _bedrijfManager.VoegNieuwBedrijfToe(naam, btw, adres, telefoon, email);
+                MessageBox.Show("Bedrijf is toegevoegd");
                 Close();
             }
             catch (ControleerException) { throw; }

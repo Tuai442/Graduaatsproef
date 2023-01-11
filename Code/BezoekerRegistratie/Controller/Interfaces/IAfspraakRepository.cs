@@ -18,5 +18,6 @@ namespace Controller.Interfaces
         Afspraak GeefAfspraakOpBezoekerId(int id);
         Afspraak GeefOpenstaandeAfspraakOpBezoekerEmail(string email);
         List<Afspraak> GeefOpenstaandeAfspraak();
+        void EindeAfspraak(Afspraak afspraak);
     }
 }

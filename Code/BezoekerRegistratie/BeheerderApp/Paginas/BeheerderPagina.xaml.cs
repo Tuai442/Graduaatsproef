@@ -141,7 +141,6 @@ namespace BeheerderApp.Paginas
             }
 
         }
-
         private void FilterData(object? sender, string zoekText)
         {
             try
@@ -270,8 +269,7 @@ namespace BeheerderApp.Paginas
             {
                 if (actief)
                 {
-                    //werknemerDataGrid.Visibility = Visibility.Hidden;
-                    //dataGrid.Visibility = Visibility.Visible;
+                    
 
                     if (_bezoekerViews.Count == 0)
                     {
@@ -289,7 +287,7 @@ namespace BeheerderApp.Paginas
                     Components.CheckBox check = (Components.CheckBox)sender;
                     VinkAllesUitBehalve(check);
 
-                    dataGrid.StelDataIn<BezoekerView>(_bezoekerViews);
+                    dataGrid.StelDataIn<BezoekerView>(_bezoekerViews, true);
 
                 }
             }catch(Exception ex)
