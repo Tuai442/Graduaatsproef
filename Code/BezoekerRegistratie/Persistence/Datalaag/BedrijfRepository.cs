@@ -48,7 +48,7 @@ namespace Persistence.Datalaag
         public void UpdateBedrijf(Bedrijf bedrijf)
         {
             string query = "UPDATE dbo.Bedrijf " +
-                 "SET actief=actief,naam=@naam, btwNummer=@btwNummer, email=@email, telefoon=@telefoon, adres=@adres  " +
+                 "SET actief=0,naam=@naam, btwNummer=@btwNummer, email=@email, telefoon=@telefoon, adres=@adres  " +
                  "WHERE bedrijfId = @id;"; 
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
@@ -71,7 +71,7 @@ namespace Persistence.Datalaag
                     command.Parameters["@adres"].Value = bedrijf.Adres;
 
                     command.ExecuteNonQuery();
-                    //VoegNieuwBedrijfToe(bedrijf);
+                    VoegNieuwBedrijfToe(bedrijf);
                 }
                 catch (Exception e)
                 {
