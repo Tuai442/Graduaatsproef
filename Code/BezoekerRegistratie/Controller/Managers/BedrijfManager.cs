@@ -97,10 +97,11 @@ namespace Controller.Managers
             try
             {
                 if (bedrijf == null) throw new BedrijfException("BM - UpdateBedrijf");
-                
+                if (!_bedrijfRepository.HeeftBedrijf(bedrijf.Id)) throw new BedrijfManagerException("UpdateBedrijf - bedrijf bestaat niet ");
                 _bedrijfRepository.UpdateBedrijf(bedrijf);
             }
             catch (BedrijfException) { throw; }
+            catch (BedrijfManagerException) { throw; }
             catch (Exception ex)
             {
                 throw new BedrijfManagerException("Kan bedrijf niet updaten", ex);
@@ -138,8 +139,10 @@ namespace Controller.Managers
         {
             try
             {
-                _bedrijfRepository.ZetBedrijfNonActiefBedrijf(id);
+                if (!_bedrijfRepository.HeeftBedrijf(id)) throw new BedrijfManagerException("VerwijderBedrijf - bedrijf bestaat niet ");
+                _bedrijfRepository.ZetBedrijfNonActief(id);
             }
+            catch(BedrijfManagerException) { throw; }
             catch (Exception ex)
             {
                 throw new BedrijfManagerException("Kan bedrijf niet verwijderen", ex);

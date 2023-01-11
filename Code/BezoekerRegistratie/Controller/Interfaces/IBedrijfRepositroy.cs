@@ -17,8 +17,8 @@ namespace Controller.Interfaces
         void UpdateBedrijf(Bedrijf bedrijf);
         Bedrijf GeefBedrijfOpEmail(string email);
         Bedrijf GeefBedrijfViaNaam(string value);
-        void ZetBedrijfNonActiefBedrijf(int id);
-      
+        void ZetBedrijfNonActief(int id);
+        public bool HeeftBedrijf(int bedrijfId);
 
     }
 }
