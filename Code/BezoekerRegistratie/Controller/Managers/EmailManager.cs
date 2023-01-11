@@ -14,28 +14,28 @@ using Controller.Exceptions.Manager;
 namespace Controller.Managers
 {
     //TODO: bekijken
-        //source : https://www.youtube.com/watch?v=PvO_1T0FS_A
-        // use https://ethereal.email/
+    //source : https://www.youtube.com/watch?v=PvO_1T0FS_A
+    // use https://ethereal.email/
     public class EmailManager
     {
-        private string email = "peggie.pfeffer23@ethereal.email";
-        private string password = "gMuQXrtRTxKn8gCQxu";
+
         public void SendEmail(IReadOnlyList<Afspraak> afspraak)
         {
-            //string body = MaakBezoekersLijst( bezoekers);
+            //string emailadres = "peggie.pfeffer23@ethereal.email";
+            //string password = "gMuQXrtRTxKn8gCQxu";
             string body = MaakBezoekersLijst(afspraak);
             try
             {
                 var email = new MimeMessage();
-                email.From.Add(MailboxAddress.Parse("consuelo.padberg17@ethereal.email"));
-                email.To.Add(MailboxAddress.Parse("consuelo.padberg17@ethereal.email")); 
-                email.Subject = "test";
+                email.From.Add(MailboxAddress.Parse("barry.beatty92@ethereal.email"));
+                email.To.Add(MailboxAddress.Parse("barry.beatty92@ethereal.email"));
+                email.Subject = "Lijst met aanwezige bezoekers.";
                 email.Body = new TextPart(TextFormat.Plain) { Text = body };
 
                 using var smtp = new SmtpClient();
                 // voor outlook -> smtp-mail.outlook.com
                 smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
-                smtp.Authenticate("consuelo.padberg17@ethereal.email", "tXFmhmmaqu2sCTzjtQ"); 
+                smtp.Authenticate("barry.beatty92@ethereal.email", "6thZwRa4GqvAanGCAq");
                 smtp.Send(email);
                 smtp.Disconnect(true);
 
@@ -59,7 +59,8 @@ namespace Controller.Managers
 
                 }
                 return res;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new EmailManagerException("Kan bezoekerlijst niet maken", ex);
             }

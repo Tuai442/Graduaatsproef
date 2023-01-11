@@ -59,7 +59,6 @@ namespace Components
         {
             ButtonClick.Invoke(this, new EventArgs());
         }
-
         //public static implicit operator Knop(Knop v)
         //{
         //    throw new NotImplementedException();

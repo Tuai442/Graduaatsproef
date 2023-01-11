@@ -78,10 +78,11 @@ namespace BeheerderApp.Paginas
             try
             {
                 _domeinController.SendEmail();
+                MessageBox.Show("Een lijst met de aanwezige bezoekers is verzonden.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("niet gelukt om de  lijst met aanwzige bezoekers te verzenden: " + ex.Message);
+                MessageBox.Show("Niet gelukt om de lijst met aanwzige bezoekers te verzenden: " + ex.Message);
             }
         }
     }

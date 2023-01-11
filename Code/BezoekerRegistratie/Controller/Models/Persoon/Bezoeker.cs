@@ -27,7 +27,6 @@ namespace Controller.Models
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
         }
-
         //TODO: kan dit ook met this?
         //TODO: kan dit niet met 1 constructor
         public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, bool aanwezig, string nummerplaat = null) :
@@ -37,8 +36,6 @@ namespace Controller.Models
             Bedrijf = bedrijf;
             Aanwezig = aanwezig;
         }
-
-
         //TODO: BedrijfID is moeilijk aan te spreken omdat bedrijf eens string is
         //public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, string nummerplaat, bool aanwezig):
         //    base(voornaam, achternaam, email)
@@ -49,7 +46,6 @@ namespace Controller.Models
         //    //BedrijfId = bedrijfId;
 
         //}
-
 
         public void MeldAan()
         {

@@ -11,10 +11,11 @@ namespace Persistence.Datalaag
 {
     public class BaseRepository
     {
-       // protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\Database1.mdf"";Integrated Security=True";
+        //noah
+        protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Datalaag\Database1.mdf"";Integrated Security=True";
 
         //link Sören
-        protected string connectionString = @"Data Source=DESKTOP-NDTRPE9\SQLEXPRESS;Initial Catalog=EindEvaluatie;Integrated Security=True";
+        //protected string connectionString = @"Data Source=DESKTOP-NDTRPE9\SQLEXPRESS;Initial Catalog=EindEvaluatie;Integrated Security=True";
         //link Tuur
         //protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
         //link Diego
@@ -68,7 +69,7 @@ namespace Persistence.Datalaag
             return bedrijf;
         }
         //TODO: weknemerRepo
-        protected Werknemer GeefWerknemerOpId(int id) 
+        protected Werknemer GeefWerknemerOpId(int id)
         {
             SqlConnection conn = GetConnection();
             Werknemer werknemer = null;
@@ -89,7 +90,7 @@ namespace Persistence.Datalaag
                         string email = (string)dataReader["Email"];
                         int bedrijfId = (int)dataReader["BedrijfId"];
                         Bedrijf bedrijf = GeefBedrijfOpId(bedrijfId);
-                        
+
                         werknemer = new Werknemer(idd, voornaam, achternaam, email, functie, bedrijf);
                     }
                 }
@@ -113,7 +114,7 @@ namespace Persistence.Datalaag
             {
                 conn.Open();
 
-                string query = $"SELECT * FROM Bezoeker WHERE bezoekerId = {id} and actief = 1;";
+                string query = $"SELECT * FROM Bezoeker WHERE bezoekerId = {id} and aanwezig = 1;";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)
