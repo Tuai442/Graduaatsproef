@@ -77,7 +77,7 @@ namespace Components.Datagrids {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Components;component/datagrids/werknemerdatagrid.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Components;V1.0.0.0;component/datagrids/werknemerdatagrid.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Datagrids\WerknemerDataGrid.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
