@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using Controller.Exceptions;
+using Controller.Exceptions.Manager;
 
 namespace Controller.Managers
 {
-
+    //TODO: bekijken
         //source : https://www.youtube.com/watch?v=PvO_1T0FS_A
         // use https://ethereal.email/
     public class EmailManager
@@ -42,20 +43,26 @@ namespace Controller.Managers
             catch (Exception ex)
             {
 
-                throw new emailServiceException("Je mail werd niet correct verzonden", ex);
+                throw new EmailManagerException("Je mail werd niet correct verzonden", ex);
             }
         }
 
         private string MaakBezoekersLijst(IReadOnlyList<Afspraak> afspraaken)
         {
-            string res = "";
-            foreach (var afspraak in afspraaken)
+            try
             {
-                res+= afspraak.ToString();
-                res+= "\n";
+                string res = "";
+                foreach (var afspraak in afspraaken)
+                {
+                    res += afspraak.ToString();
+                    res += "\n";
 
+                }
+                return res;
+            }catch(Exception ex)
+            {
+                throw new EmailManagerException("Kan bezoekerlijst niet maken", ex);
             }
-            return res;
         }
     }
 }

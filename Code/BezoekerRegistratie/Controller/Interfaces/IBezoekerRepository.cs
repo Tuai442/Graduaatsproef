@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Controller.Interfaces
 {
-    public interface IBezoekerRepository : IPersoonRepository
+    public interface IBezoekerRepository
     {
         void VoegBezoekerToe(Bezoeker bezoeker);
-        void VerwijderBezoeker(Bezoeker bezoeker);
+        void VerwijderBezoeker(int index);
         Bezoeker GeefBezoekerOpEmail(string email);
-        List<Bezoeker> GeefAlleBezoekers();
         void UpdateBezoeker(Bezoeker bezoeker);
         List<Bezoeker> GeefAlleAanwezigeBezoekers();
         List<Bezoeker> ZoekBezoekersOp(string zoekText);

@@ -1,5 +1,4 @@
 ﻿using Controller.Interfaces;
-using Controller.Interfaces.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

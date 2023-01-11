@@ -20,6 +20,8 @@ namespace Components
     /// </summary>
     public partial class CheckBox : UserControl
     {
+        //TODO: que??
+        #region
         public int X
         {
             get { return (int)GetValue(XProperty); }
@@ -66,8 +68,8 @@ namespace Components
         // Using a DependencyProperty as the backing store for Value.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof(string), typeof(CheckBox), new PropertyMetadata(null));
+#endregion
 
-        
         public EventHandler<bool> Checked;
         public bool IsActief { get; set; }
         public SolidColorBrush defautlColor { get; set; }

@@ -2,7 +2,6 @@
 using Components.ViewModels;
 using Components.ViewModels.overige;
 using Controller;
-using Controller.Interfaces.Models;
 using Controller.Models;
 using Newtonsoft.Json;
 using System;
@@ -33,6 +32,8 @@ namespace Components
     /// </summary>
     public partial class ZoekbaarDataGrid : UserControl
     {
+        //TODO: hoe werkt dit?
+        #region
         public int GridHeight
         {
             get { return (int)GetValue(GridHeightProperty); }
@@ -42,6 +43,7 @@ namespace Components
         // Using a DependencyProperty as the backing store for GridHeight.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty GridHeightProperty =
             DependencyProperty.Register("GridHeight", typeof(int), typeof(ZoekbaarDataGrid), new PropertyMetadata(null));
+        #endregion
 
         private IEnumerable _data;
         public ZoekbaarDataGrid()
@@ -49,8 +51,6 @@ namespace Components
             InitializeComponent();
             _data = new List<object>();
             dataGrid.ItemsSource = _data;
-            
-
         }
 
         public EventHandler<object> OpDataVerandering;
@@ -72,6 +72,8 @@ namespace Components
            
         }
 
+
+        //TODO: hoe werkt dit?
         private void MaakHoofding<T>(IEnumerable extraInfo = null)
         {
             dataGrid.Columns.Clear();
@@ -97,7 +99,6 @@ namespace Components
                     c.Header = hoofding[key];
                     c.Binding = new Binding(key);
                     dataGrid.Columns.Add(c);
-                    //dataGrid.MinWidth= 150;
                     c.MinWidth = 150;
                     
                 }
@@ -107,7 +108,7 @@ namespace Components
             dataGrid.AutoGenerateColumns = false;
         }
 
-
+        //TODO: waar wordt dit gedefigneerd
         // Dit wordt opgeroepen vanaf er een verandering in de zoekbalk gebeurt.
         private void zoekBar_TextChanged(object sender, TextChangedEventArgs e)
         {

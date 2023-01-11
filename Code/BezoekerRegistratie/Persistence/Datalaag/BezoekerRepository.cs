@@ -43,13 +43,13 @@ namespace Persistence
                     command.Parameters["@achternaam"].Value = bezoeker.Achternaam;
                     command.Parameters["@email"].Value = bezoeker.Email;
                     command.Parameters["@bedrijf"].Value = bezoeker.Bedrijf;
-                    command.Parameters["@nummerplaat"].Value = "test";// Nog niet van toepassing
+                    command.Parameters["@nummerplaat"].Value = "test";// TODO: Nog niet van toepassing
                     command.Parameters["@aanwezig"].Value = Convert.ToInt32(bezoeker.Aanwezig);
                     command.ExecuteNonQuery();
                 }
                 catch (Exception e)
                 {
-                    BezoekerException be = new BezoekerException("Bezoeker toevoegen is niet gelukt", e);
+                    BezoekerRepoException be = new BezoekerRepoException("Bezoeker toevoegen is niet gelukt", e);
                     be.Data.Add("Bezoeker:", bezoeker);
                     throw be;
                 }
@@ -59,7 +59,8 @@ namespace Persistence
                 }
             }
         }
-        public void VerwijderBezoeker(Bezoeker bezoeker)
+        //TODO: moet aanpassen en niet verwijderen
+        public void VerwijderBezoeker(int index)
         {
             string query = "DELETE FROM dbo.Bezoeker WHERE bezoekerId=@bezoekerId";
             SqlConnection conn = GetConnection();
@@ -69,47 +70,14 @@ namespace Persistence
                 {
                     conn.Open();
                     command.Parameters.Add(new SqlParameter("@bezoekerId", SqlDbType.Int));
-                    command.Parameters["@bezoekerId"].Value = bezoeker.Id;
+                    //command.Parameters["@bezoekerId"].Value = bezoeker.Id;
                     command.ExecuteNonQuery();
                 }
                 catch (Exception e)
                 {
-                    BezoekerException be = new BezoekerException("Bezoeker verwijderen is niet gelukt", e);
-                    be.Data.Add("Bezoeker:", bezoeker);
+                    BezoekerRepoException be = new BezoekerRepoException("Bezoeker verwijderen is niet gelukt", e);
+                    //be.Data.Add("Bezoeker:", bezoeker);
                     throw be;
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-        }
-        public List<Bezoeker> GeefAlleBezoekers()
-        {
-            string query = "SELECT * from dbo.Bezoeker";
-            SqlConnection conn = GetConnection();
-            using (SqlCommand command = new SqlCommand(query, conn))
-            {
-                try
-                {
-                    List<Bezoeker> bezoekers = new List<Bezoeker>();
-                    conn.Open();
-                    IDataReader dataReader = command.ExecuteReader();
-                    while (dataReader.Read())
-                    {
-                        Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["bedrijf"], (bool)dataReader["aanwezig"], (string)dataReader["nummerplaat"]);
-                        bezoekers.Add(bezoeker);
-                    }
-                    dataReader.Close();
-                    foreach (Bezoeker bezoeker in bezoekers)
-                    {
-                        Console.WriteLine(bezoeker);
-                    }
-                    return bezoekers;
-                }
-                catch (Exception ex)
-                {
-                    throw new BezoekerException("Geef bezoekers is niet gelukt.", ex);
                 }
                 finally
                 {
@@ -131,8 +99,7 @@ namespace Persistence
                     IDataReader dataReader = command.ExecuteReader();
                     if (dataReader.Read())
                     {
-                        // string nummerplaat = (string)dataReader["nummerplaat"]; // Kan niet gedaan worden omdat we geen data in dit veld hebben.
-                        string nummerplaat = "";
+                        string nummerplaat = (string)dataReader["nummerplaat"];
                         bool aanwezig = Convert.ToBoolean(dataReader["aanwezig"]);
                         Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], 
                             (string)dataReader["voornaam"], (string)dataReader["achternaam"], 
@@ -143,7 +110,7 @@ namespace Persistence
                 }
                 catch (Exception e)
                 {
-                    throw new BezoekerException("Geef bezoeker op email is niet gelukt", e);
+                    throw new BezoekerRepoException("Geef bezoeker op email is niet gelukt", e);
                 }
                 finally
                 {
@@ -182,7 +149,7 @@ namespace Persistence
                 }
                 catch (Exception e)
                 {
-                    BezoekerException be = new BezoekerException("Bezoeker updaten is niet gelukt", e);
+                    BezoekerRepoException be = new BezoekerRepoException("Bezoeker updaten is niet gelukt", e);
                     be.Data.Add("Bezoeker:", bezoeker);
                     throw be;
                 }
@@ -195,8 +162,6 @@ namespace Persistence
 
         public List<Bezoeker> ZoekBezoekersOp(string zoekText)
         {
-
-            //weet niet welk statement er hier moet
             string query = $"SELECT * from dbo.Bezoeker where " +
                 $"(voornaam like '{zoekText}%' or " +
                 $"achternaam like '{zoekText}%' or " +
@@ -231,35 +196,7 @@ namespace Persistence
                 }
                 catch (Exception ex)
                 {
-                    throw new BezoekerException("Geef bezoekers is niet gelukt.", ex);
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-        }
-
-        public Bezoeker GeefbezoekerOpVolledigeNaam(string voornaam, string achternaam)
-        {
-            string query = "SELECT * from dbo.Bezoeker where voornaam=@voornaam and achtnaam=@achternaam";
-            SqlConnection conn = GetConnection();
-            using (SqlCommand command = new SqlCommand(query, conn))
-            {
-                try
-                {
-                    conn.Open();
-                    command.Parameters.AddWithValue("@voornaam", voornaam);
-                    command.Parameters.AddWithValue("@achternaam", achternaam);
-                    IDataReader dataReader = command.ExecuteReader();
-                    Bezoeker bezoeker = new Bezoeker((int)dataReader["bezoekerId"], (string)dataReader["voornaam"], (string)dataReader["achternaam"], (string)dataReader["email"], (string)dataReader["bedrijf"], (bool)dataReader["aanwezig"], (string)dataReader["nummerplaat"]);
-                    dataReader.Close();
-                    Console.WriteLine(bezoeker);
-                    return bezoeker;
-                }
-                catch (Exception ex)
-                {
-                    throw new BezoekerException("Geef bezoeker is niet gelukt.", ex);
+                    throw new BezoekerRepoException("Geef bezoekers is niet gelukt.", ex);
                 }
                 finally
                 {
@@ -301,18 +238,13 @@ namespace Persistence
                 }
                 catch (Exception ex)
                 {
-                    throw new BezoekerException("Geef bezoekers is niet gelukt.", ex);
+                    throw new BezoekerRepoException("Geef bezoekers is niet gelukt.", ex);
                 }
                 finally
                 {
                     conn.Close();
                 }
             }
-        }
-
-        public Persoon GeefPersoonOpVolledigeNaam(string naam, string achternaam)
-        {
-            throw new NotImplementedException();
         }
     }
    

@@ -1,5 +1,4 @@
 ﻿using Controller;
-using Controller.Interfaces.Models;
 using Controller.Managers;
 using Controller.Models;
 using Controllers;
@@ -36,23 +35,29 @@ namespace BezoekerApp.Paginas
             _domeinController = bezoekerController;
             _bezoekerManger = _domeinController.GeefBezoekerManager();
 
-
             logInBtn.ButtonClick += LogIn;
             logUitBtn.ButtonClick += LogUit;
-
         }
         private void LogIn(object? sender, EventArgs e)
         {
 
-            if (emailInvulveld.Text == " E-mail" || emailInvulveld.Text == "") { MessageBox.Show("Gelieve je e-mail adres in te vullen."); } // spaties laten staan.
-            else if (achternaamInvulveld.Text == " Achternaam" || achternaamInvulveld.Text == "") { MessageBox.Show("Gelieve je achternaam in te vullen."); }
-            else if (voornaamInvulveld.Text == " Voornaam" || voornaamInvulveld.Text == "") { MessageBox.Show("Gelieve je voornaam in te vullen."); }
-            else if(bedrijfInvulveld.Text == " Bedrijf" || voornaamInvulveld.Text == "") { MessageBox.Show("Gelieve je bedrijf in te vullen."); }
-            else
+            try
             {
-                BedrijfSelecteren bs = new BedrijfSelecteren(_domeinController); // Zouden we dit nie beter op één pagina zetten?
+                //contoles op velden alvorens naar het volgend scherm te gaan + controle op email(regex)
+                if (emailInvulveld.Text.Trim() == "E-mail" || achternaamInvulveld.Text.Trim() == "Achternaam"
+                    || voornaamInvulveld.Text.Trim() == "Voornaam" || bedrijfInvulveld.Text.Trim() == "Bedrijf")
+                {
+                    throw (new Exception("Gelieve alle velden correct in te vullen"));
+                }
+                Controleer.ControleEmail(emailInvulveld.Text);
+
+                BedrijfSelecteren bs = new BedrijfSelecteren(_domeinController);
                 bs.AanmeldHandler += MeldBezoekerAan;
                 NavigeerHandler.Invoke(this, bs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void LogUit(object? sender, EventArgs e)
@@ -94,6 +99,7 @@ namespace BezoekerApp.Paginas
                 NavigeerHandler.Invoke(this, this);
             }
         }
+        //velden text initialisatie
         private void LeegAlleVelden()
         {
             emailInvulveld.Text = " E-mail"; // spaties laten staan.
@@ -101,6 +107,7 @@ namespace BezoekerApp.Paginas
             achternaamInvulveld.Text = " Achternaam";
             bedrijfInvulveld.Text = " Bedrijf";
         }
+        #region GotFocus
         private void emailInvulveld_GotFocus(object sender, RoutedEventArgs e)
         {
             if (emailInvulveld.Text.Trim() == "E-mail")
@@ -121,12 +128,15 @@ namespace BezoekerApp.Paginas
             if (achternaamInvulveld.Text.Trim() == "Achternaam")
                 achternaamInvulveld.Clear();
         }
+        #endregion
+        #region LostFocus
         private void emailInvulveld_LostFocus(object sender, RoutedEventArgs e)
         {
             string email = emailInvulveld.Text;
             if (!string.IsNullOrEmpty(email))
             {
                 Bezoeker bezoeker = _bezoekerManger.ZoekBezoekerOpEmail(email);
+                //voor het automatisch invullen van alle velden
                 if (bezoeker != null)
                 {
                     achternaamInvulveld.Text = bezoeker.Achternaam;
@@ -161,5 +171,6 @@ namespace BezoekerApp.Paginas
             }
 
         }
+        #endregion
     }
 }

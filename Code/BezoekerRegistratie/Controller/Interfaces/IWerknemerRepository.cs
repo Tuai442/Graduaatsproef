@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Controller.Interfaces
 {
-    public interface IWerknemerRepository: IPersoonRepository
+    public interface IWerknemerRepository
     {
-        Werknemer GeefWerknemerOpNaam(string contactPersoon);
         Werknemer GeefWerknemerOpId(int id);
         List<Werknemer> GeefAlleWerknemers();
         List<Werknemer> ZoekOpWerknemers(string zoekText);

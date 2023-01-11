@@ -1,6 +1,6 @@
 ﻿using Controller.Exceptions;
+using Controller.Exceptions.Manager;
 using Controller.Interfaces;
-using Controller.Interfaces.Models;
 using Controller.Models;
 using DebounceThrottle;
 using System;
@@ -21,28 +21,57 @@ namespace Controller.Managers
         }
         public IReadOnlyList<Werknemer> GeefAlleWerknemers()
         {
-            return _werknemerRepository.GeefAlleWerknemers().AsReadOnly();
+            try
+            {
+                return _werknemerRepository.GeefAlleWerknemers().AsReadOnly();
+            }
+            catch(Exception ex)
+            {
+                throw new WerknemerManagerException("Kan werknemers niet geven", ex);
+            }
         }
 
         public IReadOnlyList<Werknemer> GeefWerknemersOpEmailBedrijf(string value)
         {
-            return _werknemerRepository.GeefWerknemersOpEmailBedrijf(value).AsReadOnly();
+            try
+            {
+                return _werknemerRepository.GeefWerknemersOpEmailBedrijf(value).AsReadOnly();
+            }
+            catch (Exception ex)
+            {
+                throw new WerknemerManagerException("Kan werknemers niet op email van bedrijf geven", ex);
+            }
+
         }
 
         public void UpdateWerknemer(Werknemer werknemer)
         {
-            _werknemerRepository.UpdateWerknemer(werknemer);
+            try
+            {
+                _werknemerRepository.UpdateWerknemer(werknemer);
+            }
+            catch (Exception ex)
+            {
+                throw new WerknemerManagerException("Kan werknemers niet updaten", ex);
+            }
+           
         }
 
         public void VerwijderWerknemer(int index)
         {
-            throw new NotImplementedException();
+            //TODO: uitschijven met actief = 0 te zetten
+            try
+            {
+                //_werknemerRepository.VerwijderWerknemer(index);
+            }
+            catch (Exception ex)
+            {
+                throw new WerknemerManagerException("Kan werknemers niet verwijderen", ex);
+            }
         }
 
-        public void VoegWerknemerToe(string voornaam, string achternaam, string email, string functie,
-            Bedrijf bedrijf)
+        public void VoegWerknemerToe(string voornaam, string achternaam, string email, string functie, Bedrijf bedrijf)
         {
-            //TODO - controle gegevens
             try
             {
                 Controleer.ControleEmail(bedrijf.Email);
@@ -62,7 +91,7 @@ namespace Controller.Managers
             catch (Exception ex)
             {
 
-                throw new ControleerException(ex.Message);
+                throw new WerknemerManagerException("Kan geen werknemer toevoegen", ex);
             }
 
 
@@ -70,7 +99,16 @@ namespace Controller.Managers
 
         public IReadOnlyList<Werknemer> ZoekOp(string zoekText)
         {
-            return _werknemerRepository.ZoekOpWerknemers(zoekText);
+            try
+            {
+                return _werknemerRepository.ZoekOpWerknemers(zoekText);
+
+            }
+            catch (Exception ex)
+            {
+                throw new WerknemerManagerException("Kan geen werknemers niet vinden", ex);
+
+            }
         }
     }
 }

@@ -26,8 +26,14 @@ namespace BeheerderApp.Windows
         BedrijfManager _bedrijfManager;
         public VoegBedrijfToe(DomeinController controller)
         {
-            _bedrijfManager = controller.GeefBedrijfManager();
-            InitializeComponent();
+            try
+            {
+                _bedrijfManager = controller.GeefBedrijfManager();
+                InitializeComponent();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

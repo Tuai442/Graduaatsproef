@@ -53,7 +53,6 @@ namespace Components.ViewModels
             {
                 try
                 {
-
                     _bezoeker.Email = value;
                     _email = value;
 
@@ -61,11 +60,8 @@ namespace Components.ViewModels
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
-               
-                
                 //OnClassChanged(bezoekerCpy);
             }
         }

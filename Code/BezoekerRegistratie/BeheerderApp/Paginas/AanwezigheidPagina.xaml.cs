@@ -2,7 +2,6 @@
 
 using Components.ViewModels;
 using Controller;
-using Controller.Interfaces.Models;
 using Controller.Managers;
 using Controller.Models;
 using Controllers;
@@ -35,28 +34,42 @@ namespace BeheerderApp.Paginas
 
         public AanwezigheidPagina(DomeinController domeinController)
         {
-            _domeinController = domeinController;
-            _bezoekerManger = _domeinController.GeefBezoekerManager();
-            InitializeComponent();
-            terugKnop.ButtonClick += GaPaginaTerug;
-            verstuurEmail.ButtonClick += VerstuurEmail;
 
-            IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
-            List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
-            dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
-            dataGrid.OpDataFiltering += ZoekBezoekerOp;
+            try
+            {
+                _domeinController = domeinController;
+                _bezoekerManger = _domeinController.GeefBezoekerManager();
+                InitializeComponent();
+                terugKnop.ButtonClick += GaPaginaTerug;
+                verstuurEmail.ButtonClick += VerstuurEmail;
+                IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.GeefAlleAanwezigeBezoekers();
+                List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
+                dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
+                dataGrid.OpDataFiltering += ZoekBezoekerOp;
+                aantalAanwLabel.Content = $"Totaal aanwezige bezoekers : {alleAanwezigeBezoekers.Count}";
 
-            aantalAanwLabel.Content = $"Totaal aanwezige bezoekers : {alleAanwezigeBezoekers.Count}";
-
-            //dataGrid.OpDataVerandering += UpdateObject;
+                //dataGrid.OpDataVerandering += UpdateObject;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void ZoekBezoekerOp(object? sender, string e)
         {
-            IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.ZoekOp(e);
-            List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
-            dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
+            try
+            {
+                IReadOnlyList<Bezoeker> alleAanwezigeBezoekers = _bezoekerManger.ZoekOp(e);
+                List<BezoekerView> bezoekerViews = alleAanwezigeBezoekers.Select(x => new BezoekerView(x)).ToList();
+                dataGrid.StelDataIn<BezoekerView>(bezoekerViews);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-        private void UpdateObject(object? sender, object obj) // TODO mag weg?
+        //TODO: gebruik
+        private void UpdateObject(object? sender, object obj)
         {
             string type = obj.GetType().Name;
             //if (type == "Bezoeker")
@@ -68,15 +81,16 @@ namespace BeheerderApp.Paginas
         {
             NavigationService.GoBack();
         }
+        //TODO: werkt dit?
         private void VerstuurEmail(object? sender, EventArgs e)
         {
             try
             {
                 _domeinController.SendEmail();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Niet gelukt om de lijst met aanwezige bezoekers te verzenden.");
+                MessageBox.Show("niet gelukt om de  lijst met aanwzige bezoekers te verzenden: " + ex.Message);
             }
         }
     }

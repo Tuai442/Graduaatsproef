@@ -31,24 +31,28 @@ namespace BeheerderApp.Windows
         public List<ILijstItems> Bedrijven;
         public VoegWerknemerToeWindow(DomeinController controller, List<ILijstItems> bedrijven)
         {
-            _controller = controller;
-            _bedrijfManager = controller.GeefBedrijfManager();
-            _werknemerManager = controller.GeefWerknemerManager();
+            try
+            {
+                _controller = controller;
+                _bedrijfManager = controller.GeefBedrijfManager();
+                _werknemerManager = controller.GeefWerknemerManager();
 
-            Bedrijven = bedrijven;
-            InitializeComponent();
-            bedrijfCombobox.VoegLijstToe(bedrijven);
+                Bedrijven = bedrijven;
+                InitializeComponent();
+                bedrijfCombobox.VoegLijstToe(bedrijven);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
             string voornaam = voornaamTxtbox.Text;
             string achternaam = achternaamTxtbox.Text;
             string functie =  functieTxtbox.Text;
-            string bedrijfEmail = (string)bedrijfCombobox.SelectedValue; // email ??
+            string bedrijfEmail = (string)bedrijfCombobox.SelectedValue;
             string email = emailTxtbox.Text;
-
             try
             {
                 Bedrijf bedrijf = _bedrijfManager.GeefBedrijfOpEmail(bedrijfEmail);
@@ -59,10 +63,6 @@ namespace BeheerderApp.Windows
             {
                 MessageBox.Show(ex.Message);
             }
-            
-
-
         }
-        
     }
 }

@@ -42,5 +42,5 @@ namespace BezoekerApp
         {
             mainFrame.Navigate(page);
         }
-    }
+    } 
 }
