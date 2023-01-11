@@ -203,10 +203,10 @@ namespace Persistence.Datalaag
         }
 
         //TODO: uitwerken
-        public void UpdateBedrijf(Bedrijf bedrijf)
+        public void ZetBedrijfNonActiefBedrijf(Bedrijf bedrijf)
         {
             string query = "UPDATE dbo.Bedrijf " +
-                 "SET actief=@actief " +
+                 "SET actief=0 " +
                  "WHERE bedrijfId = @id;"; //naam=@naam, btwNummer=@btwNummer, email=@email, telefoon=@telefoon, adres=@adres 
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))

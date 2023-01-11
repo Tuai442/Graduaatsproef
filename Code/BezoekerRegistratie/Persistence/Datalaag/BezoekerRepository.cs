@@ -123,7 +123,7 @@ namespace Persistence
         {
             string query = "UPDATE dbo.Bezoeker " +
                 "SET voornaam=@voornaam, achternaam=@achternaam, email=@email, bedrijf=@bedrijf, nummerplaat=@nummerplaat, " +
-                "aanwezig=@aanwezig " +
+                "aanwezig=0 " +
                 "WHERE bezoekerId = @id;";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))

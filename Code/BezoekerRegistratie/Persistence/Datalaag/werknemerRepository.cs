@@ -279,7 +279,7 @@ namespace Persistence.Datalaag
         public void ZetNonActiefWerknemer(int id)
         {
             string query = "UPDATE dbo.Werknemer " +
-                "SET actief=@actief " +
+                "SET actief=0 " +
                 "WHERE werknemerId = @id;";
 
             SqlConnection conn = GetConnection();
@@ -340,7 +340,7 @@ namespace Persistence.Datalaag
         public void UpdateWerknemer(Werknemer werknemer)
         {
             string query = "UPDATE dbo.Werknemer " +
-               "SET actief=@actief " +
+               "SET actief=0 " +
                "WHERE werknemerId = @id;";
 
             string query2 = $"INSERT INTO dbo.Werknemer (voornaam, achternaam, email, functie, bedrijfId, actief) output INSERTED.werknemerId " +

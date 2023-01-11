@@ -858,24 +858,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tuur\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\soren\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\soren\\Documents\\Evaluatie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
       "projectName": "Persistence",
-      "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
-      "packagesPath": "C:\\Users\\Tuur\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Persistence\\obj\\",
+      "projectPath": "C:\\Users\\soren\\Documents\\Evaluatie\\Code\\BezoekerRegistratie\\Persistence\\Persistence.csproj",
+      "packagesPath": "C:\\Users\\soren\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\soren\\Documents\\Evaluatie\\Code\\BezoekerRegistratie\\Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tuur\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\soren\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -889,11 +888,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
-              "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
+            "C:\\Users\\soren\\Documents\\Evaluatie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj": {
+              "projectPath": "C:\\Users\\soren\\Documents\\Evaluatie\\Code\\BezoekerRegistratie\\Controller\\Controller.csproj"
             },
-            "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj": {
-              "projectPath": "C:\\Users\\Tuur\\Desktop\\t\\Graduaatsproef\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj"
+            "C:\\Users\\soren\\Documents\\Evaluatie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj": {
+              "projectPath": "C:\\Users\\soren\\Documents\\Evaluatie\\Code\\BezoekerRegistratie\\Datalaag\\Datalaag.csproj"
             }
           }
         }
@@ -929,7 +928,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
