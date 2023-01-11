@@ -10,3 +10,15 @@ D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Contr
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\refint\Controller.dll
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.pdb
 D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\ref\Controller.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.deps.json
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\bin\Debug\net6.0\Controller.pdb
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.csproj.AssemblyReference.cache
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.AssemblyInfoInputs.cache
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.AssemblyInfo.cs
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.csproj.CoreCompileInputs.cache
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\refint\Controller.dll
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\Controller.pdb
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Controller\obj\Debug\net6.0\ref\Controller.dll

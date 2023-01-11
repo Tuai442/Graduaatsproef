@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\AA.SCORRO2022\graduaat proef\clone werkt 3 nov\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\
+C:\Users\soren\Documents\Academiejaar 2022-2023\eind\Code\BezoekerRegistratie\Components\obj\Debug\net6.0-windows\
 Components
 none
 false
@@ -13,7 +13,7 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 8-1821414130
 
 18183761786
-204-1813058684
+2041617185385
 CheckBox.xaml;Datagrids\BezoekersDataGrid.xaml;Datagrids\WerknemerDataGrid.xaml;Datagrids\Zoekbalk.xaml;Knop.xaml;TerugKnop.xaml;ZoekbaarDataGrid.xaml;ZoekbareComboBox.xaml;
 
 False
