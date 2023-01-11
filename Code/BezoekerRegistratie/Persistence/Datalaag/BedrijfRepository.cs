@@ -119,7 +119,6 @@ namespace Persistence.Datalaag
             }
         }
 
-
         public List<Bedrijf> ZoekBedrijfOp(string zoekText)
         {
             SqlConnection conn = GetConnection();
@@ -203,10 +202,10 @@ namespace Persistence.Datalaag
         }
 
         //TODO: uitwerken
-        public void UpdateBedrijf(Bedrijf bedrijf)
+        public void ZetBedrijfNonActiefBedrijf(int id)
         {
             string query = "UPDATE dbo.Bedrijf " +
-                 "SET actief=@actief " +
+                 "SET actief=0 " +
                  "WHERE bedrijfId = @id;"; //naam=@naam, btwNummer=@btwNummer, email=@email, telefoon=@telefoon, adres=@adres 
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
@@ -221,7 +220,7 @@ namespace Persistence.Datalaag
                     //command.Parameters.Add(new SqlParameter("@telefoon", SqlDbType.NVarChar));
                     //command.Parameters.Add(new SqlParameter("@adres", SqlDbType.NVarChar));
 
-                    command.Parameters["@id"].Value = bedrijf.Id;
+                    command.Parameters["@id"].Value = id;
                     //command.Parameters["@naam"].Value = bedrijf.Naam;
                     //command.Parameters["@btwNummer"].Value = bedrijf.Btw;
                     //command.Parameters["@email"].Value = bedrijf.Email;
@@ -229,7 +228,7 @@ namespace Persistence.Datalaag
                     //command.Parameters["@adres"].Value = bedrijf.Adres;
 
                     command.ExecuteNonQuery();
-                    VoegNieuwBedrijfToe(bedrijf);
+              
                 }
                 catch (Exception e)
                 {
@@ -312,6 +311,11 @@ namespace Persistence.Datalaag
             {
                 conn.Close();
             }
+        }
+
+        public void UpdateBedrijf(Bedrijf bedrijf)
+        {
+            throw new NotImplementedException();
         }
     }
 }

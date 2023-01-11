@@ -97,6 +97,7 @@ namespace Controller.Managers
             try
             {
                 if (bedrijf == null) throw new BedrijfException("BM - UpdateBedrijf");
+                
                 _bedrijfRepository.UpdateBedrijf(bedrijf);
             }
             catch (BedrijfException) { throw; }
@@ -133,11 +134,11 @@ namespace Controller.Managers
         }
 
         //TODO: wordt niet gebruikt / wel 1 ref?
-        public void VerwijderBedrijf(int index)
+        public void VerwijderBedrijf(int id)
         {
             try
             {
-                //return _bedrijfRepository.VerwijderBedrijf(index);
+                _bedrijfRepository.ZetBedrijfNonActiefBedrijf(id);
             }
             catch (Exception ex)
             {

@@ -1,14 +1,13 @@
 ﻿using Controller.Interfaces;
 using Controller.Models;
-using CountryValidation.Countries;
 using Persistence.Datalaag;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Persistence
 {
@@ -123,7 +122,7 @@ namespace Persistence
         {
             string query = "UPDATE dbo.Bezoeker " +
                 "SET voornaam=@voornaam, achternaam=@achternaam, email=@email, bedrijf=@bedrijf, nummerplaat=@nummerplaat, " +
-                "aanwezig=@aanwezig " +
+                "aanwezig=0 " +
                 "WHERE bezoekerId = @id;";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))

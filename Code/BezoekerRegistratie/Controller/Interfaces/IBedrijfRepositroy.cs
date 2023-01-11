@@ -1,6 +1,7 @@
 ﻿using Controller.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,5 +17,8 @@ namespace Controller.Interfaces
         void UpdateBedrijf(Bedrijf bedrijf);
         Bedrijf GeefBedrijfOpEmail(string email);
         Bedrijf GeefBedrijfViaNaam(string value);
+        void ZetBedrijfNonActiefBedrijf(int id);
+      
+
     }
 }
