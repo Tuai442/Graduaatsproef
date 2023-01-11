@@ -275,7 +275,7 @@ namespace Persistence.Datalaag
         }
 
         //TODO: update anders schrijven
-        public void UpdateWerknemer(Werknemer werknemer)
+        public void ZetNonActiefWerknemer(Werknemer werknemer)
         {
             string query = "UPDATE dbo.Werknemer " +
                 "SET actief=@actief " +

@@ -115,9 +115,7 @@ namespace Components
             // Hier kunnen we ons datagrid filter op het huidige zoekwoord.
             string zoekText = zoekBar.Text;
             OpDataFiltering.Invoke(sender, zoekText);
-
         }
-
         private void Verwijder_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = (MenuItem)sender;
@@ -141,11 +139,7 @@ namespace Components
                 {
                     OpDataVerwijdering.Invoke(this, datagridRij.GeefDataGridIndex);
                 }
-                
             }
-           
-
-
         }
     }
 }

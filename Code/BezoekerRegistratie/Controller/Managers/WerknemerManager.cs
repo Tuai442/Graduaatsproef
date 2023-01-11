@@ -44,11 +44,11 @@ namespace Controller.Managers
 
         }
 
-        public void UpdateWerknemer(Werknemer werknemer)
+        public void ZetNonActiefWerknemer(Werknemer werknemer)
         {
             try
             {
-                _werknemerRepository.UpdateWerknemer(werknemer);
+                _werknemerRepository.ZetNonActiefWerknemer(werknemer);
             }
             catch (Exception ex)
             {

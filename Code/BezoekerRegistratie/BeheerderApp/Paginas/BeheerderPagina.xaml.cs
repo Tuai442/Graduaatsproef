@@ -94,11 +94,11 @@ namespace BeheerderApp.Paginas
         {
             try
             {
-                if (bezoekerCheckBox.IsActief)
+                /*if (bezoekerCheckBox.IsActief)
                 {
                     _bezoekerManger.VerwijderBezoeker(index);
-                }
-                else if (werknemerCheckBox.IsActief)
+                }*/
+                 if (werknemerCheckBox.IsActief)
                 {
                     _werknemerManger.VerwijderWerknemer(index);
                 }
@@ -353,7 +353,7 @@ namespace BeheerderApp.Paginas
             try
             {
                 WerknemerView werknemerView = (WerknemerView)sender;
-                _werknemerManger.UpdateWerknemer(werknemerView.Werknemer);
+                _werknemerManger.ZetNonActiefWerknemer(werknemerView.Werknemer);
             } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
