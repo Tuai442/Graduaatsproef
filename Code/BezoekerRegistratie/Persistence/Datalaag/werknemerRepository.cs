@@ -335,8 +335,6 @@ namespace Persistence.Datalaag
             }
         }
 
-       
-
         public void UpdateWerknemer(Werknemer werknemer)
         {
             string query = "UPDATE dbo.Werknemer " +
