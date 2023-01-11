@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,73 @@ namespace Persistence.Datalaag
     {
         public BedrijfRepository()
         {
+        }
+
+        public Bedrijf GeefBedrijf(int bedrijfId)
+        {
+            string query = "SELECT * FROM dbo.bedrijf where bedrijfId=@bedrijfId";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@bedrijfId", bedrijfId);
+                    IDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+                    Bedrijf b = new Bedrijf((int)dataReader["bedrijfId"], (string)dataReader["naam"], (string)dataReader["btwNummer"], (string)dataReader["email"], (string)dataReader["adres"], (string)dataReader["telefoon"]);
+                    dataReader.Close();
+                    Console.WriteLine(b);
+                    return b;
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfRepoException("Geef bedrijf is niet gelukt", e);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+        public void UpdateBedrijf(Bedrijf bedrijf)
+        {
+            string query = "UPDATE dbo.Bedrijf " +
+                 "SET actief=actief,naam=@naam, btwNummer=@btwNummer, email=@email, telefoon=@telefoon, adres=@adres  " +
+                 "WHERE bedrijfId = @id;"; 
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@naam", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@btwNummer", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@telefoon", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@adres", SqlDbType.NVarChar));
+
+                    command.Parameters["@id"].Value = bedrijf.Id;
+                    command.Parameters["@naam"].Value = bedrijf.Naam;
+                    command.Parameters["@btwNummer"].Value = bedrijf.Btw;
+                    command.Parameters["@email"].Value = bedrijf.Email;
+                    command.Parameters["@telefoon"].Value = bedrijf.Telefoon;
+                    command.Parameters["@adres"].Value = bedrijf.Adres;
+
+                    command.ExecuteNonQuery();
+                    //VoegNieuwBedrijfToe(bedrijf);
+                }
+                catch (Exception e)
+                {
+                    throw new BedrijfRepoException($"Bedrijf kon niet geupdate worden, door een probleem met de database \n {e.Message}");
+
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public List<Bedrijf> GeefAlleBedrijven()
@@ -203,7 +271,7 @@ namespace Persistence.Datalaag
         }
 
         //TODO: uitwerken
-        public void ZetBedrijfNonActiefBedrijf(Bedrijf bedrijf)
+        public void ZetBedrijfNonActief(Bedrijf bedrijf)
         {
             string query = "UPDATE dbo.Bedrijf " +
                  "SET actief=0 " +
