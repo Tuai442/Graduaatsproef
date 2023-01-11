@@ -93,10 +93,13 @@ namespace Controller.Models
 
                 //TODO: dummy data aanpassen
                 //voor dummy data
-                string regexString2 = @"^(([0-9]{3}-){2}[0-9]{4})$";
-                Regex regex2 = new Regex(regexString2);
+                //string regexString2 = @"^(([0-9]{3}-){2}[0-9]{4})$";
+                //Regex regex2 = new Regex(regexString2);
 
-                if (!regex.IsMatch(telefoon) && !regex2.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
+                //if (!regex.IsMatch(telefoon) && !regex2.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
+
+
+                if (!regex.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
                 return telefoon;
             }catch(Exception ex)
             {
@@ -165,6 +168,7 @@ namespace Controller.Models
                 Regex regex = new Regex(regexString);
                 if (!regex.IsMatch(nummerplaat)) throw new ControleerException("Controle nummerplaat - geen geldige regex");
                 return nummerplaat;
+
             }catch(Exception ex)
             {
                 throw new ControleerException("ControleNummerplaat:"+ ex.Message);
