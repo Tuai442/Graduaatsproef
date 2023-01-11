@@ -417,6 +417,7 @@ namespace BeheerderApp.Paginas
                 _bedrijfManager.UpdateBedrijf(bedrijfView.Bedrijf);
             }catch(Exception ex)
             {
+                
                 MessageBox.Show(ex.Message);
             }
         }
