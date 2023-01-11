@@ -226,7 +226,6 @@ namespace BeheerderApp.Paginas
                     Components.CheckBox check = (Components.CheckBox)sender;
                     VinkAllesUitBehalve(check);
 
-                    //TODO: wrm ook bedrijvenView?
                     if (_bedrijfViews.Count == 0)
                     {
                         IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
@@ -238,7 +237,6 @@ namespace BeheerderApp.Paginas
                         }
                     }
 
-                    //List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
                     dataGrid.StelDataIn<WerknemerView>(_werknemerViews, false, _bedrijfViews);
                 }
             }
@@ -288,9 +286,6 @@ namespace BeheerderApp.Paginas
 
                 if (actief)
                 {
-                    //werknemerDataGrid.Visibility = Visibility.Hidden;
-                    //dataGrid.Visibility = Visibility.Visible;
-
                     if (_afspraakViews.Count == 0)
                     {
                         IReadOnlyList<Afspraak> afspraken = _afspraakManager.GeefAlleAfspraken();
@@ -306,8 +301,18 @@ namespace BeheerderApp.Paginas
                     Components.CheckBox check = (Components.CheckBox)sender;
                     VinkAllesUitBehalve(check);
 
-                    dataGrid.StelDataIn<AfspraakView>(_afspraakViews, true);
+                    if (_bedrijfViews.Count == 0)
+                    {
+                        IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+                        foreach (Bedrijf bedrijf in bedrijven)
+                        {
+                            BedrijfView bedrijfView = new BedrijfView(bedrijf);
+                            bedrijfView.PropertyChanged += UpdateBedrijf;
+                            _bedrijfViews.Add(bedrijfView);
+                        }
+                    }
 
+                    dataGrid.StelDataIn<AfspraakView>(_afspraakViews, false, _bedrijfViews);
                 }
             }catch(Exception ex)
             {
@@ -374,7 +379,6 @@ namespace BeheerderApp.Paginas
         //TODO: Afspraak kunnen updaten
         private void UpdateAfspraak(object? sender, PropertyChangedEventArgs e)
         {
-            //TODO: juist gedaan ??
             try
             {
                 AfspraakView afspraakView = (AfspraakView)sender;
