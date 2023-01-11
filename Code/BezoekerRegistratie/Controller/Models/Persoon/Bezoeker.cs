@@ -39,7 +39,7 @@ namespace Controller.Models
         }
 
 
-        //TODO: BedrijfID is moeilijk aan te spreken omdat bedrijf eens tring is
+        //TODO: BedrijfID is moeilijk aan te spreken omdat bedrijf eens string is
         //public Bezoeker(string voornaam, string achternaam, string email, string bedrijf, string nummerplaat, bool aanwezig):
         //    base(voornaam, achternaam, email)
         //{

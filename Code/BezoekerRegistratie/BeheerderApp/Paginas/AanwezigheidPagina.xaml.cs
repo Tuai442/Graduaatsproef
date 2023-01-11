@@ -68,15 +68,6 @@ namespace BeheerderApp.Paginas
                 MessageBox.Show(ex.Message);
             }
         }
-        //TODO: gebruik
-        private void UpdateObject(object? sender, object obj)
-        {
-            string type = obj.GetType().Name;
-            //if (type == "Bezoeker")
-            //{
-            //    _bezoekerManger.UpdateBezoeker(obj);
-            //}
-        }
         private void GaPaginaTerug(object? sender, EventArgs e)
         {
             NavigationService.GoBack();

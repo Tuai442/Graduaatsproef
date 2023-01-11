@@ -115,9 +115,7 @@ namespace Components
             // Hier kunnen we ons datagrid filter op het huidige zoekwoord.
             string zoekText = zoekBar.Text;
             OpDataFiltering.Invoke(sender, zoekText);
-
         }
-
 
         private void Verwijder_Click(object sender, RoutedEventArgs e)
         {
@@ -152,15 +150,14 @@ namespace Components
                 MessageBox.Show("Kan data nie verwijder heeft je vieuw model een IDtaGridRij interface geimplementeerd?");
             }
            
-           
-
-
-        }
+                       }
+        
 
         public void Refresh()
         {
             dataGrid.Items.Refresh();
         }
     }
+
 }
 

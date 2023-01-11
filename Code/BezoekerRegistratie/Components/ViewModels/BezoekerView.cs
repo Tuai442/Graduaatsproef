@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Components.ViewModels
 {
@@ -28,9 +29,17 @@ namespace Components.ViewModels
             get { return _voornaam; }
             set
             {
-                _voornaam = value;
-                _bezoeker.Voornaam = value;
-                OnPropertyChanged();
+                try
+                {
+                    _voornaam = value;
+                    _bezoeker.Voornaam = value;
+                    OnPropertyChanged();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
         [Hoofding("Achternaam")]
@@ -39,9 +48,17 @@ namespace Components.ViewModels
             get => _achternaam;
             set
             {
-                _achternaam = value;
-                _bezoeker.Achternaam = value;
-                OnPropertyChanged();
+                try
+                {
+                    _achternaam = value;
+                    _bezoeker.Achternaam = value;
+                    OnPropertyChanged();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -55,17 +72,15 @@ namespace Components.ViewModels
                 {
                     _bezoeker.Email = value;
                     _email = value;
-
                     OnPropertyChanged(value);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                //OnClassChanged(bezoekerCpy);
             }
         }
-
         //[Hoofding("Is Aanwezig")]
         //public bool Aanwezig
         //{
@@ -77,16 +92,23 @@ namespace Components.ViewModels
         //        OnPropertyChanged();
         //    }
         //}
-
         [Hoofding("Bedrijf")]
         public string Bedrijf
         {
             get => _bedrijf;
             set
             {
-                _bedrijf = value;
-                _bezoeker.Bedrijf = value;
-                OnPropertyChanged();
+                try
+                {
+                    _bedrijf = value;
+                    _bezoeker.Bedrijf = value;
+                    OnPropertyChanged();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kan update niet uivoeren",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

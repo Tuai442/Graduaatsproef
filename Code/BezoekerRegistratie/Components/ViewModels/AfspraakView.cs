@@ -19,7 +19,7 @@ namespace Components.ViewModels
         public DateTime StartTijd { get; set; }
 
         [Hoofding("Eind Tijd")]
-        public DateTime? EindTijd { get; set; }
+        public DateTime? EindTijd { get;  set; }
 
         [Hoofding("Bedrijf")]
         public string Bedrijf { get; set; }

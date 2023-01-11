@@ -41,11 +41,7 @@ namespace Components.ViewModels
             _bedrijfManager = new BedrijfManager(new BedrijfRepository());
             Content = werkn.ToString();
         }
-
-
         public event PropertyChangedEventHandler? PropertyChanged;
-
-
         [Hoofding("Voornaam")]
         public string Voornaam
         {
@@ -58,14 +54,13 @@ namespace Components.ViewModels
                     _voornaam = value;
                     OnPropertyChanged(value);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Kan update niet uivoeren",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
-
         [Hoofding("Achternaam")]
         public string Achternaam
         {
@@ -78,35 +73,32 @@ namespace Components.ViewModels
                     _achternaam = value;
                     OnPropertyChanged(value);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Kan update niet uivoeren",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
-
         [Hoofding("Email")]
         public string Email
         {
             get => _email;
             set
             {
-                // TODO: noah kun jij alle properties zo maken?
                 try
                 {
                     Werknemer.Email = value;
                     _email = value;
                     OnPropertyChanged(value);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Kan update niet uivoeren",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
-
         [Hoofding("Functie")]
         public string Functie
         {
@@ -119,14 +111,13 @@ namespace Components.ViewModels
                     _functie = value;
                     OnPropertyChanged(value);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Kan update niet uivoeren",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
-
         [Hoofding("Bedrijf")]
         [CellType(CellType.ComboBox)]
         public string Bedrijf
@@ -146,15 +137,12 @@ namespace Components.ViewModels
                 }
             }
         }
-
-       
         // Lijst items
         public string Id { get => Email; }
         public string ItemNaam { get => $"{Voornaam} {Achternaam}"; }
 
-        public int GeefDataGridIndex { get; set ; }
+        public int GeefDataGridIndex { get; set; }
         public string Content { get; set; }
-
         private void OnPropertyChanged(string name = null)
         {
             if (PropertyChanged != null)
