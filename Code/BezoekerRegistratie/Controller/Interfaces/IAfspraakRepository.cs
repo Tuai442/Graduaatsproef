@@ -9,7 +9,7 @@ namespace Controller.Interfaces
 {
     public interface IAfspraakRepository
     {
-        
+        void ZetOpNonActief(int id);
         List<Afspraak> GeefAlleAfspraken();
         void VoegAfspraakToe(Afspraak afspraak);
         void UpdateAfspraak(Afspraak afspraak);

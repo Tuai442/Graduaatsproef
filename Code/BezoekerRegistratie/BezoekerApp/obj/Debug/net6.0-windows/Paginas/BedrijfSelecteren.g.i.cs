@@ -86,7 +86,7 @@ namespace BezoekerApp.Paginas {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BezoekerApp;component/paginas/bedrijfselecteren.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BezoekerApp;V1.0.0.0;component/paginas/bedrijfselecteren.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Paginas\BedrijfSelecteren.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

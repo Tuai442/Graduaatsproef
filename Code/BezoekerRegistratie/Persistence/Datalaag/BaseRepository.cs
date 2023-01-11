@@ -115,7 +115,7 @@ namespace Persistence.Datalaag
             {
                 conn.Open();
 
-                string query = $"SELECT * FROM Bezoeker WHERE bezoekerId = {id} and actief = 1;";
+                string query = $"SELECT * FROM Bezoeker WHERE bezoekerId = {id};";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)

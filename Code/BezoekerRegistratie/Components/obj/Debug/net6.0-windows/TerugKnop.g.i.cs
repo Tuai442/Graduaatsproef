@@ -61,7 +61,7 @@ namespace Components {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Components;component/terugknop.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Components;V1.0.0.0;component/terugknop.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\TerugKnop.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
