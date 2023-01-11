@@ -247,6 +247,45 @@ namespace Persistence.Datalaag
 
             }
         }
+
+        public void EindeAfspraak(Afspraak afspraak)
+        {
+            string query = "UPDATE dbo.Bezoeker " +
+              "SET aanwezig=0 " +
+              "WHERE bezoekerId = @id;";
+            string afspraakQuery = "Update afspraak set eindTijd = @eindtijd where afspraakId = @afspraakId";
+
+            SqlConnection conn = GetConnection();
+            SqlTransaction trans = null;
+
+            try
+            {
+                conn.Open();
+                trans = conn.BeginTransaction();
+
+                SqlCommand cmd = new SqlCommand(query, conn, trans);
+                cmd.Parameters.AddWithValue("@id", afspraak.Bezoeker.Id);
+                cmd.ExecuteNonQuery();
+
+                SqlCommand cmd1 = new SqlCommand(afspraakQuery, conn, trans);
+                cmd1.Parameters.AddWithValue("@afspraakId", afspraak.Id);
+                cmd1.Parameters.AddWithValue("@eindtijd", afspraak.EindTijd);
+                cmd1.ExecuteNonQuery();
+
+                trans.Commit();
+            }
+            catch (Exception ex)
+            {
+                trans.Rollback();
+                throw new AfspraakRepoException("EindeAfspraak is niet gelukt.", ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            
+        }
+
         public List<Afspraak> ZoekAfspraakOp(string zoekText)
         {
             {

@@ -219,6 +219,62 @@ namespace Persistence
                 }
             }
         }
+
+        public void MeldBezoekerAf(Bezoeker bezoeker)
+        {
+            string query = "UPDATE dbo.Bezoeker " +
+              "SET aanwezig=0 " +
+              "WHERE bezoekerId = @id;";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    command.Parameters["@voornaam"].Value = bezoeker.Voornaam;                    
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    BezoekerRepoException be = new BezoekerRepoException("Bezoeker updaten is niet gelukt", e);
+                    be.Data.Add("Bezoeker:", bezoeker);
+                    throw be;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+            }
+
+        public void MeldBezoekerAan(Bezoeker bezoeker)
+        {
+            string query = "UPDATE dbo.Bezoeker " +
+              "SET aanwezig=1 " +
+              "WHERE bezoekerId = @id;";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    command.Parameters["@id"].Value = bezoeker.Id;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    BezoekerRepoException be = new BezoekerRepoException("Bezoeker aanmelden niet gelukt", e);
+                    be.Data.Add("Bezoeker:", bezoeker);
+                    throw be;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
     }
    
 }

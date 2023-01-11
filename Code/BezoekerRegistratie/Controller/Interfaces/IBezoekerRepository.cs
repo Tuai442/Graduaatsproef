@@ -1,6 +1,7 @@
 ﻿using Controller.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,5 +16,8 @@ namespace Controller.Interfaces
         void ZetBezoekerNonActief(Bezoeker bezoeker);
         List<Bezoeker> GeefAlleAanwezigeBezoekers();
         List<Bezoeker> ZoekBezoekersOp(string zoekText);
+        void MeldBezoekerAf(Bezoeker bezoekerMetId);
+        void MeldBezoekerAan(Bezoeker bezoeker);
+        
+        }
     }
-}

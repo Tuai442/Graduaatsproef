@@ -44,7 +44,6 @@ namespace Controller.Managers
             }
         }
 
-        //TODO: Diego Uitwerken
         public void UpdateAfspraak(Afspraak afspraak)
         {
             try
