@@ -44,12 +44,11 @@ namespace Controller.Managers
             }
         }
 
-        //TODO: Diego Uitwerken
         public void UpdateAfspraak(Afspraak afspraak)
         {
             try
             {
-                if (afspraak == null) throw new AfspraakException("AfspraakManager - UpdateAfspraak");
+                if (afspraak == null) throw new AfspraakException("Afspraak is null");
                 _afspraakRepository.UpdateAfspraak(afspraak);
             }catch(Exception ex)
             {
@@ -69,10 +68,16 @@ namespace Controller.Managers
 
         }
 
-        //TODO: wordt niet gebruikt
         public void VerwijderAfspraak(int index)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _afspraakRepository.ZetOpNonActief(index);
+            }
+            catch (Exception ex)
+            {
+                throw new AfspraakManagerException("VerwijderAfspraak: " + ex.Message, ex);
+            }
         }
     }
 }

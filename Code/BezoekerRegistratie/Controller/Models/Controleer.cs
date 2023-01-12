@@ -29,6 +29,7 @@ namespace Controller.Models
 
         public static string BtwNummerControle(string btw)
         {
+
             try
             {
                 if (string.IsNullOrWhiteSpace(btw)) throw new ControleerException("Controle BTW - geen geldige invoer");
@@ -92,10 +93,13 @@ namespace Controller.Models
 
                 //TODO: dummy data aanpassen
                 //voor dummy data
-                string regexString2 = @"^(([0-9]{3}-){2}[0-9]{4})$";
-                Regex regex2 = new Regex(regexString2);
+                //string regexString2 = @"^(([0-9]{3}-){2}[0-9]{4})$";
+                //Regex regex2 = new Regex(regexString2);
 
-                if (!regex.IsMatch(telefoon) && !regex2.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
+                //if (!regex.IsMatch(telefoon) && !regex2.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
+
+
+                if (!regex.IsMatch(telefoon)) throw new ControleerException("ControleTelefoon - geen geldige regex");
                 return telefoon;
             }catch(Exception ex)
             {
@@ -116,7 +120,8 @@ namespace Controller.Models
             }
         }
 
-        public static void LegeVelden(string vnBezoeker, string anBezoeker, string email, string bedrijfBezoeker, string emailContactPersoon)
+        public static void LegeVelden(string vnBezoeker, string anBezoeker, string email,
+            string bedrijfBezoeker, string emailContactPersoon)
         {
             try
             {
@@ -154,7 +159,6 @@ namespace Controller.Models
             }
         }
 
-        //TODO: regex is momenteel enkel voor belgische nummerplaten
         public static string ControleNummerplaat(string nummerplaat)
         {
             try
@@ -164,6 +168,7 @@ namespace Controller.Models
                 Regex regex = new Regex(regexString);
                 if (!regex.IsMatch(nummerplaat)) throw new ControleerException("Controle nummerplaat - geen geldige regex");
                 return nummerplaat;
+
             }catch(Exception ex)
             {
                 throw new ControleerException("ControleNummerplaat:"+ ex.Message);

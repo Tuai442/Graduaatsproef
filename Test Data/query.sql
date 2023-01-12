@@ -2,8 +2,6 @@ DROP TABLE Afspraak;
 DROP TABLE Werknemer;
 DROP TABLE Bedrijf;
 DROP TABLE Bezoeker;
-
-
 CREATE TABLE Bedrijf (
     bedrijfId int IDENTITY,
     naam varchar(255) not null,
@@ -45,6 +43,7 @@ CREATE TABLE Afspraak (
     afspraakId int IDENTITY,
     startTijd Datetime not null,
     eindTijd Datetime null,
+	actief bit not null DEFAULT 1,
 
     werknemerId int,
     bezoekerId int,

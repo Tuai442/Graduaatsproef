@@ -61,6 +61,8 @@ namespace Components
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
+       
+
         public void StelDataIn<T>(IEnumerable viewModel, bool readOnly= false, IEnumerable extraInfo = null)
         {
             _data = viewModel;
@@ -113,31 +115,48 @@ namespace Components
             string zoekText = zoekBar.Text;
             OpDataFiltering.Invoke(sender, zoekText);
         }
+
         private void Verwijder_Click(object sender, RoutedEventArgs e)
         {
-            var menuItem = (MenuItem)sender;
-            var contextMenu = (ContextMenu)menuItem.Parent;
-            var dataGrid = (DataGrid)contextMenu.PlacementTarget;
-
-            if(dataGrid.SelectedItems.Count > 1)
+            try
             {
-                MessageBox.Show("Je kan geen meerdere rij in één keer verwijderen");
-            }
-            else
-            {
-                int rijIndex = dataGrid.SelectedIndex;
+                var menuItem = (MenuItem)sender;
+                var contextMenu = (ContextMenu)menuItem.Parent;
+                var dataGrid = (DataGrid)contextMenu.PlacementTarget;
 
-                var rij = ((DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(rijIndex)).DataContext;
-                IDataGridRij datagridRij = (IDataGridRij)rij;
-
-                string bericht = $"Weet u zeker dat u de volgende rij wilt verwijderen: '{datagridRij.Content}' ?";
-                var dialogResult = MessageBox.Show(bericht, "MyProgram", MessageBoxButton.YesNo);
-                if (dialogResult == MessageBoxResult.Yes)
+                if (dataGrid.SelectedItems.Count > 1)
                 {
-                    OpDataVerwijdering.Invoke(this, datagridRij.GeefDataGridIndex);
+                    MessageBox.Show("Je kan geen meerdere rij in één keer verwijderen");
+                }
+                else
+                {
+                    int rijIndex = dataGrid.SelectedIndex;
+
+                    var rij = ((DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(rijIndex)).DataContext;
+                    IDataGridRij datagridRij = (IDataGridRij)rij;
+
+                    string bericht = $"Weet u zeker dat u de volgende rij wilt verwijderen: '{datagridRij.Content}' ?";
+                    var dialogResult = MessageBox.Show(bericht, "MyProgram", MessageBoxButton.YesNo);
+                    if (dialogResult == MessageBoxResult.Yes)
+                    {
+                        OpDataVerwijdering.Invoke(this, datagridRij.GeefDataGridIndex);
+                    }
+
                 }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Kan data nie verwijder heeft je vieuw model een IDtaGridRij interface geimplementeerd?");
+            }
+           
+                       }
+        
+
+        public void Refresh()
+        {
+            dataGrid.Items.Refresh();
         }
     }
+
 }
 

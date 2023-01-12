@@ -90,26 +90,50 @@ namespace BeheerderApp.Paginas
 
 
         //TODO: alle verwijder zijn niet uitgeschreven
-        private void VerwijderData(object? sender, int index)
+        private void VerwijderData(object? sender, int id)
         {
             try
             {
-                /*if (bezoekerCheckBox.IsActief)
-                {
-                    _bezoekerManger.VerwijderBezoeker(index);
-                }*/
                  if (werknemerCheckBox.IsActief)
                 {
-                    _werknemerManger.VerwijderWerknemer(index);
+                    _werknemerManger.VerwijderWerknemer(id);
+                    foreach(var i in _werknemerViews)
+                    {
+                        var rij = (IDataGridRij)i;
+                        if(rij.GeefDataGridIndex == id)
+                        {
+                            _werknemerViews.Remove(i);
+                            break;
+                        }
+                    }
                 }
                 else if (bedrijfCheckBox.IsActief)
                 {
-                    _bedrijfManager.VerwijderBedrijf(index);
+                    _bedrijfManager.VerwijderBedrijf(id);
+                    foreach (var i in _bedrijfViews)
+                    {
+                        var rij = (IDataGridRij)i;
+                        if (rij.GeefDataGridIndex == id)
+                        {
+                            _bedrijfViews.Remove(i);
+                            break;
+                        }
+                    }
                 }
                 else if (afspraakCheckBox.IsActief)
                 {
-                    _afspraakManager.VerwijderAfspraak(index);
+                    _afspraakManager.VerwijderAfspraak(id);
+                    foreach (var i in _afspraakViews)
+                    {
+                        var rij = (IDataGridRij)i;
+                        if (rij.GeefDataGridIndex == id)
+                        {
+                            _afspraakViews.Remove(i);
+                            break;
+                        }
+                    }
                 }
+                dataGrid.Refresh();
             }
             catch (Exception ex)
             {
@@ -117,7 +141,6 @@ namespace BeheerderApp.Paginas
             }
 
         }
-
         private void FilterData(object? sender, string zoekText)
         {
             try
@@ -134,8 +157,6 @@ namespace BeheerderApp.Paginas
                             bezoekerView.PropertyChanged += UpdateBezoeker;
                             _bezoekerViews.Add(bezoekerView);
                         }
-
-                        //TODO: wat is dispatcher?
                         Dispatcher.Invoke(() =>
                         {
                             dataGrid.StelDataIn<BezoekerView>(_bezoekerViews);
@@ -158,8 +179,6 @@ namespace BeheerderApp.Paginas
                     }
                     else if (afspraakCheckBox.IsActief)
                     {
-                        //werknemerDataGrid.Visibility = Visibility.Hidden;
-                        //dataGrid.Visibility = Visibility.Visible;
                         IReadOnlyList<Afspraak> afspraken = _afspraakManager.ZoekOp(zoekText);
                         _afspraakViews = new List<AfspraakView>();
                         foreach (Afspraak afspraak in afspraken)
@@ -175,8 +194,6 @@ namespace BeheerderApp.Paginas
                     }
                     else if (bedrijfCheckBox.IsActief)
                     {
-                        //werknemerDataGrid.Visibility = Visibility.Hidden;
-                        //dataGrid.Visibility = Visibility.Visible;
                         IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.ZoekOp(zoekText);
                         _bedrijfViews = new List<BedrijfView>();
                         foreach (Bedrijf bedrijf in bedrijven)
@@ -205,10 +222,10 @@ namespace BeheerderApp.Paginas
         {
             try
             {
+
                 if (actief)
                 {
-                    //werknemerDataGrid.Visibility = Visibility.Visible;
-                    //dataGrid.Visibility = Visibility.Collapsed;
+                    
                     if (_werknemerViews.Count == 0)
                     {
                         IReadOnlyList<Werknemer> werknemers = _werknemerManger.GeefAlleWerknemers();
@@ -226,7 +243,6 @@ namespace BeheerderApp.Paginas
                     Components.CheckBox check = (Components.CheckBox)sender;
                     VinkAllesUitBehalve(check);
 
-                    //TODO: wrm ook bedrijvenView?
                     if (_bedrijfViews.Count == 0)
                     {
                         IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
@@ -238,7 +254,7 @@ namespace BeheerderApp.Paginas
                         }
                     }
 
-                    //List<string> bedrijbString = _bedrijfViews.Select(x => x.Naam).ToList();
+
                     dataGrid.StelDataIn<WerknemerView>(_werknemerViews, false, _bedrijfViews);
                 }
             }
@@ -253,8 +269,7 @@ namespace BeheerderApp.Paginas
             {
                 if (actief)
                 {
-                    //werknemerDataGrid.Visibility = Visibility.Hidden;
-                    //dataGrid.Visibility = Visibility.Visible;
+                    
 
                     if (_bezoekerViews.Count == 0)
                     {
@@ -272,7 +287,7 @@ namespace BeheerderApp.Paginas
                     Components.CheckBox check = (Components.CheckBox)sender;
                     VinkAllesUitBehalve(check);
 
-                    dataGrid.StelDataIn<BezoekerView>(_bezoekerViews);
+                    dataGrid.StelDataIn<BezoekerView>(_bezoekerViews, true);
 
                 }
             }catch(Exception ex)
@@ -288,9 +303,6 @@ namespace BeheerderApp.Paginas
 
                 if (actief)
                 {
-                    //werknemerDataGrid.Visibility = Visibility.Hidden;
-                    //dataGrid.Visibility = Visibility.Visible;
-
                     if (_afspraakViews.Count == 0)
                     {
                         IReadOnlyList<Afspraak> afspraken = _afspraakManager.GeefAlleAfspraken();
@@ -306,8 +318,18 @@ namespace BeheerderApp.Paginas
                     Components.CheckBox check = (Components.CheckBox)sender;
                     VinkAllesUitBehalve(check);
 
-                    dataGrid.StelDataIn<AfspraakView>(_afspraakViews, true);
+                    if (_bedrijfViews.Count == 0)
+                    {
+                        IReadOnlyList<Bedrijf> bedrijven = _bedrijfManager.GeefAlleBedrijven();
+                        foreach (Bedrijf bedrijf in bedrijven)
+                        {
+                            BedrijfView bedrijfView = new BedrijfView(bedrijf);
+                            bedrijfView.PropertyChanged += UpdateBedrijf;
+                            _bedrijfViews.Add(bedrijfView);
+                        }
+                    }
 
+                    dataGrid.StelDataIn<AfspraakView>(_afspraakViews, false, _bedrijfViews);
                 }
             }catch(Exception ex)
             {
@@ -353,7 +375,8 @@ namespace BeheerderApp.Paginas
             try
             {
                 WerknemerView werknemerView = (WerknemerView)sender;
-                _werknemerManger.ZetNonActiefWerknemer(werknemerView.Werknemer);
+
+                _werknemerManger.UpdateWerknemer(werknemerView.Werknemer);
             } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -374,7 +397,6 @@ namespace BeheerderApp.Paginas
         //TODO: Afspraak kunnen updaten
         private void UpdateAfspraak(object? sender, PropertyChangedEventArgs e)
         {
-            //TODO: juist gedaan ??
             try
             {
                 AfspraakView afspraakView = (AfspraakView)sender;
@@ -393,6 +415,7 @@ namespace BeheerderApp.Paginas
                 _bedrijfManager.UpdateBedrijf(bedrijfView.Bedrijf);
             }catch(Exception ex)
             {
+                
                 MessageBox.Show(ex.Message);
             }
         }

@@ -1,14 +1,13 @@
 ﻿using Controller.Interfaces;
 using Controller.Models;
-using CountryValidation.Countries;
 using Persistence.Datalaag;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Persistence
 {
@@ -59,33 +58,7 @@ namespace Persistence
                 }
             }
         }
-        //TODO: moet aanpassen en niet verwijderen
-       /* public void VerwijderBezoeker(int index)
-        {
-            string query = "DELETE FROM dbo.Bezoeker WHERE bezoekerId=@bezoekerId";
-            SqlConnection conn = GetConnection();
-            using (SqlCommand command = new SqlCommand(query, conn))
-            {
-                try
-                {
-                    conn.Open();
-                    command.Parameters.Add(new SqlParameter("@bezoekerId", SqlDbType.Int));
-                    //command.Parameters["@bezoekerId"].Value = bezoeker.Id;
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception e)
-                {
-                    BezoekerRepoException be = new BezoekerRepoException("Bezoeker verwijderen is niet gelukt", e);
-                    //be.Data.Add("Bezoeker:", bezoeker);
-                    throw be;
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-        }*/
-
+        
         public Bezoeker GeefBezoekerOpEmail(string email)
         {
             string query = "SELECT * from dbo.Bezoeker where email=@email";
@@ -123,7 +96,7 @@ namespace Persistence
         {
             string query = "UPDATE dbo.Bezoeker " +
                 "SET voornaam=@voornaam, achternaam=@achternaam, email=@email, bedrijf=@bedrijf, nummerplaat=@nummerplaat, " +
-                "aanwezig=@aanwezig " +
+                "aanwezig=0 " +
                 "WHERE bezoekerId = @id;";
             SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
@@ -239,6 +212,62 @@ namespace Persistence
                 catch (Exception ex)
                 {
                     throw new BezoekerRepoException("Geef bezoekers is niet gelukt.", ex);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public void MeldBezoekerAf(Bezoeker bezoeker)
+        {
+            string query = "UPDATE dbo.Bezoeker " +
+              "SET aanwezig=0 " +
+              "WHERE bezoekerId = @id;";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    command.Parameters["@voornaam"].Value = bezoeker.Voornaam;                    
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    BezoekerRepoException be = new BezoekerRepoException("Bezoeker updaten is niet gelukt", e);
+                    be.Data.Add("Bezoeker:", bezoeker);
+                    throw be;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+            }
+
+        public void MeldBezoekerAan(Bezoeker bezoeker)
+        {
+            string query = "UPDATE dbo.Bezoeker " +
+              "SET aanwezig=1 " +
+              "WHERE bezoekerId = @id;";
+            SqlConnection conn = GetConnection();
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    command.Parameters["@id"].Value = bezoeker.Id;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    BezoekerRepoException be = new BezoekerRepoException("Bezoeker aanmelden niet gelukt", e);
+                    be.Data.Add("Bezoeker:", bezoeker);
+                    throw be;
                 }
                 finally
                 {

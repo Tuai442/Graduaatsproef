@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 namespace Persistence.Datalaag
 {
     public class WerknemerRepository : BaseRepository, IWerknemerRepository
+
     {
         private string _tableName = "Werknemer";
         public WerknemerRepository()
@@ -274,15 +276,13 @@ namespace Persistence.Datalaag
             return werknemers;
         }
 
-        //TODO: update anders schrijven
-        public void ZetNonActiefWerknemer(Werknemer werknemer)
+        public void ZetNonActiefWerknemer(int id)
         {
             string query = "UPDATE dbo.Werknemer " +
-                "SET actief=@actief " +
+                "SET actief=0 " +
                 "WHERE werknemerId = @id;";
-            // TODO: met transactie 
 
-                    SqlConnection conn = GetConnection();
+            SqlConnection conn = GetConnection();
             using (SqlCommand command = new SqlCommand(query, conn))
             {
                 try
@@ -291,11 +291,10 @@ namespace Persistence.Datalaag
                     command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
                     command.Parameters.Add(new SqlParameter("@actief", SqlDbType.Bit));
 
-                    command.Parameters["@id"].Value = werknemer.Id;
+                    command.Parameters["@id"].Value = id;
                     command.Parameters["@actief"].Value = false;
 
                     command.ExecuteNonQuery();
-                    VoegWerknemerToe(werknemer);
                 }
                 catch (Exception e)
                 {
@@ -307,6 +306,75 @@ namespace Persistence.Datalaag
                     conn.Close();
                 }
             }
+        }
+
+        public bool HeeftWerknemer(int id)
+        {
+            SqlConnection conn = GetConnection();
+            string sql = "select count(*) from Werknemer where werknemerId = @id and actief=1;";
+            using (SqlCommand cmd = conn.CreateCommand())
+            {
+                try
+                {
+                    conn.Open();
+                    cmd.CommandText = sql;
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    int count = (int)cmd.ExecuteScalar();
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new WerknemerRepoException("HeeftWerknemer", ex);
+                }
+                finally { conn.Close(); }
+                return false;
+            }
+        }
+
+        public void UpdateWerknemer(Werknemer werknemer)
+        {
+            string query = "UPDATE dbo.Werknemer " +
+               "SET actief=0 " +
+               "WHERE werknemerId = @id;";
+
+            string query2 = $"INSERT INTO dbo.Werknemer (voornaam, achternaam, email, functie, bedrijfId, actief) output INSERTED.werknemerId " +
+               $"VALUES(@voornaam, @achternaam, @email, @functie, @bedrijfId, 1);";
+
+            SqlTransaction trans = null;
+            SqlConnection conn = GetConnection();
+            try
+            {
+                conn.Open();
+                trans = conn.BeginTransaction();
+                SqlCommand cmd1 = new SqlCommand(query, conn, trans);
+                cmd1.Parameters.AddWithValue("@actief", 0);
+                cmd1.Parameters.AddWithValue("@id", werknemer.Id);
+                cmd1.ExecuteNonQuery();
+                
+
+                SqlCommand cmd2 = new SqlCommand(query2, conn, trans);
+
+                cmd2.Parameters.AddWithValue("@actief", 0);
+                cmd2.Parameters.AddWithValue("@werknemerId", werknemer.Id);
+                cmd2.Parameters.AddWithValue("@voornaam", werknemer.Voornaam);
+                cmd2.Parameters.AddWithValue("@achternaam", werknemer.Achternaam);
+                cmd2.Parameters.AddWithValue("@email", werknemer.Email);
+                cmd2.Parameters.AddWithValue("@functie", werknemer.Functie);
+                cmd2.Parameters.AddWithValue("@bedrijfId", werknemer.Bedrijf.Id);
+
+                werknemer.Id = (int)cmd2.ExecuteScalar();
+                trans.Commit();
+            }
+            catch(Exception ex)
+            {
+                trans.Rollback();
+                throw new WerknemerRepoException("UpdateWerknemer", ex);
+            }
+           
         }
     }
 }

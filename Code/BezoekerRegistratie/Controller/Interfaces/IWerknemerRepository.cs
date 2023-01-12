@@ -14,7 +14,10 @@ namespace Controller.Interfaces
         List<Werknemer> ZoekOpWerknemers(string zoekText);
         Werknemer GeefWerknemerOpEmail(string email);
         List<Werknemer> GeefWerknemersOpEmailBedrijf(string value);
-        void ZetNonActiefWerknemer(Werknemer werknemer);
+        void ZetNonActiefWerknemer(int id);
+
         void VoegWerknemerToe(Werknemer werknemer);
+        bool HeeftWerknemer(int id);
+        void UpdateWerknemer(Werknemer werknemer);
     }
 }

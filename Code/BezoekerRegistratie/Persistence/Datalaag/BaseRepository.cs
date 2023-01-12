@@ -20,6 +20,8 @@ namespace Persistence.Datalaag
         //protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Tuur\Desktop\t\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
         //link Diego
         //protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Hogent\22-23\Graduaatsproef_Finaal\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
+        protected string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Hogent\22-23\graduaat Fin\Graduaatsproef\Code\BezoekerRegistratie\Datalaag\Database1.mdf;Integrated Security=True";
+
 
         public BaseRepository()
         {
@@ -114,7 +116,11 @@ namespace Persistence.Datalaag
             {
                 conn.Open();
 
+<<<<<<< HEAD
                 string query = $"SELECT * FROM Bezoeker WHERE bezoekerId = {id} and aanwezig = 1;";
+=======
+                string query = $"SELECT * FROM Bezoeker WHERE bezoekerId = {id};";
+>>>>>>> ca80ae8fb2ef8f0df6dae391485f89839d3e01b8
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.HasRows)

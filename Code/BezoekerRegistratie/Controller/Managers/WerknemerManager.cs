@@ -44,12 +44,17 @@ namespace Controller.Managers
 
         }
 
-        public void ZetNonActiefWerknemer(Werknemer werknemer)
+        public void UpdateWerknemer(Werknemer werknemer)
         {
             try
             {
-                _werknemerRepository.ZetNonActiefWerknemer(werknemer);
+                if (!_werknemerRepository.HeeftWerknemer(werknemer.Id)) throw new WerknemerManagerException("Update Werknemer - kan werknemer niet vinden.");
+                Werknemer werkemerDB = _werknemerRepository.GeefWerknemerOpId(werknemer.Id);
+                if (werknemer == werkemerDB) throw new WerknemerManagerException("Update Werknemer - Geen veranderingen gemaakt.");
+                _werknemerRepository.UpdateWerknemer(werknemer);
+              
             }
+            catch (WerknemerManagerException) { throw; }
             catch (Exception ex)
             {
                 throw new WerknemerManagerException("Kan werknemers niet updaten", ex);
@@ -57,13 +62,14 @@ namespace Controller.Managers
            
         }
 
-        public void VerwijderWerknemer(int index)
+        public void VerwijderWerknemer(int id)
         {
-            //TODO: uitschijven met actief = 0 te zetten
             try
             {
-                //_werknemerRepository.VerwijderWerknemer(index);
+                if (!_werknemerRepository.HeeftWerknemer(id)) throw new WerknemerManagerException("Verwijder Werknemer - kan werknemer niet vinden.");
+                _werknemerRepository.ZetNonActiefWerknemer(id);
             }
+            catch(WerknemerManagerException) { throw; }
             catch (Exception ex)
             {
                 throw new WerknemerManagerException("Kan werknemers niet verwijderen", ex);
@@ -88,6 +94,7 @@ namespace Controller.Managers
                 Werknemer werknemer = new Werknemer(voornaam, achternaam, email, functie, bedrijf);
                 _werknemerRepository.VoegWerknemerToe(werknemer);
             }
+            catch(ControleerException) { throw; }
             catch (Exception ex)
             {
 

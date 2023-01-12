@@ -34,7 +34,6 @@ namespace ControllerUT.Models
             Assert.Throws<ControleerException>(() => Controleer.ControleTelefoon(telefoon));
         }
 
-        //TODO: hoe controle doen via api
         [Theory]
         [InlineData("BE0427250554")]
         [InlineData("BE 0427.250.554")]
@@ -85,14 +84,6 @@ namespace ControllerUT.Models
             Assert.Throws<ControleerException>(() => Controleer.ControleEmail(email));
         }
 
-        [Fact]
-        public void ControleIsAfspraakAlAfgesloten_Valid()
-        {
-            //Bezoeker bezoeker = null;
-            //Werknemer werknemer = null;
-            //Afspraak f = new Afspraak(0, bezoeker, werknemer, DateTime.Now, null);
-            //Controleer.ControleIsAfspraakAlAfgesloten(f);
-        }
 
         [Fact]
         public void ControleIsAfspraakAlAfgesloten_Null_Invalid()
@@ -101,14 +92,6 @@ namespace ControllerUT.Models
             Assert.Throws<ControleerException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
         }
 
-        [Fact]
-        public void ControleIsAfspraakAlAfgesloten_NietIngelogd_Invalid()
-        {
-            //Bezoeker bezoeker = null;
-            //Werknemer werknemer = null;
-            //Afspraak f = new Afspraak(0, bezoeker, werknemer, DateTime.Now, DateTime.Now);
-            //Assert.Throws<ControleerException>(() => Controleer.ControleIsAfspraakAlAfgesloten(f));
-        }
 
         [Theory]
         [InlineData("1-ABC-123")]

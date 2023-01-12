@@ -1,9 +1,15 @@
 ﻿using Controller;
 using Controller.Exceptions;
+using Controller.Exceptions.Manager;
 using Controller.Interfaces;
 using Controller.Managers;
 using Controller.Models;
+using ControllerUT.Models;
+using MimeKit.Cryptography;
+using Moq;
+using Org.BouncyCastle.Asn1;
 using Persistence.Datalaag;
+using Persistence.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,52 +20,118 @@ namespace ControllerUT.Managers
 {
     public class AfspraakManagerUT
     {
-        private IAfspraakRepository _repo = new AfspraakRepository();
         private AfspraakManager manager;
+        private Mock<IAfspraakRepository> afspraakMock;
+
+        private Bezoeker _bezoeker;
+        private Afspraak _afspraak;
+        private Werknemer _werknemer;
+        private Bedrijf _bedrijf;
 
         public AfspraakManagerUT()
         {
-            manager = new AfspraakManager(_repo);
+            afspraakMock = new Mock<IAfspraakRepository>();
+
+            _bezoeker = new Bezoeker("BezVN", "BezAN", "bezoeker@mail.com", "bedrijf", true);
+            _bedrijf = new Bedrijf("BedrijfNaam", "BE 0202.239.951", "BedrijfAdres", "+32487877852", "bedrijf@email.com");
+            _werknemer = new Werknemer("WerkVN", "WerkVN", "werknemer@email.com", "Functie", _bedrijf);
+            _afspraak = new Afspraak(_bezoeker, _werknemer, DateTime.Now);
         }
 
         [Fact]
         public void GeefAlleAfspraken()
         {
+            List<Afspraak> afspraaks = new List<Afspraak>();
+            afspraaks.Add(_afspraak);
+
+            manager = new AfspraakManager(afspraakMock.Object);
+            afspraakMock.Setup(repo => repo.GeefAlleAfspraken()).Returns(afspraaks);
+
             IReadOnlyList<Afspraak> afspraak = manager.GeefAlleAfspraken();
+
+            Assert.True(afspraak.Any());
         }
 
-        //TODO: zoekop is nog niet uitgewerkt
         [Fact]
-        public void ZoekOp_Valid()
+        public void GeefAlleAfspraken_Exception()
         {
-            IReadOnlyList<Afspraak> lijst = manager.ZoekOp("k");
+            List<Afspraak> afspraaks = null;
+
+            manager = new AfspraakManager(afspraakMock.Object);
+
+            Assert.Throws<AfspraakManagerException>(() => manager.GeefAlleAfspraken());
+        }
+
+        [Fact]
+        public void ZoekOp()
+        {
+            List<Afspraak> afspraaks = new List<Afspraak>();
+            afspraaks.Add(_afspraak);
+
+            manager = new AfspraakManager(afspraakMock.Object);
+            afspraakMock.Setup(repo => repo.ZoekAfspraakOp("zoektekst")).Returns(afspraaks);
+
+            IReadOnlyList<Afspraak> afspraak = manager.ZoekOp("zoektekst");
+
+            Assert.True(afspraak.Any());
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public void ZoekOp_Invalid(string s)
+        public void ZoekOp_Exception(string s)
         {
-            Assert.Throws<AfspraakException>(() => manager.ZoekOp(s));
+            manager = new AfspraakManager(afspraakMock.Object);
+
+            Assert.Throws<AfspraakManagerException>(() => manager.ZoekOp(s));
         }
 
         [Fact]
-        public void UpdateAfspraak_Valid()
+        public void UpdateAfspraak()
         {
-
-            //Bedrijf bedrijf = new Bedrijf("naam", "BE 0123.321.123", "adres", "0487878787", "school@hotmail.com");
-            //Bezoeker b = new Bezoeker(100, "naam","achter","d@v.com","kitkat",true);
-            //Werknemer w = new Werknemer(1,"naam","achter","e@mail.com","ceo", bedrijf);
-            //Afspraak a = new Afspraak(b, w, new DateTime(2015, 06, 19, 5, 30, 0), new DateTime(2015, 06, 19, 8, 30, 0));
-
-            //_repo.VoegAfspraakToe(a);
-            //manager.UpdateAfspraak(a);
+            manager = new AfspraakManager(afspraakMock.Object);
+            manager.UpdateAfspraak(_afspraak);
+            afspraakMock.Verify(repo => repo.UpdateAfspraak(_afspraak));
         }
 
         [Fact]
-        public void UpdateAfspraak_Invalid()
+        public void UpdateAfspraak_Exception()
         {
-            Assert.Throws<AfspraakException>(() => manager.UpdateAfspraak(null));
+            manager = new AfspraakManager(afspraakMock.Object);
+            Assert.Throws<AfspraakManagerException>(() => manager.UpdateAfspraak(null));
         }
+
+        [Fact]
+        public void GeefaAlleopenstaandeAfsprakenVoorSendEmail()
+        {
+            List<Afspraak> afspraaks = new List<Afspraak>();
+            afspraaks.Add(_afspraak);
+
+            manager = new AfspraakManager(afspraakMock.Object);
+            afspraakMock.Setup(repo => repo.GeefOpenstaandeAfspraak()).Returns(afspraaks);
+
+            IReadOnlyList<Afspraak> afspraak = manager.GeefaAlleopenstaandeAfsprakenVoorSendEmail();
+
+            Assert.True(afspraak.Any());
+        }
+
+        [Fact]
+        public void GeefaAlleopenstaandeAfsprakenVoorSendEmail_Exception()
+        {
+            List<Afspraak> afspraaks = null;
+
+            manager = new AfspraakManager(afspraakMock.Object);
+
+            Assert.Throws<AfspraakManagerException>(() => manager.GeefAlleAfspraken());
+        }
+
+        [Fact]
+        public void VerwijderAfspraak()
+        {
+            manager = new AfspraakManager(afspraakMock.Object);
+            manager.VerwijderAfspraak(1);
+            afspraakMock.Verify(repo => repo.ZetOpNonActief(1));
+        }
+
     }
 }

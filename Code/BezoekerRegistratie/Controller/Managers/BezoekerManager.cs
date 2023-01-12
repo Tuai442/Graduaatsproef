@@ -57,18 +57,18 @@ namespace Controller.Managers
 
         }
 
-
         public void MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email,
             string bedrijfBezoeker, string emailContactPersoon)
         {
-           
+
+            Bezoeker bezoekerMetId = null;
             try
             {
                 Controleer.LegeVelden(vnBezoeker, anBezoeker, email, bedrijfBezoeker, emailContactPersoon);
                 Controleer.ControleEmail(email);
                 Controleer.ControleEmail(emailContactPersoon);
 
-                Bezoeker bezoekerMetId = _bezoekerRepository.GeefBezoekerOpEmail(email);
+                bezoekerMetId = _bezoekerRepository.GeefBezoekerOpEmail(email);
                 if (bezoekerMetId == null)
                 {
                     // Opgelet hier maken we een nieuwe bezoeker aan ZONDER id mee te geven.
@@ -80,15 +80,19 @@ namespace Controller.Managers
                 {
                     Controleer.BezoekerIsAlAangemeld(bezoekerMetId);
                     bezoekerMetId.MeldAan();
-                    _bezoekerRepository.ZetBezoekerNonActief(bezoekerMetId);
+                    _bezoekerRepository.MeldBezoekerAan(bezoekerMetId);
                 }
 
-                Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon); // TODO: controle bestaat werknemer
+                Werknemer werknemer = _werknemerRepository.GeefWerknemerOpEmail(emailContactPersoon); 
                 Afspraak afspraak = new Afspraak(bezoekerMetId, werknemer, DateTime.Now);
                 _afspraakRepository.VoegAfspraakToe(afspraak);
             }
             catch (Exception ex)
             {
+                if(bezoekerMetId!= null)
+                {
+                    _bezoekerRepository.MeldBezoekerAf(bezoekerMetId);
+                }
                 throw new BedrijfManagerException("Kan bezoeker niet aanmelden.", ex);
             }
         }
@@ -103,9 +107,13 @@ namespace Controller.Managers
                 Afspraak afspraak = _afspraakRepository.GeefOpenstaandeAfspraakOpBezoekerEmail(email);
                 Controleer.ControleIsAfspraakAlAfgesloten(afspraak);
 
+                afspraak.Bezoeker.MeldAf();
                 afspraak.EindeAfspraak();
-                _afspraakRepository.UpdateAfspraak(afspraak);
+
+                _afspraakRepository.EindeAfspraak(afspraak);
+
             }
+            catch (ControleerException) { throw; }
             catch (Exception ex)
             {
                 throw new BedrijfManagerException("Niet gelukt om de bezoeker af te melden.", ex);
@@ -135,11 +143,6 @@ namespace Controller.Managers
 
         public void UpdateBezoeker(Bezoeker bezoeker)
         {
-            //TODO: als naar de methode gekeken wordt in repo wordt er wel degelijk een update uitgevoerd en niet
-            //=>
-            // Een update van een bezoeker gebeurt er eigelijk niet omdat we
-            // in de afspraken de email adressen wille behouden, daarom bij elke verandering 
-            // wordt er een nieuwe bezoeker toegevoegd
             try
             {
                 _bezoekerRepository.ZetBezoekerNonActief(bezoeker);
@@ -152,17 +155,5 @@ namespace Controller.Managers
 
         }
 
-       /* public void VerwijderBezoeker(int index)
-        {
-            try
-            {
-                
-                _bezoekerRepository.VerwijderBezoeker(index);
-            }
-            catch (Exception ex)
-            {
-                throw new BedrijfManagerException("Kan bezoeker niet verwijderen.", ex);
-            }
-        }*/
     }
 }
