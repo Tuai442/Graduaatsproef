@@ -58,7 +58,6 @@ namespace Controller.Managers
                 if (string.IsNullOrWhiteSpace(zoekText)) throw new BedrijfException("BM - ZoekOp");
                 return _bedrijfRepository.ZoekBedrijfOp(zoekText).AsReadOnly();
             }
-            catch (BedrijfException) { throw; }
             catch (Exception ex)
             {
                 throw new BedrijfManagerException("Kan bedrijf niet opzoeken", ex);
@@ -66,16 +65,6 @@ namespace Controller.Managers
 
 
         }
-
-        //TODO: dubbele methode
-        //public void VoegBedrijfToe(string naam, string btw, string email, string adres, string tel)
-        //{
-        //    // TODO: Unit test
-        //    Controleer.BtwNummerControle(btw);
-        //    Controleer.ControleEmail(email);
-        //    Bedrijf bedrijf = new Bedrijf(naam, btw, adres, tel, email);
-        //    _bedrijfRepository.VoegNieuwBedrijfToe(bedrijf);
-        //}
 
         public IReadOnlyList<Bedrijf> GeefBedrijvenOpEmailWerknemer(string email)
         {
@@ -91,7 +80,6 @@ namespace Controller.Managers
 
         }
 
-        //TODO: dubbel opslaan en niet updaten
         public void UpdateBedrijf(Bedrijf bedrijf)
         {
             try
@@ -134,7 +122,6 @@ namespace Controller.Managers
             }
         }
 
-        //TODO: wordt niet gebruikt / wel 1 ref?
         public void VerwijderBedrijf(int id)
         {
             try

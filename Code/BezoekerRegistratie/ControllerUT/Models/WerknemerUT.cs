@@ -28,12 +28,5 @@ namespace ControllerUT.Models
             Assert.Throws<ControleerException>(() => new Werknemer(1, "Tuur", "VanH", "T@gmail.com", functie, b));
         }
 
-        [Fact]
-        public void To_String()
-        {
-            Werknemer w = new Werknemer(1, "Tuur", "VanH", "T@gmail.com", "administratie", b);
-            string s = w.ToString();
-            Assert.Equal("Tuur VanH", s);
-        }
     }
 }

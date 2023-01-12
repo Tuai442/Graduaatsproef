@@ -57,7 +57,6 @@ namespace Controller.Managers
 
         }
 
-
         public void MeldBezoekerAan(string vnBezoeker, string anBezoeker, string email,
             string bedrijfBezoeker, string emailContactPersoon)
         {
@@ -144,11 +143,6 @@ namespace Controller.Managers
 
         public void UpdateBezoeker(Bezoeker bezoeker)
         {
-            //TODO: als naar de methode gekeken wordt in repo wordt er wel degelijk een update uitgevoerd en niet
-            //=>
-            // Een update van een bezoeker gebeurt er eigelijk niet omdat we
-            // in de afspraken de email adressen wille behouden, daarom bij elke verandering 
-            // wordt er een nieuwe bezoeker toegevoegd
             try
             {
                 _bezoekerRepository.ZetBezoekerNonActief(bezoeker);
@@ -161,17 +155,5 @@ namespace Controller.Managers
 
         }
 
-       /* public void VerwijderBezoeker(int index)
-        {
-            try
-            {
-                
-                _bezoekerRepository.VerwijderBezoeker(index);
-            }
-            catch (Exception ex)
-            {
-                throw new BedrijfManagerException("Kan bezoeker niet verwijderen.", ex);
-            }
-        }*/
     }
 }

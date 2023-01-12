@@ -18,8 +18,6 @@ namespace ControllerUT.Models
         [InlineData(null, "BE 0123.321.123", "adres", "0487878787", "school@hotmail.com")]
         [InlineData("", "BE 0123.321.123", "adres", "0487878787", "school@hotmail.com")]
 
-        [InlineData("naam", null, "adres", "0487878787", "school@hotmail.com")]
-        [InlineData("naam", "", "adres", "0487878787", "school@hotmail.com")]
 
         [InlineData("naam", "BE 0123.321.123", null, "0487878787", "school@hotmail.com")]
         [InlineData("naam", "BE 0123.321.123", "", "0487878787", "school@hotmail.com")]

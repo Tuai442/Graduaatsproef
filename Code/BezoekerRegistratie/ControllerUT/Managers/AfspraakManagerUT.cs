@@ -23,7 +23,6 @@ namespace ControllerUT.Managers
         private AfspraakManager manager;
         private Mock<IAfspraakRepository> afspraakMock;
 
-        //voor UT's
         private Bezoeker _bezoeker;
         private Afspraak _afspraak;
         private Werknemer _werknemer;
@@ -33,7 +32,6 @@ namespace ControllerUT.Managers
         {
             afspraakMock = new Mock<IAfspraakRepository>();
 
-            //voor UT's
             _bezoeker = new Bezoeker("BezVN", "BezAN", "bezoeker@mail.com", "bedrijf", true);
             _bedrijf = new Bedrijf("BedrijfNaam", "BE 0202.239.951", "BedrijfAdres", "+32487877852", "bedrijf@email.com");
             _werknemer = new Werknemer("WerkVN", "WerkVN", "werknemer@email.com", "Functie", _bedrijf);
@@ -51,7 +49,7 @@ namespace ControllerUT.Managers
 
             IReadOnlyList<Afspraak> afspraak = manager.GeefAlleAfspraken();
 
-            Assert.True(afspraak.Any<Afspraak>());
+            Assert.True(afspraak.Any());
         }
 
         [Fact]
@@ -75,7 +73,7 @@ namespace ControllerUT.Managers
 
             IReadOnlyList<Afspraak> afspraak = manager.ZoekOp("zoektekst");
 
-            Assert.True(afspraak.Any<Afspraak>());
+            Assert.True(afspraak.Any());
         }
 
         [Theory]
@@ -114,7 +112,7 @@ namespace ControllerUT.Managers
 
             IReadOnlyList<Afspraak> afspraak = manager.GeefaAlleopenstaandeAfsprakenVoorSendEmail();
 
-            Assert.True(afspraak.Any<Afspraak>());
+            Assert.True(afspraak.Any());
         }
 
         [Fact]

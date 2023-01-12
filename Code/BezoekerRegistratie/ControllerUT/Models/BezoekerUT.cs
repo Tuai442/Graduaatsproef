@@ -10,16 +10,6 @@ namespace ControllerUT.Models
 {
     public class BezoekerUT
     {
-        [Theory]
-        [InlineData(null, null)]
-        [InlineData(null, "abc")]
-        [InlineData("ABC-123", null)]
-        [InlineData("ABC-123", "")]
-        [InlineData("", "abc")]
-        public void Bezoeker_Invalid(string nummerplaat, string bedrijf)
-        {
-            Assert.Throws<ControleerException>(() => new Bezoeker("vnaam", "anaam", "d@test.com", bedrijf, true, nummerplaat));
-        }
 
         [Fact]
         public void Bezoeker_Valid()

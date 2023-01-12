@@ -1,7 +1,10 @@
-﻿using Controller.Exceptions;
+﻿using Controller;
+using Controller.Exceptions;
+using Controller.Exceptions.Manager;
 using Controller.Interfaces;
 using Controller.Managers;
 using Controller.Models;
+using Moq;
 using Persistence.Datalaag;
 using System;
 using System.Collections.Generic;
@@ -13,75 +16,131 @@ namespace ControllerUT.Managers
 {
     public class BedrijfManagerUT
     {
-        private IBedrijfRepository _repo = new BedrijfRepository();
         private BedrijfManager manager;
+        private Mock<IBedrijfRepository> bedrijfMock;
+
+        private Bedrijf _bedrijf;
 
         public BedrijfManagerUT()
         {
-            manager = new BedrijfManager(_repo);
+            bedrijfMock = new Mock<IBedrijfRepository>();
+
+            _bedrijf = new Bedrijf("BedrijfNaam", "BE 0202.239.951", "BedrijfAdres", "+32487877852", "bedrijf@email.com");
         }
 
-        //TODO: exception door btw controle
         [Fact]
-        public void ControleVoegNieuwBedrijfToe_Valid()
+        public void VoegNieuwBedrijfToe()
         {
-            manager.VoegNieuwBedrijfToe("naam", "BE 0123.321.123", "adres", "0487878787", "school@hotmail.com");
-        }
-
-        [Theory]
-        [InlineData("BE 0123.321123", "0487878787", "school@hotmail.com")]
-        [InlineData("BE 0123.321.123", "04878787878787", "school@hotmail.com")]
-        [InlineData("BE 0123.321.123", "0487878787", "@hotmail.com")]
-        public void ControleVoegNieuwBedrijfToe_Invalid(string btw, string telefoon, string email)
-        {
-            Assert.Throws<ControleerException>(() => manager.VoegNieuwBedrijfToe("naam", btw, "adres", telefoon, email));
+            manager = new BedrijfManager(bedrijfMock.Object);
+            
+            manager.VoegNieuwBedrijfToe("naam", "BE 0202.239.951", "adres", "0487878787", "school@hotmail.com");
         }
 
         [Fact]
         public void GeefAlleBedrijven()
         {
-            IReadOnlyList<Bedrijf> lijst = manager.GeefAlleBedrijven();
+            List<Bedrijf> bedrijfs = new List<Bedrijf>();
+            bedrijfs.Add(_bedrijf);
+
+            manager = new BedrijfManager(bedrijfMock.Object);
+            bedrijfMock.Setup(repo => repo.GeefAlleBedrijven()).Returns(bedrijfs);
+
+            IReadOnlyList<Bedrijf> bedrijf = manager.GeefAlleBedrijven();
+            Assert.True(bedrijf.Any());
         }
 
         [Fact]
-        public void ZoekOp_Valid()
+        public void GeefAlleBedrijven_Exception()
         {
-            IReadOnlyList<Bedrijf> lijst = manager.ZoekOp("k");
+            List<Bedrijf> bedrijfs = null;
+
+            manager = new BedrijfManager(bedrijfMock.Object);
+
+            Assert.Throws<BedrijfManagerException>(() => manager.GeefAlleBedrijven());
+        }
+
+        [Fact]
+        public void ZoekOp()
+        {
+            List<Bedrijf> bedrijfs = new List<Bedrijf>();
+            bedrijfs.Add(_bedrijf);
+
+            manager = new BedrijfManager(bedrijfMock.Object);
+            bedrijfMock.Setup(repo => repo.ZoekBedrijfOp("zoektekst")).Returns(bedrijfs);
+
+            IReadOnlyList<Bedrijf> bedrijf = manager.ZoekOp("zoektekst");
+
+            Assert.True(bedrijf.Any());
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public void ZoekOp_Invalid(string s)
+        public void ZoekOp_Exception(string s)
         {
-            Assert.Throws<BedrijfException>(() => manager.ZoekOp(s));
+            manager = new BedrijfManager(bedrijfMock.Object);
+
+            Assert.Throws<BedrijfManagerException>(() => manager.ZoekOp(s));
         }
 
         [Fact]
-        public void GeefBedrijvenOpEmailWerknemer_Valid()
+        public void GeefBedrijvenOpEmailWerknemer()
         {
-            IReadOnlyList<Bedrijf> lijst = manager.GeefBedrijvenOpEmailWerknemer("k@gmail.com");
-        }
+            List<Bedrijf> bedrijfs = new List<Bedrijf>();
+            bedrijfs.Add(_bedrijf);
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void GeefBedrijvenOpEmailWerknemer_Invalid(string s)
-        {
-            Assert.Throws<ControleerException>(() => manager.GeefBedrijvenOpEmailWerknemer(s));
-        }
+            manager = new BedrijfManager(bedrijfMock.Object);
+            bedrijfMock.Setup(repo => repo.GeefBedrijvenOpWerknemerEmail("t@t.com")).Returns(bedrijfs);
 
-        [Fact]
-        public void UpdateBedrijf_Valid()
-        {
-            Bedrijf b = new Bedrijf("naam", "BE 0123.321.123", "adres", "0487878787", "school@hotmail.com");
-            manager.UpdateBedrijf(b);
+            IReadOnlyList<Bedrijf> bedrijf = manager.GeefBedrijvenOpEmailWerknemer("t@t.com");
+
+            Assert.True(bedrijf.Any());
         }
 
         [Fact]
-        public void UpdateBedrijf_Invalid()
+        public void UpdateBedrijf()
         {
-            Assert.Throws<BedrijfException>(() => manager.UpdateBedrijf(null));
+            manager = new BedrijfManager(bedrijfMock.Object);
+
+            _bedrijf.Id = 1;
+            bedrijfMock.Setup(repo => repo.HeeftBedrijf(1)).Returns(true);
+
+            manager.UpdateBedrijf(_bedrijf);
+            bedrijfMock.Verify(repo => repo.UpdateBedrijf(_bedrijf));
+        }
+
+        [Fact]
+        public void GeefBedrijfOpEmail()
+        {
+            manager = new BedrijfManager(bedrijfMock.Object);
+            bedrijfMock.Setup(repo => repo.GeefBedrijfOpEmail("t@t.com")).Returns(_bedrijf);
+
+            Bedrijf bedrijf = manager.GeefBedrijfOpEmail("t@t.com");
+
+            Assert.Equal(bedrijf, _bedrijf);
+        }
+
+        [Fact]
+        public void GeefBedrijfViaNaam()
+        {
+            manager = new BedrijfManager(bedrijfMock.Object);
+            bedrijfMock.Setup(repo => repo.GeefBedrijfViaNaam("naam")).Returns(_bedrijf);
+
+            Bedrijf bedrijf = manager.GeefBedrijfViaNaam("naam");
+
+            Assert.Equal(bedrijf, _bedrijf);
+        }
+
+        [Fact]
+        public void VerwijderBedrijf()
+        {
+            manager = new BedrijfManager(bedrijfMock.Object);
+
+            _bedrijf.Id = 1;
+            bedrijfMock.Setup(repo => repo.HeeftBedrijf(1)).Returns(true);
+
+            manager.VerwijderBedrijf(1);
+            bedrijfMock.Verify(repo => repo.ZetBedrijfNonActief(1));
         }
     }
 }

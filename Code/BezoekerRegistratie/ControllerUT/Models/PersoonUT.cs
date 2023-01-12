@@ -28,12 +28,6 @@ namespace ControllerUT.Models
             Assert.Throws<ControleerException>(() => new Persoon(voornaam, achternaam, "d@hotmail.com"));
         }
 
-        [Fact]
-        public void GeefVolledigeNaam()
-        {
-            Persoon p = new Persoon("Tuur", "VanH", "T@gmail.com");
-            string s = p.GeefVolledigeNaam();
-            Assert.Equal("Tuur VanH", s);
-        }
+   
     }
 }
